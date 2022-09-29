@@ -1,19 +1,27 @@
-﻿partial class Program
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Stage0
 {
-    private static void Main(string[] args)
+    partial class Program
     {
-        welcome2703();
-        welcome7968();
-        Console.ReadKey();
-    }
+        private static void Main(string[] args)
+        {
+            welcome2703();
+            welcome7968();
+            Console.ReadKey();
+        }
+        static partial void welcome7968();
+        private static void welcome2703()
+        {
+            Console.Write("Enter your name: ");
+            string userName;
+            userName = Console.ReadLine();
+            Console.Write("{0},welcome to my first console application", userName);
+        }
 
-    static partial void welcome7968();
-    private static void welcome2703()
-    {
-        Console.Write("Enter your name: ");
-        string userName;
-        userName = Console.ReadLine();
-        Console.Write("{0},welcome to my first console application", userName);
     }
-
 }
