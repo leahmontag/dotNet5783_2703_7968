@@ -2,7 +2,7 @@
 
 namespace Dal;
 
-internal class DalProduct
+public class DalProduct
 {
     #region Create
     public int Create(Product myProduct)

@@ -1,20 +1,18 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Linq.Expressions;
 using DO;
-using Dal;
+//using Dal;
 //namespace DalTest;
 //using static Dal.DalProduct;
-//namespace Dal;
+namespace Dal;
 
-public class Program
+internal class Program
 {
-    private Product myProduct = new Product();
-    private Order myOrder = new Order();
-    private Product MyProduct = new Product();
-
-    private OrderItem myOrderItem = new OrderItem();
+    private static DalProduct _dalProduct = new DalProduct();
+    private static DalOrder _dalOrder = new DalOrder();
+    private static DalOrderItem _dalOrderItem = new DalOrderItem();
     
-    void Main()
+    private static void Main()
     {
         Console.WriteLine("enter your choice:" +
             "0 to exit" +
@@ -37,11 +35,12 @@ public class Program
                     case "a":
                         #region add product
                         Console.WriteLine("הזן פרטי מוצר עם ירידת שורה בין השדות: ID,NAME,PRICE,INSTOCK");
-                        MyProduct.ID = Console.Read();
-                        MyProduct.Name = Console.ReadLine();
-                        MyProduct.Price = Console.Read();
-                        MyProduct.InStock = Console.Read();
-                        int productID = DalProduct.Create(MyProduct);
+                        Product myProductToAdd = new Product();
+                        myProductToAdd.ID = Console.Read();
+                        myProductToAdd.Name = Console.ReadLine();
+                        myProductToAdd.Price = Console.Read();
+                        myProductToAdd.InStock = Console.Read();
+                        int productID = _dalProduct.Create(myProductToAdd);
                         Console.WriteLine("קוד המוצר הינו:" + productID);
                         #endregion
                         break;
@@ -49,28 +48,28 @@ public class Program
                         #region get product
                         Console.WriteLine("הכנס מספר מזהה של המוצר ");
                         int num = Console.Read();
-                        Console.WriteLine(Product.Get(num));
+                        Console.WriteLine(_dalProduct.Get(num));
                         #endregion
                         break;
                     case "c":
-                        Console.WriteLine(DalProduct.GetAll());
+                        Console.WriteLine(_dalProduct.GetAll());
                         break;
                     case "d":
                         #region Update product
                         Console.WriteLine("הזן עדכון פרטי המוצר עם ירידת שורה בין השדות: ID,NAME,PRICE,INSTOCK");
-                        Product myProduct = new Product();
-                        myProduct.ID = Console.Read();
-                        myProduct.Name = Console.ReadLine();
-                        myProduct.Price = Console.Read();
-                        myProduct.InStock = Console.Read();
-                        DalProduct.Update(myProduct);
+                        Product myProductToUpdate = new Product();
+                        myProductToUpdate.ID = Console.Read();
+                        myProductToUpdate.Name = Console.ReadLine();
+                        myProductToUpdate.Price = Console.Read();
+                        myProductToUpdate.InStock = Console.Read();
+                        _dalProduct.Update(myProductToUpdate);
                         #endregion
                         break;
                     case "e":
                         #region Delete
                         Console.WriteLine("הכנס מספר מזהה של המוצר ");
                         int ProductId = Console.Read();
-                        DalProduct.Delete(ProductId);
+                        _dalProduct.Delete(ProductId);
                         #endregion
                         break;
                 }
@@ -84,18 +83,19 @@ public class Program
                     case "a":
                         #region add order
                         Console.WriteLine("הזן פרטי מוצר עם ירידת שורה בין השדות: ID,NAME,PRICE,INSTOCK");
-                        myOrder.ID = Console.Read();
-                        myOrder.CustomerName = Console.ReadLine();
-                        myOrder.CustomerEmail = Console.ReadLine();
-                        myOrder.CustomerAdress = Console.ReadLine();
+                        Order myOrderToAdd = new Order();
+                        myOrderToAdd.ID = Console.Read();
+                        myOrderToAdd.CustomerName = Console.ReadLine();
+                        myOrderToAdd.CustomerEmail = Console.ReadLine();
+                        myOrderToAdd.CustomerAdress = Console.ReadLine();
                         DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
-                        myOrder.OrderDate = d;
+                        myOrderToAdd.OrderDate = d;
                         DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
-                        myOrder.ShipDate = d;
+                        myOrderToAdd.ShipDate = d;
                         DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
-                        myOrder.DeliveryDate = d;//צריך להמיר גם מספרים?
+                        myOrderToAdd.DeliveryDate = d;//צריך להמיר גם מספרים?
 
-                        int productID = Order.Create(myOrder);
+                        int productID = _dalOrder.Create(myOrderToAdd);
                         Console.WriteLine("קוד המוצר הינו:" + productID);
                         #endregion
                         break;
@@ -103,28 +103,29 @@ public class Program
                         #region get order
                         Console.WriteLine("הכנס מספר מזהה של הזמנה ");
                         int OrderId = Console.Read();
-                        Console.WriteLine(Order.Get(OrderId));
+                        Console.WriteLine(_dalOrder.Get(OrderId));
                         #endregion
                         break;
                     case "c":
                         //foreach???????????????????
-                        Console.WriteLine(Order.GetAll());
+                        Console.WriteLine(_dalOrder.GetAll());
                         break;
                     case "d":
                         #region Update order
                         Console.WriteLine("הזן פרטי מוצר עם ירידת שורה בין השדות: ID,NAME,PRICE,INSTOCK");
-                        myOrder.ID = Console.Read();
-                        myOrder.CustomerName = Console.ReadLine();
-                        myOrder.CustomerEmail = Console.ReadLine();
-                        myOrder.CustomerAdress = Console.ReadLine();
-                        Order.Update(myOrder);
+                        Order myOrderToUpdate = new Order();
+                        myOrderToUpdate.ID = Console.Read();
+                        myOrderToUpdate.CustomerName = Console.ReadLine();
+                        myOrderToUpdate.CustomerEmail = Console.ReadLine();
+                        myOrderToUpdate.CustomerAdress = Console.ReadLine();
+                        _dalOrder.Update(myOrderToUpdate);
                         #endregion
                         break;
                     case "e":
                         #region Delete order
                         Console.WriteLine("הכנס מספר מזהה של הזמנה ");
                         int orderId = Console.Read();
-                        Order.Delete(orderId);
+                        _dalOrder.Delete(orderId);
                         #endregion
                         break;
                 }
@@ -138,12 +139,13 @@ public class Program
                     case "a":
                         #region add orderItem
                         Console.WriteLine("הזן פרטי הזמנת מוצר עם ירידת שורה בין השדות: ID,NAME,PRICE,INSTOCK");
-                        myOrderItem.OrderItemID = Console.Read();
-                        myOrderItem.ProductID = Console.Read();
-                        myOrderItem.OrderID = Console.Read();
-                        myOrderItem.Price = Console.Read();
-                        myOrderItem.Amount = Console.Read();
-                        int OrderItemID = OrderItem.Create(myOrderItem);
+                        OrderItem myOrderItemToAdd = new OrderItem();
+                        myOrderItemToAdd.OrderItemID = Console.Read();
+                        myOrderItemToAdd.ProductID = Console.Read();
+                        myOrderItemToAdd.OrderID = Console.Read();
+                        myOrderItemToAdd.Price = Console.Read();
+                        myOrderItemToAdd.Amount = Console.Read();
+                        int OrderItemID = _dalOrderItem.Create(myOrderItemToAdd);
                         Console.WriteLine("קוד הזמנת מוצר הינו:" + OrderItemID);
                         #endregion
                         break;
@@ -151,28 +153,29 @@ public class Program
                         #region get orderItem
                         Console.WriteLine("הכנס מספר מזהה של הזמנת מוצר ");
                         int orderItemId = Console.Read();
-                        Console.WriteLine(OrderItem.Get(orderItemId));
+                        Console.WriteLine(_dalOrderItem.Get(orderItemId));
                         #endregion
                         break;
                     case "c":
-                        Console.WriteLine(OrderItem.GetAll());
+                        Console.WriteLine(_dalOrderItem.GetAll());
                         break;
                     case "d":
                         #region Update OrderItem
                         Console.WriteLine("הזן פרטי הזמנת מוצר עם ירידת שורה בין השדות: ID,NAME,PRICE,INSTOCK");
-                        myOrderItem.OrderItemID = Console.Read();
-                        myOrderItem.ProductID = Console.Read();
-                        myOrderItem.OrderID = Console.Read();
-                        myOrderItem.Price = Console.Read();
-                        myOrderItem.Amount = Console.Read();
-                        OrderItem.Update(myOrderItem);
+                        OrderItem myOrderItemToUpdate = new OrderItem();
+                        myOrderItemToUpdate.OrderItemID = Console.Read();
+                        myOrderItemToUpdate.ProductID = Console.Read();
+                        myOrderItemToUpdate.OrderID = Console.Read();
+                        myOrderItemToUpdate.Price = Console.Read();
+                        myOrderItemToUpdate.Amount = Console.Read();
+                        _dalOrderItem.Update(myOrderItemToUpdate);
                         #endregion
                         break;
                     case "e":
                         #region Delete orderItem
                         Console.WriteLine("הכנס מספר מזהה של הזמנת מוצר ");
                         int orderItId = Console.Read();
-                        OrderItem.Delete(orderItId);
+                        _dalOrderItem.Delete(orderItId);
                         #endregion
                         break;
                 }

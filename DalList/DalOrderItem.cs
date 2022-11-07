@@ -2,7 +2,7 @@
 
 namespace Dal;
 
-internal class DalOrderItem
+public class DalOrderItem
 {
     #region Create
     public int Create(OrderItem myOrderItem)

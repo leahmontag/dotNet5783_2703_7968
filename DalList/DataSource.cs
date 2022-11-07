@@ -1,4 +1,7 @@
 ﻿using DO;
+using System;
+using System.ComponentModel;
+
 namespace Dal;
 
 internal static class DataSource
@@ -6,6 +9,8 @@ internal static class DataSource
     internal static Product[] ProductArr = new Product[50];
     internal static Order[] OrderArr = new Order[100];
     internal static OrderItem[] OrderItemArr = new OrderItem[200];
+    internal static Category[] categoriesArr = new Category[4];
+   // Enum[] enums5 = new Enum[2];
     internal static readonly Random rand=new Random();
      static DataSource()
     {
@@ -16,10 +21,10 @@ internal static class DataSource
     {
         #region AddProduct
         Product newProduct = new Product();
-        string[] Name = {"A","B","C","D","E","F","G","H","I","J"};
-        double[] Price= { 99,88,77,66,55,44,33,22,11,10};
-        int[] InStock = {1,2,3,4,5,6,7,8,9,10};
-
+        string[] Name = {"פלטת צלליות","אודם","מסקרה","סבון פנים","סומק","מייקאפ","מברשת למיקאפ","מברשת לצלליות","קרם לחות","שפתון"};
+        double[] Price= { 250,80,68,73,69,189,75,45,55,35};
+        int[] InStock = {17,78,3,0,26,47,212,269,0,10};
+    
         for (int i = 0; i <10; i++) {
             int id = rand.Next(100000, 999999);
             for (int j = 0; j < Config.ProductIndex; j++)
@@ -35,7 +40,7 @@ internal static class DataSource
             newProduct.Name = Name[i];
             newProduct.Price = Price[i];
             newProduct.InStock = InStock[i];
-           // newProduct.Category=
+            newProduct.Category=
             AddProduct(newProduct);
         }
         #endregion
