@@ -1,6 +1,4 @@
 ﻿using DO;
-
-
 namespace Dal;
 
 internal static class DataSource
@@ -24,8 +22,6 @@ internal static class DataSource
 
         for (int i = 0; i <10; i++) {
             int id = rand.Next(100000, 999999);
-
-
             for (int j = 0; j < Config.ProductIndex; j++)
             {
                 if (ProductArr[j].ID == id)
@@ -58,9 +54,9 @@ internal static class DataSource
             newOrder.CustomerName = CustomerName[i];
             newOrder.CustomerEmail = CustomerEmail[i];
             newOrder.CustomerAdress = CustomerAdress[i];
-            newOrder.OrderDate = OrderDate[i];
-            newOrder.ShipDate = ShipDate[i];
-            newOrder.DeliveryDate = DeliveryDate[i];
+            newOrder.OrderDate = new DateTime.MinValue;
+            newOrder.ShipDate =newOrder.OrderDate.Add( TimeSpan(rand.Next(2,10),rand.Next(0,59),rand.Next(0,59));
+            newOrder.DeliveryDate =newOrder.ShipDate.Add( TimeSpan(rand.Next(0,10),rand.Next(2,10),rand.Next(0,59),rand.Next(0,59));
             AddOrder(newOrder);
         }
         #endregion
