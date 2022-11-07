@@ -35,7 +35,7 @@ internal static class DataSource
             newProduct.Name = Name[i];
             newProduct.Price = Price[i];
             newProduct.InStock = InStock[i];
-            //  newProduct.Category
+           // newProduct.Category=
             AddProduct(newProduct);
         }
         #endregion
@@ -54,9 +54,9 @@ internal static class DataSource
             newOrder.CustomerName = CustomerName[i];
             newOrder.CustomerEmail = CustomerEmail[i];
             newOrder.CustomerAdress = CustomerAdress[i];
-            newOrder.OrderDate = new DateTime.MinValue;
-            newOrder.ShipDate =newOrder.OrderDate.Add( TimeSpan(rand.Next(2,10),rand.Next(0,59),rand.Next(0,59));
-            newOrder.DeliveryDate =newOrder.ShipDate.Add( TimeSpan(rand.Next(0,10),rand.Next(2,10),rand.Next(0,59),rand.Next(0,59));
+            newOrder.OrderDate = DateTime.MinValue;
+            newOrder.ShipDate =newOrder.OrderDate.Add(new TimeSpan(rand.Next(2,10),rand.Next(0,59),rand.Next(0,59)));
+            newOrder.DeliveryDate =newOrder.ShipDate.Add(new TimeSpan(rand.Next(0,10),rand.Next(2,10),rand.Next(0,59),rand.Next(0,59)));
             AddOrder(newOrder);
         }
         #endregion

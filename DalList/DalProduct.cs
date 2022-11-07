@@ -71,5 +71,5 @@ internal class DalProduct
         return newProductArr;
     }
     #endregion
-
 }
+
