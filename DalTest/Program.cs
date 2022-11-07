@@ -2,9 +2,11 @@
 using System.Linq.Expressions;
 using DO;
 using Dal;
-namespace Dal;
+//namespace DalTest;
+//using static Dal.DalProduct;
+//namespace Dal;
 
-internal class Program
+public class Program
 {
     private Product myProduct = new Product();
     private Order myOrder = new Order();
@@ -27,7 +29,9 @@ internal class Program
                 break;
             case 1://product
                 #region product
+                Console.WriteLine("הכנס בחירה ");
                 yourChoice = Console.ReadLine();
+                //DalProduct product = new DalProduct();
                 switch (yourChoice)
                 {
                     case "a":
@@ -84,6 +88,13 @@ internal class Program
                         myOrder.CustomerName = Console.ReadLine();
                         myOrder.CustomerEmail = Console.ReadLine();
                         myOrder.CustomerAdress = Console.ReadLine();
+                        DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                        myOrder.OrderDate = d;
+                        DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                        myOrder.ShipDate = d;
+                        DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                        myOrder.DeliveryDate = d;//צריך להמיר גם מספרים?
+
                         int productID = Order.Create(myOrder);
                         Console.WriteLine("קוד המוצר הינו:" + productID);
                         #endregion
@@ -96,6 +107,7 @@ internal class Program
                         #endregion
                         break;
                     case "c":
+                        //foreach???????????????????
                         Console.WriteLine(Order.GetAll());
                         break;
                     case "d":
