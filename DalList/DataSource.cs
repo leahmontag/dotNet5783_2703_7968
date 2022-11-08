@@ -49,7 +49,7 @@ internal static class DataSource
             newProduct.Price = Price[i];
             newProduct.InStock = InStock[i];
             newProduct.Category = CategoryArr[i];
-            AddProduct(newProduct);
+            addProduct(newProduct);
             Console.Write("Config.ProductIndex");//testing
             Console.Write(Config.ProductIndex);//testing
 
@@ -73,7 +73,7 @@ internal static class DataSource
             newOrder.OrderDate = DateTime.MinValue;
             newOrder.ShipDate =newOrder.OrderDate.Add(new TimeSpan(rand.Next(2,10),rand.Next(0,59),rand.Next(0,59)));
             newOrder.DeliveryDate =newOrder.ShipDate.Add(new TimeSpan(rand.Next(0,10),rand.Next(2,10),rand.Next(0,59),rand.Next(0,59)));
-            AddOrder(newOrder);
+            addOrder(newOrder);
         }
         #endregion
         #region AddOrderItem
@@ -87,20 +87,20 @@ internal static class DataSource
             newOrderItem.OrderID = OrderArr[rand.Next(0,Config.OrderIndex)].ID;
             newOrderItem.Price = OrderPrice[i];
             newOrderItem.Amount=Amount[i];
-            AddOrderItem(newOrderItem); 
+            addOrderItem(newOrderItem); 
         }
         #endregion
     }
     #region AddFunctions
-    private static void AddProduct(Product newProduct)
+    private static void addProduct(Product newProduct)
     {
         ProductArr[Config.ProductIndex++] = newProduct;
     }
-    private static void AddOrder(Order newOrderArr)
+    private static void addOrder(Order newOrderArr)
     {
         OrderArr[Config.OrderIndex++] = newOrderArr;
     }
-    private static void AddOrderItem(OrderItem newOrderItem)
+    private static void addOrderItem(OrderItem newOrderItem)
     {
         OrderItemArr[Config.OrderItemIndex++] = newOrderItem;
     }
