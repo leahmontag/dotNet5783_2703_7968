@@ -1,6 +1,7 @@
 ﻿using DO;
 using System;
 using System.ComponentModel;
+using static DO.Enums;
 
 namespace Dal;
 
@@ -9,8 +10,7 @@ internal static class DataSource
     internal static Product[] ProductArr = new Product[50];
     internal static Order[] OrderArr = new Order[100];
     internal static OrderItem[] OrderItemArr = new OrderItem[200];
-    internal static Category[] categoriesArr = new Category[4];
-   // Enum[] enums5 = new Enum[2];
+    internal static Category[] categoriesArr = new Category[5];
     internal static readonly Random rand=new Random();
      static DataSource()
     {
@@ -24,7 +24,18 @@ internal static class DataSource
         string[] Name = {"פלטת צלליות","אודם","מסקרה","סבון פנים","סומק","מייקאפ","מברשת למיקאפ","מברשת לצלליות","קרם לחות","שפתון"};
         double[] Price= { 250,80,68,73,69,189,75,45,55,35};
         int[] InStock = {17,78,3,0,26,47,212,269,0,10};
-    
+        Category[] CategoryArr = {
+            Category.eyeMakeup,
+            Category.lipMakeup,
+            Category.eyeMakeup,
+            Category.cultivation,
+            Category.facialMmakeup,
+            Category.facialMmakeup,
+            Category.brushes,
+            Category.brushes,
+            Category.cultivation,
+            Category.lipMakeup
+        };
         for (int i = 0; i <10; i++) {
             int id = rand.Next(100000, 999999);
             for (int j = 0; j < Config.ProductIndex; j++)
@@ -40,7 +51,7 @@ internal static class DataSource
             newProduct.Name = Name[i];
             newProduct.Price = Price[i];
             newProduct.InStock = InStock[i];
-            newProduct.Category=
+            newProduct.Category = CategoryArr[i];
             AddProduct(newProduct);
         }
         #endregion

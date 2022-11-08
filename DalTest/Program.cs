@@ -1,9 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Linq.Expressions;
 using DO;
-//using Dal;
-//namespace DalTest;
-//using static Dal.DalProduct;
 namespace Dal;
 
 internal class Program
@@ -11,13 +8,13 @@ internal class Program
     private static DalProduct _dalProduct = new DalProduct();
     private static DalOrder _dalOrder = new DalOrder();
     private static DalOrderItem _dalOrderItem = new DalOrderItem();
-    
+
     private static void Main()
     {
         Console.WriteLine("enter your choice:" +
             "0 to exit" +
             "1 -product" +
-            "2 -order" + 
+            "2 -order" +
             "3 -order items");
         int choice = Console.Read();
         String yourChoice;
@@ -88,12 +85,13 @@ internal class Program
                         myOrderToAdd.CustomerName = Console.ReadLine();
                         myOrderToAdd.CustomerEmail = Console.ReadLine();
                         myOrderToAdd.CustomerAdress = Console.ReadLine();
-                        DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
-                        myOrderToAdd.OrderDate = d;
-                        DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
-                        myOrderToAdd.ShipDate = d;
-                        DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
-                        myOrderToAdd.DeliveryDate = d;//צריך להמיר גם מספרים?
+                        DateTime dateResult;
+                        DateTime.TryParse(Console.ReadLine(), out dateResult);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                        myOrderToAdd.OrderDate = dateResult;
+                        DateTime.TryParse(Console.ReadLine(), out dateResult);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                        myOrderToAdd.ShipDate = dateResult;
+                        DateTime.TryParse(Console.ReadLine(), out dateResult);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                        myOrderToAdd.DeliveryDate = dateResult;//צריך להמיר גם מספרים?
 
                         int productID = _dalOrder.Create(myOrderToAdd);
                         Console.WriteLine("קוד המוצר הינו:" + productID);

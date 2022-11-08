@@ -4,7 +4,7 @@ namespace DO;
 
 public struct Enums
 {
-    enum Category
+    public enum Category
     {
         eyeMakeup,
         lipMakeup,
