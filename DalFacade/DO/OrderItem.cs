@@ -1,8 +1,4 @@
-﻿
-
-using System.Xml.Linq;
-
-namespace DO;
+﻿namespace DO;
 
 public struct OrderItem
 {

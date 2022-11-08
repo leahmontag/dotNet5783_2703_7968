@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using DO;
 namespace Dal;
 
@@ -16,7 +17,9 @@ internal class Program
             "1 -product" +
             "2 -order" +
             "3 -order items");
-        int choice = Console.Read();
+        string val= Console.ReadLine();
+        int choice = Convert.ToInt32(val);
+        Console.Write(choice);
         String yourChoice;
         switch (choice)
         {
@@ -24,7 +27,7 @@ internal class Program
                 break;
             case 1://product
                 #region product
-                Console.WriteLine("הכנס בחירה ");
+                Console.WriteLine("enter your choice");
                 yourChoice = Console.ReadLine();
                 //DalProduct product = new DalProduct();
                 switch (yourChoice)
@@ -49,7 +52,16 @@ internal class Program
                         #endregion
                         break;
                     case "c":
-                        Console.WriteLine(_dalProduct.GetAll());
+
+                        Product[] PrintProducts = _dalProduct.GetAll();
+                        //Console.WriteLine(PrintProducts[0]);
+
+                        foreach (Product i in PrintProducts)
+                        {
+                            Console.WriteLine(i);
+                            Console.WriteLine("in c");
+
+                        }
                         break;
                     case "d":
                         #region Update product

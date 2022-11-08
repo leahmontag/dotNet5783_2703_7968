@@ -1,8 +1,4 @@
-﻿
-
-using System.Diagnostics;
-
-namespace DO;
+﻿namespace DO;
 
 public struct Order
 {

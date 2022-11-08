@@ -63,6 +63,9 @@ public class DalProduct
     public Product[] GetAll()
     {
         int size = DataSource.Config.ProductIndex;
+        Console.Write("size of ProductIndex in getall func");
+        Console.Write(size);
+
         Product[] newProductArr = new Product[size];
         for (int i = 0; i < size; i++)
         {
@@ -72,4 +75,3 @@ public class DalProduct
     }
     #endregion
 }
-

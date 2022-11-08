@@ -1,10 +1,7 @@
 ﻿using DO;
-using System;
-using System.ComponentModel;
 using static DO.Enums;
 
 namespace Dal;
-
 internal static class DataSource
 {
     internal static Product[] ProductArr = new Product[50];
@@ -53,6 +50,9 @@ internal static class DataSource
             newProduct.InStock = InStock[i];
             newProduct.Category = CategoryArr[i];
             AddProduct(newProduct);
+            Console.Write("Config.ProductIndex");//testing
+            Console.Write(Config.ProductIndex);//testing
+
         }
         #endregion
         #region AddOrder
@@ -92,20 +92,17 @@ internal static class DataSource
         #endregion
     }
     #region AddFunctions
-    private static void AddProduct(Product newProduct)//random
+    private static void AddProduct(Product newProduct)
     {
-        ProductArr[Config.ProductIndex] = newProduct;
-        Config.ProductIndex++;
+        ProductArr[Config.ProductIndex++] = newProduct;
     }
     private static void AddOrder(Order newOrderArr)
     {
-        OrderArr[Config.OrderIndex] = newOrderArr;
-        Config.OrderIndex++;
+        OrderArr[Config.OrderIndex++] = newOrderArr;
     }
     private static void AddOrderItem(OrderItem newOrderItem)
     {
-        OrderItemArr[Config.OrderItemIndex] = newOrderItem;
-        Config.OrderItemIndex++;
+        OrderItemArr[Config.OrderItemIndex++] = newOrderItem;
     }
     #endregion
 
