@@ -7,13 +7,16 @@ public class DalProduct
     #region Create
     public int Create(Product myProduct)
     {
-        for (int i = 0; i < DataSource.Config.ProductIndex; i++)
+        int myID;
+        Random rand = new Random();
+        do
         {
-            if (DataSource.ProductArr[i].ID == myProduct.ID)
-                throw new Exception("exist product");
-        }
-        DataSource.ProductArr[DataSource.Config.ProductIndex] = myProduct;
-        DataSource.Config.ProductIndex++;
+            myID = rand.Next(100000, 999999);
+        } while (existProductID(myID));
+
+        myProduct.ID = myID;
+        DataSource.ProductArr[DataSource.Config.ProductIndex++] = myProduct;
+        Console.WriteLine("myProduct.ID: " + myProduct.ID);
         return myProduct.ID;
     }
     #endregion
@@ -52,6 +55,7 @@ public class DalProduct
     {
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)
         {
+            Console.Write(DataSource.ProductArr[i].Name, DataSource.ProductArr[i].ID);
             Product CurrentProduct = DataSource.ProductArr[i];
             if (CurrentProduct.ID == ProductId)
                 return CurrentProduct;
@@ -74,4 +78,14 @@ public class DalProduct
         return newProductArr;
     }
     #endregion
+
+    private bool existProductID(int num)
+    {
+        for (int i = 0; i < DataSource.Config.ProductIndex; i++)
+        {
+            if (DataSource.ProductArr[i].ID == num)
+                return true;
+        }
+        return false;
+    }
 }

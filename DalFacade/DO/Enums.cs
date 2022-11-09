@@ -12,4 +12,21 @@ public struct Enums
         brushes,
         cultivation
     }
+
+    public enum Choice
+    {
+        exit,
+        product,
+        order,
+        orderItem
+    }
+
+    public enum crud
+    {
+        create = 1,
+        get,
+        getAll,
+        update,
+        delete
+    }
 }
