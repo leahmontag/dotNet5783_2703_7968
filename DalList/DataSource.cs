@@ -51,9 +51,6 @@ public static class DataSource
             newProduct.InStock = InStock[i];
             newProduct.Category = CategoryArr[i % 5];
             addProduct(newProduct);
-            Console.Write("Config.ProductIndex");//testing
-            Console.Write(Config.ProductIndex);//testing
-
         }
         #endregion
         #region AddOrder
@@ -121,8 +118,9 @@ public static class DataSource
     }
     #endregion
 
+    #region CallData function
     public static void CallData()
     {
-        //return;
     }
+    #endregion
 }

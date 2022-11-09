@@ -38,6 +38,8 @@ public class DalProduct
     #region Delete
     public void Delete(int ProductId)
     {
+        Console.Write("ProductId" + ProductId);
+        Console.Write(" DataSource.Config.ProductIndex" + DataSource.Config.ProductIndex);
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)
         {
             if (DataSource.ProductArr[i].ID == ProductId)
