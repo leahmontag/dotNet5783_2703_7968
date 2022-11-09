@@ -19,5 +19,4 @@ public struct Order
     Ship Date: {ShipDate}
     DeliveryDate: {DeliveryDate}
     ";
-
 }

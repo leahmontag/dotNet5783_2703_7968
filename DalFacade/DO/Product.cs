@@ -16,8 +16,4 @@ public struct Product
     Amount in stock: {InStock}
     ";
       
-   
-       
-    
-
 }

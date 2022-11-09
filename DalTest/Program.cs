@@ -16,17 +16,16 @@ internal class Program
     public static void Main()
     {
         DataSource.CallData();
-        Choice t;
+        Choice yourChoice;
         do
         {
-            Choice yourChoice;
-            Console.WriteLine("enter your choice:" + "0 to exit" + "1 -product" + "2 -order" + "3 -order items");
+          
+            Console.WriteLine("enter your choice:" + "0-exit" + " 1-product" + " 2-order" + " 3-order items");
             Enum.TryParse(Console.ReadLine(), out yourChoice);
             Console.Write("yourChoice: " + yourChoice);
             switch (yourChoice)
             {
                 case Choice.exit:
-                    Console.Write("exit????????????? ");
                     break;
                 case Choice.product:
                     ProductFunction();//product
@@ -38,8 +37,7 @@ internal class Program
                     OrderItemFunction();//order item
                     break;
             }
-            t = yourChoice;
-        } while (t != Choice.exit);
+        } while (yourChoice != Choice.exit);
 
     }
     #region ProductFunction

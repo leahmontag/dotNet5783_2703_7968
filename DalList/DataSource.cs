@@ -2,7 +2,7 @@
 using static DO.Enums;
 
 namespace Dal;
-public static class DataSource
+public static class DataSource //or internal to cheak
 {
     internal static Product[] ProductArr = new Product[50];
     internal static Order[] OrderArr = new Order[100];
@@ -11,7 +11,6 @@ public static class DataSource
     internal static readonly Random rand = new Random();
     static DataSource()
     {
-        Console.Write("in datas");
         s_Initialize();
     }
 
@@ -19,7 +18,7 @@ public static class DataSource
     {
         #region AddProduct
         Product newProduct = new Product();
-        string[] Name = { "פלטת צלליות", "אודם", "מסקרה", "סבון פנים", "סומק", "מייקאפ", "מברשת למיקאפ", "מברשת לצלליות", "קרם לחות", "שפתון" };
+        string[] Name = { "eye shadow palette", "rubber", "mascara", "facial soap", "blush", "makeup", "makeup brush", "eyeshadow brush", "moisturizer", "lipstick" };
         double[] Price = { 250, 80, 68, 73, 69, 189, 75, 45, 55, 35 };
         int[] InStock = { 17, 78, 3, 0, 26, 47, 212, 269, 0, 10 };
         Category[] CategoryArr = {
@@ -55,9 +54,9 @@ public static class DataSource
         #endregion
         #region AddOrder
         Order newOrder = new Order();
-        string[] CustomerName = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
-        string[] CustomerEmail = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
-        string[] CustomerAdress = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
+        string[] CustomerName = { "Efrat", "Elisheva", "Leah", "Rachel", "Esther", "Batya", "Tamar", "Miriam", "Hadassah", "Shira", "Dini", "Ila", "Mali" ,"Ruti", "Naama", "Gila", "Yael", "Penina","Tzipi", "Tova" };
+        string[] CustomerEmail = { "r33197903@gmail.com", "et3367903@gmail.com", "p33197903@gmail.com", "o33197903@gmail.com", "m33197903@gmail.com", "b33197903@gmail.com", "v33197903@gmail.com", "l33197903@gmail.com", "a33197903@gmail.com", "d33197903@gmail.com", "r33198903@gmail.com", "et8367903@gmail.com", "n33197903@gmail.com", "x33197903@gmail.com", "c33197903@gmail.com", "j33197903@gmail.com", "k33197903@gmail.com", "f33197903@gmail.com", "g33197903@gmail.com", "p33197903@gmail.com" };
+        string[] CustomerAdress = { "SHOREK River","Nahal Dolev","Nahal Noam","Nahal Ayalon","Nahal Oriya","Nahal Micah","Nahal Akziv","Jordan river", "Levi Eshkol", "Levi Eshkol", "SHOREK River", "Nahal Dolev", "Nahal Noam", "Nahal Ayalon", "Nahal Oriya", "Nahal Micah", "Nahal Akziv", "Jordan river", "Levi Eshkol", "Levi Eshkol" };
         DateTime[] OrderDate = { };
         DateTime[] ShipDate = { };
         DateTime[] DeliveryDate = { };
@@ -65,10 +64,15 @@ public static class DataSource
         for (int i = 0; i < 20; i++)
         {
             newOrder.ID = Config.AutoNumOrder;
-            newOrder.CustomerName = CustomerName[i % 10];
-            newOrder.CustomerEmail = CustomerEmail[i % 10];
-            newOrder.CustomerAdress = CustomerAdress[i % 10];
-            newOrder.OrderDate = DateTime.MinValue;
+            newOrder.CustomerName = CustomerName[i % 20];
+            newOrder.CustomerEmail = CustomerEmail[i % 20];
+            newOrder.CustomerAdress = CustomerAdress[i % 20];
+            Random gen = new Random();
+            var start = DateTime.Now.AddDays(-15);
+            int range = (DateTime.Today - DateTime.Today.AddDays(-15)).Days;
+            var result = start.AddDays(gen.Next(range));
+            newOrder.OrderDate = result;
+           // Console.WriteLine("timer"+new TimeSpan(rand.Next(2, 10), rand.Next(0, 59), rand.Next(0, 59)));
             newOrder.ShipDate = newOrder.OrderDate.Add(new TimeSpan(rand.Next(2, 10), rand.Next(0, 59), rand.Next(0, 59)));
             newOrder.DeliveryDate = newOrder.ShipDate.Add(new TimeSpan(rand.Next(0, 10), rand.Next(2, 10), rand.Next(0, 59), rand.Next(0, 59)));
             addOrder(newOrder);
@@ -79,9 +83,10 @@ public static class DataSource
         for (int i = 0; i < 40; i++)
         {
             newOrderItem.OrderItemID = Config.AutoNumOrderItem;
-            newOrderItem.ProductID = ProductArr[rand.Next(0, Config.ProductIndex)].ID;
+            int rng = rand.Next(0, Config.ProductIndex);
+            newOrderItem.ProductID = ProductArr[rng].ID;
             newOrderItem.OrderID = OrderArr[rand.Next(0, Config.OrderIndex)].ID;
-            newOrderItem.Price = rand.Next(100, 900);
+            newOrderItem.Price = ProductArr[rng].Price;
             newOrderItem.Amount = rand.Next(1, 10);
             addOrderItem(newOrderItem);
         }

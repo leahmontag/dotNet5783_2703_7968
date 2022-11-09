@@ -15,6 +15,7 @@ public class DalOrder
         DataSource.Config.OrderIndex++;
         return myOrder.ID;
     }
+
     #endregion
     #region Update
     public void Update(Order myOrder)
