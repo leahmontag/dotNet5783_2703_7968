@@ -24,7 +24,7 @@ internal class Program
     /// private new DalOrderItem.
     /// </summary>
     private static DalOrderItem _dalOrderItem = new DalOrderItem();
-
+  
     /// <summary>
     /// public void main.
     /// </summary>

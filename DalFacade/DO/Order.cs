@@ -39,8 +39,8 @@
     Customer Name:{CustomerName},
     Customer Email: {CustomerEmail}
     CustomerAdress: {CustomerAdress}
-    Order Date: {OrderDate}
-    Ship Date: {ShipDate}
-    DeliveryDate: {DeliveryDate}
+    Order Date: {OrderDate.ToShortDateString()}
+    Ship Date: {ShipDate.ToShortDateString()}
+    DeliveryDate: {DeliveryDate.ToShortDateString()}
     ";
 }

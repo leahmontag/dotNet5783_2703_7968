@@ -21,7 +21,6 @@ public class DalProduct
 
         myProduct.ID = myID;
         DataSource.ProductArr[DataSource.Config.ProductIndex++] = myProduct;
-        Console.WriteLine("myProduct.ID: " + myProduct.ID);
         return myProduct.ID;
     }
     #endregion
@@ -49,8 +48,6 @@ public class DalProduct
     /// </summary>
     public void Delete(int ProductId)
     {
-        Console.Write("ProductId" + ProductId);
-        Console.Write(" DataSource.Config.ProductIndex" + DataSource.Config.ProductIndex);
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)
         {
             if (DataSource.ProductArr[i].ID == ProductId)
