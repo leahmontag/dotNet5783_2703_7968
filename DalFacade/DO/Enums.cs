@@ -1,7 +1,13 @@
 ﻿namespace DO;
 
+/// <summary>
+/// structure for enums. 
+/// </summary>
 public struct Enums
 {
+    /// <summary>
+    /// enum Category. 
+    /// </summary>
     public enum Category
     {
         eyeMakeup,
@@ -11,6 +17,9 @@ public struct Enums
         cultivation
     }
 
+    /// <summary>
+    /// enum Choice. 
+    /// </summary>
     public enum Choice
     {
         exit,
@@ -19,12 +28,17 @@ public struct Enums
         orderItem
     }
 
-    public enum crud
+    /// <summary>
+    /// enum Crud. 
+    /// </summary>
+    public enum Crud
     {
         create = 1,
         get,
         getAll,
         update,
-        delete
+        delete,
+        GetByProductIDAndOrderID,
+        GetOrderItemsByOrderID
     }
 }

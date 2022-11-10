@@ -7,19 +7,33 @@ using static DO.Enums;
 
 namespace Dal;
 
+/// <summary>
+/// class Program.
+/// </summary>
 internal class Program
 {
+    /// <summary>
+    /// private new DalProduct.
+    /// </summary>
     private static DalProduct _dalProduct = new DalProduct();
+    /// <summary>
+    /// private new DalOrder.
+    /// </summary>
     private static DalOrder _dalOrder = new DalOrder();
+    /// <summary>
+    /// private new DalOrderItem.
+    /// </summary>
     private static DalOrderItem _dalOrderItem = new DalOrderItem();
 
+    /// <summary>
+    /// public void main.
+    /// </summary>
     public static void Main()
     {
-        DataSource.CallData();
+        _dalProduct.Delete(_dalProduct.Create(new Product()));//להסביר......
         Choice yourChoice;
         do
         {
-          
             Console.WriteLine("enter your choice:" + "0-exit" + " 1-product" + " 2-order" + " 3-order items");
             Enum.TryParse(Console.ReadLine(), out yourChoice);
             Console.Write("yourChoice: " + yourChoice);
@@ -40,17 +54,20 @@ internal class Program
         } while (yourChoice != Choice.exit);
 
     }
+    /// <summary>
+    /// product function.
+    /// </summary>
     #region ProductFunction
     public static void ProductFunction()
     {
-        crud yourCrud;
+        Crud yourCrud;
         string numId;
         int num;
         Console.WriteLine("enter your choice");
         Enum.TryParse(Console.ReadLine(), out yourCrud);
         switch (yourCrud)
         {
-            case crud.create:
+            case Crud.create:
                 #region add product
                 Console.WriteLine("enter your product iteam:");
                 Product myProductToAdd = new Product();
@@ -64,7 +81,7 @@ internal class Program
                 Console.WriteLine("id:" + productID);
                 #endregion
                 break;
-            case crud.get:
+            case Crud.get:
                 #region get product
                 Console.WriteLine("enter id of product ");
                 numId = Console.ReadLine();
@@ -74,7 +91,7 @@ internal class Program
                 Console.WriteLine(p.ID);
                 #endregion
                 break;
-            case crud.getAll:
+            case Crud.getAll:
                 #region getAll product
                 Product[] PrintProducts = _dalProduct.GetAll();
                 foreach (Product i in PrintProducts)
@@ -83,7 +100,7 @@ internal class Program
                 }
                 #endregion
                 break;
-            case crud.update:
+            case Crud.update:
                 #region Update product
                 Console.WriteLine("enter your product iteam:");
                 Product myProductToUpdate = new Product();
@@ -98,7 +115,7 @@ internal class Program
                 _dalProduct.Update(myProductToUpdate);
                 #endregion
                 break;
-            case crud.delete:
+            case Crud.delete:
                 #region Delete product
                 Console.WriteLine("enter product id:");
                 int ProductId = int.Parse(Console.ReadLine());
@@ -109,15 +126,18 @@ internal class Program
     }
     #endregion
 
+    /// <summary>
+    /// order function.
+    /// </summary>
     #region OrderFunction
     public static void OrderFunction()
     {
-        crud yourCrud;
+        Crud yourCrud;
         Console.WriteLine("enter your choice");
         Enum.TryParse(Console.ReadLine(), out yourCrud);
         switch (yourCrud)
         {
-            case crud.create:
+            case Crud.create:
                 #region add order
                 Console.WriteLine(" enter your order items:");
                 Order myOrderToAdd = new Order();
@@ -140,14 +160,14 @@ internal class Program
                 Console.WriteLine("id:" + orderID);
                 #endregion
                 break;
-            case crud.get:
+            case Crud.get:
                 #region get order
                 Console.WriteLine("enter your order id: ");
                 int OrderId = int.Parse(Console.ReadLine());
                 Console.WriteLine(_dalOrder.Get(OrderId));
                 #endregion
                 break;
-            case crud.getAll:
+            case Crud.getAll:
                 #region getAll order
                 Order[] PrintOrders = _dalOrder.GetAll();
                 foreach (Order i in PrintOrders)
@@ -156,7 +176,7 @@ internal class Program
                 }
                 #endregion
                 break;
-            case crud.update:
+            case Crud.update:
                 #region Update order
                 Console.WriteLine(" enter your order items:");
                 Order myOrderToUpdate = new Order();
@@ -171,7 +191,7 @@ internal class Program
                 _dalOrder.Update(myOrderToUpdate);
                 #endregion
                 break;
-            case crud.delete:
+            case Crud.delete:
                 #region Delete order
                 Console.WriteLine("enter your order id: ");
                 int orderId = int.Parse(Console.ReadLine());
@@ -182,15 +202,18 @@ internal class Program
     }
     #endregion
 
+    /// <summary>
+    /// order item function.
+    /// </summary>
     #region OrderItemFunction
     public static void OrderItemFunction()
     {
-        crud yourCrud;
+        Crud yourCrud;
         Console.WriteLine("enter your choice");
         Enum.TryParse(Console.ReadLine(), out yourCrud);
         switch (yourCrud)
         {
-            case crud.create:
+            case Crud.create:
                 #region add orderItem         
                 Console.WriteLine(" enter your order items:");
                 OrderItem myOrderItemToAdd = new OrderItem();
@@ -208,14 +231,14 @@ internal class Program
                 Console.WriteLine("id:" + OrderItemID);
                 #endregion
                 break;
-            case crud.get:
+            case Crud.get:
                 #region get orderItem
                 Console.WriteLine("enter your product id: ");
                 int orderItemId = int.Parse(Console.ReadLine());
                 Console.WriteLine(_dalOrderItem.Get(orderItemId));
                 #endregion
                 break;
-            case crud.getAll:
+            case Crud.getAll:
                 #region getAll orderItem
                 OrderItem[] PrintOrdersItems = _dalOrderItem.GetAll();
                 foreach (OrderItem i in PrintOrdersItems)
@@ -224,7 +247,7 @@ internal class Program
                 }
                 #endregion
                 break;
-            case crud.update:
+            case Crud.update:
                 #region Update OrderItem
                 Console.WriteLine(" enter your order item items:");
                 OrderItem myOrderItemToUpdate = new OrderItem();
@@ -241,11 +264,32 @@ internal class Program
                 _dalOrderItem.Update(myOrderItemToUpdate);
                 #endregion
                 break;
-            case crud.delete:
+            case Crud.delete:
                 #region Delete orderItem
                 Console.WriteLine("enter your product id: ");
                 int orderItId = int.Parse(Console.ReadLine());
                 _dalOrderItem.Delete(orderItId);
+                #endregion
+                break;
+            case Crud.GetByProductIDAndOrderID:
+                #region Get orderitem by ProductID and OrderID 
+                Console.WriteLine("enter your order id: ");
+                orderItId = int.Parse(Console.ReadLine());
+                Console.WriteLine("enter your product id: ");
+                int productId = int.Parse(Console.ReadLine());
+                Console.WriteLine(_dalOrderItem.GetByProductIDAndOrderID(orderItId, productId));
+                #endregion
+                break;
+            case Crud.GetOrderItemsByOrderID:
+                #region Get Order Items By Order ID
+                Console.WriteLine("enter your order id: ");
+                orderItId = int.Parse(Console.ReadLine());
+                PrintOrdersItems = _dalOrderItem.GetOrderItemsByOrderID(orderItId);
+                foreach (OrderItem i in PrintOrdersItems)
+                {
+                    if (i.OrderItemID != 0)
+                        Console.WriteLine(i);
+                }
                 #endregion
                 break;
         }

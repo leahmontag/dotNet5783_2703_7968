@@ -1,10 +1,15 @@
 ﻿using DO;
-
 namespace Dal;
 
+/// <summary>
+/// class DalProduct.
+/// </summary>
 public class DalProduct
 {
     #region Create
+    /// <summary>
+    /// add a new product.
+    /// </summary>
     public int Create(Product myProduct)
     {
         int myID;
@@ -21,6 +26,9 @@ public class DalProduct
     }
     #endregion
     #region Update
+    /// <summary>
+    /// update product.
+    /// </summary>
     public void Update(Product myProduct)
     {
 
@@ -36,6 +44,9 @@ public class DalProduct
     }
     #endregion
     #region Delete
+    /// <summary>
+    /// delete product.
+    /// </summary>
     public void Delete(int ProductId)
     {
         Console.Write("ProductId" + ProductId);
@@ -53,6 +64,9 @@ public class DalProduct
     }
     #endregion
     #region Get
+    /// <summary>
+    /// get product.
+    /// </summary>
     public Product Get(int ProductId)
     {
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)
@@ -66,6 +80,9 @@ public class DalProduct
     }
     #endregion
     #region GetAll
+    /// <summary>
+    /// get all products.
+    /// </summary>
     public Product[] GetAll()
     {
         int size = DataSource.Config.ProductIndex;
@@ -80,7 +97,9 @@ public class DalProduct
         return newProductArr;
     }
     #endregion
-
+    /// <summary>
+    /// checking if product is exist  (by ID).
+    /// </summary>
     private bool existProductID(int num)
     {
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)

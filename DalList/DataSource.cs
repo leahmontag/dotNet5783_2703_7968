@@ -2,20 +2,22 @@
 using static DO.Enums;
 
 namespace Dal;
-public static class DataSource //or internal to cheak
+internal static class DataSource
 {
     internal static Product[] ProductArr = new Product[50];
     internal static Order[] OrderArr = new Order[100];
     internal static OrderItem[] OrderItemArr = new OrderItem[200];
-    internal static Category[] categoriesArr = new Category[5];
     internal static readonly Random rand = new Random();
     static DataSource()
     {
         s_Initialize();
     }
-
+    /// <summary>
+    /// Initializing the entity arrays and sending to the add functions.
+    /// </summary>
     private static void s_Initialize()
     {
+
         #region AddProduct
         Product newProduct = new Product();
         string[] Name = { "eye shadow palette", "rubber", "mascara", "facial soap", "blush", "makeup", "makeup brush", "eyeshadow brush", "moisturizer", "lipstick" };
@@ -54,9 +56,9 @@ public static class DataSource //or internal to cheak
         #endregion
         #region AddOrder
         Order newOrder = new Order();
-        string[] CustomerName = { "Efrat", "Elisheva", "Leah", "Rachel", "Esther", "Batya", "Tamar", "Miriam", "Hadassah", "Shira", "Dini", "Ila", "Mali" ,"Ruti", "Naama", "Gila", "Yael", "Penina","Tzipi", "Tova" };
+        string[] CustomerName = { "Efrat", "Elisheva", "Leah", "Rachel", "Esther", "Batya", "Tamar", "Miriam", "Hadassah", "Shira", "Dini", "Ila", "Mali", "Ruti", "Naama", "Gila", "Yael", "Penina", "Tzipi", "Tova" };
         string[] CustomerEmail = { "r33197903@gmail.com", "et3367903@gmail.com", "p33197903@gmail.com", "o33197903@gmail.com", "m33197903@gmail.com", "b33197903@gmail.com", "v33197903@gmail.com", "l33197903@gmail.com", "a33197903@gmail.com", "d33197903@gmail.com", "r33198903@gmail.com", "et8367903@gmail.com", "n33197903@gmail.com", "x33197903@gmail.com", "c33197903@gmail.com", "j33197903@gmail.com", "k33197903@gmail.com", "f33197903@gmail.com", "g33197903@gmail.com", "p33197903@gmail.com" };
-        string[] CustomerAdress = { "SHOREK River","Nahal Dolev","Nahal Noam","Nahal Ayalon","Nahal Oriya","Nahal Micah","Nahal Akziv","Jordan river", "Levi Eshkol", "Levi Eshkol", "SHOREK River", "Nahal Dolev", "Nahal Noam", "Nahal Ayalon", "Nahal Oriya", "Nahal Micah", "Nahal Akziv", "Jordan river", "Levi Eshkol", "Levi Eshkol" };
+        string[] CustomerAdress = { "SHOREK River", "Nahal Dolev", "Nahal Noam", "Nahal Ayalon", "Nahal Oriya", "Nahal Micah", "Nahal Akziv", "Jordan river", "Levi Eshkol", "Levi Eshkol", "SHOREK River", "Nahal Dolev", "Nahal Noam", "Nahal Ayalon", "Nahal Oriya", "Nahal Micah", "Nahal Akziv", "Jordan river", "Levi Eshkol", "Levi Eshkol" };
         DateTime[] OrderDate = { };
         DateTime[] ShipDate = { };
         DateTime[] DeliveryDate = { };
@@ -68,13 +70,25 @@ public static class DataSource //or internal to cheak
             newOrder.CustomerEmail = CustomerEmail[i % 20];
             newOrder.CustomerAdress = CustomerAdress[i % 20];
             Random gen = new Random();
-            var start = DateTime.Now.AddDays(-15);
-            int range = (DateTime.Today - DateTime.Today.AddDays(-15)).Days;
+            var start = DateTime.Now.AddDays(-25);
+            int range = (DateTime.Today - DateTime.Today.AddDays(-25)).Days;
             var result = start.AddDays(gen.Next(range));
             newOrder.OrderDate = result;
-           // Console.WriteLine("timer"+new TimeSpan(rand.Next(2, 10), rand.Next(0, 59), rand.Next(0, 59)));
-            newOrder.ShipDate = newOrder.OrderDate.Add(new TimeSpan(rand.Next(2, 10), rand.Next(0, 59), rand.Next(0, 59)));
-            newOrder.DeliveryDate = newOrder.ShipDate.Add(new TimeSpan(rand.Next(0, 10), rand.Next(2, 10), rand.Next(0, 59), rand.Next(0, 59)));
+            DateTime randOfShipDate = newOrder.OrderDate.Add(new TimeSpan(rand.Next(0, 10), rand.Next(2, 10), rand.Next(0, 59), rand.Next(0, 59)));
+            if (randOfShipDate > DateTime.Now)
+            {
+                newOrder.ShipDate = DateTime.MinValue;
+                newOrder.DeliveryDate = DateTime.MinValue;
+            }
+            else
+            {
+                newOrder.ShipDate = randOfShipDate;
+                DateTime randOfDeliveryDate = newOrder.ShipDate.Add(new TimeSpan(rand.Next(0, 10), rand.Next(2, 10), rand.Next(0, 59), rand.Next(0, 59)));
+                if (randOfDeliveryDate > DateTime.Now)
+                    newOrder.DeliveryDate = DateTime.MinValue;
+                else
+                    newOrder.DeliveryDate = randOfDeliveryDate;
+            }
             addOrder(newOrder);
         }
         #endregion
@@ -85,7 +99,7 @@ public static class DataSource //or internal to cheak
             newOrderItem.OrderItemID = Config.AutoNumOrderItem;
             int rng = rand.Next(0, Config.ProductIndex);
             newOrderItem.ProductID = ProductArr[rng].ID;
-            newOrderItem.OrderID = OrderArr[rand.Next(0, Config.OrderIndex)].ID;
+            newOrderItem.OrderID = OrderArr[i % 20].ID;
             newOrderItem.Price = ProductArr[rng].Price;
             newOrderItem.Amount = rand.Next(1, 10);
             addOrderItem(newOrderItem);
@@ -93,14 +107,23 @@ public static class DataSource //or internal to cheak
         #endregion
     }
     #region AddFunctions
+    /// <summary>
+    /// adding new product.
+    /// </summary>
     private static void addProduct(Product newProduct)
     {
         ProductArr[Config.ProductIndex++] = newProduct;
     }
+    /// <summary>
+    /// adding new order.
+    /// </summary>
     private static void addOrder(Order newOrderArr)
     {
         OrderArr[Config.OrderIndex++] = newOrderArr;
     }
+    /// <summary>
+    /// adding new order item.
+    /// </summary>
     private static void addOrderItem(OrderItem newOrderItem)
     {
         OrderItemArr[Config.OrderItemIndex++] = newOrderItem;
@@ -109,23 +132,39 @@ public static class DataSource //or internal to cheak
 
 
     #region class Config
+    /// <summary>
+    /// class config.
+    /// </summary>
     internal static class Config
     {
+        /// <summary>
+        /// static index of product.
+        /// </summary>
         internal static int ProductIndex = 0;
+        /// <summary>
+        /// static index of order.
+        /// </summary>
         internal static int OrderIndex = 0;
+        /// <summary>
+        /// static index of order items.
+        /// </summary>
         internal static int OrderItemIndex = 0;
+        /// <summary>
+        /// static autoNumOrder.
+        /// </summary>
         private static int _autoNumOrder = 99999;
+        /// <summary>
+        /// static autoNumOrderItem.
+        /// </summary>
         private static int _autoNumOrderItem = 99999;
-
+        /// <summary>
+        /// static auto NumOrder.
+        /// </summary>
         public static int AutoNumOrder { get { _autoNumOrder++; return _autoNumOrder; } }
+        /// <summary>
+        /// static auto NumOrder items.
+        /// </summary>
         public static int AutoNumOrderItem { get { _autoNumOrderItem++; return _autoNumOrderItem; } }
-
-    }
-    #endregion
-
-    #region CallData function
-    public static void CallData()
-    {
     }
     #endregion
 }
