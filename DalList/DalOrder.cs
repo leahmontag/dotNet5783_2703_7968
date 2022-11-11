@@ -6,10 +6,10 @@ namespace Dal;
 /// </summary>
 public class DalOrder
 {
-    #region Create
     /// <summary>
     /// add new order.
     /// </summary>
+    #region Create
     public int Create(Order myOrder)
     {
         for (int i = 0; i < DataSource.Config.OrderIndex; i++)
@@ -23,10 +23,11 @@ public class DalOrder
     }
 
     #endregion
-    #region Update
+
     /// <summary>
     /// update order.
     /// </summary>
+    #region Update
     public void Update(Order myOrder)
     {
 
@@ -41,10 +42,11 @@ public class DalOrder
         throw new Exception("not exist order");
     }
     #endregion
-    #region Delete
+
     /// <summary>
     /// delete order.
     /// </summary>
+    #region Delete
     public void Delete(int OrderId)
     {
         for (int i = 0; i < DataSource.Config.OrderIndex; i++)
@@ -59,11 +61,11 @@ public class DalOrder
         throw new Exception("not exist order");
     }
     #endregion
-    #region Get
+
     /// <summary>
     /// get order.
     /// </summary>
-
+    #region Get
     public Order Get(int OrderId)
     {
         for (int i = 0; i < DataSource.Config.OrderIndex; i++)
@@ -75,11 +77,11 @@ public class DalOrder
         throw new Exception("not exist order");
     }
     #endregion
-    #region GetAll
+
     /// <summary>
     /// get all orders.
     /// </summary>
-
+    #region GetAll
     public Order[] GetAll()
     {
         int size = DataSource.Config.OrderIndex;
@@ -89,6 +91,23 @@ public class DalOrder
             newOrderArr[i] = DataSource.OrderArr[i];
         }
         return newOrderArr;
+    }
+    #endregion
+
+    /// <summary>
+    /// function checking if order ID is exis.
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns>bool</returns>
+    #region if order ID is exis
+    public bool exisOrderID(int num)
+    {
+        for (int i = 0; i < DataSource.Config.OrderIndex; i++)
+        {
+            if (DataSource.OrderArr[i].ID == num)
+                return true;
+        }
+        return false;
     }
     #endregion
 }

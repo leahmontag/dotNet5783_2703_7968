@@ -6,10 +6,10 @@ namespace Dal;
 /// </summary>
 public class DalProduct
 {
-    #region Create
     /// <summary>
     /// add a new product.
     /// </summary>
+    #region Create
     public int Create(Product myProduct)
     {
         int myID;
@@ -24,10 +24,11 @@ public class DalProduct
         return myProduct.ID;
     }
     #endregion
-    #region Update
+
     /// <summary>
     /// update product.
     /// </summary>
+    #region Update
     public void Update(Product myProduct)
     {
 
@@ -42,10 +43,11 @@ public class DalProduct
         throw new Exception("not exist product");
     }
     #endregion
-    #region Delete
+
     /// <summary>
     /// delete product.
     /// </summary>
+    #region Delete
     public void Delete(int ProductId)
     {
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)
@@ -60,10 +62,11 @@ public class DalProduct
         throw new Exception("not exist product");
     }
     #endregion
-    #region Get
+
     /// <summary>
     /// get product.
     /// </summary>
+    #region Get
     public Product Get(int ProductId)
     {
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)
@@ -76,10 +79,11 @@ public class DalProduct
         throw new Exception("not exist product");
     }
     #endregion
-    #region GetAll
+
     /// <summary>
     /// get all products.
     /// </summary>
+    #region GetAll
     public Product[] GetAll()
     {
         int size = DataSource.Config.ProductIndex;
@@ -94,10 +98,12 @@ public class DalProduct
         return newProductArr;
     }
     #endregion
+
     /// <summary>
     /// checking if product is exist  (by ID).
     /// </summary>
-    private bool existProductID(int num)
+    #region checking if product is exist
+    public bool existProductID(int num)
     {
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)
         {
@@ -106,4 +112,5 @@ public class DalProduct
         }
         return false;
     }
+    #endregion
 }

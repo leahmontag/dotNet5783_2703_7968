@@ -5,10 +5,10 @@ namespace Dal;
 /// </summary>
 public class DalOrderItem
 {
-    #region Create
     /// <summary>
     /// add new order item.
     /// </summary>
+    #region Create
     public int Create(OrderItem myOrderItem)
     {
         for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
@@ -20,11 +20,12 @@ public class DalOrderItem
         DataSource.Config.OrderItemIndex++;
         return myOrderItem.OrderItemID;
     }
-    #endregion
-    #region Update
+    #endregion 
+
     /// <summary>
     /// update order item.
     /// </summary>
+    #region Update
     public void Update(OrderItem myOrderItem)
     {
 
@@ -39,10 +40,11 @@ public class DalOrderItem
         throw new Exception("not exist OrderItem");
     }
     #endregion
-    #region Delete
+
     /// <summary>
     /// delete order item.
     /// </summary>
+    #region Delete
     public void Delete(int OrderItemId)
     {
         for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
@@ -57,10 +59,11 @@ public class DalOrderItem
         throw new Exception("not exist OrderItem");
     }
     #endregion
-    #region Get by order item id
+
     /// <summary>
     /// Get order item by order item id.
     /// </summary>
+    #region Get by order item id
     public OrderItem Get(int OrderItemId)
     {
         for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
@@ -72,10 +75,11 @@ public class DalOrderItem
         throw new Exception("not exist OrderItem");
     }
     #endregion
-    #region Get by product id and order id
+
     /// <summary>
     /// Get by product id and order id.
     /// </summary>
+    #region Get by product id and order id
     public OrderItem GetByProductIDAndOrderID(int orderId, int productId)
     {
         for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
@@ -87,10 +91,11 @@ public class DalOrderItem
         throw new Exception("not exist OrderItem");
     }
     #endregion
-    #region Get order items by order id
+
     /// <summary>
     /// Get order items by order id.
     /// </summary>
+    #region Get order items by order id
     public OrderItem[] GetOrderItemsByOrderID(int orderId)
     {
         OrderItem[] OrdetItemsArr = new OrderItem[4];
@@ -104,10 +109,11 @@ public class DalOrderItem
         return OrdetItemsArr;
     }
     #endregion
-    #region GetAll
+
     /// <summary>
     /// Get all orders items.
     /// </summary>
+    #region GetAll
     public OrderItem[] GetAll()
     {
         int size = DataSource.Config.OrderItemIndex;
@@ -119,5 +125,23 @@ public class DalOrderItem
         return newOrderItemArr;
     }
     #endregion
+
+    /// <summary>
+    /// function checking if order item ID is exis.
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns>bool</returns>
+    #region if order item ID is exis
+    public bool exisOrderItemID(int num)
+    {
+        for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
+        {
+            if (DataSource.OrderItemArr[i].OrderItemID == num)
+                return true;
+        }
+        return false;
+    }
+    #endregion
+
 
 }

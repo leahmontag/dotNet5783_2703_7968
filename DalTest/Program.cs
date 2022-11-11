@@ -3,6 +3,7 @@ using System;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using DO;
+using Microsoft.VisualBasic;
 using static DO.Enums;
 
 namespace Dal;
@@ -24,7 +25,7 @@ internal class Program
     /// private new DalOrderItem.
     /// </summary>
     private static DalOrderItem _dalOrderItem = new DalOrderItem();
-  
+
     /// <summary>
     /// public void main.
     /// </summary>
@@ -34,9 +35,8 @@ internal class Program
         Choice yourChoice;
         do
         {
-            Console.WriteLine("enter your choice:" + "0-exit" + " 1-product" + " 2-order" + " 3-order items");
+            Console.WriteLine("enter your choice:" + "\n0-exit" + "\n1-product" + "\n2-order" + "\n3-order items");
             Enum.TryParse(Console.ReadLine(), out yourChoice);
-            Console.Write("yourChoice: " + yourChoice);
             switch (yourChoice)
             {
                 case Choice.exit:
@@ -63,7 +63,7 @@ internal class Program
         Crud yourCrud;
         string numId;
         int num;
-        Console.WriteLine("enter your choice");
+        Console.WriteLine("enter your choice:" + "\n1- add a new product" + "\n2- get product" + "\n3- show all products" + "\n4- update product" + "\n5- delete product");
         Enum.TryParse(Console.ReadLine(), out yourCrud);
         switch (yourCrud)
         {
@@ -78,7 +78,7 @@ internal class Program
                 Console.WriteLine("InStock");
                 myProductToAdd.InStock = int.Parse(Console.ReadLine());
                 int productID = _dalProduct.Create(myProductToAdd);
-                Console.WriteLine("id:" + productID);
+                Console.WriteLine("id:" + productID + "\n");
                 #endregion
                 break;
             case Crud.get:
@@ -102,15 +102,18 @@ internal class Program
                 break;
             case Crud.update:
                 #region Update product
-                Console.WriteLine("enter your product iteam:");
+                Console.WriteLine("enter your product id:");
+                int checkID = int.Parse(Console.ReadLine());
+                if (_dalProduct.existProductID(checkID) == false)
+                    throw new Exception("not exist product id");
                 Product myProductToUpdate = new Product();
-                Console.WriteLine("id");
-                myProductToUpdate.ID = int.Parse(Console.ReadLine());
-                Console.WriteLine("name");
+                myProductToUpdate.ID = checkID;
+                Console.WriteLine("enter your product iteam:");
+                Console.WriteLine("name:");
                 myProductToUpdate.Name = Console.ReadLine();
-                Console.WriteLine("price");
+                Console.WriteLine("price:");
                 myProductToUpdate.Price = double.Parse(Console.ReadLine());
-                Console.WriteLine("instock");
+                Console.WriteLine("instock:");
                 myProductToUpdate.InStock = int.Parse(Console.ReadLine());
                 _dalProduct.Update(myProductToUpdate);
                 #endregion
@@ -133,7 +136,7 @@ internal class Program
     public static void OrderFunction()
     {
         Crud yourCrud;
-        Console.WriteLine("enter your choice");
+        Console.WriteLine("enter your choice:" + "\n1- add a new order" + "\n2- get an order" + "\n3- show all orders" + "\n4- update order" + "\n5- delete order");
         Enum.TryParse(Console.ReadLine(), out yourCrud);
         switch (yourCrud)
         {
@@ -157,7 +160,8 @@ internal class Program
                 DateTime.TryParse(Console.ReadLine(), out dateResult);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
                 myOrderToAdd.DeliveryDate = dateResult;//צריך להמיר גם מספרים?
                 int orderID = _dalOrder.Create(myOrderToAdd);
-                Console.WriteLine("id:" + orderID);
+                Console.WriteLine("id:" + orderID + "\n");
+
                 #endregion
                 break;
             case Crud.get:
@@ -178,10 +182,13 @@ internal class Program
                 break;
             case Crud.update:
                 #region Update order
-                Console.WriteLine(" enter your order items:");
+                Console.WriteLine("enter your order id:");
+                int checkID = int.Parse(Console.ReadLine());
+                if (_dalOrder.exisOrderID(checkID) == false)
+                    throw new Exception("not exist order id");
                 Order myOrderToUpdate = new Order();
-                Console.WriteLine(" id:");
-                myOrderToUpdate.ID = int.Parse(Console.ReadLine());
+                myOrderToUpdate.ID = checkID;
+                Console.WriteLine(" enter your order items:");
                 Console.WriteLine(" name:");
                 myOrderToUpdate.CustomerName = Console.ReadLine();
                 Console.WriteLine(" email:");
@@ -209,7 +216,7 @@ internal class Program
     public static void OrderItemFunction()
     {
         Crud yourCrud;
-        Console.WriteLine("enter your choice");
+        Console.WriteLine("enter your choice:" + "\n1- add a new order item" + "\n2- get an order item by order item ID" + "\n3- show all orders items" + "\n4- update order item" + "\n5- delete order item" + "\n6- Get order item by Product ID and Order ID" + "\n7- Get Order Items By Order ID");
         Enum.TryParse(Console.ReadLine(), out yourCrud);
         switch (yourCrud)
         {
@@ -228,7 +235,7 @@ internal class Program
                 Console.WriteLine(" Amount:");
                 myOrderItemToAdd.Amount = int.Parse(Console.ReadLine());
                 int OrderItemID = _dalOrderItem.Create(myOrderItemToAdd);
-                Console.WriteLine("id:" + OrderItemID);
+                Console.WriteLine("id:" + OrderItemID+"\n");
                 #endregion
                 break;
             case Crud.get:
@@ -249,10 +256,13 @@ internal class Program
                 break;
             case Crud.update:
                 #region Update OrderItem
-                Console.WriteLine(" enter your order item items:");
+                Console.WriteLine("enter your order item id:");
+                int checkID = int.Parse(Console.ReadLine());
+                if (_dalOrderItem.exisOrderItemID(checkID) == false)
+                    throw new Exception("not exist order item id");
                 OrderItem myOrderItemToUpdate = new OrderItem();
-                Console.WriteLine(" OrderItemID:");
-                myOrderItemToUpdate.OrderItemID = int.Parse(Console.ReadLine());
+                myOrderItemToUpdate.OrderItemID = checkID;
+                Console.WriteLine(" enter your order items:");
                 Console.WriteLine(" ProductID:");
                 myOrderItemToUpdate.ProductID = int.Parse(Console.ReadLine());
                 Console.WriteLine("OrderID:");
