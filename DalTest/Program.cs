@@ -17,10 +17,12 @@ internal class Program
     /// private new DalProduct.
     /// </summary>
     private static DalProduct _dalProduct = new DalProduct();
+
     /// <summary>
     /// private new DalOrder.
     /// </summary>
     private static DalOrder _dalOrder = new DalOrder();
+
     /// <summary>
     /// private new DalOrderItem.
     /// </summary>
@@ -31,7 +33,7 @@ internal class Program
     /// </summary>
     public static void Main()
     {
-        _dalProduct.Delete(_dalProduct.Create(new Product()));//להסביר......
+        _dalProduct.Delete(_dalProduct.Create(new Product()));
         Choice yourChoice;
         do
         {
@@ -86,9 +88,7 @@ internal class Program
                 Console.WriteLine("enter id of product ");
                 numId = Console.ReadLine();
                 num = Convert.ToInt32(numId);
-                Console.WriteLine("num" + num);
-                Product p = _dalProduct.Get(num);
-                Console.WriteLine(p.ID);
+                Console.WriteLine(_dalProduct.Get(num));
                 #endregion
                 break;
             case Crud.getAll:
@@ -104,10 +104,11 @@ internal class Program
                 #region Update product
                 Console.WriteLine("enter your product id:");
                 int checkID = int.Parse(Console.ReadLine());
-                if (_dalProduct.existProductID(checkID) == false)
-                    throw new Exception("not exist product id");
                 Product myProductToUpdate = new Product();
-                myProductToUpdate.ID = checkID;
+                myProductToUpdate = _dalProduct.existProductID(checkID);
+                if (myProductToUpdate.ID == 0)
+                    throw new Exception("not exist product id");
+                Console.WriteLine(myProductToUpdate);
                 Console.WriteLine("enter your product iteam:");
                 Console.WriteLine("name:");
                 myProductToUpdate.Name = Console.ReadLine();
@@ -235,7 +236,7 @@ internal class Program
                 Console.WriteLine(" Amount:");
                 myOrderItemToAdd.Amount = int.Parse(Console.ReadLine());
                 int OrderItemID = _dalOrderItem.Create(myOrderItemToAdd);
-                Console.WriteLine("id:" + OrderItemID+"\n");
+                Console.WriteLine("id:" + OrderItemID + "\n");
                 #endregion
                 break;
             case Crud.get:

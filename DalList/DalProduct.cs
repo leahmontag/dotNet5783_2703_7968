@@ -17,7 +17,7 @@ public class DalProduct
         do
         {
             myID = rand.Next(100000, 999999);
-        } while (existProductID(myID));
+        } while (existProductID(myID).ID!=0);
 
         myProduct.ID = myID;
         DataSource.ProductArr[DataSource.Config.ProductIndex++] = myProduct;
@@ -71,7 +71,6 @@ public class DalProduct
     {
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)
         {
-            Console.Write(DataSource.ProductArr[i].Name, DataSource.ProductArr[i].ID);
             Product CurrentProduct = DataSource.ProductArr[i];
             if (CurrentProduct.ID == ProductId)
                 return CurrentProduct;
@@ -87,9 +86,6 @@ public class DalProduct
     public Product[] GetAll()
     {
         int size = DataSource.Config.ProductIndex;
-        Console.Write("size of ProductIndex in getall func");
-        Console.Write(size);
-
         Product[] newProductArr = new Product[size];
         for (int i = 0; i < size; i++)
         {
@@ -103,14 +99,17 @@ public class DalProduct
     /// checking if product is exist  (by ID).
     /// </summary>
     #region checking if product is exist
-    public bool existProductID(int num)
+    public Product existProductID(int num)
     {
+        Product p = new Product();
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)
         {
-            if (DataSource.ProductArr[i].ID == num)
-                return true;
+            p=DataSource.ProductArr[i];
+            if (p.ID == num)
+                return p;
         }
-        return false;
+        p.ID = 0;
+        return p;
     }
     #endregion
 }
