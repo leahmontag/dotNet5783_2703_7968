@@ -33,33 +33,39 @@ internal class Program
     /// </summary>
     public static void Main()
     {
-        _dalProduct.Delete(_dalProduct.Create(new Product()));
-        Choice yourChoice;
-        do
+        try
         {
-            Console.WriteLine("enter your choice:" + "\n0-exit" + "\n1-product" + "\n2-order" + "\n3-order items");
-            Enum.TryParse(Console.ReadLine(), out yourChoice);
-            switch (yourChoice)
+            _dalProduct.Delete(_dalProduct.Create(new Product()));
+            Choice yourChoice;
+            do
             {
-                case Choice.exit:
-                    break;
-                case Choice.product:
-                    ProductFunction();//product
-                    break;
-                case Choice.order:
-                    OrderFunction();//order
-                    break;
-                case Choice.orderItem:
-                    OrderItemFunction();//order item
-                    break;
-            }
-        } while (yourChoice != Choice.exit);
-
+                Console.WriteLine("enter your choice:" + "\n0-exit" + "\n1-product" + "\n2-order" + "\n3-order items");
+                Enum.TryParse(Console.ReadLine(), out yourChoice);
+                switch (yourChoice)
+                {
+                    case Choice.exit:
+                        break;
+                    case Choice.product:
+                        ProductFunction();//product
+                        break;
+                    case Choice.order:
+                        OrderFunction();//order
+                        break;
+                    case Choice.orderItem:
+                        OrderItemFunction();//order item
+                        break;
+                }
+            } while (yourChoice != Choice.exit);
+        }
+        catch (Exception exc)
+        {
+            Console.WriteLine(exc);
+        }
     }
     /// <summary>
     /// product function.
     /// </summary>
-    #region ProductFunction
+        #region ProductFunction
     public static void ProductFunction()
     {
         Crud yourCrud;
@@ -154,12 +160,15 @@ internal class Program
                 Console.WriteLine("address");
                 myOrderToAdd.CustomerAdress = Console.ReadLine();
                 DateTime dateResult;
-                DateTime.TryParse(Console.ReadLine(), out dateResult);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                Console.WriteLine("OrderDate");
+                DateTime.TryParse(Console.ReadLine(), out dateResult);
                 myOrderToAdd.OrderDate = dateResult;
-                DateTime.TryParse(Console.ReadLine(), out dateResult);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                Console.WriteLine("ShipDate");
+                DateTime.TryParse(Console.ReadLine(), out dateResult);
                 myOrderToAdd.ShipDate = dateResult;
-                DateTime.TryParse(Console.ReadLine(), out dateResult);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
-                myOrderToAdd.DeliveryDate = dateResult;//צריך להמיר גם מספרים?
+                Console.WriteLine("DeliveryDate");
+                DateTime.TryParse(Console.ReadLine(), out dateResult);
+                myOrderToAdd.DeliveryDate = dateResult;
                 int orderID = _dalOrder.Create(myOrderToAdd);
                 Console.WriteLine("id:" + orderID + "\n");
 
@@ -307,7 +316,6 @@ internal class Program
 
     }
     #endregion
-
 }
 
 
