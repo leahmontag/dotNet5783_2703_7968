@@ -13,10 +13,10 @@ public class DalOrderItem
     {
         for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
         {
-            if (DataSource.OrderItemArr[i].OrderItemID == myOrderItem.OrderItemID)
+            if (DataSource._orderItemArr[i].OrderItemID == myOrderItem.OrderItemID)
                 throw new Exception("exist OrderItem");
         }
-        DataSource.OrderItemArr[DataSource.Config.OrderItemIndex] = myOrderItem;
+        DataSource._orderItemArr[DataSource.Config.OrderItemIndex] = myOrderItem;
         DataSource.Config.OrderItemIndex++;
         return myOrderItem.OrderItemID;
     }
@@ -31,9 +31,18 @@ public class DalOrderItem
 
         for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
         {
-            if (DataSource.OrderItemArr[i].OrderItemID == myOrderItem.OrderItemID)
+            if (DataSource._orderItemArr[i].OrderItemID == myOrderItem.OrderItemID)
             {
-                DataSource.OrderItemArr[i] = myOrderItem;
+                //Checking inputs from the user.
+                // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.
+                if (myOrderItem.OrderID != 0)
+                    DataSource._orderItemArr[i].OrderID = myOrderItem.OrderID;
+                if (myOrderItem.ProductID != 0)
+                    DataSource._orderItemArr[i].ProductID = myOrderItem.ProductID;
+                if (myOrderItem.Amount != 0)
+                    DataSource._orderItemArr[i].Amount = myOrderItem.Amount;
+                if (myOrderItem.Price != 0.0)
+                    DataSource._orderItemArr[i].Price = myOrderItem.Price;
                 return;
             }
         }
@@ -49,9 +58,9 @@ public class DalOrderItem
     {
         for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
         {
-            if (DataSource.OrderItemArr[i].OrderItemID == OrderItemId)
+            if (DataSource._orderItemArr[i].OrderItemID == OrderItemId)
             {
-                DataSource.OrderItemArr[i] = DataSource.OrderItemArr[DataSource.Config.OrderItemIndex];
+                DataSource._orderItemArr[i] = DataSource._orderItemArr[DataSource.Config.OrderItemIndex];
                 DataSource.Config.OrderItemIndex--;
                 return;
             }
@@ -68,7 +77,7 @@ public class DalOrderItem
     {
         for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
         {
-            OrderItem CurrentOrder = DataSource.OrderItemArr[i];
+            OrderItem CurrentOrder = DataSource._orderItemArr[i];
             if (CurrentOrder.OrderItemID == OrderItemId)
                 return CurrentOrder;
         }
@@ -84,7 +93,7 @@ public class DalOrderItem
     {
         for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
         {
-            OrderItem CurrentOrder = DataSource.OrderItemArr[i];
+            OrderItem CurrentOrder = DataSource._orderItemArr[i];
             if (CurrentOrder.OrderID == orderId && CurrentOrder.ProductID == productId)
                 return CurrentOrder;
         }
@@ -102,7 +111,7 @@ public class DalOrderItem
         int j = 0;
         for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
         {
-            OrderItem CurrentOrder = DataSource.OrderItemArr[i];
+            OrderItem CurrentOrder = DataSource._orderItemArr[i];
             if (CurrentOrder.OrderID == orderId)
                 OrdetItemsArr[j++] = CurrentOrder;
         }
@@ -120,7 +129,7 @@ public class DalOrderItem
         OrderItem[] newOrderItemArr = new OrderItem[size];
         for (int i = 0; i < size; i++)
         {
-            newOrderItemArr[i] = DataSource.OrderItemArr[i];
+            newOrderItemArr[i] = DataSource._orderItemArr[i];
         }
         return newOrderItemArr;
     }
@@ -136,7 +145,7 @@ public class DalOrderItem
     {
         for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
         {
-            if (DataSource.OrderItemArr[i].OrderItemID == num)
+            if (DataSource._orderItemArr[i].OrderItemID == num)
                 return true;
         }
         return false;

@@ -14,14 +14,12 @@ public class DalOrder
     {
         for (int i = 0; i < DataSource.Config.OrderIndex; i++)
         {
-            if (DataSource.OrderArr[i].ID == myOrder.ID)
+            if (DataSource._orderArr[i].ID == myOrder.ID)
                 throw new Exception("exist order");
         }
-        DataSource.OrderArr[DataSource.Config.OrderIndex] = myOrder;
-        DataSource.Config.OrderIndex++;
+        DataSource._orderArr[DataSource.Config.OrderIndex++] = myOrder;
         return myOrder.ID;
     }
-
     #endregion
 
     /// <summary>
@@ -30,12 +28,18 @@ public class DalOrder
     #region Update
     public void Update(Order myOrder)
     {
-
         for (int i = 0; i < DataSource.Config.OrderIndex; i++)
         {
-            if (DataSource.OrderArr[i].ID == myOrder.ID)
+            if (DataSource._orderArr[i].ID == myOrder.ID)
             {
-                DataSource.OrderArr[i] = myOrder;
+                //Checking inputs from the user.
+                // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.
+                if (myOrder.CustomerName != " ")
+                    DataSource._orderArr[i].CustomerName = myOrder.CustomerName;
+                if (myOrder.CustomerEmail != " ")
+                    DataSource._orderArr[i].CustomerEmail = myOrder.CustomerEmail;
+                if (myOrder.CustomerAdress != " ")
+                    DataSource._orderArr[i].CustomerAdress = myOrder.CustomerAdress;
                 return;
             }
         }
@@ -51,10 +55,9 @@ public class DalOrder
     {
         for (int i = 0; i < DataSource.Config.OrderIndex; i++)
         {
-            if (DataSource.OrderArr[i].ID == OrderId)
+            if (DataSource._orderArr[i].ID == OrderId)
             {
-                DataSource.OrderArr[i] = DataSource.OrderArr[DataSource.Config.OrderIndex];
-                DataSource.Config.OrderIndex--;
+                DataSource._orderArr[i] = DataSource._orderArr[DataSource.Config.OrderIndex--];
                 return;
             }
         }
@@ -70,7 +73,7 @@ public class DalOrder
     {
         for (int i = 0; i < DataSource.Config.OrderIndex; i++)
         {
-            Order CurrentOrder = DataSource.OrderArr[i];
+            Order CurrentOrder = DataSource._orderArr[i];
             if (CurrentOrder.ID == OrderId)
                 return CurrentOrder;
         }
@@ -88,7 +91,7 @@ public class DalOrder
         Order[] newOrderArr = new Order[size];
         for (int i = 0; i < size; i++)
         {
-            newOrderArr[i] = DataSource.OrderArr[i];
+            newOrderArr[i] = DataSource._orderArr[i];
         }
         return newOrderArr;
     }
@@ -104,7 +107,7 @@ public class DalOrder
     {
         for (int i = 0; i < DataSource.Config.OrderIndex; i++)
         {
-            if (DataSource.OrderArr[i].ID == num)
+            if (DataSource._orderArr[i].ID == num)
                 return true;
         }
         return false;

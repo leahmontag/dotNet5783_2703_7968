@@ -17,10 +17,10 @@ public class DalProduct
         do
         {
             myID = rand.Next(100000, 999999);
-        } while (existProductID(myID).ID!=0);
+        } while (existProductID(myID).ID != 0);
 
         myProduct.ID = myID;
-        DataSource.ProductArr[DataSource.Config.ProductIndex++] = myProduct;
+        DataSource._productArr[DataSource.Config.ProductIndex++] = myProduct;
         return myProduct.ID;
     }
     #endregion
@@ -31,12 +31,20 @@ public class DalProduct
     #region Update
     public void Update(Product myProduct)
     {
-
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)
         {
-            if (DataSource.ProductArr[i].ID == myProduct.ID)
+            if (DataSource._productArr[i].ID == myProduct.ID)
             {
-                DataSource.ProductArr[i] = myProduct;
+                //Checking inputs from the user.
+                // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.
+                if (myProduct.Name != "")
+                    DataSource._productArr[i].Name = myProduct.Name;
+                if (myProduct.InStock != 0)
+                    DataSource._productArr[i].InStock = myProduct.InStock;
+                if (myProduct.Price != 0.0)
+                    DataSource._productArr[i].Price = myProduct.Price;
+                if (myProduct.Category != null)
+                    DataSource._productArr[i].Category = myProduct.Category;
                 return;
             }
         }
@@ -52,9 +60,9 @@ public class DalProduct
     {
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)
         {
-            if (DataSource.ProductArr[i].ID == ProductId)
+            if (DataSource._productArr[i].ID == ProductId)
             {
-                DataSource.ProductArr[i] = DataSource.ProductArr[DataSource.Config.ProductIndex];
+                DataSource._productArr[i] = DataSource._productArr[DataSource.Config.ProductIndex];
                 DataSource.Config.ProductIndex--;
                 return;
             }
@@ -71,7 +79,7 @@ public class DalProduct
     {
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)
         {
-            Product CurrentProduct = DataSource.ProductArr[i];
+            Product CurrentProduct = DataSource._productArr[i];
             if (CurrentProduct.ID == ProductId)
                 return CurrentProduct;
         }
@@ -89,7 +97,7 @@ public class DalProduct
         Product[] newProductArr = new Product[size];
         for (int i = 0; i < size; i++)
         {
-            newProductArr[i] = DataSource.ProductArr[i];
+            newProductArr[i] = DataSource._productArr[i];
         }
         return newProductArr;
     }
@@ -104,7 +112,7 @@ public class DalProduct
         Product p = new Product();
         for (int i = 0; i < DataSource.Config.ProductIndex; i++)
         {
-            p=DataSource.ProductArr[i];
+            p = DataSource._productArr[i];
             if (p.ID == num)
                 return p;
         }

@@ -3,7 +3,7 @@
 /// <summary>
 /// structure for order. 
 /// </summary>
-    public struct Order
+public struct Order
 {
     /// <summary>
     /// uniqe id for order. 
