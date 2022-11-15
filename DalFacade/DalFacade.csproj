@@ -12,4 +12,8 @@
 			<RootNamespace />
 	</PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.100.16" />
+  </ItemGroup>
+
 </Project>

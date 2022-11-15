@@ -1,6 +1,5 @@
 ﻿using DO;
 using static DO.Enums;
-
 namespace Dal;
 internal static class DataSource
 {

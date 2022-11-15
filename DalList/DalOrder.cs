@@ -1,10 +1,11 @@
-﻿using DO;
+﻿using DalApi;
+using DO;
 namespace Dal;
 
 /// <summary>
 /// class DalOrder.
 /// </summary>
-public class DalOrder
+internal class DalOrder//:IOrderItem
 {
     /// <summary>
     /// add new order.

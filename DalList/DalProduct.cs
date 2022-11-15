@@ -1,11 +1,13 @@
-﻿using DO;
+﻿using DalApi;
+using DO;
 namespace Dal;
 
 /// <summary>
 /// class DalProduct.
 /// </summary>
-public class DalProduct
+internal class DalProduct//:IProduct
 {
+
     /// <summary>
     /// add a new product.
     /// </summary>
