@@ -93,7 +93,7 @@ internal class DalProduct//:IProduct
     /// get all products.
     /// </summary>
     #region GetAll
-    public Product[] GetAll()
+    public IEnumerable<Product> GetAll()
     {
         int size = DataSource.Config.ProductIndex;
         Product[] newProductArr = new Product[size];
