@@ -1,11 +1,12 @@
 ﻿using DalApi;
 using DO;
+using static Dal.DataSource;
 namespace Dal;
 
 /// <summary>
 /// class DalOrder.
 /// </summary>
-internal class DalOrder:IOrder
+internal class DalOrder : IOrder
 {
     /// <summary>
     /// add new order.
@@ -13,12 +14,12 @@ internal class DalOrder:IOrder
     #region Create
     public int Create(Order myOrder)
     {
-        for (int i = 0; i < DataSource.Config.OrderIndex; i++)
+        foreach (var item in _orderList)
         {
-            if (DataSource._orderArr[i].ID == myOrder.ID)
-                throw new Exception("exist order");
+            if (item.ID == myOrder.ID)
+                throw new DuplicatesException("exist order");
         }
-        DataSource._orderArr[DataSource.Config.OrderIndex++] = myOrder;
+        _orderList.Add(myOrder);
         return myOrder.ID;
     }
     #endregion
@@ -29,22 +30,24 @@ internal class DalOrder:IOrder
     #region Update
     public void Update(Order myOrder)
     {
-        for (int i = 0; i < DataSource.Config.OrderIndex; i++)
+        for (int i = 0; i < _orderList.Count; i++)
         {
-            if (DataSource._orderArr[i].ID == myOrder.ID)
+            if (_orderList[i].ID == myOrder.ID)
             {
                 //Checking inputs from the user.
                 // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.
-                if (myOrder.CustomerName != " ")
-                    DataSource._orderArr[i].CustomerName = myOrder.CustomerName;
-                if (myOrder.CustomerEmail != " ")
-                    DataSource._orderArr[i].CustomerEmail = myOrder.CustomerEmail;
-                if (myOrder.CustomerAdress != " ")
-                    DataSource._orderArr[i].CustomerAdress = myOrder.CustomerAdress;
+
+                _orderList[i] = myOrder;
+                //if (myOrder.CustomerName != " ")
+                //    _orderList[i].CustomerName = myOrder.CustomerName;
+                //if (myOrder.CustomerEmail != " ")
+                //    _orderList[i].CustomerEmail = myOrder.CustomerEmail;
+                //if (myOrder.CustomerAdress != " ")
+                //    _orderList[i].CustomerAdress = myOrder.CustomerAdress;
                 return;
             }
         }
-        throw new Exception("not exist order");
+        throw new NotFoundException("not exist order");
     }
     #endregion
 
@@ -54,15 +57,15 @@ internal class DalOrder:IOrder
     #region Delete
     public void Delete(int OrderId)
     {
-        for (int i = 0; i < DataSource.Config.OrderIndex; i++)
+        for (int i = 0; i < _orderList.Count; i++)
         {
-            if (DataSource._orderArr[i].ID == OrderId)
+            if (_orderList[i].ID == OrderId)
             {
-                DataSource._orderArr[i] = DataSource._orderArr[DataSource.Config.OrderIndex--];
+                _orderList[i] = _orderList[_orderList.Count];
                 return;
             }
         }
-        throw new Exception("not exist order");
+        throw new NotFoundException("not exist order");
     }
     #endregion
 
@@ -72,13 +75,12 @@ internal class DalOrder:IOrder
     #region Get
     public Order Get(int OrderId)
     {
-        for (int i = 0; i < DataSource.Config.OrderIndex; i++)
+        foreach (var item in _orderList)
         {
-            Order CurrentOrder = DataSource._orderArr[i];
-            if (CurrentOrder.ID == OrderId)
-                return CurrentOrder;
+            if (item.ID == OrderId)
+                return item;
         }
-        throw new Exception("not exist order");
+        throw new NotFoundException("not exist order");
     }
     #endregion
 
@@ -86,15 +88,11 @@ internal class DalOrder:IOrder
     /// get all orders.
     /// </summary>
     #region GetAll
-    public Order[] GetAll()
+    public IEnumerable<Order> GetAll()
     {
-        int size = DataSource.Config.OrderIndex;
-        Order[] newOrderArr = new Order[size];
-        for (int i = 0; i < size; i++)
-        {
-            newOrderArr[i] = DataSource._orderArr[i];
-        }
-        return newOrderArr;
+        List<Order> _newOrderList;
+        _newOrderList = _orderList;
+        return _newOrderList;
     }
     #endregion
 
@@ -106,9 +104,9 @@ internal class DalOrder:IOrder
     #region if order ID is exis
     public bool exisOrderID(int num)
     {
-        for (int i = 0; i < DataSource.Config.OrderIndex; i++)
+        foreach (var item in _orderList)
         {
-            if (DataSource._orderArr[i].ID == num)
+            if (item.ID == num)
                 return true;
         }
         return false;

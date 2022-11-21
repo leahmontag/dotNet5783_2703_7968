@@ -1,11 +1,12 @@
 ﻿using DalApi;
 using DO;
+using static Dal.DataSource;
 namespace Dal;
 
 /// <summary>
 /// class DalOrderItem.
 /// </summary>
-internal class DalOrderItem: IOrderItem
+internal class DalOrderItem : IOrderItem
 {
     /// <summary>
     /// add new order item.
@@ -13,13 +14,13 @@ internal class DalOrderItem: IOrderItem
     #region Create
     public int Create(OrderItem myOrderItem)
     {
-        for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
+        foreach (var item in _orderItemList)
         {
-            if (DataSource._orderItemArr[i].OrderItemID == myOrderItem.OrderItemID)
-                throw new Exception("exist OrderItem");
+            if (item.OrderItemID == myOrderItem.OrderItemID)
+                throw new DuplicatesException("exist orderItem");
         }
-        DataSource._orderItemArr[DataSource.Config.OrderItemIndex] = myOrderItem;
-        DataSource.Config.OrderItemIndex++;
+
+        _orderItemList.Add(myOrderItem);
         return myOrderItem.OrderItemID;
     }
     #endregion 
@@ -31,24 +32,26 @@ internal class DalOrderItem: IOrderItem
     public void Update(OrderItem myOrderItem)
     {
 
-        for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
+        for (int i = 0; i < _orderItemList.Count; i++)
         {
-            if (DataSource._orderItemArr[i].OrderItemID == myOrderItem.OrderItemID)
+            if (_orderItemList[i].OrderItemID == myOrderItem.OrderItemID)
             {
                 //Checking inputs from the user.
                 // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.
-                if (myOrderItem.OrderID != 0)
-                    DataSource._orderItemArr[i].OrderID = myOrderItem.OrderID;
-                if (myOrderItem.ProductID != 0)
-                    DataSource._orderItemArr[i].ProductID = myOrderItem.ProductID;
-                if (myOrderItem.Amount != 0)
-                    DataSource._orderItemArr[i].Amount = myOrderItem.Amount;
-                if (myOrderItem.Price != 0.0)
-                    DataSource._orderItemArr[i].Price = myOrderItem.Price;
+
+                _orderItemList[i] = myOrderItem;
+                //if (myOrderItem.OrderID != 0)
+                //    _orderItemList[i].OrderID = myOrderItem.OrderID;
+                //if (myOrderItem.ProductID != 0)
+                //    _orderItemList[i].ProductID = myOrderItem.ProductID;
+                //if (myOrderItem.Amount != 0)
+                //    _orderItemList[i].Amount = myOrderItem.Amount;
+                //if (myOrderItem.Price != 0.0)
+                //    _orderItemList[i].Price = myOrderItem.Price;
                 return;
             }
         }
-        throw new Exception("not exist OrderItem");
+        throw new NotFoundException("not exist OrderItem");
     }
     #endregion
 
@@ -58,16 +61,16 @@ internal class DalOrderItem: IOrderItem
     #region Delete
     public void Delete(int OrderItemId)
     {
-        for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
+        for (int i = 0; i < _orderItemList.Count; i++)
         {
-            if (DataSource._orderItemArr[i].OrderItemID == OrderItemId)
+            if (_orderItemList[i].OrderItemID == OrderItemId)
             {
-                DataSource._orderItemArr[i] = DataSource._orderItemArr[DataSource.Config.OrderItemIndex];
-                DataSource.Config.OrderItemIndex--;
+                _orderItemList[i] = _orderItemList[_orderItemList.Count];
+                //delete the last index??????? - for all dal.........
                 return;
             }
         }
-        throw new Exception("not exist OrderItem");
+        throw new NotFoundException("not exist OrderItem");
     }
     #endregion
 
@@ -77,13 +80,12 @@ internal class DalOrderItem: IOrderItem
     #region Get by order item id
     public OrderItem Get(int OrderItemId)
     {
-        for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
+        foreach (var item in _orderItemList)
         {
-            OrderItem CurrentOrder = DataSource._orderItemArr[i];
-            if (CurrentOrder.OrderItemID == OrderItemId)
-                return CurrentOrder;
+            if (item.OrderItemID == OrderItemId)
+                return item;
         }
-        throw new Exception("not exist OrderItem");
+        throw new NotFoundException("not exist OrderItem");
     }
     #endregion
 
@@ -93,13 +95,12 @@ internal class DalOrderItem: IOrderItem
     #region Get by product id and order id
     public OrderItem GetByProductIDAndOrderID(int orderId, int productId)
     {
-        for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
+        foreach (var item in _orderItemList)
         {
-            OrderItem CurrentOrder = DataSource._orderItemArr[i];
-            if (CurrentOrder.OrderID == orderId && CurrentOrder.ProductID == productId)
-                return CurrentOrder;
+            if (item.OrderID == orderId && item.ProductID == productId)
+                return item;
         }
-        throw new Exception("not exist OrderItem");
+        throw new NotFoundException("not exist OrderItem");
     }
     #endregion
 
@@ -107,15 +108,14 @@ internal class DalOrderItem: IOrderItem
     /// Get order items by order id.
     /// </summary>
     #region Get order items by order id
-    public OrderItem[] GetOrderItemsByOrderID(int orderId)
+    public OrderItem[] GetOrderItemsByOrderID(int orderId)///מה טיפוס ערך המוחזר?
     {
-        OrderItem[] OrdetItemsArr = new OrderItem[4];
         int j = 0;
-        for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
+        OrderItem[] OrdetItemsArr = new OrderItem[4];
+        foreach (var item in _orderItemList)
         {
-            OrderItem CurrentOrder = DataSource._orderItemArr[i];
-            if (CurrentOrder.OrderID == orderId)
-                OrdetItemsArr[j++] = CurrentOrder;
+            if (item.OrderID == orderId)
+                OrdetItemsArr[j++] = item;
         }
         return OrdetItemsArr;
     }
@@ -127,13 +127,9 @@ internal class DalOrderItem: IOrderItem
     #region GetAll
     public IEnumerable<OrderItem> GetAll()
     {
-        int size = DataSource.Config.OrderItemIndex;
-        OrderItem[] newOrderItemArr = new OrderItem[size];
-        for (int i = 0; i < size; i++)
-        {
-            newOrderItemArr[i] = DataSource._orderItemArr[i];
-        }
-        return newOrderItemArr;
+        List<OrderItem> _newOrderItemList;
+        _newOrderItemList = _orderItemList;
+        return _newOrderItemList;
     }
     #endregion
 
@@ -145,9 +141,9 @@ internal class DalOrderItem: IOrderItem
     #region if order item ID is exis
     public bool exisOrderItemID(int num)
     {
-        for (int i = 0; i < DataSource.Config.OrderItemIndex; i++)
+        foreach (var item in _orderItemList)
         {
-            if (DataSource._orderItemArr[i].OrderItemID == num)
+            if (item.OrderItemID == num)
                 return true;
         }
         return false;

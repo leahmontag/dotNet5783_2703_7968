@@ -55,7 +55,7 @@ internal class DalProduct : IProduct
                 return;
             }
         }
-        throw new DuplicatesException("not exist product");
+        throw new NotFoundException("not exist product");
     }
     #endregion
 
