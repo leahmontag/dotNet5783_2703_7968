@@ -5,7 +5,7 @@ namespace Dal;
 /// <summary>
 /// class DalOrderItem.
 /// </summary>
-internal class DalOrderItem//:IOrder
+internal class DalOrderItem: IOrderItem
 {
     /// <summary>
     /// add new order item.
@@ -125,7 +125,7 @@ internal class DalOrderItem//:IOrder
     /// Get all orders items.
     /// </summary>
     #region GetAll
-    public OrderItem[] GetAll()
+    public IEnumerable<OrderItem> GetAll()
     {
         int size = DataSource.Config.OrderItemIndex;
         OrderItem[] newOrderItemArr = new OrderItem[size];

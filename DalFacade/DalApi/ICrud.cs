@@ -2,11 +2,11 @@
 {
     public interface ICrud<T>
     {
-        public T Add(T val);
-        public T Delete(T val);
-        public T Update(T val);
-        public IEnumerable<T> Get(T val);
-
+        public int Create(T val);
+        public void Delete(int val);
+        public void Update(T val);
+        public T Get(int val);
+        public IEnumerable<T> GetAll();
     }
 }
 

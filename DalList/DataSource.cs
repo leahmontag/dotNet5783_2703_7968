@@ -3,9 +3,9 @@ using static DO.Enums;
 namespace Dal;
 internal static class DataSource
 {
-    internal static Product[] _productArr = new Product[50];
-    internal static Order[] _orderArr = new Order[100];
-    internal static OrderItem[] _orderItemArr = new OrderItem[200];
+    internal static List<Product> _productList { get; set; }
+    internal static List<Order> _orderList { get; set; }
+    internal static List<OrderItem> _orderItemList { get; set; }
     internal static readonly Random _rand = new Random();
     static DataSource()
     {
@@ -37,9 +37,9 @@ internal static class DataSource
         for (int i = 0; i < 10; i++)
         {
             int id = _rand.Next(100000, 999999);
-            for (int j = 0; j < Config.ProductIndex; j++)
+            for (int j = 0; j < _productList.Count; j++)
             {
-                if (_productArr[j].ID == id)
+                if (_productList[j].ID == id)
                 {
                     id = _rand.Next(100000, 999999);
                     j = 0;
@@ -100,10 +100,10 @@ internal static class DataSource
         for (int i = 0; i < 40; i++)
         {
             newOrderItem.OrderItemID = Config.AutoNumOrderItem;
-            int rng = _rand.Next(0, Config.ProductIndex);
-            newOrderItem.ProductID = _productArr[rng].ID;
-            newOrderItem.OrderID = _orderArr[i % 20].ID;
-            newOrderItem.Price = _productArr[rng].Price;
+            int rng = _rand.Next(0, _productList.Count);
+            newOrderItem.ProductID = _productList[rng].ID;
+            newOrderItem.OrderID = _orderList[i % 20].ID;
+            newOrderItem.Price = _productList[rng].Price;
             newOrderItem.Amount = _rand.Next(1, 10);
             addOrderItem(newOrderItem);
         }
@@ -115,21 +115,21 @@ internal static class DataSource
     /// </summary>
     private static void addProduct(Product newProduct)
     {
-        _productArr[Config.ProductIndex++] = newProduct;
+        _productList.Add(newProduct);
     }
     /// <summary>
     /// adding new order.
     /// </summary>
-    private static void addOrder(Order newOrderArr)
+    private static void addOrder(Order newOrder)
     {
-        _orderArr[Config.OrderIndex++] = newOrderArr;
+        _orderList.Add( newOrder );
     }
     /// <summary>
     /// adding new order item.
     /// </summary>
     private static void addOrderItem(OrderItem newOrderItem)
     {
-        _orderItemArr[Config.OrderItemIndex++] = newOrderItem;
+        _orderItemList.Add( newOrderItem );
     }
     #endregion
 
@@ -140,18 +140,6 @@ internal static class DataSource
     /// </summary>
     internal static class Config
     {
-        /// <summary>
-        /// static index of product.
-        /// </summary>
-        internal static int ProductIndex = 0;
-        /// <summary>
-        /// static index of order.
-        /// </summary>
-        internal static int OrderIndex = 0;
-        /// <summary>
-        /// static index of order items.
-        /// </summary>
-        internal static int OrderItemIndex = 0;
         /// <summary>
         /// static autoNumOrder.
         /// </summary>

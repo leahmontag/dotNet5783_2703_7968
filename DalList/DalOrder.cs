@@ -5,7 +5,7 @@ namespace Dal;
 /// <summary>
 /// class DalOrder.
 /// </summary>
-internal class DalOrder//:IOrderItem
+internal class DalOrder:IOrder
 {
     /// <summary>
     /// add new order.

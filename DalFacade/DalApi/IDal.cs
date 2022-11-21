@@ -12,6 +12,5 @@ namespace DalApi
         public Product Product { get; }
         public Order Order { get; }
         public OrderItem OrderItem { get; }
-
     }
 }

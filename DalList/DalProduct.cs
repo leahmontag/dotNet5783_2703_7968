@@ -1,11 +1,13 @@
 ﻿using DalApi;
 using DO;
+using static Dal.DataSource;
+
 namespace Dal;
 
 /// <summary>
 /// class DalProduct.
 /// </summary>
-internal class DalProduct//:IProduct
+internal class DalProduct : IProduct
 {
 
     /// <summary>
@@ -22,7 +24,8 @@ internal class DalProduct//:IProduct
         } while (existProductID(myID).ID != 0);
 
         myProduct.ID = myID;
-        DataSource._productArr[DataSource.Config.ProductIndex++] = myProduct;
+        _productList.Add(myProduct);
+
         return myProduct.ID;
     }
     #endregion
@@ -33,24 +36,26 @@ internal class DalProduct//:IProduct
     #region Update
     public void Update(Product myProduct)
     {
-        for (int i = 0; i < DataSource.Config.ProductIndex; i++)
+        for (int i = 0; i < _productList.Count; i++)
         {
-            if (DataSource._productArr[i].ID == myProduct.ID)
+            if (_productList[i].ID == myProduct.ID)
             {
                 //Checking inputs from the user.
                 // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.
-                if (myProduct.Name != "")
-                    DataSource._productArr[i].Name = myProduct.Name;
-                if (myProduct.InStock != 0)
-                    DataSource._productArr[i].InStock = myProduct.InStock;
-                if (myProduct.Price != 0.0)
-                    DataSource._productArr[i].Price = myProduct.Price;
-                if (myProduct.Category != null)
-                    DataSource._productArr[i].Category = myProduct.Category;
+                _productList[i] = myProduct;
+
+                //if (myProduct.Name != "")
+                //    _productList[i].Name = "fdvfdvv";
+                //if (myProduct.InStock != 0)
+                //   _productList[i].InStock = myProduct.InStock;
+                //if (myProduct.Price != 0.0)
+                //   _productList[i].Price = myProduct.Price;
+                //if (myProduct.Category != null)
+                //   _productList[i].Category = myProduct.Category;
                 return;
             }
         }
-        throw new Exception("not exist product");
+        throw new DuplicatesException("not exist product");
     }
     #endregion
 
@@ -60,16 +65,15 @@ internal class DalProduct//:IProduct
     #region Delete
     public void Delete(int ProductId)
     {
-        for (int i = 0; i < DataSource.Config.ProductIndex; i++)
+        for (int i = 0; i < _productList.Count; i++)
         {
-            if (DataSource._productArr[i].ID == ProductId)
+            if (_productList[i].ID == ProductId)
             {
-                DataSource._productArr[i] = DataSource._productArr[DataSource.Config.ProductIndex];
-                DataSource.Config.ProductIndex--;
+                _productList[i] = _productList[_productList.Count];
                 return;
             }
         }
-        throw new Exception("not exist product");
+        throw new NotFoundException("not exist product");
     }
     #endregion
 
@@ -79,13 +83,12 @@ internal class DalProduct//:IProduct
     #region Get
     public Product Get(int ProductId)
     {
-        for (int i = 0; i < DataSource.Config.ProductIndex; i++)
+        foreach (var item in _productList)
         {
-            Product CurrentProduct = DataSource._productArr[i];
-            if (CurrentProduct.ID == ProductId)
-                return CurrentProduct;
+            if (item.ID == ProductId)
+                return item;
         }
-        throw new Exception("not exist product");
+        throw new NotFoundException("not exist product");
     }
     #endregion
 
@@ -95,13 +98,15 @@ internal class DalProduct//:IProduct
     #region GetAll
     public IEnumerable<Product> GetAll()
     {
-        int size = DataSource.Config.ProductIndex;
-        Product[] newProductArr = new Product[size];
-        for (int i = 0; i < size; i++)
-        {
-            newProductArr[i] = DataSource._productArr[i];
-        }
-        return newProductArr;
+        List<Product> _newProductList;
+        _newProductList = _productList;
+        return _newProductList;
+        //int size = DataSource.Config.ProductIndex;
+        //Product[] newProductArr = new Product[size];
+        //for (int i = 0; i < size; i++)
+        //{
+        //    newProductArr[i] = DataSource._productArr[i];
+        //}
     }
     #endregion
 
@@ -111,14 +116,12 @@ internal class DalProduct//:IProduct
     #region checking if product is exist
     public Product existProductID(int num)
     {
-        Product p = new Product();
-        for (int i = 0; i < DataSource.Config.ProductIndex; i++)
+        foreach (var item in _productList)
         {
-            p = DataSource._productArr[i];
-            if (p.ID == num)
-                return p;
+            if (item.ID == num)
+                return item;
         }
-        p.ID = 0;
+        Product p = new Product() { ID = 0 };
         return p;
     }
     #endregion
