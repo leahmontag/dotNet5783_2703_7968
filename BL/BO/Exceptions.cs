@@ -1,6 +1,6 @@
 ﻿namespace BO;
 
-public class Exceptions
+public class Exceptions: Exception
 {
 
 }

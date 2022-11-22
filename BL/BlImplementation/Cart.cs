@@ -1,11 +1,13 @@
 ﻿using BlApi;
+using DalApi;
 
 namespace BlImplementation;
 
 internal class Cart : ICart
 {
 
-  //  private DalApi.IDal Dal = new DalList();
+    IDal Dal = new Dal.DalList();
+
     public int ConfirmOrder(BO.Cart val)
     {
         throw new NotImplementedException();

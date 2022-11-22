@@ -19,7 +19,7 @@ public interface IProduct
     /// </summary>
     /// <param name="val"></param>
     /// <returns>void</returns>
-    public void Delete(Product val);
+    public void Delete(int val);
 
     /// <summary>
     /// func Update
