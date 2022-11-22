@@ -57,11 +57,11 @@ internal class DalOrder : IOrder
     #region Delete
     public void Delete(int OrderId)
     {
-        for (int i = 0; i < _orderList.Count; i++)
+        foreach (var item in _orderList)
         {
-            if (_orderList[i].ID == OrderId)
+            if (item.ID == OrderId)
             {
-                _orderList[i] = _orderList[_orderList.Count];
+                _orderList.Remove(item);
                 return;
             }
         }

@@ -1,11 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using System;
-using System.Linq.Expressions;
-using System.Runtime.InteropServices;
+using DalApi;
 using DO;
-using Microsoft.VisualBasic;
+using DalList;
 using static DO.Enums;
-
 namespace Dal;
 
 /// <summary>
@@ -13,21 +10,7 @@ namespace Dal;
 /// </summary>
 internal class Program
 {
-    /// <summary>
-    /// private new DalProduct.
-    /// </summary>
-    private static DalProduct _dalProduct = new DalProduct();
-
-    /// <summary>
-    /// private new DalOrder.
-    /// </summary>
-    private static DalOrder _dalOrder = new DalOrder();
-
-    /// <summary>
-    /// private new DalOrderItem.
-    /// </summary>
-    private static DalOrderItem _dalOrderItem = new DalOrderItem();
-
+    private static readonly IDal _dal = new DalList();
     /// <summary>
     /// public void main.
     /// </summary>
@@ -35,7 +18,6 @@ internal class Program
     {
         try
         {
-            _dalProduct.Delete(_dalProduct.Create(new Product()));
             Choice yourChoice;
             do
             {
@@ -85,7 +67,7 @@ internal class Program
                 myProductToAdd.Price = double.Parse(Console.ReadLine());
                 Console.WriteLine("InStock");
                 myProductToAdd.InStock = int.Parse(Console.ReadLine());
-                int productID = _dalProduct.Create(myProductToAdd);
+                int productID = _dal.Product.Create(myProductToAdd);
                 Console.WriteLine("id:" + productID + "\n");
                 #endregion
                 break;
@@ -94,12 +76,12 @@ internal class Program
                 Console.WriteLine("enter id of product ");
                 numId = Console.ReadLine();
                 num = Convert.ToInt32(numId);
-                Console.WriteLine(_dalProduct.Get(num));
+                Console.WriteLine(_dal.Product.Get(num));
                 #endregion
                 break;
             case Crud.getAll:
                 #region getAll product
-                Product[] printProducts = _dalProduct.GetAll();
+                IEnumerable<Product> printProducts = _dal.Product.GetAll();
                 foreach (Product i in printProducts)
                 {
                     Console.WriteLine(i);
@@ -111,7 +93,7 @@ internal class Program
                 Console.WriteLine("enter your product id:");
                 int checkID = int.Parse(Console.ReadLine());
                 Product myProductToUpdate = new Product();
-                myProductToUpdate = _dalProduct.existProductID(checkID);
+                myProductToUpdate = _dal.Product.existProductID(checkID);
                 if (myProductToUpdate.ID == 0)
                     throw new Exception("not exist product id");
                 Console.WriteLine(myProductToUpdate);
@@ -122,14 +104,14 @@ internal class Program
                 myProductToUpdate.Price = double.Parse(Console.ReadLine());
                 Console.WriteLine("instock:");
                 myProductToUpdate.InStock = int.Parse(Console.ReadLine());
-                _dalProduct.Update(myProductToUpdate);
+                _dal.Product.Update(myProductToUpdate);
                 #endregion
                 break;
             case Crud.delete:
                 #region Delete product
                 Console.WriteLine("enter product id:");
                 int productId = int.Parse(Console.ReadLine());
-                _dalProduct.Delete(productId);
+                _dal.Product.Delete(productId);
                 #endregion
                 break;
         }
@@ -169,7 +151,7 @@ internal class Program
                 Console.WriteLine("DeliveryDate");
                 DateTime.TryParse(Console.ReadLine(), out dateResult);
                 myOrderToAdd.DeliveryDate = dateResult;
-                int orderID = _dalOrder.Create(myOrderToAdd);
+                int orderID = _dal.Order.Create(myOrderToAdd);
                 Console.WriteLine("id:" + orderID + "\n");
 
                 #endregion
@@ -178,12 +160,12 @@ internal class Program
                 #region get order
                 Console.WriteLine("enter your order id: ");
                 int orderId = int.Parse(Console.ReadLine());
-                Console.WriteLine(_dalOrder.Get(orderId));
+                Console.WriteLine(_dal.Order.Get(orderId));
                 #endregion
                 break;
             case Crud.getAll:
                 #region getAll order
-                Order[] printOrders = _dalOrder.GetAll();
+                IEnumerable<Order> printOrders = _dal.Order.GetAll();
                 foreach (Order i in printOrders)
                 {
                     Console.WriteLine(i);
@@ -194,7 +176,7 @@ internal class Program
                 #region Update order
                 Console.WriteLine("enter your order id:");
                 int checkID = int.Parse(Console.ReadLine());
-                if (_dalOrder.exisOrderID(checkID) == false)
+                if (_dal.Order.exisOrderID(checkID) == false)
                     throw new Exception("not exist order id");
                 Order myOrderToUpdate = new Order();
                 myOrderToUpdate.ID = checkID;
@@ -205,14 +187,14 @@ internal class Program
                 myOrderToUpdate.CustomerEmail = Console.ReadLine();
                 Console.WriteLine("address:");
                 myOrderToUpdate.CustomerAdress = Console.ReadLine();
-                _dalOrder.Update(myOrderToUpdate);
+                _dal.Order.Update(myOrderToUpdate);
                 #endregion
                 break;
             case Crud.delete:
                 #region Delete order
                 Console.WriteLine("enter your order id: ");
-                 orderId = int.Parse(Console.ReadLine());
-                _dalOrder.Delete(orderId);
+                orderId = int.Parse(Console.ReadLine());
+                _dal.Order.Delete(orderId);
                 #endregion
                 break;
         }
@@ -244,7 +226,7 @@ internal class Program
                 myOrderItemToAdd.Price = double.Parse(Console.ReadLine());
                 Console.WriteLine(" Amount:");
                 myOrderItemToAdd.Amount = int.Parse(Console.ReadLine());
-                int orderItemID = _dalOrderItem.Create(myOrderItemToAdd);
+                int orderItemID = _dal.OrderItem.Create(myOrderItemToAdd);
                 Console.WriteLine("id:" + orderItemID + "\n");
                 #endregion
                 break;
@@ -252,12 +234,12 @@ internal class Program
                 #region get orderItem
                 Console.WriteLine("enter your product id: ");
                 int orderItemId = int.Parse(Console.ReadLine());
-                Console.WriteLine(_dalOrderItem.Get(orderItemId));
+                Console.WriteLine(_dal.OrderItem.Get(orderItemId));
                 #endregion
                 break;
             case Crud.getAll:
                 #region getAll orderItem
-                OrderItem[] printOrdersItems = _dalOrderItem.GetAll();
+                IEnumerable<OrderItem> printOrdersItems = _dal.OrderItem.GetAll();
                 foreach (OrderItem i in printOrdersItems)
                 {
                     Console.WriteLine(i);
@@ -268,7 +250,7 @@ internal class Program
                 #region Update OrderItem
                 Console.WriteLine("enter your order item id:");
                 int checkID = int.Parse(Console.ReadLine());
-                if (_dalOrderItem.exisOrderItemID(checkID) == false)
+                if (_dal.OrderItem.exisOrderItemID(checkID) == false)
                     throw new Exception("not exist order item id");
                 OrderItem myOrderItemToUpdate = new OrderItem();
                 myOrderItemToUpdate.OrderItemID = checkID;
@@ -281,14 +263,14 @@ internal class Program
                 myOrderItemToUpdate.Price = double.Parse(Console.ReadLine());
                 Console.WriteLine("Amount:");
                 myOrderItemToUpdate.Amount = int.Parse(Console.ReadLine());
-                _dalOrderItem.Update(myOrderItemToUpdate);
+                _dal.OrderItem.Update(myOrderItemToUpdate);
                 #endregion
                 break;
             case Crud.delete:
                 #region Delete orderItem
                 Console.WriteLine("enter your product id: ");
                 int orderItId = int.Parse(Console.ReadLine());
-                _dalOrderItem.Delete(orderItId);
+                _dal.OrderItem.Delete(orderItId);
                 #endregion
                 break;
             case Crud.GetByProductIDAndOrderID:
@@ -297,14 +279,14 @@ internal class Program
                 orderItId = int.Parse(Console.ReadLine());
                 Console.WriteLine("enter your product id: ");
                 int productId = int.Parse(Console.ReadLine());
-                Console.WriteLine(_dalOrderItem.GetByProductIDAndOrderID(orderItId, productId));
+                Console.WriteLine(_dal.OrderItem.GetByProductIDAndOrderID(orderItId, productId));
                 #endregion
                 break;
             case Crud.GetOrderItemsByOrderID:
                 #region Get Order Items By Order ID
                 Console.WriteLine("enter your order id: ");
                 orderItId = int.Parse(Console.ReadLine());
-                printOrdersItems = _dalOrderItem.GetOrderItemsByOrderID(orderItId);
+                printOrdersItems = _dal.OrderItem.GetOrderItemsByOrderID(orderItId);
                 foreach (OrderItem i in printOrdersItems)
                 {
                     if (i.OrderItemID != 0)

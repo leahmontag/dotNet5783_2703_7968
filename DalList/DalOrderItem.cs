@@ -61,12 +61,11 @@ internal class DalOrderItem : IOrderItem
     #region Delete
     public void Delete(int OrderItemId)
     {
-        for (int i = 0; i < _orderItemList.Count; i++)
+        foreach (var item in _orderItemList)
         {
-            if (_orderItemList[i].OrderItemID == OrderItemId)
+            if (item.OrderItemID == OrderItemId)
             {
-                _orderItemList[i] = _orderItemList[_orderItemList.Count];
-                //delete the last index??????? - for all dal.........
+                _orderItemList.Remove(item);
                 return;
             }
         }
@@ -108,16 +107,15 @@ internal class DalOrderItem : IOrderItem
     /// Get order items by order id.
     /// </summary>
     #region Get order items by order id
-    public OrderItem[] GetOrderItemsByOrderID(int orderId)///מה טיפוס ערך המוחזר?
+    public IEnumerable<OrderItem> GetOrderItemsByOrderID(int orderId)///מה טיפוס ערך המוחזר?
     {
-        int j = 0;
-        OrderItem[] OrdetItemsArr = new OrderItem[4];
+        List<OrderItem> _newOrderItemList = new();
         foreach (var item in _orderItemList)
         {
             if (item.OrderID == orderId)
-                OrdetItemsArr[j++] = item;
+                _newOrderItemList.Add(item);
         }
-        return OrdetItemsArr;
+        return _newOrderItemList;
     }
     #endregion
 

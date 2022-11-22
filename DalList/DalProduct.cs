@@ -67,10 +67,13 @@ internal class DalProduct : IProduct
     {
         for (int i = 0; i < _productList.Count; i++)
         {
-            if (_productList[i].ID == ProductId)
+            foreach (var item in _productList)
             {
-                _productList[i] = _productList[_productList.Count];
-                return;
+                if (item.ID == ProductId)
+                {
+                    _productList.Remove(item);
+                    return;
+                }
             }
         }
         throw new NotFoundException("not exist product");

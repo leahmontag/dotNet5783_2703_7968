@@ -1,11 +1,13 @@
 ﻿using DO;
+using System.Runtime.CompilerServices;
 using static DO.Enums;
 namespace Dal;
 internal static class DataSource
 {
-    internal static List<Product> _productList { get; set; }
-    internal static List<Order> _orderList { get; set; }
-    internal static List<OrderItem> _orderItemList { get; set; }
+    // internal static List<Product> _productList { get; set; }
+    internal static List<Product> _productList = new();
+    internal static List<Order> _orderList = new();
+    internal static List<OrderItem> _orderItemList = new();
     internal static readonly Random _rand = new Random();
     static DataSource()
     {
@@ -34,17 +36,22 @@ internal static class DataSource
             Category.cultivation,
             Category.lipMakeup
         };
+      //  int stam = 0;
         for (int i = 0; i < 10; i++)
         {
             int id = _rand.Next(100000, 999999);
-            for (int j = 0; j < _productList.Count; j++)
+         //   if (stam!=0)
             {
-                if (_productList[j].ID == id)
+                for (int j = 0; j < _productList.Count; j++)
                 {
-                    id = _rand.Next(100000, 999999);
-                    j = 0;
+                    if (_productList[j].ID == id)
+                    {
+                        id = _rand.Next(100000, 999999);
+                        j = 0;
+                    }
                 }
             }
+        //    stam++;
             newProduct.ID = id;
             newProduct.Name = name[i];
             newProduct.Price = price[i];
