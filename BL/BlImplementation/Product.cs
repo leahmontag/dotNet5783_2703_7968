@@ -8,7 +8,9 @@ namespace BlImplementation;
 
 internal class Product : BlApi.IProduct
 {
-   private IDal Dal = new Dal.DalList();
+    private IDal Dal = new Dal.DalList();
+
+    #region Add new product
     public int Create(BO.Product productBL)
     {
         //בדיקת תקינות בשכבה הלוגיתBO
@@ -36,15 +38,17 @@ internal class Product : BlApi.IProduct
         }
         return id;
     }
+    #endregion
 
-
-
+    #region Delete product 
     public void Delete(int productID)
     {
-        IEnumerable<BO.Order> ordersList = BO.Order.Get();
-        foreach (BO.Order product in ordersList)
+        IEnumerable<DO.Order> ordersList = Dal.Order.GetAll();
+
+        //checking that item not exist in any orders.
+        foreach (DO.Order item in ordersList)
         {
-            if (product.ID == productID)
+            if (item.ID == productID)
                 throw new Exception();
         }
         try
@@ -53,36 +57,105 @@ internal class Product : BlApi.IProduct
         }
         catch (Exception)
         {
-
             throw;
         }
     }
+    #endregion
 
-    public IEnumerable<BO.Product> GetAll()
+    #region Get all products
+    public IEnumerable<BO.ProductForList> GetAll()
     {
-        throw new Exception();
-
+        IEnumerable<DO.Product> productsList = Dal.Product.GetAll();
+        List<BO.ProductForList> ProductForList = new List<BO.ProductForList>();
+        int i = 0;
+        foreach (var item in productsList)
+        {
+            ProductForList[i].ID = item.ID;
+            ProductForList[i].Name = item.Name;
+            ProductForList[i].Price = item.Price;
+            ProductForList[i].Category = (BO.Enums.Category)item.Category;
+            i++;
+        }
+        return ProductForList;
     }
+    #endregion
 
-    public BO.Product GetByManagger(int val)
+    #region Get by managger
+    public BO.Product GetByManagger(int productID)
     {
-
-        throw new Exception();
-
+        BO.Product productBL;
+        if (productID <= 0)
+            throw new Exception();
+        else
+        {
+            DO.Product productDal;
+            try
+            {
+                productDal = Dal.Product.Get(productID);
+                productBL = new BO.Product()
+                {
+                    ID = productDal.ID,
+                    Name = productDal.Name,
+                    Category = (BO.Enums.Category)productDal.Category,
+                    InStock = productDal.InStock,
+                    Price = productDal.Price,
+                };
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        return productBL;
     }
+    #endregion
 
-    public ProductItem GetProductFromCatalog(int val, BO.Cart cart)
+    #region Get product fromCatalog
+    public ProductItem GetProductFromCatalog(int productID, BO.Cart cartBL)
     {
+        BO.ProductItem productItemBL;
 
+        if (productID <= 0)
+            throw new Exception();
+        else
+        {
+            DO.Product productDal;
+            int amount = 0;
+            //int inStock = 0;
 
+            foreach (var item in cartBL.Items)
+            {
+                if (item.ProductID == productID)
+                {
+                    amount = item.Amount;
+                }
+            }
+            try
+            {
+                productDal = Dal.Product.Get(productID);
+                productItemBL = new BO.ProductItem()
+                {
+                    ID = productDal.ID,
+                    Amount = amount,
+                    Category = (BO.Enums.Category)productDal.Category,
+                    Name = productDal.Name,
+                    Price = productDal.Price,
+                    InStock = productDal.InStock
 
-        throw new Exception();
-
+                };
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        return productItemBL;
     }
+    #endregion
 
+    #region Update product 
     public void Update(BO.Product productBL)
     {
-
         //בדיקת תקינות בשכבה הלוגיתBO
         if (productBL.Name == "" || productBL.ID <= 0 || productBL.Price <= 0 || productBL.InStock <= 0 || productBL.Category == null)
             throw new Exception();
@@ -103,8 +176,9 @@ internal class Product : BlApi.IProduct
         }
         catch (Exception)
         {
-
             throw;
         }
     }
+    #endregion
+
 }

@@ -17,7 +17,8 @@ public interface ICart
     /// </summary>
     /// <param name="val"></param>
     /// <returns>void</returns>
-    public void Update(Cart val);
+    public BO.Cart Update(BO.Cart CartBL, int OrderItemID, int newAmount);
+
 
     /// <summary>
     /// func Update

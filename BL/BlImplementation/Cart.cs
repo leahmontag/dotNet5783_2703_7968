@@ -10,9 +10,14 @@ internal class Cart : ICart
 
     private IDal Dal = new Dal.DalList();
 
-    public int ConfirmOrder(BO.Cart val)
+    #region Confirm order
+    public int ConfirmOrder(BO.Cart cartBL)
     {
-        DO.Product tempProduct = new DO.Product()//copy to new obj with instock-1
+       foreach (var item in cartBL.Items)
+        {
+        }
+        //copy to new obj with instock-1
+        DO.Product tempProduct = new DO.Product()
         {
             //ID = productItem.ID,
             //Name = productItem.Name,
@@ -23,10 +28,13 @@ internal class Cart : ICart
         Dal.Product.Update(tempProduct);//update product in dal
         throw new NotImplementedException();
     }
+    #endregion
 
+
+    #region Add new item to cart
     public BO.Cart Create(BO.Cart CartBL, int OrderItemID)
     {
-        IEnumerable<DO.Product> productList =Dal.Product.GetAll();
+        IEnumerable<DO.Product> productList = Dal.Product.GetAll();
 
         //מחפש את הפריט בסל הקניות
         foreach (var item in CartBL.Items)
@@ -40,7 +48,7 @@ internal class Cart : ICart
                         if (productItem.InStock > 0)//cheaking if instock
                         {
                             item.Amount++;//update current cart.
-                            item.Price = item.Price+productItem.Price;
+                            item.Price = item.Price + productItem.Price;
                         }
                         else
                             throw new Exception();
@@ -57,16 +65,16 @@ internal class Cart : ICart
                     //create a new order item
                     BO.OrderItem tempOrderItem = new BO.OrderItem()
                     {
-                     Amount=1,
-                     Name= productItem.Name,
-                     OrderItemID= OrderItemID,
-                     Price= productItem.Price,
-                     ProductID= productItem.ID,
-                     TotalPrice= productItem.Price
+                        Amount = 1,
+                        Name = productItem.Name,
+                        OrderItemID = OrderItemID,
+                        Price = productItem.Price,
+                        ProductID = productItem.ID,
+                        TotalPrice = productItem.Price
                     };
                     //update CartBL in BO, add he product and update total price 
                     CartBL.Items.Add(tempOrderItem);
-                    CartBL.TotalPrice = CartBL.TotalPrice+ productItem.Price;
+                    CartBL.TotalPrice = CartBL.TotalPrice + productItem.Price;
                 }
                 else
                     throw new Exception();
@@ -74,14 +82,62 @@ internal class Cart : ICart
         }
         return CartBL;
     }
+    #endregion
 
-    public IEnumerator<DO.Product> GetEnumerator()
-    {
-        throw new NotImplementedException();
-    }
 
-    public void Update(BO.Cart val)
+    #region Update cart
+    public BO.Cart Update(BO.Cart CartBL, int OrderItemID, int newAmount = 0)
     {
-        throw new NotImplementedException();
+        IEnumerable<DO.OrderItem> OrderItemList = Dal.OrderItem.GetAll();
+        var price = 0.0;
+        int oldAmount = 0;
+
+        //fount product in dal and cheack his amount.
+        foreach (var item in CartBL.Items)
+        {
+            if (item.OrderItemID == OrderItemID)
+            {
+                if (newAmount == 0)
+                {
+                    #region delete item
+                    CartBL.TotalPrice -= (item.Price * item.Amount);//update cart price
+                    CartBL.Items.Remove(item);//delete item from cart
+                    return CartBL;
+                    #endregion
+                }
+                else if (item.Amount < newAmount)
+                {
+                    #region update amount in dal
+                    //fount product in dal and cheack his amount.
+                    foreach (var itemInOrderItemList in OrderItemList)
+                    {
+                        if (itemInOrderItemList.OrderItemID == OrderItemID && itemInOrderItemList.Amount >= newAmount)
+                        {
+                            price = itemInOrderItemList.Price;
+                            oldAmount = item.Amount;
+                            CartBL.TotalPrice = CartBL.TotalPrice + newAmount * price - item.Price * oldAmount;
+                            return CartBL;
+                        }
+                        else
+                        {
+                            throw new Exception();
+                        }
+                    }
+
+                }
+                #endregion
+                else if (item.Amount > newAmount)
+                {
+                    #region update cart and order item
+                    item.Amount = newAmount;
+                    CartBL.TotalPrice = CartBL.TotalPrice - item.Price * (item.Amount - newAmount);//update cart price
+                    return CartBL;
+                    #endregion
+                }
+            }
+        }
+
+        return CartBL;
     }
+    #endregion
 }

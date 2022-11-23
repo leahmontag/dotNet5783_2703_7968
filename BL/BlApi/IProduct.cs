@@ -46,7 +46,7 @@ public interface IProduct
     /// </summary>
     /// <param name="val"></param>
     /// <returns>IEnumerable</returns>
-    public IEnumerable<Product> GetAll();
+    public IEnumerable<ProductForList> GetAll();
 
 
 
