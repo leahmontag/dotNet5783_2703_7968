@@ -10,7 +10,7 @@ public interface ICart
     /// </summary>
     /// <param name="val"></param>
     /// <returns>int</returns>
-    public int Create(Cart val);
+    public BO.Cart Create(BO.Cart CartBL, int OrderItemID);
 
     /// <summary>
     /// func Update

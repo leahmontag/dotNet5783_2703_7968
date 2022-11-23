@@ -5,7 +5,7 @@ namespace BlImplementation;
 
 internal class Order :BlApi.IOrder
 {
-    IDal Dal = new Dal.DalList();
+    private IDal Dal = new Dal.DalList();
 
     public BO.Order Get(int val)
     {

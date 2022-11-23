@@ -8,11 +8,11 @@ namespace BlImplementation;
 
 internal class Product : BlApi.IProduct
 {
-    IDal Dal = new Dal.DalList();
+   private IDal Dal = new Dal.DalList();
     public int Create(BO.Product productBL)
     {
         //בדיקת תקינות בשכבה הלוגיתBO
-        if (productBL.Name == "" || productBL.ID <= 0 || productBL.Price <= 0 || productBL.InStock <= 0 || productBL.Category == null)
+        if (productBL.Name == " " || productBL.ID <= 0 || productBL.Price <= 0 || productBL.InStock <= 0 || productBL.Category == null)
             throw new Exception();
 
         //לפני המעבר לדל שאינו אפשרי ישירות נעבור דרך דו
@@ -21,23 +21,20 @@ internal class Product : BlApi.IProduct
             ID = productBL.ID,
             Name = productBL.Name,
             Price = productBL.Price,
+            Category = (DO.Enums.Category)productBL.Category,
             InStock = productBL.InStock,
-            Category = (DO.Enums.Category)productBL.Category
         };
-        int id = 0;
 
+        int id = 0;
         try
         {
-            id= Dal.Product.Create(productDal);
+            id = Dal.Product.Create(productDal);
         }
         catch (Exception)
         {
-
             throw;
         }
         return id;
-
-
     }
 
 
@@ -47,12 +44,12 @@ internal class Product : BlApi.IProduct
         IEnumerable<BO.Order> ordersList = BO.Order.Get();
         foreach (BO.Order product in ordersList)
         {
-            if(product.ID == productID)
+            if (product.ID == productID)
                 throw new Exception();
         }
         try
         {
-           Dal.Product.Delete(productID);
+            Dal.Product.Delete(productID);
         }
         catch (Exception)
         {
@@ -74,8 +71,11 @@ internal class Product : BlApi.IProduct
 
     }
 
-    public BO.Product GetCatalog(int val)
+    public ProductItem GetProductFromCatalog(int val, BO.Cart cart)
     {
+
+
+
         throw new Exception();
 
     }

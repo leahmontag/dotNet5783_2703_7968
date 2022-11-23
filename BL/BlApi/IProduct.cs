@@ -39,7 +39,7 @@ public interface IProduct
     /// </summary>
     /// <param name="val"></param>
     /// <returns>Product</returns>
-    public Product GetCatalog(int val);
+    public ProductItem GetProductFromCatalog(int val,BO.Cart cart);
 
     /// <summary>
     /// func GetAll
