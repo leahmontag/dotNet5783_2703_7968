@@ -69,6 +69,8 @@ internal class Cart : ICart
     }
     #endregion
     #region Add new item to cart
+
+    #region Add new item to cart
     public BO.Cart Create(BO.Cart CartBL, int OrderItemID)
     {
         IEnumerable<DO.Product> productList = Dal.Product.GetAll();
