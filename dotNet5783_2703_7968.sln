@@ -16,13 +16,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalFacade", "DalFacade\DalF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalList", "DalList\DalList.csproj", "{5890AC24-D844-4B9A-A56F-2248286D87C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{866A4DF3-7E1C-461E-A5F0-D1EEB2BEB60C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{866A4DF3-7E1C-461E-A5F0-D1EEB2BEB60C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5890AC24-D844-4B9A-A56F-2248286D87C7} = {5890AC24-D844-4B9A-A56F-2248286D87C7}
 		{9B670F5D-DBF5-4747-92F1-22887C0401C8} = {9B670F5D-DBF5-4747-92F1-22887C0401C8}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlTest", "BlTest\BlTest.csproj", "{FCB41175-4660-4889-BEB9-837C4A9C3455}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlTest", "BlTest\BlTest.csproj", "{FCB41175-4660-4889-BEB9-837C4A9C3455}"
 	ProjectSection(ProjectDependencies) = postProject
 		{866A4DF3-7E1C-461E-A5F0-D1EEB2BEB60C} = {866A4DF3-7E1C-461E-A5F0-D1EEB2BEB60C}
 	EndProjectSection
@@ -60,9 +60,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{FCB41175-4660-4889-BEB9-837C4A9C3455} = {55369AF5-F9C2-4152-A176-37C8F6FF459B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3872734A-F147-4CB1-95B9-C2559D84DD0F}

@@ -1,8 +1,5 @@
-﻿
-using BO;
-
+﻿using BO;
 namespace BlApi;
-
 public interface ICart
 {
     /// <summary>
@@ -11,18 +8,16 @@ public interface ICart
     /// <param name="val"></param>
     /// <returns>int</returns>
     public BO.Cart Create(BO.Cart CartBL, int OrderItemID);
-
     /// <summary>
     /// func Update
     /// </summary>
     /// <param name="val"></param>
     /// <returns>void</returns>
-    public void Update(Cart val);
-
+    public BO.Cart Update(BO.Cart CartBL, int OrderItemID, int newAmount);
     /// <summary>
     /// func Update
     /// </summary>
     /// <param name="val"></param>
     /// <returns>void</returns>
-    public int ConfirmOrder(Cart val);
+    public int ConfirmOrder(Cart cartBL);
 }

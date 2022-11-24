@@ -112,6 +112,7 @@ internal static class DataSource
             newOrderItem.OrderID = _orderList[i % 20].ID;
             newOrderItem.Price = _productList[rng].Price;
             newOrderItem.Amount = _rand.Next(1, 10);
+            newOrderItem.Name = _productList[rng].Name;
             addOrderItem(newOrderItem);
         }
         #endregion

@@ -226,6 +226,8 @@ internal class Program
                 myOrderItemToAdd.Price = double.Parse(Console.ReadLine());
                 Console.WriteLine(" Amount:");
                 myOrderItemToAdd.Amount = int.Parse(Console.ReadLine());
+                Console.WriteLine(" Name:");
+                myOrderItemToAdd.Name = Console.ReadLine();
                 int orderItemID = _dal.OrderItem.Create(myOrderItemToAdd);
                 Console.WriteLine("id:" + orderItemID + "\n");
                 #endregion

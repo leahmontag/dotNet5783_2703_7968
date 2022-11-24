@@ -38,10 +38,10 @@ public class Order
     /// </summary>
     public double TotalPrice { get; set; }
 
-    /// <summary>
-    /// PaymentDate for order. 
-    /// </summary>
-    public DateTime PaymentDate { get; set; }
+    ///// <summary>
+    ///// PaymentDate for order. 
+    ///// </summary>
+    //public DateTime PaymentDate { get; set; }
 
 
     /// <summary>
@@ -66,10 +66,10 @@ public class Order
     CustomerAdress: {CustomerAdress}
     Order Date: {OrderDate.ToShortDateString()}
     Status:{Status}
-    PaymentDate:{PaymentDate}
     Ship Date: {ShipDate.ToShortDateString()}
     DeliveryDate: {DeliveryDate.ToShortDateString()}
     Items:{Items}
     TotalPrice:{TotalPrice}
     ";
+    // PaymentDate:{PaymentDate}
 }

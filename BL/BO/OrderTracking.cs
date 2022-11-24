@@ -5,12 +5,12 @@ public class OrderTracking
 {
     public int ID { get; set; }
     public OrderStatus Status { get; set; }
-    public List<OrderTrackingDates> OrderTrackingStatus { get; set; }
+    public List<OrderTrackingDates> OrderTrackingDateAndDesc { get; set; }
 
 
     public override string ToString() => $@"
     ID:{ID}
     Status: {Status}
-    Order Tracking Status: {OrderTrackingStatus}
+    Order Tracking Status: {OrderTrackingDateAndDesc}
     ";
 }

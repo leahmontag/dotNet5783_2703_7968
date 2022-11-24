@@ -22,14 +22,21 @@ public struct OrderItem
     /// </summary>
     public double Price { get; set; }
     /// <summary>
-    /// uniqe id for order item. 
+    /// Amount from item 
     /// </summary>
     public int Amount { get; set; }
+
+    /// <summary>
+    /// Name of item 
+    /// </summary>
+    public string Name { get; set; }
+
     public override string ToString() => $@"
     OrderItem ID={OrderItemID},
     Product ID={ProductID},
     Order ID={OrderID},
     Price: {Price}
     Amount in order: {Amount}
+    Name of item:{Name}
     ";
 }

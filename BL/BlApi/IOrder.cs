@@ -7,25 +7,12 @@ namespace BlApi;
 public interface IOrder
 {
     /// <summary>
-    /// func UpdateShip
+    /// func GetAll
     /// </summary>
     /// <param name="val"></param>
-    /// <returns>void</returns>
-    public void UpdateShip(Order val);
+    /// <returns>IEnumerable</returns>
+    public IEnumerable<OrderForList> GetAll();
 
-    /// <summary>
-    /// func UpdateDelivery
-    /// </summary>
-    /// <param name="val"></param>
-    /// <returns>void</returns>
-    public void UpdateDelivery(Order val);
-
-    /// <summary>
-    /// func UpdateOrder
-    /// </summary>
-    /// <param name="val"></param>
-    /// <returns>void</returns>
-    public void UpdateOrder(Order val);
 
     /// <summary>
     /// func Get
@@ -34,10 +21,36 @@ public interface IOrder
     /// <returns>order</returns>
     public Order Get(int val);
 
+
     /// <summary>
-    /// func GetAll
+    /// func UpdateShip
     /// </summary>
     /// <param name="val"></param>
-    /// <returns>IEnumerable</returns>
-    public IEnumerable<Order> GetAll();
+    /// <returns>void</returns>
+    public BO.Order UpdateShip(int val);
+
+    /// <summary>
+    /// func UpdateDelivery
+    /// </summary>
+    /// <param name="val"></param>
+    /// <returns>void</returns>
+    public BO.Order UpdateDelivery(int val);
+
+    /// <summary>
+    /// func TrackingOfOrder
+    /// </summary>
+    /// <param name="val"></param>
+    /// <returns>void</returns>
+    public OrderTracking TrackingOfOrder(int val);
+
+
+
+
+
+    /// <summary>
+    /// func UpdateOrder
+    /// </summary>
+    /// <param name="val"></param>
+    /// <returns>void</returns>
+    public void UpdateOrder(Order val);
 }

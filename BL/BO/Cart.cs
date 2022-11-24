@@ -1,9 +1,4 @@
-﻿
-
-using System.Diagnostics;
-using System.Xml.Linq;
-
-namespace BO;
+﻿namespace BO;
 
 public class Cart
 {

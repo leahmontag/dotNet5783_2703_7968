@@ -36,6 +36,8 @@ public class OrderItem
     /// TotalPrice for order item. 
     /// </summary>
     public double TotalPrice { get; set; }
+
+
     public override string ToString() => $@"
     Name={Name},
     OrderItem ID={OrderItemID},
