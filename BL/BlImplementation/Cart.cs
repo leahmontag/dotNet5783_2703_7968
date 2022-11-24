@@ -50,9 +50,9 @@ internal class Cart : ICart
                 orderItem.Amount = item.Amount;
                 orderItem.Name = item.Name;
                 Dal.OrderItem.Create(orderItem);
-                foreach(DO.Product item2 in listOfProducts)
+                foreach (DO.Product item2 in listOfProducts)
                 {
-                    if(item.Name == item2.Name)
+                    if (item.Name == item2.Name)
                     {
                         DO.Product productToUpdate = new DO.Product();
                         productToUpdate.InStock -= item.Amount;
@@ -68,7 +68,6 @@ internal class Cart : ICart
         throw new NotImplementedException();
     }
     #endregion
-    #region Add new item to cart
 
     #region Add new item to cart
     public BO.Cart Create(BO.Cart CartBL, int OrderItemID)
@@ -128,6 +127,7 @@ internal class Cart : ICart
         return CartBL;
     }
     #endregion
+
     #region Update cart
     public BO.Cart Update(BO.Cart CartBL, int OrderItemID, int newAmount = 0)
     {

@@ -4,7 +4,6 @@ using BlApi;
 using BlImplementation;
 using BO;
 using DalApi;
-using DO;
 using System;
 using static BO.Enums;
 namespace BlTest;
@@ -14,6 +13,7 @@ namespace BlTest;
 internal class Program
 {
     private static readonly IBl _bl = new Bl();
+    private static BO.Cart _cartBL = new BO.Cart();
     public static void Main()
     {
 
@@ -80,21 +80,7 @@ internal class Program
                 Console.WriteLine("enter id of product ");
                 numId = Console.ReadLine();
                 num = Convert.ToInt32(numId);
-                Cart cartBL = new Cart();
-                Console.WriteLine("enter your cart items ");
-                Console.WriteLine("enter customer name ");
-                cartBL.CustomerName = Console.ReadLine();
-                Console.WriteLine("enter customer email ");
-                cartBL.CustomerEmail = Console.ReadLine();
-                Console.WriteLine("enter customer address ");
-                cartBL.CustomerAddress = Console.ReadLine();
-                Console.WriteLine("enter customer Items ");
-
-                //get all items from user????????????????????? loop?
-
-
-                Console.WriteLine(_bl.Product.GetProductFromCatalog(num, cartBL));
-
+                Console.WriteLine(_bl.Product.GetProductFromCatalog(num, _cartBL));
                 #endregion
                 break;
             case ProductEnum.addProduct:
@@ -216,54 +202,33 @@ internal class Program
 
                 Console.WriteLine("enter order  new amount ");
                 int amount = int.Parse(Console.ReadLine());
-
-                Console.WriteLine("enter your cart items ");
-                Console.WriteLine("enter customer name ");
-                cartBL.CustomerName = Console.ReadLine();
-                Console.WriteLine("enter customer email ");
-                cartBL.CustomerEmail = Console.ReadLine();
-                Console.WriteLine("enter customer address ");
-                cartBL.CustomerAddress = Console.ReadLine();
-                Console.WriteLine("enter customer Items ");
-                //get all items from user????????????????????? loop?
-                Console.WriteLine(_bl.Cart.Update(cartBL,OrderItemID, amount));
+                Console.WriteLine(_bl.Cart.Update(_cartBL, OrderItemID, amount));
                 #endregion
                 break;
             case CartEnum.confirmCart:
                 #region confirm cart 
-                Console.WriteLine("enter your cart items ");
+                //Console.WriteLine("enter your cart items ");
                 Console.WriteLine("enter customer name ");
-                cartBL.CustomerName = Console.ReadLine();
+                _cartBL.CustomerName = Console.ReadLine();
                 Console.WriteLine("enter customer email ");
-                cartBL.CustomerEmail = Console.ReadLine();
+                _cartBL.CustomerEmail = Console.ReadLine();
                 Console.WriteLine("enter customer address ");
-                cartBL.CustomerAddress = Console.ReadLine();
-                Console.WriteLine("enter customer Items ");
-                //get all items from user????????????????????? loop?
-                Console.WriteLine(_bl.Cart.ConfirmOrder(cartBL));
+                _cartBL.CustomerAddress = Console.ReadLine();
+                Console.WriteLine(_bl.Cart.ConfirmOrder(_cartBL));
+                _cartBL = new BO.Cart();//איפוס סל
                 #endregion
                 break;
             case CartEnum.addProductToCart:
                 #region add product to cart
                 Console.WriteLine("enter order item ID ");
                 OrderItemID = int.Parse(Console.ReadLine());
-
-                cartBL = new Cart();
-                Console.WriteLine("enter your cart items ");
-                Console.WriteLine("enter customer name ");
-                cartBL.CustomerName = Console.ReadLine();
-                Console.WriteLine("enter customer email ");
-                cartBL.CustomerEmail = Console.ReadLine();
-                Console.WriteLine("enter customer address ");
-                cartBL.CustomerAddress = Console.ReadLine();
-                Console.WriteLine("enter customer Items ");
-                //get all items from user????????????????????? loop?
-                Console.WriteLine(_bl.Cart.Create(cartBL, OrderItemID));
+                Console.WriteLine(_bl.Cart.Create(_cartBL, OrderItemID));
                 #endregion
                 break;
         }
     }
     #endregion
 }
+
 
 
