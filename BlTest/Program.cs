@@ -138,7 +138,7 @@ internal class Program
     {
         //להוסיף בונוס כאן של עדכון הזמנה להוסיף לאופציה שביעית
         OrderEnum yourOrderChoice;
-        Console.WriteLine("enter your choice:" + "\n1- show all orders" + "\n2- get an order" + "" + "\n3- update ship order" + "\n5- update delivery order" + "\n6-order tracking ");
+        Console.WriteLine("enter your choice:" + "\n1- show all orders" + "\n2- get an order" + "" + "\n3- update ship order" + "\n4- update delivery order" + "\n5-order tracking ");
         Enum.TryParse(Console.ReadLine(), out yourOrderChoice);
         switch (yourOrderChoice)
         {
@@ -169,7 +169,7 @@ internal class Program
                 #region update delivery
                 Console.WriteLine("enter your order id: ");
                 int orderIdToUpdateDelivery = int.Parse(Console.ReadLine());
-                Console.WriteLine(_bl.Order.UpdateShip(orderIdToUpdateDelivery));
+                Console.WriteLine(_bl.Order.UpdateDelivery(orderIdToUpdateDelivery));
                 #endregion
                 break;
             case OrderEnum.trackingOfOrder:
