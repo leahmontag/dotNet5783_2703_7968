@@ -17,6 +17,7 @@ internal class Order : BlApi.IOrder
     /// </summary>
     /// <returns>list of orders</returns>
     /// <exception cref="NotImplementedException"></exception>
+    #region get all orders
     public IEnumerable<BO.OrderForList> GetAll()
     {
         IEnumerable<DO.Order> orders = Dal.Order.GetAll();
@@ -32,12 +33,15 @@ internal class Order : BlApi.IOrder
         return orderForList;
         throw new NotImplementedException();
     }
+    #endregion
+
     /// <summary>
     /// get order
     /// </summary>
     /// <param name="ID"></param>
     /// <returns>order</returns>
     /// <exception cref="NotImplementedException"></exception>
+    #region get an order
     public BO.Order Get(int ID)
     {
         try
@@ -56,12 +60,15 @@ internal class Order : BlApi.IOrder
             throw;
         }
     }
+    #endregion
+
     /// <summary>
     /// update ship date
     /// </summary>
     /// <param name="ID"></param>
     /// <returns>order after update</returns>
     /// <exception cref="NotImplementedException"></exception>
+    #region update ship
     public BO.Order UpdateShip(int ID)
     {
         try
@@ -81,12 +88,15 @@ internal class Order : BlApi.IOrder
             throw;
         }
     }
+    #endregion
+
     /// <summary>
     /// update delivery date
     /// </summary>
     /// <param name="ID"></param>
     /// <returns>order after update</returns>
     /// <exception cref="NotImplementedException"></exception>
+    #region  update delivery
     public BO.Order UpdateDelivery(int ID)
     {
         try
@@ -106,12 +116,15 @@ internal class Order : BlApi.IOrder
             throw;
         }
     }
+    #endregion
+
     /// <summary>
     /// tracking of order
     /// </summary>
     /// <param name="ID"></param>
     /// <returns>order tracking</returns>
     /// <exception cref="NotImplementedException"></exception>
+    #region tracking of order
     public OrderTracking TrackingOfOrder(int ID)
     {
         try
@@ -158,11 +171,14 @@ internal class Order : BlApi.IOrder
             throw;
         }
     }
+    #endregion
+
     /// <summary>
     /// Convert DoOrder To BoOrder
     /// </summary>
     /// <param name="DoOrder"></param>
     /// <returns>return the BO order after convert</returns>
+    #region Convert doOrder to boOrder
     private BO.Order ConvertDoOrderToBoOrder(DO.Order DoOrder)
     {
         IEnumerable<DO.OrderItem> itemsOfOrder = Dal.OrderItem.GetOrderItemsByOrderID(DoOrder.ID);
@@ -178,7 +194,6 @@ internal class Order : BlApi.IOrder
             BoOrder.Status = BO.Enums.OrderStatus.send;
         else
             BoOrder.Status = BO.Enums.OrderStatus.confirmed;
-        //    PaymentDate: { PaymentDate}
         BoOrder.ShipDate = DoOrder.ShipDate;
         BoOrder.DeliveryDate = DoOrder.DeliveryDate;
         List<BO.OrderItem> orderItems = new List<BO.OrderItem>();
@@ -192,12 +207,11 @@ internal class Order : BlApi.IOrder
         BoOrder.TotalPrice = sumOfTotalPrice;
         return BoOrder;
     }
-
-
+    #endregion
 
     //לבונוס:
-
-    public BO.Order UpdateOrder(int orderId,int orderItemId,string whatToDO, int Amount, BO.OrderItem newOrderItem)
+    #region update order
+    public BO.Order UpdateOrder(int orderId, int orderItemId, string whatToDO, int Amount, BO.OrderItem newOrderItem)
     {
         try
         {
@@ -210,15 +224,15 @@ internal class Order : BlApi.IOrder
             {
                 if (item.OrderItemID == orderItemId)
                 {
-                  // DO.Product product = Dal.Product.Get(orderId);
+                    // DO.Product product = Dal.Product.Get(orderId);
 
                     if (whatToDO == "remove")
                         BoOrder.Items.Remove(item);
-                    if(whatToDO == "add")
+                    if (whatToDO == "add")
                         BoOrder.Items.Add(newOrderItem);
                     if (whatToDO == "+")
                         item.Amount += Amount;
-                    if(whatToDO == "-")
+                    if (whatToDO == "-")
                         item.Amount -= Amount;
                 }
             }
@@ -231,4 +245,5 @@ internal class Order : BlApi.IOrder
 
 
     }
+    #endregion
 }

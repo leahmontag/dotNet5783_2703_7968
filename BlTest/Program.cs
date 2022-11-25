@@ -16,13 +16,12 @@ internal class Program
     private static BO.Cart _cartBL = new BO.Cart();
     public static void Main()
     {
-
         try
         {
             Choice yourChoice;
             do
             {
-                Console.WriteLine("enter your choice:" + "\n0-exit" + "\n1-product" + "\n2-order" + "\n3-cart ");
+                Console.WriteLine("enter your choice:" + "\n0-exit" + "\n1-product" + "\n2-order" + "\n3-cart " );
                 Enum.TryParse(Console.ReadLine(), out yourChoice);
                 switch (yourChoice)
                 {
@@ -87,13 +86,11 @@ internal class Program
                 #region add product
                 Console.WriteLine("enter your product iteam:");
                 BO.Product myProductToAdd = new BO.Product();
-                Console.WriteLine("ID");
-                myProductToAdd.ID = int.Parse(Console.ReadLine());
                 Console.WriteLine("name");
                 myProductToAdd.Name = Console.ReadLine();
                 Console.WriteLine("price");
                 myProductToAdd.Price = double.Parse(Console.ReadLine());
-                Console.WriteLine("Category");
+                 Console.WriteLine("Category");
                 //  myProductToAdd.Category = int.Parse(Console.ReadLine());//how to get this enum?
                 Console.WriteLine("InStock");
                 myProductToAdd.InStock = int.Parse(Console.ReadLine());
@@ -191,7 +188,7 @@ internal class Program
     {
         CartEnum yourCrud;
         Cart cartBL = new Cart();
-        Console.WriteLine("enter your choice:" + "\n1- update cart" + "\n2- confirm cart" + "\n3- add product to cart");
+        Console.WriteLine("enter your choice:" + "\n1- add product to cart" + "\n2- update cart" + "\n3- confirm cart" + "\n4- Emptying shopping cart");
         Enum.TryParse(Console.ReadLine(), out yourCrud);
         switch (yourCrud)
         {
@@ -225,6 +222,13 @@ internal class Program
                 Console.WriteLine(_bl.Cart.Create(_cartBL, OrderItemID));
                 #endregion
                 break;
+            case CartEnum.emptyingShoppingCart:
+                #region emptying shopping cart
+               _cartBL = new BO.Cart();
+                Console.WriteLine("you have no items in your cart ");
+                #endregion
+                break;
+
         }
     }
     #endregion

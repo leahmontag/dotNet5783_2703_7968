@@ -1,6 +1,9 @@
 ﻿using static BO.Enums;
 namespace BO;
 
+/// <summary>
+/// class Product
+/// </summary>
 public class Product
 {
     /// <summary>
@@ -28,11 +31,15 @@ public class Product
     /// </summary>
     public int InStock { get; set; }
 
+    /// <summary>
+    /// function toString
+    /// </summary>
+    /// <returns>string</returns>
     public override string ToString() => $@"
-    Product ID={ID}: {Name}, 
-    category - {Category}
+    Product name: {Name}
+    Product ID:{ID}: 
+    category:{Category}
     Price: {Price}
     Amount in stock: {InStock}
     ";
-
 }

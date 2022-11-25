@@ -1,6 +1,9 @@
 ﻿using static BO.Enums;
 namespace BO;
 
+/// <summary>
+/// class Order
+/// </summary>
 public class Order
 {
     /// <summary>
@@ -53,6 +56,10 @@ public class Order
     /// </summary>
     public DateTime DeliveryDate { get; set; }
 
+    /// <summary>
+    /// function toString
+    /// </summary>
+    /// <returns>string</returns>
     public override string ToString()
     {
         string orderItems = "";
@@ -61,16 +68,16 @@ public class Order
             orderItems += item;
         }
         return (
-        $@"Order ID:{ID},
-        customer name: {CustomerName}, 
-        customerEmail: {CustomerEmail},
-        customerAddress: {CustomerAdress},
+        $@"Order ID:{ID}
+        customer name: {CustomerName}
+        customerEmail: {CustomerEmail}
+        customerAddress: {CustomerAdress}
         Order Date: {OrderDate.ToShortDateString()}
         Status:{Status}
         Ship Date: {ShipDate.ToShortDateString()}
         DeliveryDate: {DeliveryDate.ToShortDateString()}
         order items list:
-        {orderItems},
+        {orderItems}
         TotalPrice: {TotalPrice}");
     }
 }

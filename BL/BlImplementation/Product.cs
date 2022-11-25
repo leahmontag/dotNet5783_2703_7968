@@ -1,8 +1,5 @@
-﻿using BlApi;
-using BO;
-using Dal;
+﻿using BO;
 using DalApi;
-using DO;
 namespace BlImplementation;
 internal class Product : BlApi.IProduct
 {
@@ -17,13 +14,13 @@ internal class Product : BlApi.IProduct
     public int Create(BO.Product productBL)
     {
         //cheacking values in BO
-        if (productBL.Name == " " || productBL.ID <= 0 || productBL.Price <=
-        0 || productBL.InStock <= 0 || productBL.Category == null)
+        if (productBL.Name == " " || productBL.Price <=
+        0 || productBL.InStock <= 0 /*|| productBL.Category == null*/)
             throw new Exception();
         // דו דרך נעבור ישירות אפשרי שאינו לדל המעבר לפני//
         DO.Product productDal = new DO.Product()
         {
-            ID = productBL.ID,
+            //ID = productBL.ID,
             Name = productBL.Name,
             Price = productBL.Price,
             Category = (DO.Enums.Category)productBL.Category,
@@ -151,7 +148,10 @@ internal class Product : BlApi.IProduct
             }
             try
             {
+                bool boolInstock=false;
                 productDal = Dal.Product.Get(productID);
+                if (productDal.InStock > 0)
+                    boolInstock =true;
                 productItemBL = new BO.ProductItem()
                 {
                     ID = productDal.ID,
@@ -159,9 +159,7 @@ internal class Product : BlApi.IProduct
                     Category = (BO.Enums.Category)productDal.Category,
                     Name = productDal.Name,
                     Price = productDal.Price,
-                    InStock = productDal.InStock
-                    //להעביר לבוליאני ולשנות לתנאי
-
+                    InStock= boolInstock
                 };
             }
             catch (Exception)
@@ -183,7 +181,7 @@ internal class Product : BlApi.IProduct
     {
         // BOהלוגית בשכבה תקינות בדיקת//
         if (productBL.Name == "" || productBL.ID <= 0 || productBL.Price <= 0
-        || productBL.InStock <= 0 || productBL.Category == null)
+        || productBL.InStock <= 0 /*|| productBL.Category == null*/)
             throw new Exception();
         //  דו דרך נעבור ישירות אפשרי שאינו לדל המעבר לפני//
         DO.Product productDal = new DO.Product()
