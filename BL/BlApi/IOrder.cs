@@ -9,7 +9,6 @@ public interface IOrder
     /// <summary>
     /// func GetAll
     /// </summary>
-    /// <param name="val"></param>
     /// <returns>IEnumerable</returns>
     public IEnumerable<OrderForList> GetAll();
 
@@ -17,31 +16,31 @@ public interface IOrder
     /// <summary>
     /// func Get
     /// </summary>
-    /// <param name="val"></param>
+    /// <param name="ID"></param>
     /// <returns>order</returns>
-    public Order Get(int val);
+    public Order Get(int ID);
 
 
     /// <summary>
     /// func UpdateShip
     /// </summary>
-    /// <param name="val"></param>
+    /// <param name="ID"></param>
     /// <returns>void</returns>
-    public BO.Order UpdateShip(int val);
+    public BO.Order UpdateShip(int ID);
 
     /// <summary>
     /// func UpdateDelivery
     /// </summary>
-    /// <param name="val"></param>
+    /// <param name="ID"></param>
     /// <returns>void</returns>
-    public BO.Order UpdateDelivery(int val);
+    public BO.Order UpdateDelivery(int ID);
 
     /// <summary>
     /// func TrackingOfOrder
     /// </summary>
-    /// <param name="val"></param>
+    /// <param name="ID"></param>
     /// <returns>void</returns>
-    public OrderTracking TrackingOfOrder(int val);
+    public OrderTracking TrackingOfOrder(int ID);
 
 
 
@@ -50,7 +49,7 @@ public interface IOrder
     /// <summary>
     /// func UpdateOrder
     /// </summary>
-    /// <param name="val"></param>
+    /// <param name="ID"></param>
     /// <returns>void</returns>
-    public void UpdateOrder(Order val);
+    public BO.Order UpdateOrder(int orderId, int orderItemId, string whatToDO, int Amount, BO.OrderItem newOrder);
 }

@@ -38,12 +38,6 @@ public class Order
     /// </summary>
     public double TotalPrice { get; set; }
 
-    ///// <summary>
-    ///// PaymentDate for order. 
-    ///// </summary>
-    //public DateTime PaymentDate { get; set; }
-
-
     /// <summary>
     /// uniqe Order date for order. 
     /// </summary>
@@ -59,17 +53,24 @@ public class Order
     /// </summary>
     public DateTime DeliveryDate { get; set; }
 
-    public override string ToString() => $@"
-    Order ID={ID},
-    Customer Name:{CustomerName}
-    Customer Email: {CustomerEmail}
-    CustomerAdress: {CustomerAdress}
-    Order Date: {OrderDate.ToShortDateString()}
-    Status:{Status}
-    Ship Date: {ShipDate.ToShortDateString()}
-    DeliveryDate: {DeliveryDate.ToShortDateString()}
-    Items:{Items}
-    TotalPrice:{TotalPrice}
-    ";
-    // PaymentDate:{PaymentDate}
+    public override string ToString()
+    {
+        string orderItems = "";
+        foreach (OrderItem item in Items)
+        {
+            orderItems += item;
+        }
+        return (
+        $@"Order ID:{ID},
+        customer name: {CustomerName}, 
+        customerEmail: {CustomerEmail},
+        customerAddress: {CustomerAdress},
+        Order Date: {OrderDate.ToShortDateString()}
+        Status:{Status}
+        Ship Date: {ShipDate.ToShortDateString()}
+        DeliveryDate: {DeliveryDate.ToShortDateString()}
+        order items list:
+        {orderItems},
+        TotalPrice: {TotalPrice}");
+    }
 }

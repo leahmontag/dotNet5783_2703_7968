@@ -7,10 +7,17 @@ public class OrderTracking
     public OrderStatus Status { get; set; }
     public List<OrderTrackingDates> OrderTrackingDateAndDesc { get; set; }
 
-
-    public override string ToString() => $@"
-    ID:{ID}
-    Status: {Status}
-    Order Tracking Status: {OrderTrackingDateAndDesc}
-    ";
+    public override string ToString()
+    {
+        string orderItems = "";
+        foreach (OrderTrackingDates item in OrderTrackingDateAndDesc)
+        {
+            orderItems += item;
+        }
+        return (
+        $@"ID: {ID}
+        Status: {Status}
+        Order Tracking Status:
+        {orderItems}");
+    }
 }

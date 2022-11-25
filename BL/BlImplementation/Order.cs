@@ -22,6 +22,7 @@ internal class Order : BlApi.IOrder
         IEnumerable<DO.Order> orders = Dal.Order.GetAll();
         List<BO.Order> BoOrders = new List<BO.Order>();
         List<BO.OrderForList> orderForList = new List<BO.OrderForList>();
+
         foreach (var item in orders)
         {
             BoOrders.Add(Get(item.ID));
@@ -77,8 +78,8 @@ internal class Order : BlApi.IOrder
         }
         catch (Exception)
         {
+            throw;
         }
-        throw new NotImplementedException();
     }
     /// <summary>
     /// update delivery date
@@ -102,8 +103,8 @@ internal class Order : BlApi.IOrder
         }
         catch (Exception)
         {
+            throw;
         }
-        throw new NotImplementedException();
     }
     /// <summary>
     /// tracking of order
@@ -141,7 +142,7 @@ internal class Order : BlApi.IOrder
                 else
                 {
                     tracking.Date = BoOrder.DeliveryDate;
-                    if (BoOrder.OrderDate > DateTime.MinValue)
+                    if (BoOrder.DeliveryDate > DateTime.MinValue)
                         tracking.Description = "The order was fulfilled";
                     else
                         tracking.Description = "The order was not fulfilled";
@@ -195,10 +196,39 @@ internal class Order : BlApi.IOrder
 
 
     //לבונוס:
-    public void UpdateOrder(BO.Order val)
+
+    public BO.Order UpdateOrder(int orderId,int orderItemId,string whatToDO, int Amount, BO.OrderItem newOrderItem)
     {
-        throw new NotImplementedException();
+        try
+        {
+            DO.Order DoOrder = Dal.Order.Get(orderId);
+            if (DoOrder.ShipDate != DateTime.MinValue)//הזמנה נשלחה ואז אין טעם לעדכן אותה
+                throw new NotImplementedException();
+            BO.Order BoOrder = new BO.Order();
+            BoOrder = ConvertDoOrderToBoOrder(DoOrder);
+            foreach (BO.OrderItem item in BoOrder.Items)
+            {
+                if (item.OrderItemID == orderItemId)
+                {
+                  // DO.Product product = Dal.Product.Get(orderId);
+
+                    if (whatToDO == "remove")
+                        BoOrder.Items.Remove(item);
+                    if(whatToDO == "add")
+                        BoOrder.Items.Add(newOrderItem);
+                    if (whatToDO == "+")
+                        item.Amount += Amount;
+                    if(whatToDO == "-")
+                        item.Amount -= Amount;
+                }
+            }
+            throw new NotImplementedException();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+
+
     }
-
-
 }
