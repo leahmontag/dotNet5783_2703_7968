@@ -91,7 +91,9 @@ internal class Program
                 Console.WriteLine("price");
                 myProductToAdd.Price = double.Parse(Console.ReadLine());
                  Console.WriteLine("Category");
-                //  myProductToAdd.Category = int.Parse(Console.ReadLine());//how to get this enum?
+                //Category productEnum;
+                //Enum.TryParse(Console.ReadLine(), out productEnum);
+                //myProductToAdd.Category = productEnum;
                 Console.WriteLine("InStock");
                 myProductToAdd.InStock = int.Parse(Console.ReadLine());
                 int productID = _bl.Product.Create(myProductToAdd);

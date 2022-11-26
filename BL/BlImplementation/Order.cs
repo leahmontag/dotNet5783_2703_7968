@@ -1,13 +1,10 @@
-﻿using BlApi;
-using BO;
+﻿using BO;
 using DalApi;
-using DO;
-using System.Collections.Generic;
-using System.Xml.Linq;
-using static BO.Enums;
-
 namespace BlImplementation;
 
+/// <summary>
+/// class Order
+/// </summary>
 internal class Order : BlApi.IOrder
 {
     private IDal Dal = new Dal.DalList();
