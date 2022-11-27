@@ -7,7 +7,7 @@ namespace BlImplementation;
 /// </summary>
 internal class Order : BlApi.IOrder
 {
-    private IDal Dal = new Dal.DalList();
+    private IDal _dal = new Dal.DalList();
 
     /// <summary>
     /// get all orders
@@ -17,18 +17,26 @@ internal class Order : BlApi.IOrder
     #region get all orders
     public IEnumerable<BO.OrderForList> GetAll()
     {
-        IEnumerable<DO.Order> orders = Dal.Order.GetAll();
-        List<BO.Order> BoOrders = new List<BO.Order>();
-        List<BO.OrderForList> orderForList = new List<BO.OrderForList>();
-
-        foreach (var item in orders)
+        try
         {
-            BoOrders.Add(Get(item.ID));
+            IEnumerable<DO.Order> orders = _dal.Order.GetAll();
+            List<BO.Order> BoOrders = new List<BO.Order>();
+            List<BO.OrderForList> orderForList = new List<BO.OrderForList>();
+
+            foreach (var item in orders)
+            {
+                BoOrders.Add(Get(item.ID));
+            }
+            foreach (var item in BoOrders)
+                orderForList.Add(new BO.OrderForList() { ID = item.ID, CustomerName = item.CustomerName, Status = item.Status, AmountOfItems = item.Items.Count, TotalPrice = item.TotalPrice });
+            return orderForList;
         }
-        foreach (var item in BoOrders)
-            orderForList.Add(new BO.OrderForList() { ID = item.ID, CustomerName = item.CustomerName, Status = item.Status, AmountOfItems = item.Items.Count, TotalPrice = item.TotalPrice });
-        return orderForList;
-        throw new NotImplementedException();
+        catch (DO.NotFoundException exp)
+        {
+
+            throw new BO.FailedToDisplayAllItemsException("Failed to display all items", exp);
+        }
+
     }
     #endregion
 
@@ -47,14 +55,15 @@ internal class Order : BlApi.IOrder
             {
                 throw new NotImplementedException();
             }
-            DO.Order DoOrder = Dal.Order.Get(ID);
+            DO.Order DoOrder = _dal.Order.Get(ID);
             BO.Order BoOrder = new BO.Order();
             BoOrder = ConvertDoOrderToBoOrder(DoOrder);
             return BoOrder;
         }
-        catch (Exception)
+        catch (DO.NotFoundException exp)
         {
-            throw;
+
+            throw new BO.ProductIsNotAvailableException("product is not available", exp);
         }
     }
     #endregion
@@ -70,19 +79,20 @@ internal class Order : BlApi.IOrder
     {
         try
         {
-            DO.Order DoOrder = Dal.Order.Get(ID);
+            DO.Order DoOrder = _dal.Order.Get(ID);
             if (DoOrder.ShipDate == DateTime.MinValue)
                 DoOrder.ShipDate = DateTime.Now;
             else
                 throw new Exception();
             BO.Order BoOrder = new BO.Order();
             BoOrder = ConvertDoOrderToBoOrder(DoOrder);
-            Dal.Order.Update(DoOrder);
+            _dal.Order.Update(DoOrder);
             return BoOrder;
         }
-        catch (Exception)
+        catch (DO.NotFoundException exp)
         {
-            throw;
+
+            throw new BO.OperationFailedException("update ship was failed", exp);
         }
     }
     #endregion
@@ -98,19 +108,20 @@ internal class Order : BlApi.IOrder
     {
         try
         {
-            DO.Order DoOrder = Dal.Order.Get(ID);
+            DO.Order DoOrder = _dal.Order.Get(ID);
             if (DoOrder.ShipDate != DateTime.MinValue && DoOrder.DeliveryDate == DateTime.MinValue)
                 DoOrder.DeliveryDate = DateTime.Now;
             else
                 throw new Exception();
             BO.Order BoOrder = new BO.Order();
             BoOrder = ConvertDoOrderToBoOrder(DoOrder);
-            Dal.Order.Update(DoOrder);
+            _dal.Order.Update(DoOrder);
             return BoOrder;
         }
-        catch (Exception)
+        catch (DO.NotFoundException exp)
         {
-            throw;
+
+            throw new BO.OperationFailedException("update delivery was failed", exp);
         }
     }
     #endregion
@@ -126,7 +137,7 @@ internal class Order : BlApi.IOrder
     {
         try
         {
-            DO.Order DoOrder = Dal.Order.Get(ID);
+            DO.Order DoOrder = _dal.Order.Get(ID);
             BO.Order BoOrder = new BO.Order();
             BoOrder = ConvertDoOrderToBoOrder(DoOrder);
             OrderTracking orderTracking = new OrderTracking();
@@ -163,10 +174,163 @@ internal class Order : BlApi.IOrder
             return orderTracking;
             throw new NotImplementedException();
         }
-        catch (Exception)
+        catch (DO.NotFoundException exp)
         {
-            throw;
+
+            throw new BO.OperationFailedException("find tracking order was failed", exp);
         }
+    }
+    #endregion
+
+    /// <summary>
+    /// update order
+    /// </summary>
+    /// <param name="BOorder"></param>
+    /// <param name="ID"></param>
+    /// <param name="whatToDO"></param>
+    /// <param name="Amount"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    #region update order-bunus
+    public BO.Order UpdateOrder(BO.Order BOorder, int ID, string whatToDO, int Amount)
+    {
+        try
+        {
+            double sum = 0;
+            IEnumerable<DO.Product> productList = _dal.Product.GetAll();
+            IEnumerable<DO.OrderItem> orderItems = _dal.OrderItem.GetAll();
+            DO.Order DoOrder = _dal.Order.Get(BOorder.ID);
+            if (DoOrder.ShipDate != DateTime.MinValue)//הזמנה נשלחה ואז אין טעם לעדכן אותה
+                throw new NotImplementedException();
+            switch (whatToDO)
+            {
+                case "1"://delete order item and update the stock
+                    #region delete order item and update the stock
+
+                    foreach (BO.OrderItem item in BOorder.Items)
+                    {
+                        if (ID == item.OrderItemID)
+                        {
+                            foreach (DO.Product product in productList)
+                            {
+                                if (item.Name == product.Name)//עדכון מלאי במחיקה פריט בהזמנה
+                                {
+                                    DO.Product newProduct = new DO.Product();
+                                    newProduct = product;
+                                    newProduct.InStock += item.Amount;
+                                    _dal.Product.Update(newProduct);
+                                    break;
+                                }
+                            }
+                            BOorder.Items.Remove(item);
+                            foreach (DO.OrderItem orderItem in orderItems)//מחיקת פריט בהזמנה משכבת הנתונים
+                            {
+                                if (orderItem.OrderItemID == ID)
+                                {
+                                    _dal.OrderItem.Delete(ID);
+                                    break;
+                                }
+                            }
+                            foreach (BO.OrderItem item1 in BOorder.Items)
+                                sum += item1.TotalPrice;
+                            BOorder.TotalPrice = sum;
+                            return BOorder;
+                        }
+
+                    }
+                    #endregion
+                    break;
+                case "2":
+                    #region add order item
+                    foreach (BO.OrderItem item in BOorder.Items)
+                    {
+                        if (ID == item.OrderItemID)//לעשות כאן שגיאה של מוצר כבר קיים ולכן לא נוכל להוסיף אותו להזמנה
+                            throw new NotImplementedException();
+                    }
+                    foreach (DO.Product product in productList)
+                    {
+                        if (product.ID == ID)
+                        {
+                            if (product.InStock > 1)//נבדוק האם קיים כזה מוצר והאם יש ממנו מספיק במלאי)
+                            {
+                                BOorder.Items.Add(new BO.OrderItem
+                                {
+                                    ProductID = product.ID,
+                                    Amount = 1,
+                                    Name = product.Name,
+                                    Price = product.Price,
+                                    TotalPrice = product.Price
+                                }); ;
+                                DO.Product newProduct = new DO.Product();//עדכון מלאי פחות 1 בגלל שהוספנו מהמוצר הזה חדש
+                                newProduct = product;
+                                newProduct.InStock -= 1;
+                                _dal.Product.Update(newProduct);
+                                _dal.OrderItem.Create(new DO.OrderItem()//הוספת פריט בהזמנה לשכבת הנתונים
+                                {
+                                    OrderID = BOorder.ID,
+                                    ProductID = product.ID,
+                                    Amount = 1,
+                                    Name = product.Name,
+                                    Price = product.Price
+                                });
+                                foreach (BO.OrderItem item in BOorder.Items)
+                                    sum += item.TotalPrice;
+                                BOorder.TotalPrice = sum;
+                                return BOorder;
+                            }
+                            else
+                                throw new NotImplementedException();//לעשות שגיאה של לא קיים במלאי
+
+                        }
+                    }
+                    #endregion
+                    break;
+                case "3":
+                    #region update order
+                    foreach (BO.OrderItem item in BOorder.Items)
+                    {
+                        if (item.OrderItemID == ID)
+                        {
+                            foreach (DO.Product product in productList)
+                            {
+                                if (product.ID == item.ProductID && (product.InStock + item.Amount) - Amount > 0)//בדיקה האם יש מספיק במלאי
+                                {
+                                    item.Amount = Amount;//עדכון הכמות בהזמנה בשכבה הלוגית
+                                    item.TotalPrice = Amount * item.Price;
+                                    DO.Product newProduct = new DO.Product();//עדכון מלאי
+                                    newProduct = product;
+                                    newProduct.InStock = newProduct.InStock + item.Amount - Amount;
+                                    _dal.Product.Update(newProduct);
+                                    _dal.OrderItem.Update(new DO.OrderItem()//עדכון פריט בהזמנה לשכבת הנתונים
+                                    {
+                                        OrderID = BOorder.ID,
+                                        ProductID = product.ID,
+                                        OrderItemID = item.OrderItemID,
+                                        Amount = Amount,
+                                        Name = product.Name,
+                                        Price = product.Price
+                                    });
+                                    foreach (BO.OrderItem item1 in BOorder.Items)
+                                        sum += item1.TotalPrice;
+                                    BOorder.TotalPrice = sum;
+                                    return BOorder;
+                                }
+                            }
+                        }
+                    }
+                    throw new BO.ProductIsNotAvailableException("find product was faild");//יזרוק שגיאה כי הוא לא מצא את הפריט שאותו נראה לעדכן
+                    #endregion
+                    break;
+                default:
+                    throw new BO.OperationFailedException("update order was failed");
+            }
+        }
+        catch (DO.NotFoundException exp)
+        {
+
+            throw new BO.FailedToDisplayAllItemsException("update order was failed", exp);
+        }
+        return BOorder;
     }
     #endregion
 
@@ -178,7 +342,7 @@ internal class Order : BlApi.IOrder
     #region Convert doOrder to boOrder
     private BO.Order ConvertDoOrderToBoOrder(DO.Order DoOrder)
     {
-        IEnumerable<DO.OrderItem> itemsOfOrder = Dal.OrderItem.GetOrderItemsByOrderID(DoOrder.ID);
+        IEnumerable<DO.OrderItem> itemsOfOrder = _dal.OrderItem.GetOrderItemsByOrderID(DoOrder.ID);
         BO.Order BoOrder = new BO.Order();
         BoOrder.ID = DoOrder.ID;
         BoOrder.CustomerName = DoOrder.CustomerName;
@@ -206,41 +370,6 @@ internal class Order : BlApi.IOrder
     }
     #endregion
 
-    //לבונוס:
-    #region update order
-    public BO.Order UpdateOrder(int orderId, int orderItemId, string whatToDO, int Amount, BO.OrderItem newOrderItem)
-    {
-        try
-        {
-            DO.Order DoOrder = Dal.Order.Get(orderId);
-            if (DoOrder.ShipDate != DateTime.MinValue)//הזמנה נשלחה ואז אין טעם לעדכן אותה
-                throw new NotImplementedException();
-            BO.Order BoOrder = new BO.Order();
-            BoOrder = ConvertDoOrderToBoOrder(DoOrder);
-            foreach (BO.OrderItem item in BoOrder.Items)
-            {
-                if (item.OrderItemID == orderItemId)
-                {
-                    // DO.Product product = Dal.Product.Get(orderId);
 
-                    if (whatToDO == "remove")
-                        BoOrder.Items.Remove(item);
-                    if (whatToDO == "add")
-                        BoOrder.Items.Add(newOrderItem);
-                    if (whatToDO == "+")
-                        item.Amount += Amount;
-                    if (whatToDO == "-")
-                        item.Amount -= Amount;
-                }
-            }
-            throw new NotImplementedException();
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-
-
-    }
-    #endregion
 }
+

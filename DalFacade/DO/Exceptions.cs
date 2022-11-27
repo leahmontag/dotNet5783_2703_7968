@@ -1,13 +1,25 @@
 ﻿namespace DO;
 
-public class NotFoundException : Exception
+/// <summary>
+/// class NotFoundException
+/// </summary>
+public class NotFoundException : Exception//עבור עדכון, מחיקה או בקשה
 {
-    public string NotFoundExceptions { get; set; }//עבור עדכון, מחיקה או בקשה
-    public NotFoundException(string msg) : base(msg) {}
+    public NotFoundException(string msg) : base(msg) { }
 }
 
-public class DuplicatesException : Exception
+/// <summary>
+/// class DuplicatesException
+/// </summary>
+public class DuplicatesException : Exception//עבור הוספה של אובייקט עם מזהה שכבר קיים
 {
-    public string Duplicates { get; set; }//עבור הוספה של אובייקט עם מזהה שכבר קיים
-    public DuplicatesException(string msg) : base(msg){}
+    public DuplicatesException(string msg) : base(msg) { }
+}
+
+/// <summary>
+/// class OperationFailedException
+/// </summary>
+public class OperationFailedException : Exception//פעולה נכשלה
+{
+    public OperationFailedException(string msg) : base(msg) { }
 }

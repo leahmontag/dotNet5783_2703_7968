@@ -14,6 +14,7 @@ internal class DalOrder : IOrder
     #region Create
     public int Create(Order myOrder)
     {
+        myOrder.ID = Config.AutoNumOrder;
         foreach (var item in _orderList)
         {
             if (item.ID == myOrder.ID)
@@ -30,24 +31,22 @@ internal class DalOrder : IOrder
     #region Update
     public void Update(Order myOrder)
     {
-        for (int i = 0; i < _orderList.Count; i++)
+        try
         {
-            if (_orderList[i].ID == myOrder.ID)
+            for (int i = 0; i < _orderList.Count; i++)
             {
-                //Checking inputs from the user.
-                // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.
-
-                _orderList[i] = myOrder;
-                //if (myOrder.CustomerName != " ")
-                //    _orderList[i].CustomerName = myOrder.CustomerName;
-                //if (myOrder.CustomerEmail != " ")
-                //    _orderList[i].CustomerEmail = myOrder.CustomerEmail;
-                //if (myOrder.CustomerAdress != " ")
-                //    _orderList[i].CustomerAdress = myOrder.CustomerAdress;
-                return;
+                if (_orderList[i].ID == myOrder.ID)
+                {
+                    _orderList[i] = myOrder;
+                    return;
+                }
             }
         }
-        throw new NotFoundException("not exist order");
+        catch (Exception)
+        {
+            throw new NotFoundException("not exist order");
+        }
+
     }
     #endregion
 
@@ -57,15 +56,21 @@ internal class DalOrder : IOrder
     #region Delete
     public void Delete(int OrderId)
     {
-        foreach (var item in _orderList)
+        try
         {
-            if (item.ID == OrderId)
+            foreach (var item in _orderList)
             {
-                _orderList.Remove(item);
-                return;
+                if (item.ID == OrderId)
+                {
+                    _orderList.Remove(item);
+                    return;
+                }
             }
         }
-        throw new NotFoundException("not exist order");
+        catch (Exception)
+        {
+            throw new NotFoundException("not exist order");
+        }
     }
     #endregion
 
@@ -90,9 +95,17 @@ internal class DalOrder : IOrder
     #region GetAll
     public IEnumerable<Order> GetAll()
     {
+        try
+        {
         List<Order> _newOrderList;
         _newOrderList = _orderList;
         return _newOrderList;
+        }
+        catch (Exception)
+        {
+            throw new NotFoundException("can't display all products");
+        }
+
     }
     #endregion
 

@@ -1,12 +1,14 @@
 ﻿using BO;
 using DalApi;
+
 namespace BlImplementation;
+
 /// <summary>
 /// class Product
 /// </summary>
 internal class Product : BlApi.IProduct
 {
-    private IDal Dal = new Dal.DalList();
+    private IDal _dal = new Dal.DalList();
     /// <summary>
     /// create function
     /// </summary>
@@ -16,14 +18,8 @@ internal class Product : BlApi.IProduct
     #region Add new product
     public int Create(BO.Product productBL)
     {
-        //cheacking values in BO
-        if (productBL.Name == " " || productBL.Price <=
-        0 || productBL.InStock <= 0 /*|| productBL.Category == null*/)
-            throw new Exception();
-        // דו דרך נעבור ישירות אפשרי שאינו לדל המעבר לפני//
         DO.Product productDal = new DO.Product()
         {
-            //ID = productBL.ID,
             Name = productBL.Name,
             Price = productBL.Price,
             Category = (DO.Enums.Category)productBL.Category,
@@ -32,11 +28,11 @@ internal class Product : BlApi.IProduct
         int id = 0;
         try
         {
-            id = Dal.Product.Create(productDal);
+            id = _dal.Product.Create(productDal);
         }
-        catch (Exception)
+        catch (DO.OperationFailedException exp)
         {
-            throw;
+            throw new BO.FailedAddingProductException("Failed adding product", exp);
         }
         return id;
     }
@@ -50,21 +46,21 @@ internal class Product : BlApi.IProduct
     #region Delete product
     public void Delete(int productID)
     {
-        IEnumerable<DO.Order> ordersList = Dal.Order.GetAll();
+        IEnumerable<DO.Order> ordersList = _dal.Order.GetAll();
         //checking that item not exist in any orders.
         foreach (DO.Order item in ordersList)
         {
             if (item.ID == productID)
-                throw new Exception();
+                throw new cannotDeletedItemException("An existing item in an order cannot be deleted");
         }
         try
         {
-            Dal.Product.Delete(productID);
+            _dal.Product.Delete(productID);
         }
 
-        catch (Exception)
+        catch (DO.NotFoundException exp)
         {
-            throw;
+            throw new BO.cannotDeletedItemException("canot delete item ", exp);
         }
     }
     #endregion
@@ -76,17 +72,24 @@ internal class Product : BlApi.IProduct
     #region Get all products
     public IEnumerable<BO.ProductForList> GetAll()
     {
-        IEnumerable<DO.Product> productsList = Dal.Product.GetAll();
-        List<BO.ProductForList> ProductForList = new List<BO.ProductForList>();
-        foreach (var item in productsList)
-            ProductForList.Add(new ProductForList()
-            {
-                ID = item.ID,
-                Name = item.Name,
-                Price = item.Price,
-                Category = (BO.Enums.Category)item.Category
-            });
-        return ProductForList;
+        try
+        {
+            IEnumerable<DO.Product> productsList = _dal.Product.GetAll();
+            List<BO.ProductForList> ProductForList = new List<BO.ProductForList>();
+            foreach (var item in productsList)
+                ProductForList.Add(new ProductForList()
+                {
+                    ID = item.ID,
+                    Name = item.Name,
+                    Price = item.Price,
+                    Category = (BO.Enums.Category)item.Category
+                });
+            return ProductForList;
+        }
+        catch (DO.NotFoundException exp)
+        {
+            throw new BO.FailedAddingProductException("Failed to display all items", exp);
+        }
     }
     #endregion
 
@@ -100,12 +103,10 @@ internal class Product : BlApi.IProduct
     public BO.Product GetByManager(int productID)
     {
         BO.Product productBL;
-        if (productID <= 0)
-            throw new Exception();
         DO.Product productDal;
         try
         {
-            productDal = Dal.Product.Get(productID);
+            productDal = _dal.Product.Get(productID);
             productBL = new BO.Product()
             {
                 ID = productDal.ID,
@@ -116,9 +117,9 @@ internal class Product : BlApi.IProduct
 
             };
         }
-        catch (Exception)
+        catch (DO.NotFoundException exp)
         {
-            throw;
+            throw new BO.ProductIsNotAvailableException("Finding this product details failed due to not finding an item with such an ID", exp);
         }
         return productBL;
     }
@@ -133,15 +134,12 @@ internal class Product : BlApi.IProduct
     /// <exception cref="Exception"></exception>
     #region Get product fromCatalog
     public ProductItem GetProductFromCatalog(int productID, BO.Cart cartBL)
-
     {
         BO.ProductItem productItemBL;
-        if (productID <= 0)
-            throw new Exception();
-        else
+        DO.Product productDal;
+        int amount = 0;
+        if (cartBL.Items != null)
         {
-            DO.Product productDal;
-            int amount = 0;
             foreach (var item in cartBL.Items)
             {
                 if (item.ProductID == productID)
@@ -149,26 +147,26 @@ internal class Product : BlApi.IProduct
                     amount = item.Amount;
                 }
             }
-            try
+        }
+        try
+        {
+            bool boolInstock = false;
+            productDal = _dal.Product.Get(productID);
+            if (productDal.InStock > 0)
+                boolInstock = true;
+            productItemBL = new BO.ProductItem()
             {
-                bool boolInstock=false;
-                productDal = Dal.Product.Get(productID);
-                if (productDal.InStock > 0)
-                    boolInstock =true;
-                productItemBL = new BO.ProductItem()
-                {
-                    ID = productDal.ID,
-                    Amount = amount,
-                    Category = (BO.Enums.Category)productDal.Category,
-                    Name = productDal.Name,
-                    Price = productDal.Price,
-                    InStock= boolInstock
-                };
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+                ID = productDal.ID,
+                Amount = amount,
+                Category = (BO.Enums.Category)productDal.Category,
+                Name = productDal.Name,
+                Price = productDal.Price,
+                InStock = boolInstock
+            };
+        }
+        catch (DO.NotFoundException exp)
+        {
+            throw new BO.ProductIsNotAvailableException("Finding this product details failed due to not finding an item with such an ID", exp);
         }
         return productItemBL;
     }
@@ -182,11 +180,7 @@ internal class Product : BlApi.IProduct
     #region Update product
     public void Update(BO.Product productBL)
     {
-        // BOהלוגית בשכבה תקינות בדיקת//
-        if (productBL.Name == "" || productBL.ID <= 0 || productBL.Price <= 0
-        || productBL.InStock <= 0 /*|| productBL.Category == null*/)
-            throw new Exception();
-        //  דו דרך נעבור ישירות אפשרי שאינו לדל המעבר לפני//
+        //Before moving to DAL which is not possible directly, we will go through DO.
         DO.Product productDal = new DO.Product()
         {
             ID = productBL.ID,
@@ -198,12 +192,13 @@ internal class Product : BlApi.IProduct
 
         try
         {
-            Dal.Product.Update(productDal);
+            _dal.Product.Update(productDal);
         }
-        catch (Exception)
+        catch (DO.NotFoundException exp)
         {
-            throw;
+            throw new BO.ProductIsNotAvailableException("Finding this product details failed due to not finding an item with such an ID", exp);
         }
     }
     #endregion
 }
+

@@ -25,5 +25,5 @@ public interface ICart
     /// </summary>
     /// <param name="val"></param>
     /// <returns>void</returns>
-    public int ConfirmOrder(Cart cartBL);
+    public void ConfirmOrder(Cart cartBL);
 }

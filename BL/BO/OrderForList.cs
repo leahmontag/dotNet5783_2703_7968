@@ -36,10 +36,12 @@ public class OrderForList
     /// </summary>
     /// <returns>string</returns>
     public override string ToString() => $@"
-    Product ID:{ID}
-    Customer Name:{CustomerName}
-    Status:{Status}
-    AmountOfItems: {AmountOfItems}
-    TotalPrice:{TotalPrice}
-    ";
+    Order ID:{ID}
+    Customer Name:{CustomerName}
+    Status:{Status}
+    AmountOfItems: {AmountOfItems}
+    TotalPrice:{TotalPrice}
+    ";
+
+
 }

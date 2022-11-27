@@ -19,5 +19,5 @@ sealed public class Bl : IBl
     /// <summary>
     /// ICart Cart
     /// </summary>
-    public ICart Cart =>new Cart();
+    public ICart Cart => new Cart();
 }

@@ -10,14 +10,14 @@ public interface IOrder
     /// func GetAll
     /// </summary>
     /// <returns>IEnumerable</returns>
-    public IEnumerable<OrderForList> GetAll();
+    public IEnumerable<BO.OrderForList> GetAll();
 
     /// <summary>
     /// func Get
     /// </summary>
     /// <param name="ID"></param>
     /// <returns>order</returns>
-    public Order Get(int ID);
+    public BO.Order Get(int ID);
 
     /// <summary>
     /// func UpdateShip
@@ -38,12 +38,16 @@ public interface IOrder
     /// </summary>
     /// <param name="ID"></param>
     /// <returns>void</returns>
-    public OrderTracking TrackingOfOrder(int ID);
+    public BO.OrderTracking TrackingOfOrder(int ID);
 
     /// <summary>
-    /// func UpdateOrder
+    /// update order by manager
     /// </summary>
+    /// <param name="BOorder"></param>
     /// <param name="ID"></param>
-    /// <returns>void</returns>
-    public BO.Order UpdateOrder(int orderId, int orderItemId, string whatToDO, int Amount, BO.OrderItem newOrderItem);
+    /// <param name="whatToDO"></param>
+    /// <param name="Amount"></param>
+    /// <returns></returns>
+    public BO.Order UpdateOrder(BO.Order BOorder, int ID, string whatToDO, int Amount);
+
 }

@@ -1,5 +1,4 @@
-﻿using BO;
-namespace BlApi;
+﻿namespace BlApi;
 
 /// <summary>
 /// interface IProduct
@@ -11,7 +10,7 @@ public interface IProduct
     /// </summary>
     /// <param name="val"></param>
     /// <returns>int</returns>
-    public int Create(Product val);
+    public int Create(BO.Product val);
 
     /// <summary>
     /// func Delete
@@ -25,27 +24,27 @@ public interface IProduct
     /// </summary>
     /// <param name="val"></param>
     /// <returns>void</returns>
-    public void Update(Product val);
+    public void Update(BO.Product val);
 
     /// <summary>
     /// func Get
     /// </summary>
     /// <param name="val"></param>
     /// <returns>Product</returns>
-    public Product GetByManager(int val);
+    public BO.Product GetByManager(int val);
 
     /// <summary>
     /// func Get
     /// </summary>
     /// <param name="val"></param>
     /// <returns>Product</returns>
-    public ProductItem GetProductFromCatalog(int val, BO.Cart cart);
+    public BO.ProductItem GetProductFromCatalog(int val, BO.Cart cart);
 
     /// <summary>
     /// func GetAll
     /// </summary>
     /// <param name="val"></param>
     /// <returns>IEnumerable</returns>
-    public IEnumerable<ProductForList> GetAll();
+    public IEnumerable<BO.ProductForList> GetAll();
 
 }

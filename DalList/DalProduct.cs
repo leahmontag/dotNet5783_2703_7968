@@ -16,17 +16,25 @@ internal class DalProduct : IProduct
     #region Create
     public int Create(Product myProduct)
     {
-        int myID;
-        Random rand = new Random();
-        do
+        try
         {
-            myID = rand.Next(100000, 999999);
-        } while (existProductID(myID).ID != 0);
+            int myID;
+            Random rand = new Random();
+            do
+            {
+                myID = rand.Next(100000, 999999);
+            } while (existProductID(myID).ID != 0);
 
-        myProduct.ID = myID;
-        _productList.Add(myProduct);
+            myProduct.ID = myID;
+            _productList.Add(myProduct);
 
-        return myProduct.ID;
+            return myProduct.ID;
+        }
+        catch (Exception)
+        {
+
+            throw new OperationFailedException("operation failed");
+        }
     }
     #endregion
 
@@ -40,18 +48,7 @@ internal class DalProduct : IProduct
         {
             if (_productList[i].ID == myProduct.ID)
             {
-                //Checking inputs from the user.
-                // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.
                 _productList[i] = myProduct;
-
-                //if (myProduct.Name != "")
-                //    _productList[i].Name = "fdvfdvv";
-                //if (myProduct.InStock != 0)
-                //   _productList[i].InStock = myProduct.InStock;
-                //if (myProduct.Price != 0.0)
-                //   _productList[i].Price = myProduct.Price;
-                //if (myProduct.Category != null)
-                //   _productList[i].Category = myProduct.Category;
                 return;
             }
         }
@@ -65,18 +62,24 @@ internal class DalProduct : IProduct
     #region Delete
     public void Delete(int ProductId)
     {
-        for (int i = 0; i < _productList.Count; i++)
+        try
         {
-            foreach (var item in _productList)
+            for (int i = 0; i < _productList.Count; i++)
             {
-                if (item.ID == ProductId)
+                foreach (var item in _productList)
                 {
-                    _productList.Remove(item);
-                    return;
+                    if (item.ID == ProductId)
+                    {
+                        _productList.Remove(item);
+                        return;
+                    }
                 }
             }
         }
-        throw new NotFoundException("not exist product");
+        catch (Exception)
+        {
+            throw new NotFoundException("not exist product");
+        }
     }
     #endregion
 
@@ -101,15 +104,19 @@ internal class DalProduct : IProduct
     #region GetAll
     public IEnumerable<Product> GetAll()
     {
-        List<Product> _newProductList;
-        _newProductList = _productList;
-        return _newProductList;
-        //int size = DataSource.Config.ProductIndex;
-        //Product[] newProductArr = new Product[size];
-        //for (int i = 0; i < size; i++)
-        //{
-        //    newProductArr[i] = DataSource._productArr[i];
-        //}
+        try
+        {
+            List<Product> _newProductList;
+            _newProductList = _productList;
+            return _newProductList;
+        }
+        catch (Exception)
+        {
+
+            throw new NotFoundException("can't display all products");
+
+        }
+
     }
     #endregion
 

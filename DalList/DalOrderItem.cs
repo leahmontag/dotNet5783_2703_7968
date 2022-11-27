@@ -14,6 +14,7 @@ internal class DalOrderItem : IOrderItem
     #region Create
     public int Create(OrderItem myOrderItem)
     {
+        myOrderItem.OrderItemID = Config.AutoNumOrderItem;
         foreach (var item in _orderItemList)
         {
             if (item.OrderItemID == myOrderItem.OrderItemID)
@@ -125,9 +126,19 @@ internal class DalOrderItem : IOrderItem
     #region GetAll
     public IEnumerable<OrderItem> GetAll()
     {
+        try
+        {
         List<OrderItem> _newOrderItemList;
         _newOrderItemList = _orderItemList;
         return _newOrderItemList;
+        }
+        catch (Exception)
+        {
+
+            throw new NotFoundException("can't display all order items");
+
+        }
+
     }
     #endregion
 
