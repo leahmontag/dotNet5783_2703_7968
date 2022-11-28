@@ -8,12 +8,12 @@ public class OrderTrackingDates
     /// <summary>
     /// date for OrderTrackingDates.
     /// </summary>
-    public DateTime Date { get; set; }
+    public DateTime? Date { get; set; }
 
     /// <summary>
     /// Description for OrderTrackingDates.
     /// </summary>
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// function toString

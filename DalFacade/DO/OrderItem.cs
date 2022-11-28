@@ -29,7 +29,7 @@ public struct OrderItem
     /// <summary>
     /// Name of item 
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     public override string ToString() => $@"
     OrderItem ID={OrderItemID},

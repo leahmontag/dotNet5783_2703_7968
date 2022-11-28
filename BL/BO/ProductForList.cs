@@ -14,7 +14,7 @@ public class ProductForList
     /// <summary>
     /// name for ProductForList.
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// price for ProductForList.
@@ -24,7 +24,7 @@ public class ProductForList
     /// <summary>
     /// category for ProductForList.
     /// </summary>
-    public Category Category { get; set; }
+    public Category? Category { get; set; }
 
     /// <summary>
     /// function toString

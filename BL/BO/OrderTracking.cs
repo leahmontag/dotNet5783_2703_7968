@@ -14,12 +14,12 @@ public class OrderTracking
     /// <summary>
     /// status for OrderTracking.
     /// </summary>
-    public OrderStatus Status { get; set; }
+    public OrderStatus? Status { get; set; }
 
     /// <summary>
     /// list of OrderTrackingDates for OrderTracking.
     /// </summary>
-    public List<OrderTrackingDates> OrderTrackingDateAndDesc { get; set; }
+    public List<OrderTrackingDates?> OrderTrackingDateAndDesc { get; set; }
 
     /// <summary>
     /// function toString
@@ -28,7 +28,7 @@ public class OrderTracking
     public override string ToString()
     {
         string orderItems = "";
-        foreach (OrderTrackingDates item in OrderTrackingDateAndDesc)
+        foreach (OrderTrackingDates /*?*/ item in OrderTrackingDateAndDesc)
         {
             orderItems += item;
         }

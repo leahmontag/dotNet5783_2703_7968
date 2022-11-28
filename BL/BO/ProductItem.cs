@@ -14,7 +14,7 @@ public class ProductItem
     /// <summary>
     /// uniqe name for ProductItem.
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// uniqe price for ProductItem.
@@ -24,7 +24,7 @@ public class ProductItem
     /// <summary>
     /// category for ProductItem.
     /// </summary>
-    public Category Category { get; set; }
+    public Category? Category { get; set; }
 
     /// <summary>
     /// uniqe amount for ProductItem.

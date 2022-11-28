@@ -14,12 +14,12 @@ public class OrderForList
     /// <summary>
     ///customer name for OrderForList. 
     /// </summary>
-    public string CustomerName { get; set; }
+    public string? CustomerName { get; set; }
 
     /// <summary>
     ///status for OrderForList. 
     /// </summary>
-    public OrderStatus Status { get; set; }
+    public OrderStatus? Status { get; set; }
 
     /// <summary>
     ///amount of items for OrderForList. 

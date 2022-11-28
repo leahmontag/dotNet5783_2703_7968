@@ -8,7 +8,7 @@ public class OrderItem
     /// <summary>
     ///Name of order item for order item. 
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// uniqe id of order item for order item. 

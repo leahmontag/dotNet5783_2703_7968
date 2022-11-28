@@ -6,7 +6,7 @@
         public void Delete(int val);
         public void Update(T val);
         public T Get(int val);
-        public IEnumerable<T> GetAll();
+        public IEnumerable<T?> GetAll();
     }
 }
 

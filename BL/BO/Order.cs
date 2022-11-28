@@ -14,27 +14,27 @@ public class Order
     /// <summary>
     /// uniqe Customer name for order. 
     /// </summary>
-    public string CustomerName { get; set; }
+    public string? CustomerName { get; set; }
 
     /// <summary>
     /// uniqe Customer email for order. 
     /// </summary>
-    public string CustomerEmail { get; set; }
+    public string? CustomerEmail { get; set; }
 
     /// <summary>
     /// uniqe Customer adress for order. 
     /// </summary>
-    public string CustomerAdress { get; set; }
+    public string? CustomerAdress { get; set; }
 
     /// <summary>
     /// Status for order. 
     /// </summary>
-    public OrderStatus Status { get; set; }
+    public OrderStatus? Status { get; set; }
 
     /// <summary>
     /// Items for order. 
     /// </summary>
-    public List<OrderItem> Items { get; set; } = new();
+    public List<OrderItem?> Items { get; set; } = new();
 
     /// <summary>
     /// TotalPrice for order. 
@@ -44,17 +44,17 @@ public class Order
     /// <summary>
     /// uniqe Order date for order. 
     /// </summary>
-    public DateTime OrderDate { get; set; }
+    public DateTime? OrderDate { get; set; }
 
     /// <summary>
     /// uniqe Ship date for order. 
     /// </summary>
-    public DateTime ShipDate { get; set; }
+    public DateTime? ShipDate { get; set; }
 
     /// <summary>
     /// uniqe Delivery date for order. 
     /// </summary>
-    public DateTime DeliveryDate { get; set; }
+    public DateTime? DeliveryDate { get; set; }
 
     /// <summary>
     /// function toString
@@ -72,10 +72,10 @@ public class Order
         customer name: {CustomerName}
         customerEmail: {CustomerEmail}
         customerAddress: {CustomerAdress}
-        Order Date: {OrderDate.ToShortDateString()}
+        Order Date: {OrderDate?.ToShortDateString()}
         Status:{Status}
-        Ship Date: {ShipDate.ToShortDateString()}
-        DeliveryDate: {DeliveryDate.ToShortDateString()}
+        Ship Date: {ShipDate?.ToShortDateString()}
+        DeliveryDate: {DeliveryDate?.ToShortDateString()}
         order items list:
         {orderItems}
         TotalPrice: {TotalPrice}");
