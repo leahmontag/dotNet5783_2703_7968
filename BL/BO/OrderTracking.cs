@@ -19,7 +19,7 @@ public class OrderTracking
     /// <summary>
     /// list of OrderTrackingDates for OrderTracking.
     /// </summary>
-    public List<OrderTrackingDates?> OrderTrackingDateAndDesc { get; set; }
+    public List<OrderTrackingDates?>? OrderTrackingDateAndDesc { get; set; }
 
     /// <summary>
     /// function toString
