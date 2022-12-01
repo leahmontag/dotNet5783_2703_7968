@@ -1,7 +1,9 @@
 ﻿using BlApi;
 using BlImplementation;
+using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Windows;
+using static BO.Enums;
 
 
 namespace PL.BoProducts
@@ -21,20 +23,16 @@ namespace PL.BoProducts
         private void CategorySelector_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) { }
         private void AddNewProductButton_Click(object sender, RoutedEventArgs e)
         {
-
-            var ID = Id.Text;
-
-
             bl.Product.Create(new BO.Product()
             {
-                // ID=,
-                //      Name = Name.Text,
-                //    Category=,
-                //  Price=,
-                //InStock=,
-
-
-            });
+                ID = int.Parse(Id.Text),
+                Name = Name.Text,
+                // Category = Enum.TryParse(CategorySelector.Items, out CategorySelector),
+                Category = Category.eyeMakeup,
+                Price = double.Parse(Price.Text),
+                InStock = int.Parse(InStock.Text),
+            }) ;
+            new BoProductListWindow().Show();
         }
     }
 }
