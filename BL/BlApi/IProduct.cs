@@ -46,5 +46,12 @@ public interface IProduct
     /// <param name="val"></param>
     /// <returns>IEnumerable</returns>
     public IEnumerable<BO.ProductForList?> GetAll();
+    /// <summary>
+    /// func GetAllByCategory
+    /// </summary>
+    /// <returns>IEnumerable</returns>
+    public IEnumerable<BO.ProductForList?> GetAllByCategory(string category);
+
+    
 
 }

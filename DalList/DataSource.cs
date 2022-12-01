@@ -5,9 +5,9 @@ namespace Dal;
 internal static class DataSource
 {
     // internal static List<Product> _productList { get; set; }
-    internal static List<Product> _productList = new();
-    internal static List<Order> _orderList = new();
-    internal static List<OrderItem> _orderItemList = new();
+    internal static List<Product> _productList = new ();
+    internal static List<Order> _orderList = new ();
+    internal static List<OrderItem> _orderItemList = new ();
     internal static readonly Random _rand = new Random();
     static DataSource()
     {
@@ -36,11 +36,9 @@ internal static class DataSource
             Category.cultivation,
             Category.lipMakeup
         };
-      //  int stam = 0;
         for (int i = 0; i < 10; i++)
         {
             int id = _rand.Next(100000, 999999);
-         //   if (stam!=0)
             {
                 for (int j = 0; j < _productList.Count; j++)
                 {
@@ -51,12 +49,11 @@ internal static class DataSource
                     }
                 }
             }
-        //    stam++;
             newProduct.ID = id;
             newProduct.Name = name[i];
             newProduct.Price = price[i];
             newProduct.InStock = inStock[i];
-            newProduct.Category = categoryArr[i % 5];
+            newProduct.Category = categoryArr[i];
             addProduct(newProduct);
         }
         #endregion

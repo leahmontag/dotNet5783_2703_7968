@@ -91,8 +91,8 @@ internal class DalProduct : IProduct
     {
         foreach (var item in _productList)
         {
-            if (item.ID == ProductId)
-                return item;
+           // if (item?.ID == ProductId)
+            //    return item;
         }
         throw new NotFoundException("not exist product");
     }
@@ -128,8 +128,8 @@ internal class DalProduct : IProduct
     {
         foreach (var item in _productList)
         {
-            if (item.ID == num)
-                return item;
+            //if (item?.ID == num)
+               // return item;
         }
         Product p = new Product() { ID = 0 };
         return p;

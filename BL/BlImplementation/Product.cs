@@ -172,6 +172,35 @@ internal class Product : BlApi.IProduct
     }
     #endregion
 
+    #region Get all products by category
+    public IEnumerable<BO.ProductForList> GetAllByCategory(string category)
+    {
+        try
+        {
+            IEnumerable<DO.Product> productsList = _dal.Product.GetAll();
+            List<BO.ProductForList> ProductForList = new List<BO.ProductForList>();
+            foreach (var item in productsList)
+            {
+                if (item.Category.ToString() == category)
+                {
+                    ProductForList.Add(new ProductForList()
+                    {
+                        ID = item.ID,
+                        Name = item.Name,
+                        Price = item.Price,
+                        Category = (BO.Enums.Category)item.Category
+                    });
+                }
+            }
+            return ProductForList;
+        }
+        catch (DO.NotFoundException exp)
+        {
+            throw new BO.FailedAddingProductException("Failed to display all items", exp);
+        }
+    }
+    #endregion
+
     /// <summary>
     /// update function
     /// </summary>

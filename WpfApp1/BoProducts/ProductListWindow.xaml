@@ -6,24 +6,24 @@
         xmlns:local="clr-namespace:PL.BoProducts"
         mc:Ignorable="d"
         Title="BoProductListWindow" Height="640" Width="800">
-    <Grid Name="MainGrid" Margin="0,40,0,0">
+    <Grid Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1"/>
-        <ComboBox HorizontalAlignment="Left" Width="800" SelectionChanged="ComboBox_SelectionChanged" />
-        <Label Grid.Column="0"></Label>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-VerticalAlignment="Stretch" Width="auto">
+
+        <Button Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="addNewProductButton_Click"/>
+        
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox Name="AttributeSelector" HorizontalAlignment= "Left" Grid.Column="1" Width="400" />
-
+            <ComboBox Name="CategorySelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="CategorySelector_SelectionChanged" />
+            <Label Grid.Column="0">Category</Label>
         </Grid>
+        <ListView Name="ProductsListView" Grid.Row="1"/>
     </Grid>
 
 
