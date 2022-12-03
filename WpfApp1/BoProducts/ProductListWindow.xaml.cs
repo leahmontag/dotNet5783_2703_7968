@@ -37,9 +37,23 @@ namespace PL.BoProducts
             string selectedItem = CategorySelector.SelectedItem.ToString();
             ProductsListView.ItemsSource = bl.Product.GetAllByCategory(selectedItem);
 
-            
+
         }
 
-        private void addNewProductButton_Click(object sender, RoutedEventArgs e) => new BoProductWindow().Show();
+        private void addNewProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            string Btn = "Add";
+            new BoProductWindow(Btn).Show();
+        }
+
+        private void ProductsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+             BO.ProductForList SelectedProduct = (BO.ProductForList)((sender as ListView).SelectedItem);
+            string Btn = "Update";
+            new BoProductWindow(Btn, SelectedProduct.ID).Show();
+
+
+        }
+
     }
 }

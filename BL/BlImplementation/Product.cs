@@ -1,5 +1,6 @@
 ﻿using BO;
 using DalApi;
+using DO;
 
 namespace BlImplementation;
 
@@ -20,6 +21,7 @@ internal class Product : BlApi.IProduct
     {
         DO.Product productDal = new DO.Product()
         {
+            ID = productBL.ID,
             Name = productBL.Name,
             Price = productBL.Price,
             Category = (DO.Enums.Category)productBL.Category,
@@ -34,6 +36,11 @@ internal class Product : BlApi.IProduct
         {
             throw new BO.FailedAddingProductException("Failed adding product", exp);
         }
+        catch (DO.DuplicatesException exp)
+        {
+            throw new BO.FailedAddingProductException("Failed adding product", exp);
+        }
+        
         return id;
     }
     #endregion

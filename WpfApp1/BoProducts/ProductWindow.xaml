@@ -8,7 +8,7 @@
         Title="BoProductWindow" Height="450" Width="800">
 
     <Grid>
-        <TextBox x:Name="Id" Height="23" HorizontalAlignment="Left" Margin="151,30,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox x:Name="Id" Height="23" IsReadOnly="False" HorizontalAlignment="Left" Margin="151,30,0,0" VerticalAlignment="Top" Width="120" />
         <ComboBox Name="CategorySelector" Height="23"  Margin="151,75,529,336"  Width="120"  SelectionChanged="CategorySelector_SelectionChanged" />
 
         <!--<TextBox x:Name="Category" Height="23" HorizontalAlignment="Left" Margin="151,70,0,0" VerticalAlignment="Top" Width="120" />-->
@@ -23,6 +23,6 @@
         <Label Content="InStock:" Height="28" HorizontalAlignment="Left" Margin="39,190,0,0" Name="label5" VerticalAlignment="Top" />
 
 
-        <Button Content="Add" Height="23" HorizontalAlignment="Left" Margin="49,300,0,0" Name="Add" VerticalAlignment="Top" Width="75" Click="AddNewProductButton_Click" />
+        <Button Content="Btn" Height="23" HorizontalAlignment="Left" Margin="49,300,0,0" Name="Btn" VerticalAlignment="Top" Width="75" Click="ChoiceOfButten_Click" />
     </Grid>
 </Window>

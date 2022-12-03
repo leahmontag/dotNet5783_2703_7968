@@ -18,17 +18,19 @@ internal class DalProduct : IProduct
     {
         try
         {
-            int myID;
-            Random rand = new Random();
-            do
+            foreach (var item in _productList)
             {
-                myID = rand.Next(100000, 999999);
-            } while (existProductID(myID).ID != 0);
-
-            myProduct.ID = myID;
+                if (myProduct.ID == item.ID)
+                    throw new DuplicatesException("id of product is exist");
+            }
             _productList.Add(myProduct);
-
             return myProduct.ID;
+        }
+        catch (DuplicatesException exc)
+        {
+
+            throw  exc;
+
         }
         catch (Exception)
         {
@@ -91,8 +93,8 @@ internal class DalProduct : IProduct
     {
         foreach (var item in _productList)
         {
-           // if (item?.ID == ProductId)
-            //    return item;
+            if (item.ID == ProductId)
+                return item;
         }
         throw new NotFoundException("not exist product");
     }
