@@ -1,6 +1,6 @@
 ﻿namespace DalApi
 {
-    public interface ICrud<T>
+    public interface ICrud<T>// where T : struct
     {
         public int Create(T? val);
         public void Delete(int val);

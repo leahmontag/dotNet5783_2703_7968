@@ -23,7 +23,7 @@
             <ComboBox Name="CategorySelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="CategorySelector_SelectionChanged" />
             <Label Grid.Column="0">Category</Label>
         </Grid>
-        <ListView  Name="ProductsListView" Grid.Row="1" MouseDoubleClick="ProductsListView_MouseDoubleClick"/>
+        <ListView  Name="ProductsListView" Grid.Row="1" MouseDoubleClick="ProductsListView_MouseDoubleClick" />
     </Grid>
 
 

@@ -1,10 +1,6 @@
 ﻿using BlApi;
 using BlImplementation;
 using BO;
-using DO;
-using DocumentFormat.OpenXml.Office2010.Excel;
-using DocumentFormat.OpenXml.Office2016.Drawing.Charts;
-using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,7 +21,6 @@ namespace PL.BoProducts
             int val = 0;
             Btn.Content = buttonAdd;
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
-            CategorySelector.Text ="NONE";
             Price.Text = val.ToString();
             InStock.Text = val.ToString();
         }
@@ -40,10 +35,10 @@ namespace PL.BoProducts
             Name.Text = product.Name;
             Price.Text= product.Price.ToString();
             InStock.Text = product.InStock.ToString();
-            CategorySelector.Text = product.Category.ToString();
-        }
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+            CategorySelector.SelectedItem = product.Category;
 
-        private void CategorySelector_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) { }
+        }
         private void ChoiceOfButten_Click(object sender, RoutedEventArgs e)
         {
             if ((sender as Button).Content == "Add")
@@ -60,8 +55,7 @@ namespace PL.BoProducts
             {
                 ID = int.Parse(Id.Text),
                 Name = Name.Text,
-                //    Category = Enum.TryParse(typeof(Category), CategorySelector.Items),
-                Category = Category.eyeMakeup,
+                Category = (BO.Enums.Category)CategorySelector.SelectedItem,
                 Price = double.Parse(Price.Text),
                 InStock = int.Parse(InStock.Text),
             });
@@ -73,13 +67,11 @@ namespace PL.BoProducts
             {
                 ID = int.Parse(Id.Text),
                 Name = Name.Text,
-                //    Category = Enum.TryParse(typeof(Category), CategorySelector.Items),
-                Category = Category.eyeMakeup,
+                Category = (BO.Enums.Category)CategorySelector.SelectedItem,
                 Price = double.Parse(Price.Text),
                 InStock = int.Parse(InStock.Text),
-            });
+            }); ;
             new BoProductListWindow().Show();
         }
-
     }
 }
