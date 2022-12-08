@@ -15,15 +15,15 @@ internal class Order : BlApi.IOrder
     /// <returns>list of orders</returns>
     /// <exception cref="NotImplementedException"></exception>
     #region get all orders
-    public IEnumerable<BO.OrderForList> GetAll()
+    public IEnumerable<BO.OrderForList?> GetAll()
     {
         try
         {
-            IEnumerable<DO.Order> orders = _dal.Order.GetAll();
-            List<BO.Order> BoOrders = new List<BO.Order>();
-            List<BO.OrderForList> orderForList = new List<BO.OrderForList>();
+            IEnumerable<DO.Order?> orders = _dal.Order.GetAll();
+            List<BO.Order?> BoOrders = new List<BO.Order?>();
+            List<BO.OrderForList?> orderForList = new List<BO.OrderForList?>();
 
-            foreach (var item in orders)
+            foreach (DO.Order item in orders)
             {
                 BoOrders.Add(Get(item.ID));
             }
@@ -197,8 +197,8 @@ internal class Order : BlApi.IOrder
         try
         {
             double sum = 0;
-            IEnumerable<DO.Product> productList = _dal.Product.GetAll();
-            IEnumerable<DO.OrderItem> orderItems = _dal.OrderItem.GetAll();
+            IEnumerable<DO.Product?> productList = _dal.Product.GetAll();
+            IEnumerable<DO.OrderItem?> orderItems = _dal.OrderItem.GetAll();
             DO.Order DoOrder = _dal.Order.Get(BOorder.ID);
             if (DoOrder.ShipDate != DateTime.MinValue)//הזמנה נשלחה ואז אין טעם לעדכן אותה
                 throw new NotImplementedException();
@@ -342,7 +342,7 @@ internal class Order : BlApi.IOrder
     #region Convert doOrder to boOrder
     private BO.Order ConvertDoOrderToBoOrder(DO.Order DoOrder)
     {
-        IEnumerable<DO.OrderItem> itemsOfOrder = _dal.OrderItem.GetOrderItemsByOrderID(DoOrder.ID);
+        IEnumerable<DO.OrderItem?> itemsOfOrder = _dal.OrderItem.GetOrderItemsByOrderID(DoOrder.ID);
         BO.Order BoOrder = new BO.Order();
         BoOrder.ID = DoOrder.ID;
         BoOrder.CustomerName = DoOrder.CustomerName;

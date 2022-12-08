@@ -22,7 +22,7 @@ internal class Cart : ICart
     {
         try
         {
-            IEnumerable<DO.Product> productList = _dal.Product.GetAll();
+            IEnumerable<DO.Product?> productList = _dal.Product.GetAll();
 
             // Looking for the item in the shopping cart
             #region search item in cart
@@ -56,7 +56,7 @@ internal class Cart : ICart
 
             //if item not in cart:
             #region add a new item to cart
-            foreach (var productItem in productList)//loop to find product in dal
+            foreach (DO.Product productItem in productList)//loop to find product in dal
             {
                 if (productItem.ID == productID)//fount product in dal
                 {
@@ -80,14 +80,16 @@ internal class Cart : ICart
                         #region cart is not empty
                         else
                         {
-                            CartBL.Items.Add(new BO.OrderItem()
-                            {
-                                Amount = 1,
-                                Name = productItem.Name,
-                                Price = productItem.Price,
-                                ProductID = productItem.ID,
-                                TotalPrice = productItem.Price
-                            });
+                        
+                                CartBL.Items.Add(new BO.OrderItem()
+                                {
+                                    Amount = 1,
+                                    Name = productItem.Name,
+                                    Price = productItem.Price,
+                                    ProductID = productItem.ID,
+                                    TotalPrice = productItem.Price
+                                });
+                            
                         }
                         #endregion
 
@@ -127,8 +129,8 @@ internal class Cart : ICart
     {
         try
         {
-            IEnumerable<DO.OrderItem> OrderItemList = _dal.OrderItem.GetAll();
-            IEnumerable<DO.Product> productList = _dal.Product.GetAll();
+            IEnumerable<DO.OrderItem?> OrderItemList = _dal.OrderItem.GetAll();
+            IEnumerable<DO.Product?> productList = _dal.Product.GetAll();
 
             var price = 0.0;
             int oldAmount = 0;
@@ -148,13 +150,13 @@ internal class Cart : ICart
                             CartBL.Items.Remove(item);//delete item from cart
                             return CartBL;
                             #endregion
-
                         }
+
                         else if (item.Amount < newAmount)
                         {
                             #region update amount in dal
                             //fount product in dal and cheack his amount.
-                            foreach (var productItem in productList)
+                            foreach (DO.Product productItem in productList)
                             {
                                 if (productItem.ID == OrderItemID)
                                 {
@@ -208,7 +210,7 @@ internal class Cart : ICart
         try
         {
             bool flag = false;
-            IEnumerable<DO.Product> listOfProducts = _dal.Product.GetAll();
+            IEnumerable<DO.Product?> listOfProducts = _dal.Product.GetAll();
             foreach (BO.OrderItem item in cartBL.Items)
             {
                 foreach (DO.Product item2 in listOfProducts)

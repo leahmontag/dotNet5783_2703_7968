@@ -17,7 +17,7 @@ internal class DalOrderItem : IOrderItem
         myOrderItem.OrderItemID = Config.AutoNumOrderItem;
         foreach (var item in _orderItemList)
         {
-            if (item.OrderItemID == myOrderItem.OrderItemID)
+            if (item?.OrderItemID == myOrderItem.OrderItemID)
                 throw new DuplicatesException("exist orderItem");
         }
 
@@ -35,7 +35,7 @@ internal class DalOrderItem : IOrderItem
 
         for (int i = 0; i < _orderItemList.Count; i++)
         {
-            if (_orderItemList[i].OrderItemID == myOrderItem.OrderItemID)
+            if (_orderItemList[i].HasValue && _orderItemList[i]!.Value.OrderItemID == myOrderItem.OrderItemID)
             {
                 //Checking inputs from the user.
                 // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.
@@ -64,7 +64,7 @@ internal class DalOrderItem : IOrderItem
     {
         foreach (var item in _orderItemList)
         {
-            if (item.OrderItemID == OrderItemId)
+            if (item?.OrderItemID == OrderItemId)
             {
                 _orderItemList.Remove(item);
                 return;
@@ -80,7 +80,7 @@ internal class DalOrderItem : IOrderItem
     #region Get by order item id
     public OrderItem Get(int OrderItemId)
     {
-        foreach (var item in _orderItemList)
+        foreach (OrderItem item in _orderItemList)
         {
             if (item.OrderItemID == OrderItemId)
                 return item;
@@ -95,7 +95,7 @@ internal class DalOrderItem : IOrderItem
     #region Get by product id and order id
     public OrderItem GetByProductIDAndOrderID(int orderId, int productId)
     {
-        foreach (var item in _orderItemList)
+        foreach (OrderItem item in _orderItemList)
         {
             if (item.OrderID == orderId && item.ProductID == productId)
                 return item;
@@ -108,12 +108,12 @@ internal class DalOrderItem : IOrderItem
     /// Get order items by order id.
     /// </summary>
     #region Get order items by order id
-    public IEnumerable<OrderItem> GetOrderItemsByOrderID(int orderId)///מה טיפוס ערך המוחזר?
+    public IEnumerable<OrderItem?> GetOrderItemsByOrderID(int orderId)///מה טיפוס ערך המוחזר?
     {
-        List<OrderItem> _newOrderItemList = new();
+        List<OrderItem?> _newOrderItemList = new();
         foreach (var item in _orderItemList)
         {
-            if (item.OrderID == orderId)
+            if (item?.OrderID == orderId)
                 _newOrderItemList.Add(item);
         }
         return _newOrderItemList;
@@ -124,11 +124,11 @@ internal class DalOrderItem : IOrderItem
     /// Get all orders items.
     /// </summary>
     #region GetAll
-    public IEnumerable<OrderItem> GetAll()
+    public IEnumerable<OrderItem?> GetAll()
     {
         try
         {
-        List<OrderItem> _newOrderItemList;
+        List<OrderItem?> _newOrderItemList;
         _newOrderItemList = _orderItemList;
         return _newOrderItemList;
         }
@@ -152,7 +152,7 @@ internal class DalOrderItem : IOrderItem
     {
         foreach (var item in _orderItemList)
         {
-            if (item.OrderItemID == num)
+            if (item?.OrderItemID == num)
                 return true;
         }
         return false;

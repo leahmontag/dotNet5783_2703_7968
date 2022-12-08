@@ -53,7 +53,7 @@ internal class Product : BlApi.IProduct
     #region Delete product
     public void Delete(int productID)
     {
-        IEnumerable<DO.Order> ordersList = _dal.Order.GetAll();
+        IEnumerable<DO.Order?> ordersList = _dal.Order.GetAll();
         //checking that item not exist in any orders.
         foreach (DO.Order item in ordersList)
         {
@@ -81,9 +81,9 @@ internal class Product : BlApi.IProduct
     {
         try
         {
-            IEnumerable<DO.Product> productsList = _dal.Product.GetAll();
+            IEnumerable<DO.Product?> productsList = _dal.Product.GetAll();
             List<BO.ProductForList> ProductForList = new List<BO.ProductForList>();
-            foreach (var item in productsList)
+            foreach (DO.Product item in productsList)
                 ProductForList.Add(new ProductForList()
                 {
                     ID = item.ID,
@@ -184,9 +184,9 @@ internal class Product : BlApi.IProduct
     {
         try
         {
-            IEnumerable<DO.Product> productsList = _dal.Product.GetAll();
-            List<BO.ProductForList> ProductForList = new List<BO.ProductForList>();
-            foreach (var item in productsList)
+            IEnumerable<DO.Product?> productsList = _dal.Product.GetAll();
+            List<BO.ProductForList?> ProductForList = new List<BO.ProductForList?>();
+            foreach (DO.Product item in productsList)
             {
                 if (item.Category.ToString() == category)
                 {

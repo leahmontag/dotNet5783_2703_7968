@@ -5,9 +5,9 @@ namespace Dal;
 internal static class DataSource
 {
     // internal static List<Product> _productList { get; set; }
-    internal static List<Product> _productList = new ();
-    internal static List<Order> _orderList = new ();
-    internal static List<OrderItem> _orderItemList = new ();
+    internal static List<Product?> _productList = new();
+    internal static List<Order?> _orderList = new();
+    internal static List<OrderItem?> _orderItemList = new();
     internal static readonly Random _rand = new Random();
     static DataSource()
     {
@@ -42,7 +42,7 @@ internal static class DataSource
             {
                 for (int j = 0; j < _productList.Count; j++)
                 {
-                    if (_productList[j].ID == id)
+                    if (_productList[j].HasValue && _productList[j]!.Value.ID == id)
                     {
                         id = _rand.Next(100000, 999999);
                         j = 0;
@@ -79,7 +79,7 @@ internal static class DataSource
             int range = (DateTime.Today - DateTime.Today.AddDays(-25)).Days;
             var result = start.AddDays(_rand.Next(range));
             newOrder.OrderDate = result;
-            DateTime randOfShipDate = newOrder.OrderDate.Add(new TimeSpan(_rand.Next(0, 10), _rand.Next(2, 10), _rand.Next(0, 59), _rand.Next(0, 59)));
+            DateTime? randOfShipDate = newOrder.OrderDate = DateTime.Now - new TimeSpan(new Random().Next(20, 100000), new Random().Next(0, 24), new Random().Next(0, 60));
             if (randOfShipDate > DateTime.Now)
             {
                 newOrder.ShipDate = DateTime.MinValue;
@@ -88,7 +88,7 @@ internal static class DataSource
             else
             {
                 newOrder.ShipDate = randOfShipDate;
-                DateTime randOfDeliveryDate = newOrder.ShipDate.Add(new TimeSpan(_rand.Next(0, 10), _rand.Next(2, 10), _rand.Next(0, 59), _rand.Next(0, 59)));
+                DateTime? randOfDeliveryDate = newOrder.OrderDate + new TimeSpan(new Random().Next(2, 4));
                 if (randOfDeliveryDate > DateTime.Now)
                     newOrder.DeliveryDate = DateTime.MinValue;
                 else
@@ -105,12 +105,16 @@ internal static class DataSource
         {
             newOrderItem.OrderItemID = Config.AutoNumOrderItem;
             int rng = _rand.Next(0, _productList.Count);
-            newOrderItem.ProductID = _productList[rng].ID;
-            newOrderItem.OrderID = _orderList[i % 20].ID;
-            newOrderItem.Price = _productList[rng].Price;
-            newOrderItem.Amount = _rand.Next(1, 10);
-            newOrderItem.Name = _productList[rng].Name;
-            addOrderItem(newOrderItem);
+            if (_productList[rng].HasValue)
+            {
+                newOrderItem.ProductID = _productList[rng]!.Value.ID;
+                newOrderItem.OrderID = _orderList[i % 20]!.Value.ID;
+                newOrderItem.Price = _productList[rng]!.Value.Price;
+                newOrderItem.Amount = _rand.Next(1, 10);
+                newOrderItem.Name = _productList[rng]!.Value.Name;
+                addOrderItem(newOrderItem);
+            }
+
         }
         #endregion
     }
@@ -127,14 +131,14 @@ internal static class DataSource
     /// </summary>
     private static void addOrder(Order newOrder)
     {
-        _orderList.Add( newOrder );
+        _orderList.Add(newOrder);
     }
     /// <summary>
     /// adding new order item.
     /// </summary>
     private static void addOrderItem(OrderItem newOrderItem)
     {
-        _orderItemList.Add( newOrderItem );
+        _orderItemList.Add(newOrderItem);
     }
     #endregion
 

@@ -24,23 +24,23 @@ public struct Order
     /// <summary>
     /// uniqe Order date for order. 
     /// </summary>
-    public DateTime OrderDate { get; set; }
+    public DateTime? OrderDate { get; set; }
     /// <summary>
     /// uniqe Ship date for order. 
     /// </summary>
-    public DateTime ShipDate { get; set; }
+    public DateTime? ShipDate { get; set; }
     /// <summary>
     /// uniqe Delivery date for order. 
     /// </summary>
-    public DateTime DeliveryDate { get; set; }
+    public DateTime? DeliveryDate { get; set; }
 
     public override string ToString() => $@"
     Order ID={ID},
     Customer Name:{CustomerName},
     Customer Email: {CustomerEmail}
     CustomerAdress: {CustomerAdress}
-    Order Date: {OrderDate.ToShortDateString()}
-    Ship Date: {ShipDate.ToShortDateString()}
-    DeliveryDate: {DeliveryDate.ToShortDateString()}
+    Order Date: {OrderDate?.ToShortDateString()}
+    Ship Date: {ShipDate?.ToShortDateString()}
+    DeliveryDate: {DeliveryDate?.ToShortDateString()}
     ";
 }

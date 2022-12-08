@@ -17,7 +17,7 @@ internal class DalOrder : IOrder
         myOrder.ID = Config.AutoNumOrder;
         foreach (var item in _orderList)
         {
-            if (item.ID == myOrder.ID)
+            if (item?.ID == myOrder.ID)
                 throw new DuplicatesException("exist order");
         }
         _orderList.Add(myOrder);
@@ -35,7 +35,7 @@ internal class DalOrder : IOrder
         {
             for (int i = 0; i < _orderList.Count; i++)
             {
-                if (_orderList[i].ID == myOrder.ID)
+                if (_orderList[i].HasValue && _orderList[i]!.Value.ID == myOrder.ID)
                 {
                     _orderList[i] = myOrder;
                     return;
@@ -60,7 +60,7 @@ internal class DalOrder : IOrder
         {
             foreach (var item in _orderList)
             {
-                if (item.ID == OrderId)
+                if (item?.ID == OrderId)
                 {
                     _orderList.Remove(item);
                     return;
@@ -80,7 +80,7 @@ internal class DalOrder : IOrder
     #region Get
     public Order Get(int OrderId)
     {
-        foreach (var item in _orderList)
+        foreach (Order item in _orderList)
         {
             if (item.ID == OrderId)
                 return item;
@@ -93,11 +93,11 @@ internal class DalOrder : IOrder
     /// get all orders.
     /// </summary>
     #region GetAll
-    public IEnumerable<Order> GetAll()
+    public IEnumerable<Order?> GetAll()
     {
         try
         {
-        List<Order> _newOrderList;
+        List<Order?> _newOrderList;
         _newOrderList = _orderList;
         return _newOrderList;
         }
@@ -119,7 +119,7 @@ internal class DalOrder : IOrder
     {
         foreach (var item in _orderList)
         {
-            if (item.ID == num)
+            if (item?.ID == num)
                 return true;
         }
         return false;

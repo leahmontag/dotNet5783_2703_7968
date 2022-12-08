@@ -20,7 +20,7 @@ internal class DalProduct : IProduct
         {
             foreach (var item in _productList)
             {
-                if (myProduct.ID == item.ID)
+                if (myProduct.ID == item?.ID)
                     throw new DuplicatesException("id of product is exist");
             }
             _productList.Add(myProduct);
@@ -29,7 +29,7 @@ internal class DalProduct : IProduct
         catch (DuplicatesException exc)
         {
 
-            throw  exc;
+            throw exc;
 
         }
         catch (Exception)
@@ -48,7 +48,7 @@ internal class DalProduct : IProduct
     {
         for (int i = 0; i < _productList.Count; i++)
         {
-            if (_productList[i].ID == myProduct.ID)
+            if (_productList[i].HasValue && _productList[i]!.Value.ID == myProduct.ID)
             {
                 _productList[i] = myProduct;
                 return;
@@ -68,7 +68,7 @@ internal class DalProduct : IProduct
         {
             for (int i = 0; i < _productList.Count; i++)
             {
-                foreach (var item in _productList)
+                foreach (Product item in _productList)
                 {
                     if (item.ID == ProductId)
                     {
@@ -91,7 +91,7 @@ internal class DalProduct : IProduct
     #region Get
     public Product Get(int ProductId)
     {
-        foreach (var item in _productList)
+        foreach (Product item in _productList)
         {
             if (item.ID == ProductId)
                 return item;
@@ -104,11 +104,11 @@ internal class DalProduct : IProduct
     /// get all products.
     /// </summary>
     #region GetAll
-    public IEnumerable<Product> GetAll()
+    public IEnumerable<Product?> GetAll()
     {
         try
         {
-            List<Product> _newProductList;
+            List<Product?> _newProductList;
             _newProductList = _productList;
             return _newProductList;
         }
@@ -128,10 +128,10 @@ internal class DalProduct : IProduct
     #region checking if product is exist
     public Product existProductID(int num)
     {
-        foreach (var item in _productList)
+        foreach (Product item in _productList)
         {
-            //if (item?.ID == num)
-               // return item;
+            if (item.ID == num)
+             return item;
         }
         Product p = new Product() { ID = 0 };
         return p;
