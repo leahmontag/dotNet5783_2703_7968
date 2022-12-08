@@ -40,7 +40,7 @@ internal class Product : BlApi.IProduct
         {
             throw new BO.FailedAddingProductException("Failed adding product", exp);
         }
-        
+
         return id;
     }
     #endregion
@@ -77,26 +77,33 @@ internal class Product : BlApi.IProduct
     /// </summary>
     /// <returns>IEnumerable<BO.ProductForList></returns>
     #region Get all products
-    public IEnumerable<BO.ProductForList> GetAll()
+    public IEnumerable<BO.ProductForList?> GetAll(Func<DO.Product?, bool>? d = null)
     {
+        IEnumerable<DO.Product?> productsList = _dal.Product.GetAll();
+        List<BO.ProductForList?> ProductForList = new List<BO.ProductForList>();
         try
         {
-            IEnumerable<DO.Product?> productsList = _dal.Product.GetAll();
-            List<BO.ProductForList> ProductForList = new List<BO.ProductForList>();
-            foreach (DO.Product item in productsList)
-                ProductForList.Add(new ProductForList()
+            foreach (DO.Product? item in productsList)
+            {
+                if (item != null)
                 {
-                    ID = item.ID,
-                    Name = item.Name,
-                    Price = item.Price,
-                    Category = (BO.Enums.Category)item.Category
-                });
+                    ProductForList.Add(new ProductForList()
+                    {
+                        ID = item.Value.ID,
+                        Name = item.Value.Name,
+                        Price = item.Value.Price,
+                        Category = (BO.Enums.Category)item.Value.Category
+                    });
+                }
+            }
             return ProductForList;
+
         }
         catch (DO.NotFoundException exp)
         {
             throw new BO.FailedAddingProductException("Failed to display all items", exp);
         }
+        return ProductForList;
     }
     #endregion
 
@@ -107,13 +114,13 @@ internal class Product : BlApi.IProduct
     /// <returns>BO.Product</returns>
     /// <exception cref="Exception"></exception>
     #region Get by manager
-    public BO.Product GetByManager(int productID)
+    public BO.Product GetByManager(Func<DO.Product?, bool>? d)
     {
         BO.Product productBL;
         DO.Product productDal;
         try
         {
-            productDal = _dal.Product.Get(productID);
+            productDal = _dal.Product.Get(x=>d(x));
             productBL = new BO.Product()
             {
                 ID = productDal.ID,
@@ -140,36 +147,31 @@ internal class Product : BlApi.IProduct
     /// <returns>ProductItem</returns>
     /// <exception cref="Exception"></exception>
     #region Get product fromCatalog
-    public ProductItem GetProductFromCatalog(int productID, BO.Cart cartBL)
+    public ProductItem GetProductFromCatalog(BO.Cart cartBL, Func<DO.Product?, bool>? d = null)
     {
-        BO.ProductItem productItemBL;
-        DO.Product productDal;
-        int amount = 0;
-        if (cartBL.Items != null)
-        {
-            foreach (var item in cartBL.Items)
-            {
-                if (item.ProductID == productID)
-                {
-                    amount = item.Amount;
-                }
-            }
-        }
+        cartBL.Items ??= new List<BO.OrderItem?>() { };
+        BO.ProductItem productItemBL = new();
         try
         {
-            bool boolInstock = false;
-            productDal = _dal.Product.Get(productID);
-            if (productDal.InStock > 0)
-                boolInstock = true;
-            productItemBL = new BO.ProductItem()
+            if (d != null)
             {
-                ID = productDal.ID,
-                Amount = amount,
-                Category = (BO.Enums.Category)productDal.Category,
-                Name = productDal.Name,
-                Price = productDal.Price,
-                InStock = boolInstock
-            };
+                DO.Product productDal = _dal.Product.Get(x => d(x));
+                int productIndex = cartBL.Items.FindIndex(x => x.ProductID == productDal.ID);
+                if (cartBL!= null&&cartBL.Items!=null)
+                {
+                    int amount = productIndex == -1 ? 0 : cartBL.Items[productIndex].Amount;
+                    productItemBL = new BO.ProductItem()
+                    {
+                        ID = productDal.ID,
+                        Amount = amount > 0 ? amount : 0,
+                        Category = (BO.Enums.Category)productDal.Category,
+                        Name = productDal.Name,
+                        Price = productDal.Price,
+                        InStock = productDal.InStock > 0
+                    };
+                    return productItemBL;
+                }
+            }
         }
         catch (DO.NotFoundException exp)
         {
@@ -180,22 +182,22 @@ internal class Product : BlApi.IProduct
     #endregion
 
     #region Get all products by category
-    public IEnumerable<BO.ProductForList> GetAllByCategory(string category)
+    public IEnumerable<BO.ProductForList?> GetAllByCategory(string category)
     {
         try
         {
             IEnumerable<DO.Product?> productsList = _dal.Product.GetAll();
             List<BO.ProductForList?> ProductForList = new List<BO.ProductForList?>();
-            foreach (DO.Product item in productsList)
+            foreach (DO.Product? item in productsList)
             {
-                if (item.Category.ToString() == category)
+                if (item!=null && item.Value.Category.ToString() == category)
                 {
                     ProductForList.Add(new ProductForList()
                     {
-                        ID = item.ID,
-                        Name = item.Name,
-                        Price = item.Price,
-                        Category = (BO.Enums.Category)item.Category
+                        ID = item.Value.ID,
+                        Name = item.Value.Name,
+                        Price = item.Value.Price,
+                        Category = (BO.Enums.Category)item.Value.Category
                     });
                 }
             }

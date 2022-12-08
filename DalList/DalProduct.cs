@@ -48,7 +48,7 @@ internal class DalProduct : IProduct
     {
         for (int i = 0; i < _productList.Count; i++)
         {
-            if (_productList[i].HasValue && _productList[i]!.Value.ID == myProduct.ID)
+            if (_productList[i]!.Value.ID == myProduct.ID)
             {
                 _productList[i] = myProduct;
                 return;
@@ -66,14 +66,18 @@ internal class DalProduct : IProduct
     {
         try
         {
-            for (int i = 0; i < _productList.Count; i++)
+            if (_productList != null)
             {
-                foreach (Product item in _productList)
+                for (int i = 0; i < _productList.Count; i++)
                 {
-                    if (item.ID == ProductId)
+
+                    foreach (Product? item in _productList)
                     {
-                        _productList.Remove(item);
-                        return;
+                            if (item?.ID == ProductId)
+                        {
+                            _productList.Remove(item);
+                            return;
+                        }
                     }
                 }
             }
@@ -89,13 +93,13 @@ internal class DalProduct : IProduct
     /// get product.
     /// </summary>
     #region Get
-    public Product Get(int ProductId)
+    public Product Get(Func<Product?, bool>? a )
     {
-        foreach (Product item in _productList)
-        {
-            if (item.ID == ProductId)
-                return item;
-        }
+            foreach (Product? item in _productList)
+            {
+                if (item!=null && a!=null && a(item)==true)
+                    return new Product() { Category=item.Value.Category,ID=item.Value.ID,Name=item.Value.Name,Price=item.Value.Price,InStock=item.Value.InStock};
+            }
         throw new NotFoundException("not exist product");
     }
     #endregion
@@ -104,19 +108,35 @@ internal class DalProduct : IProduct
     /// get all products.
     /// </summary>
     #region GetAll
-    public IEnumerable<Product?> GetAll()
+    public IEnumerable<Product?> GetAll(Func<Product?, bool>? a = null)
     {
-        try
+        if (a == null)
+        {
+            try
+            {
+                List<Product?> _newProductList;
+                _newProductList = _productList;
+                return _newProductList;
+            }
+            catch (Exception)
+            {
+
+                throw new NotFoundException("can't display all products");
+
+            }
+        }
+        else
         {
             List<Product?> _newProductList;
+            List<Product> _newProductList1 =new List<Product>();
+
             _newProductList = _productList;
+            foreach (Product? item in _newProductList)
+            {
+                if (item!=null && a(item) == true)
+                    _newProductList1.Add(item.Value);
+            }
             return _newProductList;
-        }
-        catch (Exception)
-        {
-
-            throw new NotFoundException("can't display all products");
-
         }
 
     }
@@ -128,11 +148,11 @@ internal class DalProduct : IProduct
     #region checking if product is exist
     public Product existProductID(int num)
     {
-        foreach (Product item in _productList)
-        {
-            if (item.ID == num)
-             return item;
-        }
+            foreach (Product? item in _productList)
+            {
+                if (item?.ID == num)
+                    return new Product() { Category = item.Value.Category, ID = item.Value.ID, Name = item.Value.Name, Price = item.Value.Price, InStock = item.Value.InStock };
+            }
         Product p = new Product() { ID = 0 };
         return p;
     }

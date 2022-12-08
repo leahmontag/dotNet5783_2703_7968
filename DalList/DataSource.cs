@@ -4,7 +4,6 @@ using static DO.Enums;
 namespace Dal;
 internal static class DataSource
 {
-    // internal static List<Product> _productList { get; set; }
     internal static List<Product?> _productList = new();
     internal static List<Order?> _orderList = new();
     internal static List<OrderItem?> _orderItemList = new();
@@ -82,15 +81,15 @@ internal static class DataSource
             DateTime? randOfShipDate = newOrder.OrderDate = DateTime.Now - new TimeSpan(new Random().Next(20, 100000), new Random().Next(0, 24), new Random().Next(0, 60));
             if (randOfShipDate > DateTime.Now)
             {
-                newOrder.ShipDate = DateTime.MinValue;
-                newOrder.DeliveryDate = DateTime.MinValue;
+                newOrder.ShipDate = null;
+                newOrder.DeliveryDate = null;
             }
             else
             {
                 newOrder.ShipDate = randOfShipDate;
                 DateTime? randOfDeliveryDate = newOrder.OrderDate + new TimeSpan(new Random().Next(2, 4));
                 if (randOfDeliveryDate > DateTime.Now)
-                    newOrder.DeliveryDate = DateTime.MinValue;
+                    newOrder.DeliveryDate = null;
                 else
                     newOrder.DeliveryDate = randOfDeliveryDate;
             }

@@ -78,45 +78,23 @@ internal class DalOrderItem : IOrderItem
     /// Get order item by order item id.
     /// </summary>
     #region Get by order item id
-    public OrderItem Get(int OrderItemId)
+    public OrderItem Get(Func<OrderItem?, bool>? d)
     {
-        foreach (OrderItem item in _orderItemList)
+        foreach (OrderItem? item in _orderItemList)
         {
-            if (item.OrderItemID == OrderItemId)
-                return item;
+            if (item != null && d != null && d(item) == true)
+                return new OrderItem() 
+                { 
+                    OrderID=item.Value.OrderID,
+                    OrderItemID= item.Value.OrderItemID,
+                    ProductID= item.Value.ProductID,
+                    Name= item.Value.Name,
+                    Amount= item.Value.Amount,
+                    Price= item.Value.Price
+                };
         }
         throw new NotFoundException("not exist OrderItem");
-    }
-    #endregion
 
-    /// <summary>
-    /// Get by product id and order id.
-    /// </summary>
-    #region Get by product id and order id
-    public OrderItem GetByProductIDAndOrderID(int orderId, int productId)
-    {
-        foreach (OrderItem item in _orderItemList)
-        {
-            if (item.OrderID == orderId && item.ProductID == productId)
-                return item;
-        }
-        throw new NotFoundException("not exist OrderItem");
-    }
-    #endregion
-
-    /// <summary>
-    /// Get order items by order id.
-    /// </summary>
-    #region Get order items by order id
-    public IEnumerable<OrderItem?> GetOrderItemsByOrderID(int orderId)///מה טיפוס ערך המוחזר?
-    {
-        List<OrderItem?> _newOrderItemList = new();
-        foreach (var item in _orderItemList)
-        {
-            if (item?.OrderID == orderId)
-                _newOrderItemList.Add(item);
-        }
-        return _newOrderItemList;
     }
     #endregion
 
@@ -124,20 +102,35 @@ internal class DalOrderItem : IOrderItem
     /// Get all orders items.
     /// </summary>
     #region GetAll
-    public IEnumerable<OrderItem?> GetAll()
+    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? d = null)
     {
-        try
+        if (d == null)
         {
-        List<OrderItem?> _newOrderItemList;
-        _newOrderItemList = _orderItemList;
-        return _newOrderItemList;
+            try
+            {
+                List<OrderItem?> _newOrderItemList;
+                _newOrderItemList = _orderItemList;
+                return _newOrderItemList;
+            }
+            catch (Exception)
+            {
+                throw new NotFoundException("can't display all products");
+            }
         }
-        catch (Exception)
+        else
         {
+            List<OrderItem?> _newOrderItemList;
+            List<OrderItem> _OrderItemListTmp = new List<OrderItem>();
 
-            throw new NotFoundException("can't display all order items");
-
+            _newOrderItemList = _orderItemList;
+            foreach (OrderItem? item in _newOrderItemList)
+            {
+                if (item != null && d(item) == true)
+                    _OrderItemListTmp.Add(item.Value);
+            }
+            return _newOrderItemList;
         }
+
 
     }
     #endregion

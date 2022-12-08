@@ -27,8 +27,6 @@ namespace PL.BoProducts
         {
             string selectedItem = CategorySelector.SelectedItem.ToString();
             ProductsListView.ItemsSource = bl.Product.GetAllByCategory(selectedItem);
-
-
         }
 
         private void addNewProductButton_Click(object sender, RoutedEventArgs e)
@@ -42,7 +40,6 @@ namespace PL.BoProducts
              BO.ProductForList SelectedProduct = (BO.ProductForList)((sender as ListView).SelectedItem);
             string Btn = "Update";
             new BoProductWindow(Btn, SelectedProduct.ID).Show();
-           // this.NavigationService.Navigate(new Uri("Page3.xaml", UriKind.Relative));
         }
 
     }

@@ -78,12 +78,21 @@ internal class DalOrder : IOrder
     /// get order.
     /// </summary>
     #region Get
-    public Order Get(int OrderId)
+    public Order Get(Func<Order?, bool>? d)
     {
-        foreach (Order item in _orderList)
+        foreach (Order? item in _orderList)
         {
-            if (item.ID == OrderId)
-                return item;
+            if (item != null && d != null && d(item) == true)
+                return new Order()
+                {
+                    ID = item.Value.ID,
+                    CustomerAdress = item.Value.CustomerAdress,
+                    DeliveryDate = item.Value.DeliveryDate,
+                    OrderDate = item.Value.OrderDate,
+                    ShipDate = item.Value.ShipDate,
+                    CustomerEmail = item.Value.CustomerEmail,
+                    CustomerName = item.Value.CustomerName
+                };
         }
         throw new NotFoundException("not exist order");
     }
@@ -93,19 +102,32 @@ internal class DalOrder : IOrder
     /// get all orders.
     /// </summary>
     #region GetAll
-    public IEnumerable<Order?> GetAll()
+    public IEnumerable<Order?> GetAll(Func<Order?, bool>? d = null)
     {
-        try
-        {
         List<Order?> _newOrderList;
-        _newOrderList = _orderList;
-        return _newOrderList;
-        }
-        catch (Exception)
+        if (d == null)
         {
-            throw new NotFoundException("can't display all products");
+            try
+            {
+                _newOrderList = _orderList;
+                return _newOrderList;
+            }
+            catch (Exception)
+            {
+                throw new NotFoundException("can't display all products");
+            }
         }
-
+        else
+        {
+            List<Order> _newOrderListTemp = new List<Order>();
+            _newOrderList = _orderList;
+            foreach (Order? item in _newOrderList)
+            {
+                if (item != null && d(item) == true)
+                    _newOrderListTemp.Add(item.Value);
+            }
+            return _newOrderList;
+        }
     }
     #endregion
 

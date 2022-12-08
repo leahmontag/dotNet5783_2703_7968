@@ -1,5 +1,7 @@
 ﻿using BO;
 using DalApi;
+using System.Xml.Linq;
+
 namespace BlImplementation;
 
 /// <summary>
@@ -15,20 +17,36 @@ internal class Order : BlApi.IOrder
     /// <returns>list of orders</returns>
     /// <exception cref="NotImplementedException"></exception>
     #region get all orders
-    public IEnumerable<BO.OrderForList?> GetAll()
+    public IEnumerable<BO.OrderForList?> GetAll(Func<DO.Order?, bool>? d = null)
     {
+
         try
         {
-            IEnumerable<DO.Order?> orders = _dal.Order.GetAll();
+            IEnumerable<DO.Order?> orders = _dal.Order.GetAll(d != null ? d : null);
             List<BO.Order?> BoOrders = new List<BO.Order?>();
             List<BO.OrderForList?> orderForList = new List<BO.OrderForList?>();
 
-            foreach (DO.Order item in orders)
+            foreach (var item in orders)
             {
-                BoOrders.Add(Get(item.ID));
+                BoOrders.Add(Get(x => x.Value.ID == item.Value.ID));
             }
-            foreach (var item in BoOrders)
-                orderForList.Add(new BO.OrderForList() { ID = item.ID, CustomerName = item.CustomerName, Status = item.Status, AmountOfItems = item.Items.Count, TotalPrice = item.TotalPrice });
+
+            foreach (BO.Order? item in BoOrders)
+            {
+                if (item != null)
+                {
+                    item.Items ??= new List<OrderItem?>();
+                    orderForList.Add(new BO.OrderForList()
+                    {
+                        ID = item.ID,
+                        CustomerName = item.CustomerName,
+                        Status = item.Status,
+                        AmountOfItems = item.Items.Count,
+                        TotalPrice = item.TotalPrice
+                    });
+                }
+            }
+
             return orderForList;
         }
         catch (DO.NotFoundException exp)
@@ -36,7 +54,6 @@ internal class Order : BlApi.IOrder
 
             throw new BO.FailedToDisplayAllItemsException("Failed to display all items", exp);
         }
-
     }
     #endregion
 
@@ -47,15 +64,15 @@ internal class Order : BlApi.IOrder
     /// <returns>order</returns>
     /// <exception cref="NotImplementedException"></exception>
     #region get an order
-    public BO.Order Get(int ID)
+    public BO.Order Get(Func<DO.Order?, bool>? d)
     {
         try
         {
-            if (ID <= 0)
+            if (d == null)
             {
                 throw new NotImplementedException();
             }
-            DO.Order DoOrder = _dal.Order.Get(ID);
+            DO.Order DoOrder = _dal.Order.Get(x => d(x));
             BO.Order BoOrder = new BO.Order();
             BoOrder = ConvertDoOrderToBoOrder(DoOrder);
             return BoOrder;
@@ -79,7 +96,7 @@ internal class Order : BlApi.IOrder
     {
         try
         {
-            DO.Order DoOrder = _dal.Order.Get(ID);
+            DO.Order DoOrder = _dal.Order.Get(x => x.Value.ID == ID);
             if (DoOrder.ShipDate == DateTime.MinValue)
                 DoOrder.ShipDate = DateTime.Now;
             else
@@ -108,7 +125,7 @@ internal class Order : BlApi.IOrder
     {
         try
         {
-            DO.Order DoOrder = _dal.Order.Get(ID);
+            DO.Order DoOrder = _dal.Order.Get(x => x.Value.ID == ID);
             if (DoOrder.ShipDate != DateTime.MinValue && DoOrder.DeliveryDate == DateTime.MinValue)
                 DoOrder.DeliveryDate = DateTime.Now;
             else
@@ -137,7 +154,7 @@ internal class Order : BlApi.IOrder
     {
         try
         {
-            DO.Order DoOrder = _dal.Order.Get(ID);
+            DO.Order DoOrder = _dal.Order.Get(x => x.Value.ID == ID);
             BO.Order BoOrder = new BO.Order();
             BoOrder = ConvertDoOrderToBoOrder(DoOrder);
             OrderTracking orderTracking = new OrderTracking();
@@ -199,7 +216,7 @@ internal class Order : BlApi.IOrder
             double sum = 0;
             IEnumerable<DO.Product?> productList = _dal.Product.GetAll();
             IEnumerable<DO.OrderItem?> orderItems = _dal.OrderItem.GetAll();
-            DO.Order DoOrder = _dal.Order.Get(BOorder.ID);
+            DO.Order DoOrder = _dal.Order.Get(x => x.Value.ID == BOorder.ID);
             if (DoOrder.ShipDate != DateTime.MinValue)//הזמנה נשלחה ואז אין טעם לעדכן אותה
                 throw new NotImplementedException();
             switch (whatToDO)
@@ -342,7 +359,7 @@ internal class Order : BlApi.IOrder
     #region Convert doOrder to boOrder
     private BO.Order ConvertDoOrderToBoOrder(DO.Order DoOrder)
     {
-        IEnumerable<DO.OrderItem?> itemsOfOrder = _dal.OrderItem.GetOrderItemsByOrderID(DoOrder.ID);
+        IEnumerable<DO.OrderItem?> itemsOfOrder = _dal.OrderItem.GetAll(x => x.Value.OrderID == DoOrder.ID);
         BO.Order BoOrder = new BO.Order();
         BoOrder.ID = DoOrder.ID;
         BoOrder.CustomerName = DoOrder.CustomerName;
@@ -369,7 +386,6 @@ internal class Order : BlApi.IOrder
         return BoOrder;
     }
     #endregion
-
 
 }
 

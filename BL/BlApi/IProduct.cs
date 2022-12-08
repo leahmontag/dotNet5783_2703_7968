@@ -31,27 +31,23 @@ public interface IProduct
     /// </summary>
     /// <param name="val"></param>
     /// <returns>Product</returns>
-    public BO.Product GetByManager(int val);
+    public BO.Product GetByManager(Func<DO.Product?, bool>? d);
 
     /// <summary>
     /// func Get
     /// </summary>
     /// <param name="val"></param>
     /// <returns>Product</returns>
-    public BO.ProductItem GetProductFromCatalog(int val, BO.Cart cart);
-
+    public BO.ProductItem GetProductFromCatalog(BO.Cart cart, Func<DO.Product?, bool>? d);
     /// <summary>
     /// func GetAll
     /// </summary>
     /// <param name="val"></param>
     /// <returns>IEnumerable</returns>
-    public IEnumerable<BO.ProductForList?> GetAll();
+    public IEnumerable<BO.ProductForList?> GetAll(Func<DO.Product?, bool>? d = null);
     /// <summary>
     /// func GetAllByCategory
     /// </summary>
     /// <returns>IEnumerable</returns>
     public IEnumerable<BO.ProductForList?> GetAllByCategory(string category);
-
-    
-
 }

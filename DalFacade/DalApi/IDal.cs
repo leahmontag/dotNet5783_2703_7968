@@ -1,7 +1,7 @@
 ﻿using DO;
 namespace DalApi
 {
-    public interface IDal//internal???
+    public interface IDal
     {
         public IProduct Product { get; }
         public IOrder Order { get; }

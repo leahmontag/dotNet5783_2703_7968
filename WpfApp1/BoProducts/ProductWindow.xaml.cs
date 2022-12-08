@@ -30,7 +30,7 @@ namespace PL.BoProducts
             Btn.Content = buttonAdd;
             if(Btn.Content=="Update")
                 Id.IsReadOnly=true;
-            BO.Product product= bl.Product.GetByManager(productID);
+            BO.Product product= bl.Product.GetByManager(x=>x.Value.ID==productID);
             Id.Text = product.ID.ToString();
             Name.Text = product.Name;
             Price.Text= product.Price.ToString();

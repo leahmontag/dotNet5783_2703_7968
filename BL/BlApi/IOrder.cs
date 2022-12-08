@@ -10,14 +10,14 @@ public interface IOrder
     /// func GetAll
     /// </summary>
     /// <returns>IEnumerable</returns>
-    public IEnumerable<BO.OrderForList> GetAll();
+    public IEnumerable<BO.OrderForList?> GetAll(Func<DO.Order?, bool>? d = null);
 
     /// <summary>
     /// func Get
     /// </summary>
     /// <param name="ID"></param>
     /// <returns>order</returns>
-    public BO.Order Get(int ID);
+    public BO.Order Get(Func<DO.Order?, bool>? d);
 
     /// <summary>
     /// func UpdateShip
