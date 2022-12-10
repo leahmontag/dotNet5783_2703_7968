@@ -59,6 +59,7 @@ namespace PL.BoProducts
                 Price = double.Parse(Price.Text),
                 InStock = int.Parse(InStock.Text),
             });
+            this.Close();
             new BoProductListWindow().Show();
         }
         private void UpdateProductButton_Click(object sender, RoutedEventArgs e) 
@@ -71,6 +72,7 @@ namespace PL.BoProducts
                 Price = double.Parse(Price.Text),
                 InStock = int.Parse(InStock.Text),
             }); ;
+            this.Close();
             new BoProductListWindow().Show();
         }
     }

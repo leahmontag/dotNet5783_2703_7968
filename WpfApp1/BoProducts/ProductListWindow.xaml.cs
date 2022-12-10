@@ -32,6 +32,7 @@ namespace PL.BoProducts
         private void addNewProductButton_Click(object sender, RoutedEventArgs e)
         {
             string Btn = "Add";
+            this.Close();
             new BoProductWindow(Btn).Show();
         }
 
@@ -39,6 +40,7 @@ namespace PL.BoProducts
         {
              BO.ProductForList SelectedProduct = (BO.ProductForList)((sender as ListView).SelectedItem);
             string Btn = "Update";
+            this.Close();
             new BoProductWindow(Btn, SelectedProduct.ID).Show();
         }
 
