@@ -24,29 +24,52 @@ namespace PL.BoProducts
             Price.Text = val.ToString();
             InStock.Text = val.ToString();
         }
-        public BoProductWindow(string buttonAdd,int productID)
+        public BoProductWindow(string buttonAdd, int productID)
         {
             InitializeComponent();
-            Btn.Content = buttonAdd;
-            if(Btn.Content=="Update")
-                Id.IsReadOnly=true;
-            BO.Product product= bl.Product.GetByManager(x=>x.Value.ID==productID);
-            Id.Text = product.ID.ToString();
-            Name.Text = product.Name;
-            Price.Text= product.Price.ToString();
-            InStock.Text = product.InStock.ToString();
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
-            CategorySelector.SelectedItem = product.Category;
-
+            try
+            {
+                Btn.Content = buttonAdd;
+                if (Btn.Content == "Update")
+                    Id.IsReadOnly = true;
+                BO.Product product = bl.Product.GetByManager(x => x.Value.ID == productID);
+                Id.Text = product.ID.ToString();
+                Name.Text = product.Name;
+                Price.Text = product.Price.ToString();
+                InStock.Text = product.InStock.ToString();
+                CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+                CategorySelector.SelectedItem = product.Category;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void ChoiceOfButten_Click(object sender, RoutedEventArgs e)
         {
             if ((sender as Button).Content == "Add")
             {
-                AddNewProductButton_Click(sender, e);
+                try
+                {
+                    AddNewProductButton_Click(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else if ((sender as Button).Content == "Update")
-                UpdateProductButton_Click(sender, e);
+            {
+                try
+                {
+                    UpdateProductButton_Click(sender, e);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
             return;
         }
         private void AddNewProductButton_Click(object sender, RoutedEventArgs e)
@@ -62,7 +85,7 @@ namespace PL.BoProducts
             this.Close();
             new BoProductListWindow().Show();
         }
-        private void UpdateProductButton_Click(object sender, RoutedEventArgs e) 
+        private void UpdateProductButton_Click(object sender, RoutedEventArgs e)
         {
             bl.Product.Update(new BO.Product()
             {
