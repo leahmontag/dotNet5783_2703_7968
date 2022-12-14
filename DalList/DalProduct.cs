@@ -48,7 +48,7 @@ internal class DalProduct : IProduct
     {
         for (int i = 0; i < _productList.Count; i++)
         {
-            if (_productList[i]!.Value.ID == myProduct.ID)
+            if (_productList[i]!?.ID == myProduct.ID)
             {
                 _productList[i] = myProduct;
                 return;
@@ -98,7 +98,7 @@ internal class DalProduct : IProduct
             foreach (Product? item in _productList)
             {
                 if (item!=null && a!=null && a(item)==true)
-                    return new Product() { Category=item.Value.Category,ID=item.Value.ID,Name=item.Value.Name,Price=item.Value.Price,InStock=item.Value.InStock};
+                    return new Product() { Category=item?.Category ?? null,ID=item?.ID ?? 0,Name=item?.Name ?? "",Price=item?.Price ?? 0,InStock=item?.InStock ?? 0};
             }
         throw new NotFoundException("not exist product");
     }
@@ -110,11 +110,11 @@ internal class DalProduct : IProduct
     #region GetAll
     public IEnumerable<Product?> GetAll(Func<Product?, bool>? a = null)
     {
+        List<Product?> _newProductList;
         if (a == null)
         {
             try
             {
-                List<Product?> _newProductList;
                 _newProductList = _productList;
                 return _newProductList;
             }
@@ -125,13 +125,8 @@ internal class DalProduct : IProduct
         }
         else
         {
-            List<Product?> _newProductListFilter =new List<Product?>();
-            foreach (Product? item in _productList)
-            {
-                if (item!=null && a(item) == true)
-                    _newProductListFilter.Add(item.Value);
-            }
-            return _newProductListFilter;
+            _newProductList = _productList.FindAll(item => (item != null && a(item) == true));
+            return _newProductList;
         }
 
     }
@@ -146,7 +141,7 @@ internal class DalProduct : IProduct
             foreach (Product? item in _productList)
             {
                 if (item?.ID == num)
-                    return new Product() { Category = item.Value.Category, ID = item.Value.ID, Name = item.Value.Name, Price = item.Value.Price, InStock = item.Value.InStock };
+                    return new Product() { Category = item?.Category?? null, ID = item?.ID ?? 0, Name = item?.Name ?? "", Price = item?.Price ?? 0, InStock = item?.InStock ?? 0};
             }
         Product p = new Product() { ID = 0 };
         return p;

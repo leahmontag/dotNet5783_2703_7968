@@ -35,7 +35,7 @@ internal class DalOrderItem : IOrderItem
 
         for (int i = 0; i < _orderItemList.Count; i++)
         {
-            if (_orderItemList[i].HasValue && _orderItemList[i]!.Value.OrderItemID == myOrderItem.OrderItemID)
+            if (_orderItemList[i]!= null && _orderItemList[i]!?.OrderItemID == myOrderItem.OrderItemID)
             {
                 //Checking inputs from the user.
                 // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.
@@ -85,12 +85,12 @@ internal class DalOrderItem : IOrderItem
             if (item != null && d != null && d(item) == true)
                 return new OrderItem() 
                 { 
-                    OrderID=item.Value.OrderID,
-                    OrderItemID= item.Value.OrderItemID,
-                    ProductID= item.Value.ProductID,
-                    Name= item.Value.Name,
-                    Amount= item.Value.Amount,
-                    Price= item.Value.Price
+                    OrderID=item?.OrderID ?? 0,
+                    OrderItemID= item?.OrderItemID ?? 0,
+                    ProductID= item?.ProductID ?? 0,
+                    Name= item?.Name ?? "",
+                    Amount= item?.Amount ?? 0,
+                    Price= item?.Price ?? 0
                 };
         }
         throw new NotFoundException("not exist OrderItem");
@@ -104,11 +104,11 @@ internal class DalOrderItem : IOrderItem
     #region GetAll
     public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? d = null)
     {
+        List<OrderItem?> _newOrderItemList;
         if (d == null)
         {
             try
             {
-                List<OrderItem?> _newOrderItemList;
                 _newOrderItemList = _orderItemList;
                 return _newOrderItemList;
             }
@@ -119,15 +119,7 @@ internal class DalOrderItem : IOrderItem
         }
         else
         {
-            List<OrderItem?> _newOrderItemList;
-            List<OrderItem> _OrderItemListTmp = new List<OrderItem>();
-
-            _newOrderItemList = _orderItemList;
-            foreach (OrderItem? item in _newOrderItemList)
-            {
-                if (item != null && d(item) == true)
-                    _OrderItemListTmp.Add(item.Value);
-            }
+            _newOrderItemList = _orderItemList.FindAll(item => (item != null && d(item) == true));
             return _newOrderItemList;
         }
 

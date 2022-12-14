@@ -41,7 +41,7 @@ internal static class DataSource
             {
                 for (int j = 0; j < _productList.Count; j++)
                 {
-                    if (_productList[j].HasValue && _productList[j]!.Value.ID == id)
+                    if (_productList[j]!=null && _productList[j]!?.ID == id)
                     {
                         id = _rand.Next(100000, 999999);
                         j = 0;
@@ -104,13 +104,13 @@ internal static class DataSource
         {
             newOrderItem.OrderItemID = Config.AutoNumOrderItem;
             int rng = _rand.Next(0, _productList.Count);
-            if (_productList[rng].HasValue)
+            if (_productList[rng]!= null)
             {
-                newOrderItem.ProductID = _productList[rng]!.Value.ID;
-                newOrderItem.OrderID = _orderList[i % 20]!.Value.ID;
-                newOrderItem.Price = _productList[rng]!.Value.Price;
+                newOrderItem.ProductID = _productList[rng]!?.ID ?? 0;
+                newOrderItem.OrderID = _orderList[i % 20]!?.ID ?? 0;
+                newOrderItem.Price = _productList[rng]!?.Price ?? 0;
                 newOrderItem.Amount = _rand.Next(1, 10);
-                newOrderItem.Name = _productList[rng]!.Value.Name;
+                newOrderItem.Name = _productList[rng]!?.Name ?? "";
                 addOrderItem(newOrderItem);
             }
 

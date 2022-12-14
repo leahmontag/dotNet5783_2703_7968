@@ -28,7 +28,7 @@ internal class Order : BlApi.IOrder
 
             foreach (var item in orders)
             {
-                BoOrders.Add(Get(x => x.Value.ID == item.Value.ID));
+                BoOrders.Add(Get(x => x?.ID == item?.ID));
             }
 
             foreach (BO.Order? item in BoOrders)
@@ -96,7 +96,7 @@ internal class Order : BlApi.IOrder
     {
         try
         {
-            DO.Order DoOrder = _dal.Order.Get(x => x.Value.ID == ID);
+            DO.Order DoOrder = _dal.Order.Get(x => x?.ID == ID);
             if (DoOrder.ShipDate == null)
                 DoOrder.ShipDate = DateTime.Now;
             else
@@ -125,7 +125,7 @@ internal class Order : BlApi.IOrder
     {
         try
         {
-            DO.Order DoOrder = _dal.Order.Get(x => x.Value.ID == ID);
+            DO.Order DoOrder = _dal.Order.Get(x => x?.ID == ID);
             if (DoOrder.ShipDate != null && DoOrder.DeliveryDate == null)
                 DoOrder.DeliveryDate = DateTime.Now;
             else
@@ -154,7 +154,7 @@ internal class Order : BlApi.IOrder
     {
         try
         {
-            DO.Order DoOrder = _dal.Order.Get(x => x.Value.ID == ID);
+            DO.Order DoOrder = _dal.Order.Get(x => x?.ID == ID);
             BO.Order BoOrder = new BO.Order();
             BoOrder = ConvertDoOrderToBoOrder(DoOrder);
             OrderTracking orderTracking = new OrderTracking();
@@ -216,7 +216,7 @@ internal class Order : BlApi.IOrder
             double sum = 0;
             IEnumerable<DO.Product?> productList = _dal.Product.GetAll();
             IEnumerable<DO.OrderItem?> orderItems = _dal.OrderItem.GetAll();
-            DO.Order DoOrder = _dal.Order.Get(x => x.Value.ID == BOorder.ID);
+            DO.Order DoOrder = _dal.Order.Get(x => x?.ID == BOorder.ID);
             if (DoOrder.ShipDate != null)//הזמנה נשלחה ואז אין טעם לעדכן אותה
                 throw new NotImplementedException();
             switch (whatToDO)
@@ -359,7 +359,7 @@ internal class Order : BlApi.IOrder
     #region Convert doOrder to boOrder
     private BO.Order ConvertDoOrderToBoOrder(DO.Order DoOrder)
     {
-        IEnumerable<DO.OrderItem?> itemsOfOrder = _dal.OrderItem.GetAll(x => x.Value.OrderID == DoOrder.ID);
+        IEnumerable<DO.OrderItem?> itemsOfOrder = _dal.OrderItem.GetAll(x => x?.OrderID == DoOrder.ID);
         BO.Order BoOrder = new BO.Order();
         BoOrder.ID = DoOrder.ID;
         BoOrder.CustomerName = DoOrder.CustomerName;

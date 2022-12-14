@@ -35,7 +35,7 @@ internal class DalOrder : IOrder
         {
             for (int i = 0; i < _orderList.Count; i++)
             {
-                if (_orderList[i].HasValue && _orderList[i]!.Value.ID == myOrder.ID)
+                if (_orderList[i]!=null && _orderList[i]!?.ID == myOrder.ID)
                 {
                     _orderList[i] = myOrder;
                     return;
@@ -85,13 +85,13 @@ internal class DalOrder : IOrder
             if (item != null && d != null && d(item) == true)
                 return new Order()
                 {
-                    ID = item.Value.ID,
-                    CustomerAdress = item.Value.CustomerAdress,
-                    DeliveryDate = item.Value.DeliveryDate,
-                    OrderDate = item.Value.OrderDate,
-                    ShipDate = item.Value.ShipDate,
-                    CustomerEmail = item.Value.CustomerEmail,
-                    CustomerName = item.Value.CustomerName
+                    ID = item?.ID ?? 0,
+                    CustomerAdress = item?.CustomerAdress ?? "",
+                    DeliveryDate = item?.DeliveryDate ?? null,
+                    OrderDate = item?.OrderDate ?? null,
+                    ShipDate = item?.ShipDate ?? null,
+                    CustomerEmail = item?.CustomerEmail ?? "",
+                    CustomerName = item?.CustomerName ?? ""
                 };
         }
         throw new NotFoundException("not exist order");
@@ -119,13 +119,7 @@ internal class DalOrder : IOrder
         }
         else
         {
-            List<Order> _newOrderListTemp = new List<Order>();
-            _newOrderList = _orderList;
-            foreach (Order? item in _newOrderList)
-            {
-                if (item != null && d(item) == true)
-                    _newOrderListTemp.Add(item.Value);
-            }
+            _newOrderList = _orderList.FindAll(item => (item != null && d(item) == true));
             return _newOrderList;
         }
     }

@@ -1,6 +1,7 @@
 ﻿using BO;
 using DalApi;
 using DO;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BlImplementation;
 
@@ -80,21 +81,19 @@ internal class Product : BlApi.IProduct
     public IEnumerable<BO.ProductForList?> GetAll(Func<DO.Product?, bool>? d = null)
     {
         IEnumerable<DO.Product?> productsList = _dal.Product.GetAll(d != null ? d : null);
+        
         List<BO.ProductForList?> ProductForList = new List<BO.ProductForList>();
         try
         {
             foreach (DO.Product? item in productsList)
             {
-                if (item != null)
-                {
                     ProductForList.Add(new ProductForList()
                     {
-                        ID = item.Value.ID,
-                        Name = item.Value.Name,
-                        Price = item.Value.Price,
-                        Category = (BO.Enums.Category)item.Value.Category
+                        ID = item?.ID ?? 0,
+                        Name = item?.Name ?? "",
+                        Price = item?.Price ?? 0,
+                        Category = (BO.Enums.Category)item?.Category
                     });
-                }
             }
             return ProductForList;
 
