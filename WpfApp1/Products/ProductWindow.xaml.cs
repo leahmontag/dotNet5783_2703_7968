@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using static BO.Enums;
 
 
-namespace PL.BoProducts
+namespace PL.Products
 {
     /// <summary>
     /// Interaction logic for BoProductWindow.xaml

@@ -2,7 +2,7 @@
 using BL;
 
 using System.Windows;
-using PL.BoProducts;
+using PL.Products;
 using BlImplementation;
 
 namespace WpfApp1

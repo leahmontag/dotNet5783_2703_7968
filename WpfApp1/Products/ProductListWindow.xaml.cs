@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace PL.BoProducts
+namespace PL.Products
 {
     /// <summary>
     /// Interaction logic for BoProductListWindow.xaml
