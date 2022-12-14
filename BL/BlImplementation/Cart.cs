@@ -231,8 +231,8 @@ internal class Cart : ICart
                 CustomerEmail = cartBL.CustomerEmail,
                 CustomerAdress = cartBL.CustomerAddress,
                 OrderDate = DateTime.Now,
-                ShipDate = DateTime.MinValue,
-                DeliveryDate = DateTime.MinValue
+                ShipDate = null,
+                DeliveryDate = null
             });
             foreach (BO.OrderItem item in cartBL.Items)
             {

@@ -79,7 +79,7 @@ internal class Product : BlApi.IProduct
     #region Get all products
     public IEnumerable<BO.ProductForList?> GetAll(Func<DO.Product?, bool>? d = null)
     {
-        IEnumerable<DO.Product?> productsList = _dal.Product.GetAll();
+        IEnumerable<DO.Product?> productsList = _dal.Product.GetAll(d != null ? d : null);
         List<BO.ProductForList?> ProductForList = new List<BO.ProductForList>();
         try
         {
@@ -178,35 +178,6 @@ internal class Product : BlApi.IProduct
             throw new BO.ProductIsNotAvailableException("Finding this product details failed due to not finding an item with such an ID", exp);
         }
         return productItemBL;
-    }
-    #endregion
-
-    #region Get all products by category
-    public IEnumerable<BO.ProductForList?> GetAllByCategory(string category)
-    {
-        try
-        {
-            IEnumerable<DO.Product?> productsList = _dal.Product.GetAll();
-            List<BO.ProductForList?> ProductForList = new List<BO.ProductForList?>();
-            foreach (DO.Product? item in productsList)
-            {
-                if (item!=null && item.Value.Category.ToString() == category)
-                {
-                    ProductForList.Add(new ProductForList()
-                    {
-                        ID = item.Value.ID,
-                        Name = item.Value.Name,
-                        Price = item.Value.Price,
-                        Category = (BO.Enums.Category)item.Value.Category
-                    });
-                }
-            }
-            return ProductForList;
-        }
-        catch (DO.NotFoundException exp)
-        {
-            throw new BO.FailedAddingProductException("Failed to display all items", exp);
-        }
     }
     #endregion
 

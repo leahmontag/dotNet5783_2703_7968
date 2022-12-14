@@ -26,7 +26,7 @@ namespace PL.Products
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selectedItem = CategorySelector.SelectedItem.ToString();
-            ProductsListView.ItemsSource = bl.Product.GetAllByCategory(selectedItem);
+            ProductsListView.ItemsSource = bl.Product.GetAll(x=> x.Value.Category.ToString()==selectedItem);
         }
 
         private void addNewProductButton_Click(object sender, RoutedEventArgs e)

@@ -120,23 +120,18 @@ internal class DalProduct : IProduct
             }
             catch (Exception)
             {
-
                 throw new NotFoundException("can't display all products");
-
             }
         }
         else
         {
-            List<Product?> _newProductList;
-            List<Product> _newProductList1 =new List<Product>();
-
-            _newProductList = _productList;
-            foreach (Product? item in _newProductList)
+            List<Product?> _newProductListFilter =new List<Product?>();
+            foreach (Product? item in _productList)
             {
                 if (item!=null && a(item) == true)
-                    _newProductList1.Add(item.Value);
+                    _newProductListFilter.Add(item.Value);
             }
-            return _newProductList;
+            return _newProductListFilter;
         }
 
     }

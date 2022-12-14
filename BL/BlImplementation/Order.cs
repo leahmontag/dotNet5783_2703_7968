@@ -97,7 +97,7 @@ internal class Order : BlApi.IOrder
         try
         {
             DO.Order DoOrder = _dal.Order.Get(x => x.Value.ID == ID);
-            if (DoOrder.ShipDate == DateTime.MinValue)
+            if (DoOrder.ShipDate == null)
                 DoOrder.ShipDate = DateTime.Now;
             else
                 throw new Exception();
@@ -126,7 +126,7 @@ internal class Order : BlApi.IOrder
         try
         {
             DO.Order DoOrder = _dal.Order.Get(x => x.Value.ID == ID);
-            if (DoOrder.ShipDate != DateTime.MinValue && DoOrder.DeliveryDate == DateTime.MinValue)
+            if (DoOrder.ShipDate != null && DoOrder.DeliveryDate == null)
                 DoOrder.DeliveryDate = DateTime.Now;
             else
                 throw new Exception();
@@ -172,7 +172,7 @@ internal class Order : BlApi.IOrder
                 else if (i == 1)
                 {
                     tracking.Date = BoOrder.ShipDate;
-                    if (BoOrder.ShipDate > DateTime.MinValue)
+                    if (BoOrder.ShipDate != null)
                         tracking.Description = "The order was sent";
                     else
                         tracking.Description = "The order was not sent";
@@ -180,7 +180,7 @@ internal class Order : BlApi.IOrder
                 else
                 {
                     tracking.Date = BoOrder.DeliveryDate;
-                    if (BoOrder.DeliveryDate > DateTime.MinValue)
+                    if (BoOrder.DeliveryDate != null)
                         tracking.Description = "The order was fulfilled";
                     else
                         tracking.Description = "The order was not fulfilled";
@@ -217,7 +217,7 @@ internal class Order : BlApi.IOrder
             IEnumerable<DO.Product?> productList = _dal.Product.GetAll();
             IEnumerable<DO.OrderItem?> orderItems = _dal.OrderItem.GetAll();
             DO.Order DoOrder = _dal.Order.Get(x => x.Value.ID == BOorder.ID);
-            if (DoOrder.ShipDate != DateTime.MinValue)//הזמנה נשלחה ואז אין טעם לעדכן אותה
+            if (DoOrder.ShipDate != null)//הזמנה נשלחה ואז אין טעם לעדכן אותה
                 throw new NotImplementedException();
             switch (whatToDO)
             {
@@ -366,9 +366,9 @@ internal class Order : BlApi.IOrder
         BoOrder.CustomerEmail = DoOrder.CustomerEmail;
         BoOrder.CustomerAdress = DoOrder.CustomerAdress;
         BoOrder.OrderDate = DoOrder.OrderDate;
-        if (DoOrder.DeliveryDate > DateTime.MinValue)
+        if (DoOrder.DeliveryDate != null)
             BoOrder.Status = BO.Enums.OrderStatus.provided;
-        else if (DoOrder.ShipDate > DateTime.MinValue)
+        else if (DoOrder.ShipDate != null)
             BoOrder.Status = BO.Enums.OrderStatus.send;
         else
             BoOrder.Status = BO.Enums.OrderStatus.confirmed;
