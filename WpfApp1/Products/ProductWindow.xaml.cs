@@ -2,6 +2,7 @@
 using BlImplementation;
 using BO;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using static BO.Enums;
@@ -74,6 +75,10 @@ namespace PL.Products
         }
         private void AddNewProductButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!(new Regex("^[0-9]+$")).IsMatch(Price.Text) || !(new Regex("^[0-9]+$")).IsMatch(InStock.Text))
+            {
+                MessageBox.Show("wrong format");
+            }
             bl.Product.Create(new BO.Product()
             {
                 ID = int.Parse(Id.Text),
@@ -87,6 +92,10 @@ namespace PL.Products
         }
         private void UpdateProductButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!(new Regex("^[0-9]+$")).IsMatch(Price.Text) || !(new Regex("^[0-9]+$")).IsMatch(InStock.Text))
+            {
+                MessageBox.Show("wrong format");
+            }
             bl.Product.Update(new BO.Product()
             {
                 ID = int.Parse(Id.Text),

@@ -25,7 +25,7 @@ internal class Product : BlApi.IProduct
             ID = productBL.ID,
             Name = productBL.Name,
             Price = productBL.Price,
-            Category = (DO.Enums.Category)productBL.Category,
+            Category = (DO.Enums.Category?)productBL.Category,
             InStock = productBL.InStock,
         };
         int id = 0;
@@ -56,9 +56,9 @@ internal class Product : BlApi.IProduct
     {
         IEnumerable<DO.Order?> ordersList = _dal.Order.GetAll();
         //checking that item not exist in any orders.
-        foreach (DO.Order item in ordersList)
+        foreach (DO.Order? item in ordersList)
         {
-            if (item.ID == productID)
+            if (item?.ID == productID)
                 throw new cannotDeletedItemException("An existing item in an order cannot be deleted");
         }
         try
@@ -82,7 +82,7 @@ internal class Product : BlApi.IProduct
     {
         IEnumerable<DO.Product?> productsList = _dal.Product.GetAll(d != null ? d : null);
         
-        List<BO.ProductForList?> ProductForList = new List<BO.ProductForList>();
+        List<BO.ProductForList?> ProductForList = new List<BO.ProductForList?>();
         try
         {
             foreach (DO.Product? item in productsList)
@@ -92,7 +92,7 @@ internal class Product : BlApi.IProduct
                         ID = item?.ID ?? 0,
                         Name = item?.Name ?? "",
                         Price = item?.Price ?? 0,
-                        Category = (BO.Enums.Category)item?.Category
+                        Category = (BO.Enums.Category?)item?.Category
                     });
             }
             return ProductForList;
@@ -102,7 +102,6 @@ internal class Product : BlApi.IProduct
         {
             throw new BO.FailedAddingProductException("Failed to display all items", exp);
         }
-        return ProductForList;
     }
     #endregion
 
@@ -119,12 +118,12 @@ internal class Product : BlApi.IProduct
         DO.Product productDal;
         try
         {
-            productDal = _dal.Product.Get(x=>d(x));
+            productDal = _dal.Product.Get(d);
             productBL = new BO.Product()
             {
                 ID = productDal.ID,
                 Name = productDal.Name,
-                Category = (BO.Enums.Category)productDal.Category,
+                Category = (BO.Enums.Category?)productDal.Category,
                 InStock = productDal.InStock,
                 Price = productDal.Price,
 
@@ -154,8 +153,8 @@ internal class Product : BlApi.IProduct
         {
             if (d != null)
             {
-                DO.Product productDal = _dal.Product.Get(x => d(x));
-                int productIndex = cartBL.Items.FindIndex(x => x.ProductID == productDal.ID);
+                DO.Product productDal = _dal.Product.Get(d);
+                int productIndex = cartBL.Items.FindIndex(x => x?.ProductID == productDal.ID);
                 if (cartBL!= null&&cartBL.Items!=null)
                 {
                     int amount = productIndex == -1 ? 0 : cartBL.Items[productIndex].Amount;
@@ -163,7 +162,7 @@ internal class Product : BlApi.IProduct
                     {
                         ID = productDal.ID,
                         Amount = amount > 0 ? amount : 0,
-                        Category = (BO.Enums.Category)productDal.Category,
+                        Category = (BO.Enums.Category?)productDal.Category,
                         Name = productDal.Name,
                         Price = productDal.Price,
                         InStock = productDal.InStock > 0
@@ -195,7 +194,7 @@ internal class Product : BlApi.IProduct
             Name = productBL.Name,
             Price = productBL.Price,
             InStock = productBL.InStock,
-            Category = (DO.Enums.Category)productBL.Category
+            Category = (DO.Enums.Category?)productBL.Category
         };
 
         try

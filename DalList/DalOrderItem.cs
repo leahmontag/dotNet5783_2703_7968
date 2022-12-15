@@ -30,12 +30,12 @@ internal class DalOrderItem : IOrderItem
     /// update order item.
     /// </summary>
     #region Update
-    public void Update(OrderItem myOrderItem)
+    public void Update(OrderItem? myOrderItem)
     {
 
         for (int i = 0; i < _orderItemList.Count; i++)
         {
-            if (_orderItemList[i]!= null && _orderItemList[i]!?.OrderItemID == myOrderItem.OrderItemID)
+            if (_orderItemList[i]!= null && _orderItemList[i]!?.OrderItemID == myOrderItem?.OrderItemID)
             {
                 //Checking inputs from the user.
                 // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.

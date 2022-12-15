@@ -44,11 +44,11 @@ internal class DalProduct : IProduct
     /// update product.
     /// </summary>
     #region Update
-    public void Update(Product myProduct)
+    public void Update(Product? myProduct)
     {
         for (int i = 0; i < _productList.Count; i++)
         {
-            if (_productList[i]!?.ID == myProduct.ID)
+            if (_productList[i]!?.ID == myProduct?.ID)
             {
                 _productList[i] = myProduct;
                 return;

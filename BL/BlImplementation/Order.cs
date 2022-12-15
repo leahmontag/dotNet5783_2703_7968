@@ -160,7 +160,7 @@ internal class Order : BlApi.IOrder
             OrderTracking orderTracking = new OrderTracking();
             orderTracking.ID = BoOrder.ID;
             orderTracking.Status = BoOrder.Status;
-            List<OrderTrackingDates> orderTrackingDates = new List<OrderTrackingDates>();
+            List<OrderTrackingDates?> orderTrackingDates = new List<OrderTrackingDates?>();
             for (int i = 0; i < 3; i++)
             {
                 OrderTrackingDates tracking = new OrderTrackingDates();
@@ -224,9 +224,9 @@ internal class Order : BlApi.IOrder
                 case "1"://delete order item and update the stock
                     #region delete order item and update the stock
 
-                    foreach (BO.OrderItem item in BOorder.Items)
+                    foreach (BO.OrderItem? item in BOorder.Items)
                     {
-                        if (ID == item.OrderItemID)
+                        if (ID == item?.OrderItemID)
                         {
                             foreach (DO.Product product in productList)
                             {
@@ -240,16 +240,16 @@ internal class Order : BlApi.IOrder
                                 }
                             }
                             BOorder.Items.Remove(item);
-                            foreach (DO.OrderItem orderItem in orderItems)//מחיקת פריט בהזמנה משכבת הנתונים
+                            foreach (DO.OrderItem? orderItem in orderItems)//מחיקת פריט בהזמנה משכבת הנתונים
                             {
-                                if (orderItem.OrderItemID == ID)
+                                if (orderItem?.OrderItemID == ID)
                                 {
                                     _dal.OrderItem.Delete(ID);
                                     break;
                                 }
                             }
-                            foreach (BO.OrderItem item1 in BOorder.Items)
-                                sum += item1.TotalPrice;
+                            foreach (BO.OrderItem? item1 in BOorder.Items)
+                                sum += item1?.TotalPrice??0;
                             BOorder.TotalPrice = sum;
                             return BOorder;
                         }
@@ -259,9 +259,9 @@ internal class Order : BlApi.IOrder
                     break;
                 case "2":
                     #region add order item
-                    foreach (BO.OrderItem item in BOorder.Items)
+                    foreach (BO.OrderItem? item in BOorder.Items)
                     {
-                        if (ID == item.OrderItemID)//לעשות כאן שגיאה של מוצר כבר קיים ולכן לא נוכל להוסיף אותו להזמנה
+                        if (ID == item?.OrderItemID)//לעשות כאן שגיאה של מוצר כבר קיים ולכן לא נוכל להוסיף אותו להזמנה
                             throw new NotImplementedException();
                     }
                     foreach (DO.Product product in productList)
@@ -290,8 +290,8 @@ internal class Order : BlApi.IOrder
                                     Name = product.Name,
                                     Price = product.Price
                                 });
-                                foreach (BO.OrderItem item in BOorder.Items)
-                                    sum += item.TotalPrice;
+                                foreach (BO.OrderItem? item in BOorder.Items)
+                                    sum += item?.TotalPrice ?? 0;
                                 BOorder.TotalPrice = sum;
                                 return BOorder;
                             }
@@ -327,8 +327,8 @@ internal class Order : BlApi.IOrder
                                         Name = product.Name,
                                         Price = product.Price
                                     });
-                                    foreach (BO.OrderItem item1 in BOorder.Items)
-                                        sum += item1.TotalPrice;
+                                    foreach (BO.OrderItem? item1 in BOorder.Items)
+                                        sum += item1?.TotalPrice ?? 0;
                                     BOorder.TotalPrice = sum;
                                     return BOorder;
                                 }
@@ -374,12 +374,12 @@ internal class Order : BlApi.IOrder
             BoOrder.Status = BO.Enums.OrderStatus.confirmed;
         BoOrder.ShipDate = DoOrder.ShipDate;
         BoOrder.DeliveryDate = DoOrder.DeliveryDate;
-        List<BO.OrderItem> orderItems = new List<BO.OrderItem>();
+        List<BO.OrderItem?> orderItems = new List<BO.OrderItem?>();
         double sumOfTotalPrice = 0;
-        foreach (DO.OrderItem item in itemsOfOrder)
+        foreach (DO.OrderItem? item in itemsOfOrder)
         {
-            orderItems.Add(new BO.OrderItem() { Name = item.Name, OrderItemID = item.OrderItemID, Price = item.Price, ProductID = item.ProductID, Amount = item.Amount, TotalPrice = item.Price * item.Amount });
-            sumOfTotalPrice += item.Price * item.Amount;
+            orderItems.Add(new BO.OrderItem() { Name = item?.Name, OrderItemID = item?.OrderItemID??0, Price = item?.Price??0, ProductID = item?.ProductID??0, Amount = item?.Amount ?? 0, TotalPrice = (item?.Price??0) * (item?.Amount??0 )});
+            sumOfTotalPrice += (item?.Price ?? 0) * (item?.Amount ?? 0);
         }
         BoOrder.Items = orderItems;
         BoOrder.TotalPrice = sumOfTotalPrice;

@@ -29,13 +29,13 @@ internal class DalOrder : IOrder
     /// update order.
     /// </summary>
     #region Update
-    public void Update(Order myOrder)
+    public void Update(Order? myOrder)
     {
         try
         {
             for (int i = 0; i < _orderList.Count; i++)
             {
-                if (_orderList[i]!=null && _orderList[i]!?.ID == myOrder.ID)
+                if (_orderList[i]!=null && _orderList[i]!?.ID == myOrder?.ID)
                 {
                     _orderList[i] = myOrder;
                     return;
