@@ -72,37 +72,52 @@ namespace PL.Products
         }
         private void AddNewProductButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!(new Regex("^[0-9]+$")).IsMatch(Price.Text) || !(new Regex("^[0-9]+$")).IsMatch(InStock.Text))//input validity
+            try
             {
-                MessageBox.Show("wrong format");
+                if ((!(new Regex("^[0-9]+$")).IsMatch(Price.Text) || (int.Parse(Price.Text) <= 0)) || !(new Regex("^[0-9]+$")).IsMatch(InStock.Text) || (int.Parse(Price.Text) <= 0))//input validity
+                {
+                    throw new Exception("wrong format");
+                }
+                bl.Product.Create(new BO.Product()
+                {
+                    ID = int.Parse(Id.Text),
+                    Name = Name.Text,
+                    Category = (BO.Enums.Category)CategorySelector.SelectedItem,
+                    Price = double.Parse(Price.Text),
+                    InStock = int.Parse(InStock.Text),
+                });
+                this.Close();
+                new BoProductListWindow().Show();
             }
-            bl.Product.Create(new BO.Product()
+            catch (Exception ex)
             {
-                ID = int.Parse(Id.Text),
-                Name = Name.Text,
-                Category = (BO.Enums.Category)CategorySelector.SelectedItem,
-                Price = double.Parse(Price.Text),
-                InStock = int.Parse(InStock.Text),
-            });
-            this.Close();
-            new BoProductListWindow().Show();
+                MessageBox.Show(ex.ToString());
+            }
         }
         private void UpdateProductButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!(new Regex("^[0-9]+$")).IsMatch(Price.Text) || !(new Regex("^[0-9]+$")).IsMatch(InStock.Text))//input validity
+            try
             {
-                MessageBox.Show("wrong format");
+                if ((!(new Regex("^[0-9]+$")).IsMatch(Price.Text) || (int.Parse(Price.Text) <= 0)) || !(new Regex("^[0-9]+$")).IsMatch(InStock.Text) || (int.Parse(Price.Text) <= 0))//input validity
+                {
+                    throw new Exception("wrong format");
+                }
+                bl.Product.Update(new BO.Product()
+                {
+                    ID = int.Parse(Id.Text),
+                    Name = Name.Text,
+                    Category = (BO.Enums.Category)CategorySelector.SelectedItem,
+                    Price = double.Parse(Price.Text),
+                    InStock = int.Parse(InStock.Text),
+                }); ;
+                this.Close();
+                new BoProductListWindow().Show();
             }
-            bl.Product.Update(new BO.Product()
+            catch (Exception ex)
             {
-                ID = int.Parse(Id.Text),
-                Name = Name.Text,
-                Category = (BO.Enums.Category)CategorySelector.SelectedItem,
-                Price = double.Parse(Price.Text),
-                InStock = int.Parse(InStock.Text),
-            }); ;
-            this.Close();
-            new BoProductListWindow().Show();
+                MessageBox.Show(ex.ToString());
+            }
+
         }
     }
 }

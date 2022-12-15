@@ -18,15 +18,15 @@ namespace PL.Products
             InitializeComponent();
             ProductsListView.ItemsSource = bl.Product.GetAll();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
-            
+
         }
-   
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {}
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selectedItem = CategorySelector.SelectedItem.ToString();
-            ProductsListView.ItemsSource = bl.Product.GetAll(x=> x?.Category.ToString()==selectedItem);
+            ProductsListView.ItemsSource = bl.Product.GetAll(x => x?.Category.ToString() == selectedItem);
         }
 
         private void addNewProductButton_Click(object sender, RoutedEventArgs e)
@@ -38,7 +38,7 @@ namespace PL.Products
 
         private void ProductsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-             BO.ProductForList SelectedProduct = (BO.ProductForList)((sender as ListView).SelectedItem);
+            BO.ProductForList SelectedProduct = (BO.ProductForList)((sender as ListView).SelectedItem);
             string Btn = "Update";
             this.Close();
             new BoProductWindow(Btn, SelectedProduct.ID).Show();

@@ -1,5 +1,4 @@
 ﻿using BlApi;
-using BlImplementation;
 using BO;
 using static BO.Enums;
 namespace BlTest;
@@ -8,7 +7,7 @@ namespace BlTest;
 
 internal class Program
 {
-    private static readonly IBl _bl = new Bl();
+    private static readonly IBl _bl = Factory.Get();
     private static BO.Cart _cartBL = new BO.Cart();
     public static void Main()
     {
