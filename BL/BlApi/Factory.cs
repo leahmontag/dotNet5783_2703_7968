@@ -7,8 +7,7 @@ namespace BlApi
     {
         public static IBl Get()
         {
-            Bl a=new Bl();
-            return a;
+            return new Bl();
         }
     }
 }
