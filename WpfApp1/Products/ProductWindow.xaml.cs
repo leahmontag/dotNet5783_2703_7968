@@ -75,7 +75,7 @@ namespace PL.Products
         }
         private void AddNewProductButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!(new Regex("^[0-9]+$")).IsMatch(Price.Text) || !(new Regex("^[0-9]+$")).IsMatch(InStock.Text))
+            if (!(new Regex("^[0-9]+$")).IsMatch(Price.Text) || !(new Regex("^[0-9]+$")).IsMatch(InStock.Text))//input validity
             {
                 MessageBox.Show("wrong format");
             }
@@ -92,7 +92,7 @@ namespace PL.Products
         }
         private void UpdateProductButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!(new Regex("^[0-9]+$")).IsMatch(Price.Text) || !(new Regex("^[0-9]+$")).IsMatch(InStock.Text))
+            if (!(new Regex("^[0-9]+$")).IsMatch(Price.Text) || !(new Regex("^[0-9]+$")).IsMatch(InStock.Text))//input validity
             {
                 MessageBox.Show("wrong format");
             }
