@@ -1,0 +1,13 @@
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\bin\BL.deps.json
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\bin\BL.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\bin\BL.pdb
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\BL\obj\Debug\BL.csproj.AssemblyReference.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\BL\obj\Debug\BL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\BL\obj\Debug\BL.AssemblyInfoInputs.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\BL\obj\Debug\BL.AssemblyInfo.cs
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\BL\obj\Debug\BL.csproj.CoreCompileInputs.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\BL\obj\Debug\BL.csproj.CopyComplete
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\BL\obj\Debug\BL.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\BL\obj\Debug\refint\BL.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\BL\obj\Debug\BL.pdb
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\BL\obj\Debug\ref\BL.dll

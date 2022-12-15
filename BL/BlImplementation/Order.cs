@@ -9,7 +9,8 @@ namespace BlImplementation;
 /// </summary>
 internal class Order : BlApi.IOrder
 {
-    private IDal _dal = new Dal.DalList();
+    DalApi.IDal? _dal = DalApi.Factory.Get();
+
 
     /// <summary>
     /// get all orders

@@ -12,7 +12,8 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        private IBl bl = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
+
         public MainWindow()
         {
             InitializeComponent();

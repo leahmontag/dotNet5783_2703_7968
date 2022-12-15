@@ -1,0 +1,12 @@
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\bin\DalFacade.deps.json
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\bin\DalFacade.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\bin\DalFacade.pdb
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalFacade\obj\Debug\DalFacade.csproj.AssemblyReference.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalFacade\obj\Debug\DalFacade.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalFacade\obj\Debug\DalFacade.AssemblyInfoInputs.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalFacade\obj\Debug\DalFacade.AssemblyInfo.cs
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalFacade\obj\Debug\DalFacade.csproj.CoreCompileInputs.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalFacade\obj\Debug\DalFacade.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalFacade\obj\Debug\refint\DalFacade.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalFacade\obj\Debug\DalFacade.pdb
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalFacade\obj\Debug\ref\DalFacade.dll

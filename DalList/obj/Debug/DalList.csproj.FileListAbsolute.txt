@@ -1,0 +1,13 @@
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\bin\DalList.deps.json
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\bin\DalList.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\bin\DalList.pdb
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalList\obj\Debug\DalList.csproj.AssemblyReference.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalList\obj\Debug\DalList.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalList\obj\Debug\DalList.AssemblyInfoInputs.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalList\obj\Debug\DalList.AssemblyInfo.cs
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalList\obj\Debug\DalList.csproj.CoreCompileInputs.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalList\obj\Debug\DalList.csproj.CopyComplete
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalList\obj\Debug\DalList.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalList\obj\Debug\refint\DalList.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalList\obj\Debug\DalList.pdb
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\DalList\obj\Debug\ref\DalList.dll

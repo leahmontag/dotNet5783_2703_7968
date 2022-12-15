@@ -1,0 +1,15 @@
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\bin\Debug\net6.0\Stage0.exe
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\bin\Debug\net6.0\Stage0.deps.json
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\bin\Debug\net6.0\Stage0.runtimeconfig.json
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\bin\Debug\net6.0\Stage0.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\bin\Debug\net6.0\Stage0.pdb
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\obj\Debug\net6.0\Stage0.csproj.AssemblyReference.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\obj\Debug\net6.0\Stage0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\obj\Debug\net6.0\Stage0.AssemblyInfoInputs.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\obj\Debug\net6.0\Stage0.AssemblyInfo.cs
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\obj\Debug\net6.0\Stage0.csproj.CoreCompileInputs.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\obj\Debug\net6.0\Stage0.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\obj\Debug\net6.0\refint\Stage0.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\obj\Debug\net6.0\Stage0.pdb
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\obj\Debug\net6.0\Stage0.genruntimeconfig.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Stage0\obj\Debug\net6.0\ref\Stage0.dll

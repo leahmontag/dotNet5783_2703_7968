@@ -1,11 +1,7 @@
-﻿using BlApi;
-using BlImplementation;
-using BO;
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using static BO.Enums;
 
 
 namespace PL.Products
@@ -15,7 +11,8 @@ namespace PL.Products
     /// </summary>
     public partial class BoProductWindow : Window
     {
-        private IBl bl = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
+
         public BoProductWindow(string buttonAdd)
         {
             InitializeComponent();

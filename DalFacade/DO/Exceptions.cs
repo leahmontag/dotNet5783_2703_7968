@@ -23,3 +23,10 @@ public class OperationFailedException : Exception//פעולה נכשלה
 {
     public OperationFailedException(string msg) : base(msg) { }
 }
+[Serializable]
+public class DalConfigException : Exception
+{
+    public DalConfigException(string msg) : base(msg) { }
+    public DalConfigException(string msg, Exception ex) : base(msg, ex) { }
+}
+

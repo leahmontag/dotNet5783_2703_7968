@@ -1,10 +1,8 @@
-﻿using BlApi;
-using BlImplementation;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Text.RegularExpressions;
+
 
 namespace PL.Products
 {
@@ -13,7 +11,8 @@ namespace PL.Products
     /// </summary>
     public partial class BoProductListWindow : Window
     {
-        private IBl bl = new Bl();
+        BlApi.IBl? bl = BlApi.Factory.Get();
+
         public BoProductListWindow()
         {
             InitializeComponent();

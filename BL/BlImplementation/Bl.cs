@@ -4,7 +4,7 @@ namespace BlImplementation;
 /// <summary>
 /// class Bl
 /// </summary>
-sealed public class Bl : IBl
+sealed internal class Bl : IBl
 {
     /// <summary>
     /// IProduct Product
