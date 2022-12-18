@@ -48,7 +48,7 @@ internal class Program
     {
         ProductEnum yourCrud;
         Category productEnum;
-        string numId;
+        string? numId;
         int num;
         Console.WriteLine("enter your choice:" + "\n1- get all product" + "\n2- get product by manager" + "\n3-  get products from catalog" + "\n4- add product" + "\n5- remove product" + "\n6- update product");
         Enum.TryParse(Console.ReadLine(), out yourCrud);
@@ -58,7 +58,7 @@ internal class Program
                 #region get all products
                 try
                 {
-                    IEnumerable<ProductForList> printProductList = _bl.Product.GetAll();
+                    IEnumerable<ProductForList?> printProductList = _bl.Product.GetAll();
                     foreach (var i in printProductList)
                     {
                         Console.WriteLine(i);
@@ -80,7 +80,7 @@ internal class Program
                     num = Convert.ToInt32(numId);
                     if (num <= 0)
                         throw new Exception("ID cannot be negative");
-                    Console.WriteLine(_bl.Product.GetByManager(num));
+                    Console.WriteLine(_bl.Product.GetByManager(x=>x?.ID==num));
                 }
                 catch (BO.ProductIsNotAvailableException exp)
                 {
@@ -97,7 +97,7 @@ internal class Program
                 num = Convert.ToInt32(numId);
                 if (num <= 0)
                     throw new Exception("ID cannot be negative");
-                Console.WriteLine(_bl.Product.GetProductFromCatalog(num, _cartBL));
+                Console.WriteLine(_bl.Product.GetProductFromCatalog(_cartBL,(x=>x?.ID==num)));
                 #endregion
                 break;
             case ProductEnum.addProduct:
@@ -232,7 +232,7 @@ internal class Program
                 #region get all orders
                 try
                 {
-                    IEnumerable<OrderForList> printOrders = _bl.Order.GetAll();
+                    IEnumerable<OrderForList?> printOrders = _bl.Order.GetAll();
                     foreach (OrderForList i in printOrders)
                     {
                         Console.WriteLine(i);
@@ -250,7 +250,7 @@ internal class Program
                 {
                     Console.WriteLine("enter your order id: ");
                     int orderId = int.Parse(Console.ReadLine());
-                    Console.WriteLine(_bl.Order.Get(orderId));
+                    Console.WriteLine(_bl?.Order.Get(x => x?.ID == orderId));
                 }
                 catch (BO.ProductIsNotAvailableException exp)
                 {
@@ -308,7 +308,7 @@ internal class Program
                     Console.WriteLine("enter your order id to update: ");
                     int IDOfOrder = int.Parse(Console.ReadLine());
                     BO.Order order = new BO.Order();
-                    order = _bl.Order.Get(IDOfOrder);
+                    order = _bl.Order.Get(x=>x?.ID==IDOfOrder);
                     Console.WriteLine("enter 1 to remove product, 2 to add new product, 3 to change amount of this product");
                     int managerChoice = int.Parse(Console.ReadLine());
                     switch (managerChoice)

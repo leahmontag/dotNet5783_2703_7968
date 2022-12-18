@@ -108,10 +108,10 @@ internal class DalProduct : IProduct
     /// get all products.
     /// </summary>
     #region GetAll
-    public IEnumerable<Product?> GetAll(Func<Product?, bool>? a = null)
+    public IEnumerable<Product?> GetAll(Func<Product?, bool>? d = null)
     {
         List<Product?> _newProductList;
-        if (a == null)
+        if (d == null)
         {
             try
             {
@@ -125,7 +125,7 @@ internal class DalProduct : IProduct
         }
         else
         {
-            _newProductList = _productList.FindAll(item => (item != null && a(item) == true));
+            _newProductList = _productList.FindAll(item => (item != null && d(item) == true));
             return _newProductList;
         }
 

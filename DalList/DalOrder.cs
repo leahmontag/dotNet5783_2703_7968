@@ -82,7 +82,7 @@ internal class DalOrder : IOrder
     {
         foreach (Order? item in _orderList)
         {
-            if (item != null && d != null && d(item) == true)
+            if (item != null && d != null && d(item)== true)
                 return new Order()
                 {
                     ID = item?.ID ?? 0,

@@ -10,7 +10,7 @@ namespace Dal;
 /// </summary>
 internal class Program
 {
-    private static readonly IDal _dal = new DalList();
+    private static readonly IDal? _dal = DalApi.Factory.Get();
     /// <summary>
     /// public void main.
     /// </summary>
@@ -76,12 +76,12 @@ internal class Program
                 Console.WriteLine("enter id of product ");
                 numId = Console.ReadLine();
                 num = Convert.ToInt32(numId);
-                Console.WriteLine(_dal.Product.Get(num));
+                Console.WriteLine(_dal?.Product.Get(x=>x?.ID==num));
                 #endregion
                 break;
             case Crud.getAll:
                 #region getAll product
-                IEnumerable<Product> printProducts = _dal.Product.GetAll();
+                IEnumerable<Product?> printProducts = _dal.Product.GetAll();
                 foreach (Product i in printProducts)
                 {
                     Console.WriteLine(i);
@@ -160,12 +160,12 @@ internal class Program
                 #region get order
                 Console.WriteLine("enter your order id: ");
                 int orderId = int.Parse(Console.ReadLine());
-                Console.WriteLine(_dal.Order.Get(orderId));
+                Console.WriteLine(_dal?.Order.Get(x=>x?.ID== orderId));
                 #endregion
                 break;
             case Crud.getAll:
                 #region getAll order
-                IEnumerable<Order> printOrders = _dal.Order.GetAll();
+                IEnumerable<Order?> printOrders = _dal.Order.GetAll();
                 foreach (Order i in printOrders)
                 {
                     Console.WriteLine(i);
@@ -236,12 +236,12 @@ internal class Program
                 #region get orderItem
                 Console.WriteLine("enter your product id: ");
                 int orderItemId = int.Parse(Console.ReadLine());
-                Console.WriteLine(_dal.OrderItem.Get(orderItemId));
+                Console.WriteLine(_dal?.OrderItem.Get(x=>x?.OrderItemID==orderItemId));
                 #endregion
                 break;
             case Crud.getAll:
                 #region getAll orderItem
-                IEnumerable<OrderItem> printOrdersItems = _dal.OrderItem.GetAll();
+                IEnumerable<OrderItem?> printOrdersItems = _dal.OrderItem.GetAll();
                 foreach (OrderItem i in printOrdersItems)
                 {
                     Console.WriteLine(i);
@@ -281,14 +281,14 @@ internal class Program
                 orderItId = int.Parse(Console.ReadLine());
                 Console.WriteLine("enter your product id: ");
                 int productId = int.Parse(Console.ReadLine());
-                Console.WriteLine(_dal.OrderItem.GetByProductIDAndOrderID(orderItId, productId));
+                Console.WriteLine(_dal?.OrderItem.Get(x=>x?.OrderID==orderItId&& x?.ProductID==productId));
                 #endregion
                 break;
             case Crud.GetOrderItemsByOrderID:
                 #region Get Order Items By Order ID
                 Console.WriteLine("enter your order id: ");
                 orderItId = int.Parse(Console.ReadLine());
-                printOrdersItems = _dal.OrderItem.GetOrderItemsByOrderID(orderItId);
+                printOrdersItems= _dal.OrderItem.GetAll(x=>x?.OrderID == orderItId);
                 foreach (OrderItem i in printOrdersItems)
                 {
                     if (i.OrderItemID != 0)
