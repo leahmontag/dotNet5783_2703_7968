@@ -78,23 +78,22 @@ internal static class DataSource
             int range = (DateTime.Today - DateTime.Today.AddDays(-25)).Days;
             var result = start.AddDays(_rand.Next(range));
             newOrder.OrderDate = result;
-            DateTime? randOfShipDate = newOrder.OrderDate = DateTime.Now - new TimeSpan(new Random().Next(20, 100000), new Random().Next(0, 24), new Random().Next(0, 60));
-            if (randOfShipDate > DateTime.Now)
-            {
+            DateTime? randOfShipDate = newOrder.OrderDate + new TimeSpan(_rand.Next(0, 10), _rand.Next(2, 10), _rand.Next(0, 59), _rand.Next(0, 59));
+        if (randOfShipDate > DateTime.Now)
+        {
                 newOrder.ShipDate = null;
                 newOrder.DeliveryDate = null;
             }
             else
             {
                 newOrder.ShipDate = randOfShipDate;
-                DateTime? randOfDeliveryDate = newOrder.OrderDate + new TimeSpan(new Random().Next(2, 4));
-                if (randOfDeliveryDate > DateTime.Now)
+                DateTime? randOfDeliveryDate = newOrder.ShipDate + new TimeSpan(_rand.Next(0, 10), _rand.Next(2, 10), _rand.Next(0, 59), _rand.Next(0, 59));
+        if (randOfDeliveryDate > DateTime.Now)
                     newOrder.DeliveryDate = null;
                 else
                     newOrder.DeliveryDate = randOfDeliveryDate;
             }
             #endregion
-
             addOrder(newOrder);
         }
         #endregion
@@ -106,9 +105,10 @@ internal static class DataSource
             int rng = _rand.Next(0, _productList.Count);
             if (_productList[rng]!= null)
             {
-                newOrderItem.ProductID = _productList[rng]!?.ID ?? 0;
-                newOrderItem.OrderID = _orderList[i % 20]!?.ID ?? 0;
-                newOrderItem.Price = _productList[rng]!?.Price ?? 0;
+                //היה כאן 3 סימני שאלה לבדוק אם צריך אותם
+                newOrderItem.ProductID = _productList[rng]?.ID ?? 0;
+                newOrderItem.OrderID = _orderList[i % 20]?.ID ?? 0;
+                newOrderItem.Price = _productList[rng]?.Price ?? 0;
                 newOrderItem.Amount = _rand.Next(1, 10);
                 newOrderItem.Name = _productList[rng]!?.Name ?? "";
                 addOrderItem(newOrderItem);

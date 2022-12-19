@@ -50,7 +50,7 @@ internal class Program
         Category productEnum;
         string? numId;
         int num;
-        Console.WriteLine("enter your choice:" + "\n1- get all product" + "\n2- get product by manager" + "\n3-  get products from catalog" + "\n4- add product" + "\n5- remove product" + "\n6- update product");
+        Console.WriteLine("enter your choice:" + "\n1- get all product" + "\n2- get product by manager" + "\n3- get products from catalog" + "\n4- add product" + "\n5- remove product" + "\n6- update product");
         Enum.TryParse(Console.ReadLine(), out yourCrud);
         switch (yourCrud)
         {
@@ -127,8 +127,7 @@ internal class Program
                         flag = true;
                         Console.WriteLine("not exist category, enter your product iteam again ");
                     }
-                    if (myProductToAdd.Name == " " || myProductToAdd.Price <=
-                   0 || myProductToAdd.InStock <= 0)
+                    if (myProductToAdd.Name == " " || myProductToAdd.Price <= 0 || myProductToAdd.InStock <= 0)
                     {
                         flag = true;
                         Console.WriteLine("Incorrect product details, enter your product iteam again ");

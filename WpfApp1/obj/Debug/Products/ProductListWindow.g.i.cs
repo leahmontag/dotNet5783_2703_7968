@@ -85,7 +85,7 @@ namespace PL.Products {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PL;V1.0.0.0;component/products/productlistwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PL;component/products/productlistwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Products\ProductListWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -33,11 +33,19 @@ internal class DalOrder : IOrder
     {
         try
         {
+            Order orderToUpdate = new Order();
             for (int i = 0; i < _orderList.Count; i++)
             {
-                if (_orderList[i]!=null && _orderList[i]!?.ID == myOrder?.ID)
+                if (_orderList[i]!=null && _orderList[i]?.ID == myOrder?.ID)
                 {
-                    _orderList[i] = myOrder;
+                    orderToUpdate.ID = _orderList[i]?.ID ?? 0;
+                    orderToUpdate.CustomerName = myOrder?.CustomerName ?? _orderList[i]?.CustomerName;
+                    orderToUpdate.CustomerAdress = myOrder?.CustomerAdress ?? _orderList[i]?.CustomerAdress; //לשאול איך עושים שאם לא הכנסתי ערך יכנס מה שקיים
+                    orderToUpdate.CustomerEmail = (myOrder?.CustomerEmail ?? _orderList[i]?.CustomerEmail );//כנ"ל
+                    orderToUpdate.OrderDate = _orderList[i]?.OrderDate;
+                    orderToUpdate.ShipDate = _orderList[i]?.ShipDate;
+                    orderToUpdate.DeliveryDate = _orderList[i]?.DeliveryDate;
+                     _orderList[i] = orderToUpdate;
                     return;
                 }
             }

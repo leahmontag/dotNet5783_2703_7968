@@ -75,9 +75,9 @@ internal class DalOrderItem : IOrderItem
     #endregion
 
     /// <summary>
-    /// Get order item by order item id.
+    /// Get order item
     /// </summary>
-    #region Get by order item id
+    #region Get
     public OrderItem Get(Func<OrderItem?, bool>? d)
     {
         foreach (OrderItem? item in _orderItemList)

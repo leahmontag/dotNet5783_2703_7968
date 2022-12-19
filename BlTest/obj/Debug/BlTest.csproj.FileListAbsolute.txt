@@ -1,0 +1,16 @@
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\bin\BlTest.exe
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\bin\BlTest.deps.json
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\bin\BlTest.runtimeconfig.json
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\bin\BlTest.dll
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\bin\BlTest.pdb
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\BlTest\obj\Debug\BlTest.csproj.AssemblyReference.cache
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\BlTest\obj\Debug\BlTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\BlTest\obj\Debug\BlTest.AssemblyInfoInputs.cache
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\BlTest\obj\Debug\BlTest.AssemblyInfo.cs
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\BlTest\obj\Debug\BlTest.csproj.CoreCompileInputs.cache
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\BlTest\obj\Debug\BlTest.csproj.CopyComplete
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\BlTest\obj\Debug\BlTest.dll
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\BlTest\obj\Debug\refint\BlTest.dll
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\BlTest\obj\Debug\BlTest.pdb
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\BlTest\obj\Debug\BlTest.genruntimeconfig.cache
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\BlTest\obj\Debug\ref\BlTest.dll

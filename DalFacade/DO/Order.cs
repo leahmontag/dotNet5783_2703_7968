@@ -35,8 +35,8 @@ public struct Order
     public DateTime? DeliveryDate { get; set; }
 
     public override string ToString() => $@"
-    Order ID={ID},
-    Customer Name:{CustomerName},
+    Order ID: {ID} 
+    Customer Name: {CustomerName} 
     Customer Email: {CustomerEmail}
     CustomerAdress: {CustomerAdress}
     Order Date: {OrderDate?.ToShortDateString()}

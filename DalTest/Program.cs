@@ -53,7 +53,7 @@ internal class Program
         Crud yourCrud;
         string numId;
         int num;
-        Console.WriteLine("enter your choice:" + "\n1- add a new product" + "\n2- get product" + "\n3- show all products" + "\n4- update product" + "\n5- delete product");
+        Console.WriteLine("enter your choice:" + "\n1- add a new product" + "\n2- get product" + "\n3- get all products" + "\n4- update product" + "\n5- delete product");
         Enum.TryParse(Console.ReadLine(), out yourCrud);
         switch (yourCrud)
         {
@@ -125,7 +125,7 @@ internal class Program
     public static void OrderFunction()
     {
         Crud yourCrud;
-        Console.WriteLine("enter your choice:" + "\n1- add a new order" + "\n2- get an order" + "\n3- show all orders" + "\n4- update order" + "\n5- delete order");
+        Console.WriteLine("enter your choice:" + "\n1- add a new order" + "\n2- get an order" + "\n3- get all orders" + "\n4- update order" + "\n5- delete order");
         Enum.TryParse(Console.ReadLine(), out yourCrud);
         switch (yourCrud)
         {
@@ -176,25 +176,25 @@ internal class Program
                 #region Update order
                 Console.WriteLine("enter your order id:");
                 int checkID = int.Parse(Console.ReadLine());
-                if (_dal.Order.exisOrderID(checkID) == false)
+                if (_dal?.Order.exisOrderID(checkID) == false)
                     throw new Exception("not exist order id");
                 Order myOrderToUpdate = new Order();
                 myOrderToUpdate.ID = checkID;
-                Console.WriteLine(" enter your order items:");
-                Console.WriteLine(" name:");
+                Console.WriteLine("enter your order items:");
+                Console.WriteLine("name:");
                 myOrderToUpdate.CustomerName = Console.ReadLine();
-                Console.WriteLine(" email:");
+                Console.WriteLine("email:");
                 myOrderToUpdate.CustomerEmail = Console.ReadLine();
                 Console.WriteLine("address:");
                 myOrderToUpdate.CustomerAdress = Console.ReadLine();
-                _dal.Order.Update(myOrderToUpdate);
+                _dal?.Order.Update(myOrderToUpdate);
                 #endregion
                 break;
             case Crud.delete:
                 #region Delete order
                 Console.WriteLine("enter your order id: ");
                 orderId = int.Parse(Console.ReadLine());
-                _dal.Order.Delete(orderId);
+                _dal?.Order.Delete(orderId);
                 #endregion
                 break;
         }
@@ -208,7 +208,7 @@ internal class Program
     public static void OrderItemFunction()
     {
         Crud yourCrud;
-        Console.WriteLine("enter your choice:" + "\n1- add a new order item" + "\n2- get an order item by order item ID" + "\n3- show all orders items" + "\n4- update order item" + "\n5- delete order item" + "\n6- Get order item by Product ID and Order ID" + "\n7- Get Order Items By Order ID");
+        Console.WriteLine("enter your choice:" + "\n1- add a new order item" + "\n2- get an order item by order item ID" + "\n3- get all orders items" + "\n4- update order item" + "\n5- delete order item" + "\n6- Get order item by Product ID and Order ID" + "\n7- Get Order Items By Order ID");
         Enum.TryParse(Console.ReadLine(), out yourCrud);
         switch (yourCrud)
         {
@@ -234,7 +234,7 @@ internal class Program
                 break;
             case Crud.get:
                 #region get orderItem
-                Console.WriteLine("enter your product id: ");
+                Console.WriteLine("enter your order item id: ");
                 int orderItemId = int.Parse(Console.ReadLine());
                 Console.WriteLine(_dal?.OrderItem.Get(x=>x?.OrderItemID==orderItemId));
                 #endregion
