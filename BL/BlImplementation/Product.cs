@@ -97,7 +97,6 @@ internal class Product : BlApi.IProduct
                     });
             }
             return ProductForList;
-
         }
         catch (DO.NotFoundException exp)
         {
@@ -116,17 +115,18 @@ internal class Product : BlApi.IProduct
     public BO.Product GetByManager(Func<DO.Product?, bool>? d)
     {
         BO.Product productBL;
-        DO.Product productDal;
+        DO.Product? productDal;
         try
         {
-            productDal = _dal.Product.Get(d);
+            //לעבור על זה
+            productDal = _dal?.Product.Get(d);
             productBL = new BO.Product()
             {
-                ID = productDal.ID,
-                Name = productDal.Name,
-                Category = (BO.Enums.Category?)productDal.Category,
-                InStock = productDal.InStock,
-                Price = productDal.Price,
+                ID = productDal?.ID ?? 0,
+                Name = productDal?.Name ?? "",
+                Category = (BO.Enums.Category?)productDal?.Category,
+                InStock = productDal?.InStock??0,
+                Price = productDal?.Price??0,
 
             };
         }
@@ -154,19 +154,19 @@ internal class Product : BlApi.IProduct
         {
             if (d != null)
             {
-                DO.Product productDal = _dal.Product.Get(d);
-                int productIndex = cartBL.Items.FindIndex(x => x?.ProductID == productDal.ID);
+                DO.Product? productDal = _dal?.Product.Get(d);
+                int productIndex = cartBL.Items.FindIndex(x => x?.ProductID == productDal?.ID);
                 if (cartBL!= null&&cartBL.Items!=null)
                 {
                     int amount = productIndex == -1 ? 0 : cartBL.Items[productIndex].Amount;
                     productItemBL = new BO.ProductItem()
                     {
-                        ID = productDal.ID,
+                        ID = productDal?.ID??0,
                         Amount = amount > 0 ? amount : 0,
-                        Category = (BO.Enums.Category?)productDal.Category,
-                        Name = productDal.Name,
-                        Price = productDal.Price,
-                        InStock = productDal.InStock > 0
+                        Category = (BO.Enums.Category?)productDal?.Category,
+                        Name = productDal?.Name,
+                        Price = productDal?.Price??0,
+                        InStock = productDal?.InStock > 0
                     };
                     return productItemBL;
                 }
@@ -200,7 +200,7 @@ internal class Product : BlApi.IProduct
 
         try
         {
-            _dal.Product.Update(productDal);
+            _dal?.Product.Update(productDal);
         }
         catch (DO.NotFoundException exp)
         {
@@ -208,5 +208,7 @@ internal class Product : BlApi.IProduct
         }
     }
     #endregion
+
 }
+
 

@@ -86,22 +86,27 @@ internal class DalOrder : IOrder
     /// get order.
     /// </summary>
     #region Get
-    public Order Get(Func<Order?, bool>? d)
+    public Order? Get(Func<Order?, bool>? d)
     {
-        foreach (Order? item in _orderList)
-        {
-            if (item != null && d != null && d(item)== true)
-                return new Order()
-                {
-                    ID = item?.ID ?? 0,
-                    CustomerAdress = item?.CustomerAdress ?? "",
-                    DeliveryDate = item?.DeliveryDate ?? null,
-                    OrderDate = item?.OrderDate ?? null,
-                    ShipDate = item?.ShipDate ?? null,
-                    CustomerEmail = item?.CustomerEmail ?? "",
-                    CustomerName = item?.CustomerName ?? ""
-                };
-        }
+
+        var o = DataSource._orderList.Where(item => item != null && d != null && d(item) == true).First();
+        return o;
+
+
+        //foreach (Order? item in _orderList)
+        //{
+        //    if (item != null && d != null && d(item)== true)
+        //        return new Order()
+        //        {
+        //            ID = item?.ID ?? 0,
+        //            CustomerAdress = item?.CustomerAdress ?? "",
+        //            DeliveryDate = item?.DeliveryDate ?? null,
+        //            OrderDate = item?.OrderDate ?? null,
+        //            ShipDate = item?.ShipDate ?? null,
+        //            CustomerEmail = item?.CustomerEmail ?? "",
+        //            CustomerName = item?.CustomerName ?? ""
+        //        };
+        //}
         throw new NotFoundException("not exist order");
     }
     #endregion

@@ -50,7 +50,22 @@ internal class DalProduct : IProduct
         {
             if (_productList[i]!?.ID == myProduct?.ID)
             {
-                _productList[i] = myProduct;
+                Product myProductTemp = new();
+                myProductTemp.ID = _productList[i]!?.ID ?? 0;
+                if (myProduct?.Name != "")
+                    myProductTemp.Name = myProduct?.Name;
+                else
+                    myProductTemp.Name = _productList[i]?.Name;
+                if (myProduct?.Price > 0)
+                    myProductTemp.Price = myProduct?.Price ?? 0;
+                else
+                    myProductTemp.Price = _productList[i]?.Price ?? 0;
+                if (myProduct?.InStock >= 0)
+                    myProductTemp.InStock = myProduct?.InStock ?? 0;
+                else
+                    myProductTemp.InStock = _productList[i]?.InStock ?? 0;
+                myProductTemp.Category = myProduct?.Category; 
+                _productList[i] = myProductTemp;
                 return;
             }
         }
@@ -93,13 +108,15 @@ internal class DalProduct : IProduct
     /// get product.
     /// </summary>
     #region Get
-    public Product Get(Func<Product?, bool>? a )
+    public Product? Get(Func<Product?, bool>? a )
     {
-            foreach (Product? item in _productList)
-            {
-                if (item!=null && a!=null && a(item)==true)
-                    return new Product() { Category=item?.Category ?? null,ID=item?.ID ?? 0,Name=item?.Name ?? "",Price=item?.Price ?? 0,InStock=item?.InStock ?? 0};
-            }
+        var p = DataSource._productList.Where(item => item != null && a != null && a(item) == true).First();
+        return p;
+        //foreach (Product? item in _productList)
+        //    {
+        //        if (item!=null && a!=null && a(item)==true)
+        //            return new Product() { Category=item?.Category ?? null,ID=item?.ID ?? 0,Name=item?.Name ?? "",Price=item?.Price ?? 0,InStock=item?.InStock ?? 0};
+        //    }
         throw new NotFoundException("not exist product");
     }
     #endregion

@@ -142,7 +142,6 @@ internal class Program
                 }
                 catch (BO.FailedAddingProductException exp)
                 {
-
                     Console.WriteLine(exp);
                 }
                 #endregion
@@ -191,12 +190,12 @@ internal class Program
                         flag = true;
                         Console.WriteLine("not exist category, enter your product iteam again ");
                     }
-                    if (myProductToUpdate.Name == " " || myProductToUpdate.Price <=
-                   0 || myProductToUpdate.InStock <= 0)
-                    {
-                        flag = true;
-                        Console.WriteLine("Incorrect product details, enter your product iteam again ");
-                    }
+                   // if (myProductToUpdate.Name == "" || myProductToUpdate.Price <=
+                   //0 || myProductToUpdate.InStock <= 0)
+                   // {
+                   //     flag = true;
+                   //     Console.WriteLine("Incorrect product details, enter your product iteam again ");
+                   // }
                     #endregion
 
                 } while (flag);

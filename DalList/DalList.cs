@@ -4,7 +4,7 @@ namespace Dal;
 sealed internal class DalList : IDal
 {
     private static object syncRoot = new object();
-    public static IDal Instance { get; }
+    public static IDal Instance { get; } = new DalList();
     private DalList() { }
     static DalList()
     {
@@ -17,8 +17,12 @@ sealed internal class DalList : IDal
             }
         }
     }
-    public IProduct Product => new DalProduct();
-    public IOrder Order => new DalOrder();
-    public IOrderItem OrderItem => new DalOrderItem();
+    //public IProduct Product = new DalProduct();
+    //public IOrder Order = new DalOrder();
+    //public IOrderItem OrderItem = new DalOrderItem();
+
+    public IProduct Product { get; } = new DalProduct();
+    public IOrder Order { get; } = new DalOrder();
+    public IOrderItem OrderItem { get; } = new DalOrderItem();
 
 }
