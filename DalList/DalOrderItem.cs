@@ -78,10 +78,20 @@ internal class DalOrderItem : IOrderItem
     /// Get order item
     /// </summary>
     #region Get
-    public OrderItem? Get(Func<OrderItem?, bool>? d)
+    public OrderItem Get(Func<OrderItem?, bool>? d)
     {
-        var oI = DataSource._orderItemList.Where(item => item != null && d != null && d(item) == true).First();
-        return oI; 
+        var orderItem = DataSource._orderItemList.Where(item => item != null && d != null && d(item) == true).First();
+        return new OrderItem()
+        {
+            OrderID = orderItem?.OrderID ?? 0,
+            OrderItemID = orderItem?.OrderItemID ?? 0,
+            ProductID = orderItem?.ProductID ?? 0,
+            Name = orderItem?.Name ?? "",
+            Amount = orderItem?.Amount ?? 0,
+            Price = orderItem?.Price ?? 0
+        };
+
+
         //foreach (OrderItem? item in _orderItemList)
         //{
         //    if (item != null && d != null && d(item) == true)

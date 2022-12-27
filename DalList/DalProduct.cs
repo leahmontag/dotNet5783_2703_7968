@@ -108,10 +108,11 @@ internal class DalProduct : IProduct
     /// get product.
     /// </summary>
     #region Get
-    public Product? Get(Func<Product?, bool>? a )
+    public Product Get(Func<Product?, bool>? a )
     {
-        var p = DataSource._productList.Where(item => item != null && a != null && a(item) == true).First();
-        return p;
+        var product = DataSource._productList.Where(item => item != null && a != null && a(item) == true).First();
+        return new Product() { Category = product?.Category ?? null, ID = product?.ID ?? 0, Name = product?.Name ?? "", Price = product?.Price ?? 0, InStock = product?.InStock ?? 0 };
+      
         //foreach (Product? item in _productList)
         //    {
         //        if (item!=null && a!=null && a(item)==true)

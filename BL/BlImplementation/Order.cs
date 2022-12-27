@@ -104,7 +104,7 @@ internal class Order : BlApi.IOrder
                 throw new Exception();
             BO.Order BoOrder = new BO.Order();
             BoOrder = ConvertDoOrderToBoOrder(DoOrder);
-            _dal.Order.Update(DoOrder);
+            _dal?.Order.Update(DoOrder);
             return BoOrder;
         }
         catch (DO.NotFoundException exp)
@@ -217,8 +217,8 @@ internal class Order : BlApi.IOrder
             double sum = 0;
             IEnumerable<DO.Product?> productList = _dal.Product.GetAll();
             IEnumerable<DO.OrderItem?> orderItems = _dal.OrderItem.GetAll();
-            DO.Order DoOrder = _dal.Order.Get(x => x?.ID == BOorder.ID);
-            if (DoOrder.ShipDate != null)//הזמנה נשלחה ואז אין טעם לעדכן אותה
+            DO.Order? DoOrder = _dal?.Order.Get(x => x?.ID == BOorder.ID);
+            if (DoOrder?.ShipDate != null)//הזמנה נשלחה ואז אין טעם לעדכן אותה
                 throw new NotImplementedException();
             switch (whatToDO)
             {
