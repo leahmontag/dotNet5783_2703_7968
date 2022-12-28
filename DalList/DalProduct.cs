@@ -64,7 +64,7 @@ internal class DalProduct : IProduct
                     myProductTemp.InStock = myProduct?.InStock ?? 0;
                 else
                     myProductTemp.InStock = _productList[i]?.InStock ?? 0;
-                myProductTemp.Category = myProduct?.Category; 
+                myProductTemp.Category = myProduct?.Category;
                 _productList[i] = myProductTemp;
                 return;
             }
@@ -88,7 +88,7 @@ internal class DalProduct : IProduct
 
                     foreach (Product? item in _productList)
                     {
-                            if (item?.ID == ProductId)
+                        if (item?.ID == ProductId)
                         {
                             _productList.Remove(item);
                             return;
@@ -108,17 +108,23 @@ internal class DalProduct : IProduct
     /// get product.
     /// </summary>
     #region Get
-    public Product Get(Func<Product?, bool>? a )
+    public Product Get(Func<Product?, bool>? a)
     {
-        var product = DataSource._productList.Where(item => item != null && a != null && a(item) == true).First();
-        return new Product() { Category = product?.Category ?? null, ID = product?.ID ?? 0, Name = product?.Name ?? "", Price = product?.Price ?? 0, InStock = product?.InStock ?? 0 };
-      
+        try
+        {
+            var product = _productList.Where(item => item != null && a != null && a(item) == true).First();
+            return new Product() { Category = product?.Category ?? null, ID = product?.ID ?? 0, Name = product?.Name ?? "", Price = product?.Price ?? 0, InStock = product?.InStock ?? 0 };
+        }
+        catch (Exception)
+        {
+            throw new NotFoundException("not exist product");
+        }
+
         //foreach (Product? item in _productList)
         //    {
         //        if (item!=null && a!=null && a(item)==true)
         //            return new Product() { Category=item?.Category ?? null,ID=item?.ID ?? 0,Name=item?.Name ?? "",Price=item?.Price ?? 0,InStock=item?.InStock ?? 0};
         //    }
-        throw new NotFoundException("not exist product");
     }
     #endregion
 
@@ -143,8 +149,10 @@ internal class DalProduct : IProduct
         }
         else
         {
-            _newProductList = _productList.FindAll(item => (item != null && d(item) == true));
-            return _newProductList;
+            return _productList.Where(item => (item != null && d(item) == true)).ToList();
+
+            // _newProductList = _productList.FindAll(item => (item != null && d(item) == true));
+            //    return _newProductList;
         }
 
     }
@@ -156,11 +164,11 @@ internal class DalProduct : IProduct
     #region checking if product is exist
     public Product existProductID(int num)
     {
-            foreach (Product? item in _productList)
-            {
-                if (item?.ID == num)
-                    return new Product() { Category = item?.Category?? null, ID = item?.ID ?? 0, Name = item?.Name ?? "", Price = item?.Price ?? 0, InStock = item?.InStock ?? 0};
-            }
+        foreach (Product? item in _productList)
+        {
+            if (item?.ID == num)
+                return new Product() { Category = item?.Category ?? null, ID = item?.ID ?? 0, Name = item?.Name ?? "", Price = item?.Price ?? 0, InStock = item?.InStock ?? 0 };
+        }
         Product p = new Product() { ID = 0 };
         return p;
     }

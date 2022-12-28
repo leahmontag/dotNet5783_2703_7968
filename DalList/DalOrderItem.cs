@@ -35,7 +35,7 @@ internal class DalOrderItem : IOrderItem
 
         for (int i = 0; i < _orderItemList.Count; i++)
         {
-            if (_orderItemList[i]!= null && _orderItemList[i]!?.OrderItemID == myOrderItem?.OrderItemID)
+            if (_orderItemList[i] != null && _orderItemList[i]!?.OrderItemID == myOrderItem?.OrderItemID)
             {
                 //Checking inputs from the user.
                 // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.
@@ -80,16 +80,24 @@ internal class DalOrderItem : IOrderItem
     #region Get
     public OrderItem Get(Func<OrderItem?, bool>? d)
     {
-        var orderItem = DataSource._orderItemList.Where(item => item != null && d != null && d(item) == true).First();
-        return new OrderItem()
+        try
         {
-            OrderID = orderItem?.OrderID ?? 0,
-            OrderItemID = orderItem?.OrderItemID ?? 0,
-            ProductID = orderItem?.ProductID ?? 0,
-            Name = orderItem?.Name ?? "",
-            Amount = orderItem?.Amount ?? 0,
-            Price = orderItem?.Price ?? 0
-        };
+            var orderItem = _orderItemList.Where(item => item != null && d != null && d(item) == true).First();
+            return new OrderItem()
+            {
+                OrderID = orderItem?.OrderID ?? 0,
+                OrderItemID = orderItem?.OrderItemID ?? 0,
+                ProductID = orderItem?.ProductID ?? 0,
+                Name = orderItem?.Name ?? "",
+                Amount = orderItem?.Amount ?? 0,
+                Price = orderItem?.Price ?? 0
+            };
+        }
+        catch (Exception)
+        {
+            throw new NotFoundException("not exist OrderItem");
+        }
+
 
 
         //foreach (OrderItem? item in _orderItemList)
@@ -105,7 +113,6 @@ internal class DalOrderItem : IOrderItem
         //            Price= item?.Price ?? 0
         //        };
         //}
-        throw new NotFoundException("not exist OrderItem");
 
     }
     #endregion
@@ -131,8 +138,10 @@ internal class DalOrderItem : IOrderItem
         }
         else
         {
-            _newOrderItemList = _orderItemList.FindAll(item => (item != null && d(item) == true));
-            return _newOrderItemList;
+            // _newOrderItemList = _orderItemList.FindAll(item => (item != null && d(item) == true));
+            // return _newOrderItemList;
+            return DataSource._orderItemList.Where(item => item != null && d != null && d(item) == true).ToList();
+
         }
 
 

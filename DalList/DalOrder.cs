@@ -36,16 +36,16 @@ internal class DalOrder : IOrder
             Order orderToUpdate = new Order();
             for (int i = 0; i < _orderList.Count; i++)
             {
-                if (_orderList[i]!=null && _orderList[i]?.ID == myOrder?.ID)
+                if (_orderList[i] != null && _orderList[i]?.ID == myOrder?.ID)
                 {
                     orderToUpdate.ID = _orderList[i]?.ID ?? 0;
                     orderToUpdate.CustomerName = myOrder?.CustomerName ?? _orderList[i]?.CustomerName;
                     orderToUpdate.CustomerAdress = myOrder?.CustomerAdress ?? _orderList[i]?.CustomerAdress; //לשאול איך עושים שאם לא הכנסתי ערך יכנס מה שקיים
-                    orderToUpdate.CustomerEmail = (myOrder?.CustomerEmail ?? _orderList[i]?.CustomerEmail );//כנ"ל
+                    orderToUpdate.CustomerEmail = (myOrder?.CustomerEmail ?? _orderList[i]?.CustomerEmail);//כנ"ל
                     orderToUpdate.OrderDate = _orderList[i]?.OrderDate;
                     orderToUpdate.ShipDate = _orderList[i]?.ShipDate;
                     orderToUpdate.DeliveryDate = _orderList[i]?.DeliveryDate;
-                     _orderList[i] = orderToUpdate;
+                    _orderList[i] = orderToUpdate;
                     return;
                 }
             }
@@ -88,20 +88,25 @@ internal class DalOrder : IOrder
     #region Get
     public Order Get(Func<Order?, bool>? d)
     {
-
-        var order = DataSource._orderList.Where(item => item != null && d != null && d(item) == true).First();
-        return new Order()
+        try
         {
-            ID = order?.ID ?? 0,
-            CustomerAdress = order?.CustomerAdress ?? "",
-            DeliveryDate = order?.DeliveryDate ?? null,
-            OrderDate = order?.OrderDate ?? null,
-            ShipDate = order?.ShipDate ?? null,
-            CustomerEmail = order?.CustomerEmail ?? "",
-            CustomerName = order?.CustomerName ?? ""
-        };
+            var order = _orderList.Where(item => item != null && d != null && d(item) == true).First();
+            return new Order()
+            {
+                ID = order?.ID ?? 0,
+                CustomerAdress = order?.CustomerAdress ?? "",
+                DeliveryDate = order?.DeliveryDate ?? null,
+                OrderDate = order?.OrderDate ?? null,
+                ShipDate = order?.ShipDate ?? null,
+                CustomerEmail = order?.CustomerEmail ?? "",
+                CustomerName = order?.CustomerName ?? ""
+            };
+        }
+        catch (Exception)
+        {
+            throw new NotFoundException("not exist order");
 
-
+        }
         //foreach (Order? item in _orderList)
         //{
         //    if (item != null && d != null && d(item)== true)
@@ -116,7 +121,6 @@ internal class DalOrder : IOrder
         //            CustomerName = item?.CustomerName ?? ""
         //        };
         //}
-        throw new NotFoundException("not exist order");
     }
     #endregion
 
@@ -141,8 +145,10 @@ internal class DalOrder : IOrder
         }
         else
         {
-            _newOrderList = _orderList.FindAll(item => (item != null && d(item) == true));
-            return _newOrderList;
+            return _orderList.Where(item => item != null && d != null && d(item) == true).ToList();
+
+            // _newOrderList = _orderList.FindAll(item => (item != null && d(item) == true));
+            // return _newOrderList;
         }
     }
     #endregion
