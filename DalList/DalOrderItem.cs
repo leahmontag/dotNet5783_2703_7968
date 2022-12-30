@@ -15,12 +15,8 @@ internal class DalOrderItem : IOrderItem
     public int Create(OrderItem myOrderItem)
     {
         myOrderItem.OrderItemID = Config.AutoNumOrderItem;
-        foreach (var item in _orderItemList)
-        {
-            if (item?.OrderItemID == myOrderItem.OrderItemID)
-                throw new DuplicatesException("exist orderItem");
-        }
-
+        if (_orderItemList.Exists(item => item?.OrderItemID == myOrderItem.OrderItemID))
+            throw new DuplicatesException("exist orderItem");
         _orderItemList.Add(myOrderItem);
         return myOrderItem.OrderItemID;
     }
@@ -62,15 +58,17 @@ internal class DalOrderItem : IOrderItem
     #region Delete
     public void Delete(int OrderItemId)
     {
-        foreach (var item in _orderItemList)
-        {
-            if (item?.OrderItemID == OrderItemId)
-            {
-                _orderItemList.Remove(item);
-                return;
-            }
-        }
-        throw new NotFoundException("not exist OrderItem");
+        _orderItemList.Remove(_orderItemList.FirstOrDefault(item => item?.OrderItemID == OrderItemId)
+        ?? throw new NotFoundException("not exist OrderItem"));
+        //foreach (var item in _orderItemList)
+        //{
+        //    if (item?.OrderItemID == OrderItemId)
+        //    {
+        //        _orderItemList.Remove(item);
+        //        return;
+        //    }
+        //}
+        //throw new NotFoundException("not exist OrderItem");
     }
     #endregion
 
@@ -137,14 +135,9 @@ internal class DalOrderItem : IOrderItem
             }
         }
         else
-        {
-            // _newOrderItemList = _orderItemList.FindAll(item => (item != null && d(item) == true));
-            // return _newOrderItemList;
-            return DataSource._orderItemList.Where(item => item != null && d != null && d(item) == true).ToList();
-
-        }
-
-
+            return _orderItemList.Where(item => item != null && d != null && d(item) == true).ToList();
+        // _newOrderItemList = _orderItemList.FindAll(item => (item != null && d(item) == true));
+        // return _newOrderItemList;
     }
     #endregion
 
@@ -156,11 +149,8 @@ internal class DalOrderItem : IOrderItem
     #region if order item ID is exis
     public bool exisOrderItemID(int num)
     {
-        foreach (var item in _orderItemList)
-        {
-            if (item?.OrderItemID == num)
-                return true;
-        }
+        if (_orderItemList.Exists(item => item?.OrderItemID == num))
+            return true;
         return false;
     }
     #endregion

@@ -16,27 +16,25 @@ internal class DalProduct : IProduct
     #region Create
     public int Create(Product myProduct)
     {
-        try
-        {
-            foreach (var item in _productList)
-            {
-                if (myProduct.ID == item?.ID)
-                    throw new DuplicatesException("id of product is exist");
-            }
-            _productList.Add(myProduct);
-            return myProduct.ID;
-        }
-        catch (DuplicatesException exc)
-        {
-
-            throw exc;
-
-        }
-        catch (Exception)
-        {
-
-            throw new OperationFailedException("operation failed");
-        }
+        if (_productList.Exists(item => item?.ID == myProduct.ID))
+            throw new DuplicatesException("id of product is exist");
+        _productList.Add(myProduct);
+        return myProduct.ID;
+        //    try
+        //    {
+        //        if (_productList.Exists(item => item?.ID == myProduct.ID))
+        //            throw new DuplicatesException("id of product is exist");
+        //        _productList.Add(myProduct);
+        //        return myProduct.ID;
+        //    }
+        //    catch (DuplicatesException exc)
+        //    {
+        //        throw exc;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw new OperationFailedException("operation failed");
+        //    }
     }
     #endregion
 
@@ -77,30 +75,10 @@ internal class DalProduct : IProduct
     /// delete product.
     /// </summary>
     #region Delete
-    public void Delete(int ProductId)
+    public void Delete(int ProductID)
     {
-        try
-        {
-            if (_productList != null)
-            {
-                for (int i = 0; i < _productList.Count; i++)
-                {
-
-                    foreach (Product? item in _productList)
-                    {
-                        if (item?.ID == ProductId)
-                        {
-                            _productList.Remove(item);
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-        catch (Exception)
-        {
-            throw new NotFoundException("not exist product");
-        }
+        _productList.Remove(_productList.FirstOrDefault(item => item?.ID == ProductID)
+        ?? throw new NotFoundException("not exist product"));
     }
     #endregion
 
@@ -119,12 +97,6 @@ internal class DalProduct : IProduct
         {
             throw new NotFoundException("not exist product");
         }
-
-        //foreach (Product? item in _productList)
-        //    {
-        //        if (item!=null && a!=null && a(item)==true)
-        //            return new Product() { Category=item?.Category ?? null,ID=item?.ID ?? 0,Name=item?.Name ?? "",Price=item?.Price ?? 0,InStock=item?.InStock ?? 0};
-        //    }
     }
     #endregion
 
@@ -148,12 +120,7 @@ internal class DalProduct : IProduct
             }
         }
         else
-        {
             return _productList.Where(item => (item != null && d(item) == true)).ToList();
-
-            // _newProductList = _productList.FindAll(item => (item != null && d(item) == true));
-            //    return _newProductList;
-        }
 
     }
     #endregion

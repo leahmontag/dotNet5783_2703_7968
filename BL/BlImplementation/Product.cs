@@ -1,6 +1,8 @@
-﻿using BO;
+﻿using Amazon.DynamoDBv2;
+using BO;
 using DalApi;
 using DO;
+using System;
 using System.Security.Cryptography.X509Certificates;
 
 namespace BlImplementation;
@@ -82,19 +84,18 @@ internal class Product : BlApi.IProduct
     public IEnumerable<BO.ProductForList?> GetAll(Func<DO.Product?, bool>? d = null)
     {
         IEnumerable<DO.Product?> productsList = _dal.Product.GetAll(d != null ? d : null);
-        
         List<BO.ProductForList?> ProductForList = new List<BO.ProductForList?>();
         try
         {
             foreach (DO.Product? item in productsList)
             {
-                    ProductForList.Add(new ProductForList()
-                    {
-                        ID = item?.ID ?? 0,
-                        Name = item?.Name ?? "",
-                        Price = item?.Price ?? 0,
-                        Category = (BO.Enums.Category?)item?.Category
-                    });
+                ProductForList.Add(new ProductForList()
+                {
+                    ID = item?.ID ?? 0,
+                    Name = item?.Name ?? "",
+                    Price = item?.Price ?? 0,
+                    Category = (BO.Enums.Category?)item?.Category
+                });
             }
             return ProductForList;
         }
@@ -125,8 +126,8 @@ internal class Product : BlApi.IProduct
                 ID = productDal?.ID ?? 0,
                 Name = productDal?.Name ?? "",
                 Category = (BO.Enums.Category?)productDal?.Category,
-                InStock = productDal?.InStock??0,
-                Price = productDal?.Price??0,
+                InStock = productDal?.InStock ?? 0,
+                Price = productDal?.Price ?? 0,
 
             };
         }
@@ -156,16 +157,16 @@ internal class Product : BlApi.IProduct
             {
                 DO.Product? productDal = _dal?.Product.Get(d);
                 int productIndex = cartBL.Items.FindIndex(x => x?.ProductID == productDal?.ID);
-                if (cartBL!= null&&cartBL.Items!=null)
+                if (cartBL != null && cartBL.Items != null)
                 {
                     int amount = productIndex == -1 ? 0 : cartBL.Items[productIndex].Amount;
                     productItemBL = new BO.ProductItem()
                     {
-                        ID = productDal?.ID??0,
+                        ID = productDal?.ID ?? 0,
                         Amount = amount > 0 ? amount : 0,
                         Category = (BO.Enums.Category?)productDal?.Category,
                         Name = productDal?.Name,
-                        Price = productDal?.Price??0,
+                        Price = productDal?.Price ?? 0,
                         InStock = productDal?.InStock > 0
                     };
                     return productItemBL;

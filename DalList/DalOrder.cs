@@ -15,11 +15,8 @@ internal class DalOrder : IOrder
     public int Create(Order myOrder)
     {
         myOrder.ID = Config.AutoNumOrder;
-        foreach (var item in _orderList)
-        {
-            if (item?.ID == myOrder.ID)
-                throw new DuplicatesException("exist order");
-        }
+        if (_orderList.Exists(item => item?.ID == myOrder.ID))
+            throw new DuplicatesException("exist order");
         _orderList.Add(myOrder);
         return myOrder.ID;
     }
@@ -64,21 +61,23 @@ internal class DalOrder : IOrder
     #region Delete
     public void Delete(int OrderId)
     {
-        try
-        {
-            foreach (var item in _orderList)
-            {
-                if (item?.ID == OrderId)
-                {
-                    _orderList.Remove(item);
-                    return;
-                }
-            }
-        }
-        catch (Exception)
-        {
-            throw new NotFoundException("not exist order");
-        }
+        _orderList.Remove(_orderList.FirstOrDefault(item => item?.ID == OrderId)
+            ?? throw new NotFoundException("not exist order"));
+        //try
+        //{
+        //    foreach (var item in _orderList)
+        //    {
+        //        if (item?.ID == OrderId)
+        //        {
+        //            _orderList.Remove(item);
+        //            return;
+        //        }
+        //    }
+        //}
+        //catch (Exception)
+        //{
+        //    throw new NotFoundException("not exist order");
+        //}
     }
     #endregion
 
@@ -161,11 +160,8 @@ internal class DalOrder : IOrder
     #region if order ID is exis
     public bool exisOrderID(int num)
     {
-        foreach (var item in _orderList)
-        {
-            if (item?.ID == num)
-                return true;
-        }
+        if (_orderList.Exists(item => item?.ID == num))
+            return true;
         return false;
     }
     #endregion
