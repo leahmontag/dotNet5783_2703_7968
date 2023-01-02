@@ -96,23 +96,6 @@ internal class DalOrderItem : IOrderItem
         {
             throw new NotFoundException("not exist OrderItem");
         }
-
-
-
-        //foreach (OrderItem? item in _orderItemList)
-        //{
-        //    if (item != null && d != null && d(item) == true)
-        //        return new OrderItem() 
-        //        { 
-        //            OrderID=item?.OrderID ?? 0,
-        //            OrderItemID= item?.OrderItemID ?? 0,
-        //            ProductID= item?.ProductID ?? 0,
-        //            Name= item?.Name ?? "",
-        //            Amount= item?.Amount ?? 0,
-        //            Price= item?.Price ?? 0
-        //        };
-        //}
-
     }
     #endregion
 

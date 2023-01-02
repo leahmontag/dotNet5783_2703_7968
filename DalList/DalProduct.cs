@@ -127,11 +127,9 @@ internal class DalProduct : IProduct
     #region checking if product is exist
     public Product existProductID(int num)
     {
-        foreach (Product? item in _productList)
-        {
-            if (item?.ID == num)
-                return new Product() { Category = item?.Category ?? null, ID = item?.ID ?? 0, Name = item?.Name ?? "", Price = item?.Price ?? 0, InStock = item?.InStock ?? 0 };
-        }
+        var product = _productList.Where(item => item?.ID == num).First();
+        if (product != null)
+            return new Product() { Category = product?.Category ?? null, ID = product?.ID ?? 0, Name = product?.Name ?? "", Price = product?.Price ?? 0, InStock = product?.InStock ?? 0 };
         Product p = new Product() { ID = 0 };
         return p;
     }
