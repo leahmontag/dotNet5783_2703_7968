@@ -29,26 +29,36 @@ internal class DalOrderItem : IOrderItem
     public void Update(OrderItem? myOrderItem)
     {
 
-        for (int i = 0; i < _orderItemList.Count; i++)
+        if (_orderItemList.Exists(item => item?.OrderItemID == myOrderItem?.OrderItemID))
         {
-            if (_orderItemList[i] != null && _orderItemList[i]!?.OrderItemID == myOrderItem?.OrderItemID)
-            {
-                //Checking inputs from the user.
-                // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.
-
-                _orderItemList[i] = myOrderItem;
-                //if (myOrderItem.OrderID != 0)
-                //    _orderItemList[i].OrderID = myOrderItem.OrderID;
-                //if (myOrderItem.ProductID != 0)
-                //    _orderItemList[i].ProductID = myOrderItem.ProductID;
-                //if (myOrderItem.Amount != 0)
-                //    _orderItemList[i].Amount = myOrderItem.Amount;
-                //if (myOrderItem.Price != 0.0)
-                //    _orderItemList[i].Price = myOrderItem.Price;
-                return;
-            }
+            _orderItemList.Remove(_orderItemList.FirstOrDefault(item => item?.OrderItemID == myOrderItem?.OrderItemID));
+            _orderItemList.Add(myOrderItem);
+            return;
         }
-        throw new NotFoundException("not exist OrderItem");
+        else
+            throw new NotFoundException("not exist OrderItem");
+
+
+        //for (int i = 0; i < _orderItemList.Count; i++)
+        //{
+        //    if (_orderItemList[i] != null && _orderItemList[i]!?.OrderItemID == myOrderItem?.OrderItemID)
+        //    {
+        //        //Checking inputs from the user.
+        //        // In case the input is 0, null or " "(depending on the type) the field will remain the same as the delay and will not change.
+
+        //        _orderItemList[i] = myOrderItem;
+        //        //if (myOrderItem.OrderID != 0)
+        //        //    _orderItemList[i].OrderID = myOrderItem.OrderID;
+        //        //if (myOrderItem.ProductID != 0)
+        //        //    _orderItemList[i].ProductID = myOrderItem.ProductID;
+        //        //if (myOrderItem.Amount != 0)
+        //        //    _orderItemList[i].Amount = myOrderItem.Amount;
+        //        //if (myOrderItem.Price != 0.0)
+        //        //    _orderItemList[i].Price = myOrderItem.Price;
+        //        return;
+        //    }
+        //}
+        //throw new NotFoundException("not exist OrderItem");
     }
     #endregion
 
@@ -60,15 +70,6 @@ internal class DalOrderItem : IOrderItem
     {
         _orderItemList.Remove(_orderItemList.FirstOrDefault(item => item?.OrderItemID == OrderItemId)
         ?? throw new NotFoundException("not exist OrderItem"));
-        //foreach (var item in _orderItemList)
-        //{
-        //    if (item?.OrderItemID == OrderItemId)
-        //    {
-        //        _orderItemList.Remove(item);
-        //        return;
-        //    }
-        //}
-        //throw new NotFoundException("not exist OrderItem");
     }
     #endregion
 
@@ -136,8 +137,6 @@ internal class DalOrderItem : IOrderItem
         }
         else
             return _orderItemList.Where(item => item != null && d != null && d(item) == true).ToList();
-        // _newOrderItemList = _orderItemList.FindAll(item => (item != null && d(item) == true));
-        // return _newOrderItemList;
     }
     #endregion
 

@@ -1,9 +1,6 @@
-﻿using Amazon.DynamoDBv2;
-using BO;
-using DalApi;
+﻿using BO;
 using DO;
-using System;
-using System.Security.Cryptography.X509Certificates;
+
 
 namespace BlImplementation;
 
@@ -57,7 +54,11 @@ internal class Product : BlApi.IProduct
     #region Delete product
     public void Delete(int productID)
     {
+
         IEnumerable<DO.Order?> ordersList = _dal.Order.GetAll();
+       //var idOfProducToDelete = from DO.Order productsListDO in ordersList
+       //                                                  where productsListDO.ID == productID
+       //                                                  select productsListDO.ID;
         //checking that item not exist in any orders.
         foreach (DO.Order? item in ordersList)
         {
@@ -83,20 +84,19 @@ internal class Product : BlApi.IProduct
     #region Get all products
     public IEnumerable<BO.ProductForList?> GetAll(Func<DO.Product?, bool>? d = null)
     {
-        IEnumerable<DO.Product?> productsList = _dal.Product.GetAll(d != null ? d : null);
-        List<BO.ProductForList?> ProductForList = new List<BO.ProductForList?>();
         try
         {
-            foreach (DO.Product? item in productsList)
-            {
-                ProductForList.Add(new ProductForList()
-                {
-                    ID = item?.ID ?? 0,
-                    Name = item?.Name ?? "",
-                    Price = item?.Price ?? 0,
-                    Category = (BO.Enums.Category?)item?.Category
-                });
-            }
+            IEnumerable<DO.Product?> productsList = _dal.Product.GetAll();
+            IEnumerable<BO.ProductForList?> ProductForList = from DO.Product productsListDO in productsList
+                                                             where d == null || d(productsListDO)
+                                                             orderby productsListDO.ID
+                                                             select new BO.ProductForList()
+                                                             {
+                                                                 ID = productsListDO.ID,
+                                                                 Name = productsListDO.Name,
+                                                                 Price = productsListDO.Price,
+                                                                 Category = (BO.Enums.Category?)productsListDO.Category
+                                                             };
             return ProductForList;
         }
         catch (DO.NotFoundException exp)
@@ -115,27 +115,23 @@ internal class Product : BlApi.IProduct
     #region Get by manager
     public BO.Product GetByManager(Func<DO.Product?, bool>? d)
     {
-        BO.Product productBL;
-        DO.Product? productDal;
         try
         {
-            //לעבור על זה
+            DO.Product? productDal;
             productDal = _dal?.Product.Get(d);
-            productBL = new BO.Product()
+            return new BO.Product()
             {
                 ID = productDal?.ID ?? 0,
                 Name = productDal?.Name ?? "",
                 Category = (BO.Enums.Category?)productDal?.Category,
                 InStock = productDal?.InStock ?? 0,
-                Price = productDal?.Price ?? 0,
-
+                Price = productDal?.Price ?? 0
             };
         }
         catch (DO.NotFoundException exp)
         {
             throw new BO.ProductIsNotAvailableException("Finding this product details failed due to not finding an item with such an ID", exp);
         }
-        return productBL;
     }
     #endregion
 

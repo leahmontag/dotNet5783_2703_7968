@@ -1,5 +1,6 @@
 ﻿using BO;
 using DalApi;
+using System.Diagnostics.Metrics;
 using System.Xml.Linq;
 
 namespace BlImplementation;
@@ -20,41 +21,27 @@ internal class Order : BlApi.IOrder
     #region get all orders
     public IEnumerable<BO.OrderForList?> GetAll(Func<DO.Order?, bool>? d = null)
     {
-
         try
         {
-            IEnumerable<DO.Order?> orders = _dal.Order.GetAll(d != null ? d : null);
-            List<BO.Order?> BoOrders = new List<BO.Order?>();
-            List<BO.OrderForList?> orderForList = new List<BO.OrderForList?>();
-
-            foreach (var item in orders)
-            {
-                BoOrders.Add(Get(x => x?.ID == item?.ID));
-            }
-
-            foreach (BO.Order? item in BoOrders)
-            {
-                if (item != null)
-                {
-                    item.Items ??= new List<OrderItem?>();
-                    orderForList.Add(new BO.OrderForList()
+            IEnumerable<DO.Order?> orders = _dal.Order.GetAll();
+            IEnumerable<BO.Order?> BoOrders = from DO.Order productsListDO in orders
+                                              let newItem = Get(x => x?.ID == productsListDO.ID)
+                                              select newItem;
+            return (from BO.Order productsListDO in BoOrders
+                    select new BO.OrderForList()
                     {
-                        ID = item.ID,
-                        CustomerName = item.CustomerName,
-                        Status = item.Status,
-                        AmountOfItems = item.Items.Count,
-                        TotalPrice = item.TotalPrice
+                        ID = productsListDO.ID,
+                        CustomerName = productsListDO.CustomerName,
+                        Status = productsListDO.Status,
+                        AmountOfItems = productsListDO.Items.Count,
+                        TotalPrice = productsListDO.TotalPrice
                     });
-                }
-            }
-
-            return orderForList;
         }
         catch (DO.NotFoundException exp)
         {
-
             throw new BO.FailedToDisplayAllItemsException("Failed to display all items", exp);
         }
+
     }
     #endregion
 
@@ -250,7 +237,7 @@ internal class Order : BlApi.IOrder
                                 }
                             }
                             foreach (BO.OrderItem? item1 in BOorder.Items)
-                                sum += item1?.TotalPrice??0;
+                                sum += item1?.TotalPrice ?? 0;
                             BOorder.TotalPrice = sum;
                             return BOorder;
                         }
@@ -375,15 +362,23 @@ internal class Order : BlApi.IOrder
             BoOrder.Status = BO.Enums.OrderStatus.confirmed;
         BoOrder.ShipDate = DoOrder.ShipDate;
         BoOrder.DeliveryDate = DoOrder.DeliveryDate;
-        List<BO.OrderItem?> orderItems = new List<BO.OrderItem?>();
-        double sumOfTotalPrice = 0;
-        foreach (DO.OrderItem? item in itemsOfOrder)
-        {
-            orderItems.Add(new BO.OrderItem() { Name = item?.Name, OrderItemID = item?.OrderItemID??0, Price = item?.Price??0, ProductID = item?.ProductID??0, Amount = item?.Amount ?? 0, TotalPrice = (item?.Price??0) * (item?.Amount??0 )});
-            sumOfTotalPrice += (item?.Price ?? 0) * (item?.Amount ?? 0);
-        }
-        BoOrder.Items = orderItems;
-        BoOrder.TotalPrice = sumOfTotalPrice;
+        IEnumerable<BO.OrderItem?> orderItems = from DO.OrderItem itemInOrder in itemsOfOrder
+                                                let it = new BO.OrderItem()
+                                                {
+                                                    Name = itemInOrder.Name,
+                                                    OrderItemID = itemInOrder.OrderItemID,
+                                                    Price = itemInOrder.Price,
+                                                    ProductID = itemInOrder.ProductID,
+                                                    Amount = itemInOrder.Amount,
+                                                    TotalPrice = (itemInOrder.Price) * (itemInOrder.Amount)
+                                                }
+                                                select it;
+        var sumOfTotalPrice = from DO.OrderItem itemInOrder in itemsOfOrder
+                              let sum = itemInOrder.Price * itemInOrder.Amount
+                              select sum;
+
+        BoOrder.Items = orderItems.ToList();
+        BoOrder.TotalPrice = sumOfTotalPrice.Count();
         return BoOrder;
     }
     #endregion

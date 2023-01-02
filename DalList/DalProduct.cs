@@ -20,21 +20,6 @@ internal class DalProduct : IProduct
             throw new DuplicatesException("id of product is exist");
         _productList.Add(myProduct);
         return myProduct.ID;
-        //    try
-        //    {
-        //        if (_productList.Exists(item => item?.ID == myProduct.ID))
-        //            throw new DuplicatesException("id of product is exist");
-        //        _productList.Add(myProduct);
-        //        return myProduct.ID;
-        //    }
-        //    catch (DuplicatesException exc)
-        //    {
-        //        throw exc;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw new OperationFailedException("operation failed");
-        //    }
     }
     #endregion
 
@@ -44,30 +29,40 @@ internal class DalProduct : IProduct
     #region Update
     public void Update(Product? myProduct)
     {
-        for (int i = 0; i < _productList.Count; i++)
+
+        if (_productList.Exists(item => item?.ID == myProduct?.ID))
         {
-            if (_productList[i]!?.ID == myProduct?.ID)
-            {
-                Product myProductTemp = new();
-                myProductTemp.ID = _productList[i]!?.ID ?? 0;
-                if (myProduct?.Name != "")
-                    myProductTemp.Name = myProduct?.Name;
-                else
-                    myProductTemp.Name = _productList[i]?.Name;
-                if (myProduct?.Price > 0)
-                    myProductTemp.Price = myProduct?.Price ?? 0;
-                else
-                    myProductTemp.Price = _productList[i]?.Price ?? 0;
-                if (myProduct?.InStock >= 0)
-                    myProductTemp.InStock = myProduct?.InStock ?? 0;
-                else
-                    myProductTemp.InStock = _productList[i]?.InStock ?? 0;
-                myProductTemp.Category = myProduct?.Category;
-                _productList[i] = myProductTemp;
-                return;
-            }
+            _productList.Remove(_productList.FirstOrDefault(item => item?.ID == myProduct?.ID));
+            _productList.Add(myProduct);
+            return;
         }
-        throw new NotFoundException("not exist product");
+        else
+            throw new NotFoundException("not exist product");
+
+        //for (int i = 0; i < _productList.Count; i++)
+        //{
+        //    if (_productList[i]!?.ID == myProduct?.ID)
+        //    {
+        //        Product myProductTemp = new();
+        //        myProductTemp.ID = _productList[i]!?.ID ?? 0;
+        //        if (myProduct?.Name != "")
+        //            myProductTemp.Name = myProduct?.Name;
+        //        else
+        //            myProductTemp.Name = _productList[i]?.Name;
+        //        if (myProduct?.Price > 0)
+        //            myProductTemp.Price = myProduct?.Price ?? 0;
+        //        else
+        //            myProductTemp.Price = _productList[i]?.Price ?? 0;
+        //        if (myProduct?.InStock >= 0)
+        //            myProductTemp.InStock = myProduct?.InStock ?? 0;
+        //        else
+        //            myProductTemp.InStock = _productList[i]?.InStock ?? 0;
+        //        myProductTemp.Category = myProduct?.Category;
+        //        _productList[i] = myProductTemp;
+        //        return;
+        //    }
+        //}
+        //  throw new NotFoundException("not exist product");
     }
     #endregion
 
@@ -90,7 +85,8 @@ internal class DalProduct : IProduct
     {
         try
         {
-            var product = _productList.Where(item => item != null && a != null && a(item) == true).First();
+
+            var product = _productList.Where(item => item != null && a != null && a(item) == true).FirstOrDefault();
             return new Product() { Category = product?.Category ?? null, ID = product?.ID ?? 0, Name = product?.Name ?? "", Price = product?.Price ?? 0, InStock = product?.InStock ?? 0 };
         }
         catch (Exception)
