@@ -24,17 +24,17 @@ internal class Order : BlApi.IOrder
         try
         {
             IEnumerable<DO.Order?> orders = _dal.Order.GetAll();
-            IEnumerable<BO.Order?> BoOrders = from DO.Order productsListDO in orders
-                                              let newItem = Get(x => x?.ID == productsListDO.ID)
+            IEnumerable<BO.Order?> BoOrders = from DO.Order order in orders
+                                              let newItem = Get(x => x?.ID == order.ID)
                                               select newItem;
-            return (from BO.Order productsListDO in BoOrders
+            return (from BO.Order order in BoOrders
                     select new BO.OrderForList()
                     {
-                        ID = productsListDO.ID,
-                        CustomerName = productsListDO.CustomerName,
-                        Status = productsListDO.Status,
-                        AmountOfItems = productsListDO.Items.Count,
-                        TotalPrice = productsListDO.TotalPrice
+                        ID = order.ID,
+                        CustomerName = order.CustomerName,
+                        Status = order.Status,
+                        AmountOfItems = order.Items.Count,
+                        TotalPrice = order.TotalPrice
                     });
         }
         catch (DO.NotFoundException exp)
@@ -347,7 +347,7 @@ internal class Order : BlApi.IOrder
     #region Convert doOrder to boOrder
     private BO.Order ConvertDoOrderToBoOrder(DO.Order DoOrder)
     {
-        IEnumerable<DO.OrderItem?> itemsOfOrder = _dal.OrderItem.GetAll(x => x?.OrderID == DoOrder.ID);
+        IEnumerable<DO.OrderItem?> DoItemsOfOrder = _dal.OrderItem.GetAll(x => x?.OrderID == DoOrder.ID);
         BO.Order BoOrder = new BO.Order();
         BoOrder.ID = DoOrder.ID;
         BoOrder.CustomerName = DoOrder.CustomerName;
@@ -362,8 +362,8 @@ internal class Order : BlApi.IOrder
             BoOrder.Status = BO.Enums.OrderStatus.confirmed;
         BoOrder.ShipDate = DoOrder.ShipDate;
         BoOrder.DeliveryDate = DoOrder.DeliveryDate;
-        IEnumerable<BO.OrderItem?> orderItems = from DO.OrderItem itemInOrder in itemsOfOrder
-                                                let it = new BO.OrderItem()
+        IEnumerable<BO.OrderItem?> BoOrderItems = from DO.OrderItem itemInOrder in DoItemsOfOrder
+                                                  let it = new BO.OrderItem()
                                                 {
                                                     Name = itemInOrder.Name,
                                                     OrderItemID = itemInOrder.OrderItemID,
@@ -373,12 +373,11 @@ internal class Order : BlApi.IOrder
                                                     TotalPrice = (itemInOrder.Price) * (itemInOrder.Amount)
                                                 }
                                                 select it;
-        var sumOfTotalPrice = from DO.OrderItem itemInOrder in itemsOfOrder
-                              let sum = itemInOrder.Price * itemInOrder.Amount
-                              select sum;
+        var sumOfTotalPrice = from BO.OrderItem BoItemInOrder in BoOrderItems
+                              select BoItemInOrder.TotalPrice;
 
-        BoOrder.Items = orderItems.ToList();
-        BoOrder.TotalPrice = sumOfTotalPrice.Count();
+        BoOrder.Items = BoOrderItems.ToList();
+        BoOrder.TotalPrice = sumOfTotalPrice.Sum();
         return BoOrder;
     }
     #endregion

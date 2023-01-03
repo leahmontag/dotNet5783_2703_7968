@@ -76,3 +76,9 @@ C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\refint
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\PL.pdb
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\PL.genruntimeconfig.cache
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\ref\PL.dll
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Orders\OrderListWindow.g.cs
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Orders\OrderListWindow.baml
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Orders\OrderWindow.g.cs
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Orders\OrderWindow.baml
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Orders\OrderItemsWindow.g.cs
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Orders\OrderItemsWindow.baml

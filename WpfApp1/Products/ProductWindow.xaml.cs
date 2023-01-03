@@ -7,36 +7,44 @@ using System.Windows.Controls;
 namespace PL.Products
 {
     /// <summary>
-    /// Interaction logic for BoProductWindow.xaml
+    /// Interaction logic for ProductWindow.xaml
     /// </summary>
-    public partial class BoProductWindow : Window
+    public partial class ProductWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
 
-        public BoProductWindow(string buttonAdd)
+        public ProductWindow(string buttonAdd)
         {
             InitializeComponent();
             int val = 0;
             Btn.Content = buttonAdd;
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+            CategorySelector.DataContext = Enum.GetValues(typeof(BO.Enums.Category));
+            // CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
             Price.Text = val.ToString();
             InStock.Text = val.ToString();
         }
-        public BoProductWindow(string buttonAdd, int productID)
+        public ProductWindow(string button, int productID)
         {
             InitializeComponent();
             try
             {
-                Btn.Content = buttonAdd;
+                Btn.Content = button;
                 if (Btn.Content == "Update")
                     Id.IsReadOnly = true;
                 BO.Product product = bl.Product.GetByManager(x => x?.ID == productID);
-                Id.Text = product.ID.ToString();
-                Name.Text = product.Name;
-                Price.Text = product.Price.ToString();
-                InStock.Text = product.InStock.ToString();
-                CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
+                gridProduct.DataContext = product;
+                CategorySelector.DataContext = Enum.GetValues(typeof(BO.Enums.Category));
                 CategorySelector.SelectedItem = product.Category;
+                CategorySelector.SelectedValue = product.Category;
+                CategorySelector.SelectedValuePath = product.Category.ToString();
+
+
+                //CategorySelector.SelectedItem = product.Category;
+                //Id.Text = product.ID.ToString();
+                //Name.Text = product.Name;
+                //Price.Text = product.Price.ToString();
+                //InStock.Text = product.InStock.ToString();
+                //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.Category));
             }
             catch (Exception ex)
             {
@@ -87,7 +95,7 @@ namespace PL.Products
                     InStock = int.Parse(InStock.Text),
                 });
                 this.Close();
-                new BoProductListWindow().Show();
+                new ProductListWindow().Show();
             }
             catch (Exception ex)
             {
@@ -109,9 +117,9 @@ namespace PL.Products
                     Category = (BO.Enums.Category)CategorySelector.SelectedItem,
                     Price = double.Parse(Price.Text),
                     InStock = int.Parse(InStock.Text),
-                }); ;
+                }); 
                 this.Close();
-                new BoProductListWindow().Show();
+                new ProductListWindow().Show();
             }
             catch (Exception ex)
             {

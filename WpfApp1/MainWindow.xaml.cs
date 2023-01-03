@@ -3,7 +3,9 @@ using BL;
 
 using System.Windows;
 using PL.Products;
+using PL.Orders;
 using BlImplementation;
+
 
 namespace WpfApp1
 {
@@ -18,6 +20,8 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
-        private void ShowProductsButton_Click(object sender, RoutedEventArgs e) => new BoProductListWindow().Show();
+        private void ShowProductsButton_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
+        private void ShowOrdersButton_Click(object sender, RoutedEventArgs e) => new OrderListWindow().Show();
     }
 }
+

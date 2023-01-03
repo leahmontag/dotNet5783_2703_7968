@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Margin="288,150,288,217" Name="ButtonProductForList" Click="ShowProductsButton_Click" Background="Yellow">ProductForList</Button>
-
+        <Button Margin="288,233,288,134" Name="ButtonProductForList" Click="ShowProductsButton_Click" Background="Yellow">ProductForList</Button>
+        <Button Margin="288,150,288,217" Name="ButtonOrderForList" Click="ShowOrdersButton_Click" Background="Blue">OrderForList</Button>
 
     </Grid>
 </Window>
