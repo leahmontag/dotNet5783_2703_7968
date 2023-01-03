@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Margin="288,233,288,134" Name="ButtonProductForList" Click="ShowProductsButton_Click" Background="Yellow">ProductForList</Button>
-        <Button Margin="288,150,288,217" Name="ButtonOrderForList" Click="ShowOrdersButton_Click" Background="Blue">OrderForList</Button>
+        <Button Margin="288,125,344,263" Name="ManagerWindowButton" Background="Bisque" Click="ShowManagerWindowButton_Click" >manager window</Button>
+        <Button Margin="288,183,344,205" Name="NewOrderWindowButton" Background="Bisque" Click="ShowNewOrderWindowButton_Click" >New order window</Button>
+        <Button Margin="288,239,344,149" Name="OrderTrackingWindowButton" Background="Bisque" Click="ShowOrderTrackingWindowButton_Click" >OrderTracking window</Button>
+        <Button Margin="288,295,344,93" Name="registeredUserWindowButton" Background="Bisque" Click="ShowregisteredUserWindowButton_Click" >registered user window</Button>
 
     </Grid>
 </Window>

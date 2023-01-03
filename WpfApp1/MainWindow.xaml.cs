@@ -5,7 +5,10 @@ using System.Windows;
 using PL.Products;
 using PL.Orders;
 using BlImplementation;
-
+using PL.ManagerVew;
+using PL.NewOrder;
+using PL.OrderTracking;
+using PL.registeredUser;
 
 namespace WpfApp1
 {
@@ -20,8 +23,11 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
-        private void ShowProductsButton_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
-        private void ShowOrdersButton_Click(object sender, RoutedEventArgs e) => new OrderListWindow().Show();
+
+        private void ShowManagerWindowButton_Click(object sender, RoutedEventArgs e) => new ManagerWindow().Show();
+        private void ShowNewOrderWindowButton_Click(object sender, RoutedEventArgs e) => new NewOrderWindow().Show();
+        private void ShowOrderTrackingWindowButton_Click(object sender, RoutedEventArgs e) => new OrderTrackingWindow().Show();
+        private void ShowregisteredUserWindowButton_Click(object sender, RoutedEventArgs e) => new registeredUserWindow().Show();
     }
 }
 

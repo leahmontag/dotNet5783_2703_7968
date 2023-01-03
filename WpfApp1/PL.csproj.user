@@ -2,24 +2,48 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="Orders\OrderItemsWindow.xaml.cs">
+    <Compile Update="Manager\ManagerWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Orders\OrderListWindow.xaml.cs">
+    <Compile Update="Manager\Orders\OrderItemsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Orders\OrderWindow.xaml.cs">
+    <Compile Update="Manager\Orders\OrderListWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Manager\Orders\OrderWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NewOrder\NewOrderWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="OrderTracking\OrderTrackingWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="registeredUser\registeredUserWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Orders\OrderItemsWindow.xaml">
+    <Page Update="Manager\ManagerWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Orders\OrderListWindow.xaml">
+    <Page Update="Manager\Orders\OrderItemsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Orders\OrderWindow.xaml">
+    <Page Update="Manager\Orders\OrderListWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Manager\Orders\OrderWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NewOrder\NewOrderWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="OrderTracking\OrderTrackingWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="registeredUser\registeredUserWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

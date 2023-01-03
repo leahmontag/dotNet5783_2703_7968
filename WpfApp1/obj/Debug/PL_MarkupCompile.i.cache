@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\
 PL
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\App.xaml
-61711367694
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\App.xaml
+10-1691773072
 
-10-1528983800
-200-569312790
-MainWindow.xaml;Orders\OrderItemsWindow.xaml;Orders\OrderListWindow.xaml;Orders\OrderWindow.xaml;Products\ProductListWindow.xaml;Products\ProductWindow.xaml;
+141654573505
+200470682501
+MainWindow.xaml;Manager\ManagerWindow.xaml;Manager\Orders\OrderItemsWindow.xaml;Manager\Orders\OrderListWindow.xaml;Manager\Orders\OrderWindow.xaml;Manager\Products\ProductListWindow.xaml;Manager\Products\ProductWindow.xaml;NewOrder\NewOrderWindow.xaml;OrderTracking\OrderTrackingWindow.xaml;registeredUser\registeredUserWindow.xaml;
 
 True
 
