@@ -1,5 +1,4 @@
 ﻿using DO;
-using System.Runtime.CompilerServices;
 using static DO.Enums;
 namespace Dal;
 internal static class DataSource

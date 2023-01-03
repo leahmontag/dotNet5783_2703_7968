@@ -56,15 +56,9 @@ internal class Product : BlApi.IProduct
     {
 
         IEnumerable<DO.Order?> ordersList = _dal.Order.GetAll();
-       //var idOfProducToDelete = from DO.Order productsListDO in ordersList
-       //                                                  where productsListDO.ID == productID
-       //                                                  select productsListDO.ID;
-        //checking that item not exist in any orders.
-        foreach (DO.Order? item in ordersList)
-        {
-            if (item?.ID == productID)
+        ordersList.ToList();
+        if (ordersList.ToList().Exists(item => item?.ID == productID))
                 throw new cannotDeletedItemException("An existing item in an order cannot be deleted");
-        }
         try
         {
             _dal.Product.Delete(productID);

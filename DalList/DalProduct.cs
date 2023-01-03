@@ -38,31 +38,6 @@ internal class DalProduct : IProduct
         }
         else
             throw new NotFoundException("not exist product");
-
-        //for (int i = 0; i < _productList.Count; i++)
-        //{
-        //    if (_productList[i]!?.ID == myProduct?.ID)
-        //    {
-        //        Product myProductTemp = new();
-        //        myProductTemp.ID = _productList[i]!?.ID ?? 0;
-        //        if (myProduct?.Name != "")
-        //            myProductTemp.Name = myProduct?.Name;
-        //        else
-        //            myProductTemp.Name = _productList[i]?.Name;
-        //        if (myProduct?.Price > 0)
-        //            myProductTemp.Price = myProduct?.Price ?? 0;
-        //        else
-        //            myProductTemp.Price = _productList[i]?.Price ?? 0;
-        //        if (myProduct?.InStock >= 0)
-        //            myProductTemp.InStock = myProduct?.InStock ?? 0;
-        //        else
-        //            myProductTemp.InStock = _productList[i]?.InStock ?? 0;
-        //        myProductTemp.Category = myProduct?.Category;
-        //        _productList[i] = myProductTemp;
-        //        return;
-        //    }
-        //}
-        //  throw new NotFoundException("not exist product");
     }
     #endregion
 
