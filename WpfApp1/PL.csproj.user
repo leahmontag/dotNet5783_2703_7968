@@ -17,7 +17,13 @@
     <Compile Update="NewOrder\NewOrderWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="OrderTracking\OrderTrackingdetailsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="OrderTracking\OrderTrackingWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="OrderTracking\OrderWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="registeredUser\registeredUserWindow.xaml.cs">
@@ -40,7 +46,13 @@
     <Page Update="NewOrder\NewOrderWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="OrderTracking\OrderTrackingdetailsWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="OrderTracking\OrderTrackingWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="OrderTracking\OrderWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="registeredUser\registeredUserWindow.xaml">

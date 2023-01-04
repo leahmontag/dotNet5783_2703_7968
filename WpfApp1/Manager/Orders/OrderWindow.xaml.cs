@@ -51,9 +51,6 @@ namespace PL.Orders
             }
         }
 
-     
-
-     
         private void ChoiceOfButten_Click3(object sender, RoutedEventArgs e)
         {
             this.Close();

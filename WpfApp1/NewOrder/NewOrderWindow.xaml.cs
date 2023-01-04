@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,23 @@ namespace PL.NewOrder
     /// </summary>
     public partial class NewOrderWindow : Window
     {
+        BlApi.IBl? bl = BlApi.Factory.Get();
+        private ObservableCollection<BO.ProductForList?> _myCollection;
+
+        BO.Cart cartBL = new();
         public NewOrderWindow()
         {
             InitializeComponent();
+            _myCollection = new(bl.Product.GetAll());
+            ProductItemListView.DataContext = _myCollection;
+            CategorySelector.DataContext = Enum.GetValues(typeof(BO.Enums.Category));
+        }
+
+        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string? selectedItem = CategorySelector.SelectedItem.ToString();
+            _myCollection = new(bl.Product.GetAll(x => x?.Category.ToString() == selectedItem));
+            ProductItemListView.DataContext = _myCollection;
         }
     }
 }

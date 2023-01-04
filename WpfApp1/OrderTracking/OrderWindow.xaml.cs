@@ -1,7 +1,5 @@
-﻿using PL.Products;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,22 +15,25 @@ using System.Windows.Shapes;
 namespace PL.OrderTracking
 {
     /// <summary>
-    /// Interaction logic for OrderTrackingWindow.xaml
+    /// Interaction logic for OrderWindow.xaml
     /// </summary>
-    public partial class OrderTrackingWindow : Window
+    public partial class OrderWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        public OrderTrackingWindow()
+        int IDOrder;
+        public OrderWindow(int orderID)
         {
             InitializeComponent();
-            
-        }
-
-        private void Confirm_Click(object sender, RoutedEventArgs e)
-        {
-            int orderTrackingInput = int.Parse(OrderTrackingInput.Text);
-            this.Close();
-            new OrderTrackingdetailsWindow(int.Parse(OrderTrackingInput.Text)).Show();
+            try
+            {
+                BO.Order order = bl.Order.Get(x => x?.ID == orderID);
+                gridOrder.DataContext = order;
+                IDOrder = order.ID;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

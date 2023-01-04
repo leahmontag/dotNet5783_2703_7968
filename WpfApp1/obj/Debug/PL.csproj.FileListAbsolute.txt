@@ -96,3 +96,7 @@ C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Ma
 C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\NewOrder\NewOrderWindow.baml
 C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\OrderTracking\OrderTrackingWindow.baml
 C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\registeredUser\registeredUserWindow.baml
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\OrderTracking\OrderTrackingdetailsWindow.g.cs
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\OrderTracking\OrderTrackingdetailsWindow.baml
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\OrderTracking\OrderWindow.g.cs
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\OrderTracking\OrderWindow.baml
