@@ -20,15 +20,20 @@ namespace PL.OrderTracking
     public partial class OrderWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        int IDOrder;
+        public BO.Order order
+        {
+            get { return (BO.Order)GetValue(orderProperty); }
+            set { SetValue(orderProperty, value); }
+        }
+        public static readonly DependencyProperty orderProperty =
+           DependencyProperty.Register(nameof(order), typeof(BO.Order), typeof(OrderWindow));
+
         public OrderWindow(int orderID)
         {
             InitializeComponent();
             try
             {
-                BO.Order order = bl.Order.Get(x => x?.ID == orderID);
-                gridOrder.DataContext = order;
-                IDOrder = order.ID;
+                order = bl.Order.Get(x => x?.ID == orderID);
             }
             catch (Exception ex)
             {

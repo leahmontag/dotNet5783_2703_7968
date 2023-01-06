@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Orders"
         mc:Ignorable="d"
-        Title="OrderItemsWindow" Height="450" Width="800">
+        Title="OrderItemsWindow" Height="450" Width="800"
+    DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
     <Grid>
-            <ListView ItemsSource="{Binding}" Name="OrdersItemsView"/>
+        <ListView ItemsSource="{Binding orderItemsForList}" Name="OrdersItemsView"/>
     </Grid>
 </Window>

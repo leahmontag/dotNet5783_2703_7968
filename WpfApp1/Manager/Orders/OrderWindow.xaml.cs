@@ -1,4 +1,6 @@
-﻿using DocumentFormat.OpenXml.Drawing.Charts;
+﻿using BO;
+using DO;
+using DocumentFormat.OpenXml.Drawing.Charts;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System;
@@ -24,51 +26,74 @@ namespace PL.Orders
     public partial class OrderWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        int IDOrder;
+        public BO.Order order
+        {
+            get { return (BO.Order)GetValue(orderProperty); }
+            set { SetValue(orderProperty, value); }
+        }
+        public static readonly DependencyProperty orderProperty =
+           DependencyProperty.Register(nameof(order), typeof(BO.Order), typeof(OrderWindow));
+        public BO.Order selectedOrder { get; set; }
+
+        public bool VisibileShipping
+        {
+            get { return (bool)GetValue(VisibileShippingProperty); }
+            set { SetValue(VisibileShippingProperty, value); }
+        }
+        public static readonly DependencyProperty VisibileShippingProperty =
+           DependencyProperty.Register(nameof(VisibileShipping), typeof(bool), typeof(OrderWindow));
+
+        public bool VisibileDelivery
+        {
+            get { return (bool)GetValue(VisibileDeliveryProperty); }
+            set { SetValue(VisibileDeliveryProperty, value); }
+        }
+        public static readonly DependencyProperty VisibileDeliveryProperty =
+           DependencyProperty.Register(nameof(VisibileDelivery), typeof(bool), typeof(OrderWindow));
+
+
         public OrderWindow(int orderID)
         {
-            InitializeComponent();
             try
             {
-                BO.Order order = bl.Order.Get(x => x?.ID == orderID);
-                gridOrder.DataContext = order;
-                IDOrder = order.ID;
-                if (order.Status.ToString() == "provided")
-                {
-                    updateShippingBtn.Visibility = Visibility.Collapsed;
-                    updateDeliveryBtn.Visibility = Visibility.Collapsed;
-                }
-                else if(order.Status.ToString() == "send")
-                    updateShippingBtn.Visibility = Visibility.Collapsed;
-                else
-                    updateDeliveryBtn.Visibility = Visibility.Collapsed;
-
-
+                VisibileShipping = false;
+                VisibileDelivery = false;
+                order = bl.Order.Get(x => x?.ID == orderID);
+                InitializeComponent();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
+            if (order.Status.ToString() == "provided")
+            {
+                VisibileShipping = true;
+                VisibileDelivery = true;
+            }
+            else if (order.Status.ToString() == "send")
+                VisibileShipping = true;
+            else
+                VisibileDelivery = true;
         }
 
         private void ChoiceOfButten_Click3(object sender, RoutedEventArgs e)
         {
             this.Close();
-            new OrderItemsWindow(IDOrder).Show();
+            new OrderItemsWindow(order.ID).Show();
         }
 
         private void updateDeliveryBtn_Click(object sender, RoutedEventArgs e)
         {
-            bl.Order.UpdateDelivery(IDOrder);
-            Close();
-            new OrderWindow(IDOrder).Show();
+            VisibileDelivery = true;
+            order = bl.Order.UpdateDelivery(order.ID);
         }
 
         private void updateShippingBtn_Click(object sender, RoutedEventArgs e)
         {
-            bl.Order.UpdateShip(IDOrder);
-            Close();
-            new OrderWindow(IDOrder).Show();
+            VisibileShipping = true;
+            VisibileDelivery = false;
+            order = bl.Order.UpdateShip(order.ID);
         }
     }
 }

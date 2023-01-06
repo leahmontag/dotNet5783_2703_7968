@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Orders"
         mc:Ignorable="d"
-        Title="OrderListWindow" Height="450" Width="800">
+        Title="OrderListWindow" Height="450" Width="800"
+        DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
     <Grid>
-        <ListView ItemsSource="{Binding}" Name="OrdersListView" MouseDoubleClick="OrdersListView_MouseDoubleClick" />
+        <ListView ItemsSource = "{Binding orderForList}" SelectedValue = "{Binding selectedOrder , Mode=TwoWay}" Name="OrdersListView" MouseDoubleClick="OrdersListView_MouseDoubleClick" />
     </Grid>
 </Window>

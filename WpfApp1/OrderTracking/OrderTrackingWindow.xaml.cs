@@ -22,17 +22,16 @@ namespace PL.OrderTracking
     public partial class OrderTrackingWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
+        public int orderTrakingNum { get; set; }
         public OrderTrackingWindow()
         {
             InitializeComponent();
-            
         }
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-            int orderTrackingInput = int.Parse(OrderTrackingInput.Text);
-            this.Close();
-            new OrderTrackingdetailsWindow(int.Parse(OrderTrackingInput.Text)).Show();
+            Close();
+            new OrderTrackingdetailsWindow(orderTrakingNum).Show();
         }
     }
 }

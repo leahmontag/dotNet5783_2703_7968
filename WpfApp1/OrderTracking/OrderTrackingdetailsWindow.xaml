@@ -5,34 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.OrderTracking"
         mc:Ignorable="d"
-        Title="OrderTrackingdetailsWindow" Height="450" Width="800">
+        Title="OrderTrackingdetailsWindow" Height="450" Width="800"
+        DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
+
     <Grid Name="gridOrder">
         <Label Content="ID:" Height="28" HorizontalAlignment="Left" Margin="39,30,0,0" Name="label1" VerticalAlignment="Top" />
-        <TextBox Text="{Binding Path=ID}" Background="red" Name="ID" Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,34,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBlock Text="{Binding orderTracking.ID}" Background="red" Name="ID" Height="23" HorizontalAlignment="Left" Margin="151,34,0,0" VerticalAlignment="Top" Width="120" />
         <Label Content="Status:" Height="28" HorizontalAlignment="Left" Margin="39,70,0,0" Name="label3" VerticalAlignment="Top" />
-        <TextBox Text="{Binding Path=Status}" Background="red" Name="Status" Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,75,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBlock Text="{Binding orderTracking.Status}" Background="red" Name="Status" Height="23"  HorizontalAlignment="Left" Margin="151,75,0,0" VerticalAlignment="Top" Width="120" />
         <Label Content="Order Traking Status:" Height="28" HorizontalAlignment="Left" Margin="39,110,0,0" Name="label4" VerticalAlignment="Top" />
 
-        <Grid Name="Grid1">
             <Label Content="Date:" Height="28" HorizontalAlignment="Left" Margin="88,152,0,0" Name="label5" VerticalAlignment="Top" />
-            <TextBox Text="{Binding Path=Date}" Background="red" Name="Date1" Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="197,162,0,0" VerticalAlignment="Top" Width="120" />
+            <TextBlock Text="{Binding orderTracking.OrderTrackingDateAndDesc[0].Date}" Background="red" Name="Date1" Height="23" HorizontalAlignment="Left" Margin="197,162,0,0" VerticalAlignment="Top" Width="120" />
             <Label Content="Description:" Height="28" HorizontalAlignment="Left" Margin="89,190,0,0" Name="label6" VerticalAlignment="Top" />
-            <TextBox Text="{Binding Path=Description}" x:Name="Description1" Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="198,196,0,0" VerticalAlignment="Top" Width="120" />
-        </Grid>
+            <TextBlock Text="{Binding orderTracking.OrderTrackingDateAndDesc[0].Description}" x:Name="Description1" Height="23"  HorizontalAlignment="Left" Margin="198,196,0,0" VerticalAlignment="Top" Width="120" />
 
-        <Grid Name="Grid2">
             <Label Content="Date:" Height="28" HorizontalAlignment="Left" Margin="89,256,0,0" Name="label8" VerticalAlignment="Top" />
-            <TextBox Text="{Binding Path=Date}" Background="red" Name="Date2" Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="198,260,0,0" VerticalAlignment="Top" Width="120" />
+            <TextBlock Text="{Binding orderTracking.OrderTrackingDateAndDesc[1].Date}" Background="red" Name="Date2" Height="23" HorizontalAlignment="Left" Margin="198,260,0,0" VerticalAlignment="Top" Width="120" />
             <Label Content="Description:" Height="28" HorizontalAlignment="Left" Margin="87,294,0,0" Name="label9" VerticalAlignment="Top" />
-            <TextBox Text="{Binding Path=Description}" Name="Description2" Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="199,297,0,0" VerticalAlignment="Top" Width="120" />
-        </Grid>
+            <TextBlock Text="{Binding orderTracking.OrderTrackingDateAndDesc[1].Description}" Name="Description2" Height="23"  HorizontalAlignment="Left" Margin="199,297,0,0" VerticalAlignment="Top" Width="120" />
 
-        <Grid Name="Grid3" Margin="-10,8,10,-8">
             <Label Content="Date:" Height="28" HorizontalAlignment="Left" Margin="87,348,0,0" Name="label10" VerticalAlignment="Top" />
-            <TextBox Text="{Binding Path=Date}" Background="red" Name="Date3" Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="199,351,0,0" VerticalAlignment="Top" Width="120" />
+            <TextBlock Text="{Binding orderTracking.OrderTrackingDateAndDesc[2].Date}" Background="red" Name="Date3" Height="23" HorizontalAlignment="Left" Margin="199,351,0,0" VerticalAlignment="Top" Width="120" />
             <Label Content="Description:" Height="28" HorizontalAlignment="Left" Margin="87,384,0,0" Name="label11" VerticalAlignment="Top" />
-            <TextBox Text="{Binding Path=Description}" Name="Description3" Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="199,385,0,0" VerticalAlignment="Top" Width="120" />
-        </Grid>
+            <TextBlock Text="{Binding orderTracking.OrderTrackingDateAndDesc[2].Description}" Name="Description3" Height="23" HorizontalAlignment="Left" Margin="199,385,0,0" VerticalAlignment="Top" Width="120" />
         <Button Background="Yellow" Content="Show the order items" Height="25" HorizontalAlignment="Left" Margin="590,250,0,0" Name="Btn3" VerticalAlignment="Top" Width="134" Click="ChoiceOfButten_Click3" />
 
     </Grid>

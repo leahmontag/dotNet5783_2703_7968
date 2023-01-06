@@ -21,7 +21,6 @@ namespace PL.ManagerVew
     /// </summary>
     public partial class ManagerWindow : Window
     {
-       // BlApi.IBl? bl = BlApi.Factory.Get();
         public ManagerWindow()
         {
             InitializeComponent();

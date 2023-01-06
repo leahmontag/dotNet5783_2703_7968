@@ -1,18 +1,7 @@
-﻿using PL.Products;
-using System;
+﻿using BO;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL.Orders
 {
@@ -22,22 +11,26 @@ namespace PL.Orders
     public partial class OrderListWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        private ObservableCollection<BO.OrderForList?> _myCollection;
+        public IEnumerable<BO.OrderForList?> orderForList
+        {
+            get { return (IEnumerable<BO.OrderForList?>)GetValue(orderProperty); }
+            set { SetValue(orderProperty, value); }
+        }
+        public static readonly DependencyProperty orderProperty =
+           DependencyProperty.Register(nameof(orderForList), typeof(IEnumerable<BO.OrderForList?>), typeof(OrderListWindow));
+        public OrderForList selectedOrder { get; set; }
+
         public OrderListWindow()
         {
+            orderForList = bl.Order.GetAll();
             InitializeComponent();
-            _myCollection = new(bl.Order.GetAll());
-            OrdersListView.DataContext = _myCollection;
         }
-
 
         private void OrdersListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BO.OrderForList SelectedOrder = (BO.OrderForList)((sender as ListView).SelectedItem);
-            this.Close();
-            new OrderWindow(SelectedOrder.ID).Show();
+            Close();
+            new OrderWindow(selectedOrder.ID).Show();
         }
-
     }
 }
 

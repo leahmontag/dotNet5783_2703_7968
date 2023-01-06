@@ -23,20 +23,23 @@ namespace PL.OrderTracking
     public partial class OrderTrackingdetailsWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        private ObservableCollection<BO.OrderTracking?> _myOrderItems;
+        public BO.OrderTracking orderTracking
+        {
+            get { return (BO.OrderTracking)GetValue(orderTrackingProperty); }
+            set { SetValue(orderTrackingProperty, value); }
+        }
+        public static readonly DependencyProperty orderTrackingProperty =
+           DependencyProperty.Register(nameof(orderTracking), typeof(BO.OrderTracking), typeof(OrderTrackingdetailsWindow));
+        
         public OrderTrackingdetailsWindow(int OrderTrackingID)
         {
+            orderTracking = bl.Order.TrackingOfOrder(OrderTrackingID);
             InitializeComponent();
-            BO.OrderTracking? _myOrder = bl.Order.TrackingOfOrder(OrderTrackingID);
-            gridOrder.DataContext = _myOrder;
-            Grid1.DataContext = _myOrder.OrderTrackingDateAndDesc[0];
-            Grid2.DataContext = _myOrder.OrderTrackingDateAndDesc[1];
-            Grid3.DataContext = _myOrder.OrderTrackingDateAndDesc[2];
         }
 
         private void ChoiceOfButten_Click3(object sender, RoutedEventArgs e)
         {
-            new OrderWindow(int.Parse(ID.Text)).Show();
+            new OrderWindow(orderTracking.ID).Show();
         }
     }
 }

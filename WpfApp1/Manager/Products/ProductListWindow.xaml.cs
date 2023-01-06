@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -13,24 +14,29 @@ namespace PL.Products
     /// </summary>
     public partial class ProductListWindow : Window
     {
-        BlApi.IBl? bl = BlApi.Factory.Get();
-        private ObservableCollection<BO.ProductForList?> _myCollection;
+        static BlApi.IBl? bl = BlApi.Factory.Get();
+        public IEnumerable<BO.ProductForList?> productForList
+        {
+            get { return (IEnumerable<BO.ProductForList?>)GetValue(productForListsProperty); }
+            set { SetValue(productForListsProperty, value); }
+        }
+        public static readonly DependencyProperty productForListsProperty =
+           DependencyProperty.Register(nameof(productForList), typeof(IEnumerable<BO.ProductForList?>), typeof(ProductListWindow));
+
+        public System.Array categories { get; set; } = Enum.GetValues(typeof(DO.Enums.Category));
+        public DO.Enums.Category selectedCategory { get; set; }
+        public ProductForList selectedProduct { get; set; } = new();
+
         public ProductListWindow()
         {
             InitializeComponent();
-            _myCollection = new(bl.Product.GetAll());
-            ProductsListView.DataContext = _myCollection;
-            CategorySelector.DataContext = Enum.GetValues(typeof(BO.Enums.Category));
-
+            productForList = bl.Product.GetAll();
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string? selectedItem = CategorySelector.SelectedItem.ToString();
-            _myCollection = new(bl.Product.GetAll(x => x?.Category.ToString() == selectedItem));
-            ProductsListView.DataContext = _myCollection;
+            productForList = bl.Product.GetAll(x => x?.Category.ToString() == selectedCategory.ToString());
         }
 
         private void addNewProductButton_Click(object sender, RoutedEventArgs e)
@@ -42,10 +48,9 @@ namespace PL.Products
 
         private void ProductsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BO.ProductForList SelectedProduct = (BO.ProductForList)((sender as ListView).SelectedItem);
             string Btn = "Update";
             this.Close();
-            new ProductWindow(Btn, SelectedProduct.ID).Show();
+            new ProductWindow(Btn, selectedProduct.ID).Show();
         }
 
     }
