@@ -32,12 +32,21 @@ public interface IProduct
     /// <param name="val"></param>
     /// <returns>Product</returns>
     public BO.Product GetByManager(Func<DO.Product?, bool>? d);
+    /// <summary>
+    /// func get all productsitem
+    /// </summary>
+    /// <param name="cartBL"></param>
+    /// <param name="d"></param>
+    /// <returns>IEnumerable<BO.ProductItem?></returns>
+    public IEnumerable<BO.ProductItem?> GetAllProductsItemFromCatalog(BO.Cart cartBL, Func<DO.Product?, bool>? d = null);
+
 
     /// <summary>
     /// func Get
     /// </summary>
     /// <param name="val"></param>
     /// <returns>Product</returns>
+
     public BO.ProductItem GetProductFromCatalog(BO.Cart cart, Func<DO.Product?, bool>? d);
     /// <summary>
     /// func GetAll

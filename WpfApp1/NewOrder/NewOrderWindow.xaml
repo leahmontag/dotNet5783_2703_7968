@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.NewOrder"
         mc:Ignorable="d"
-        Title="NewOrderWindow" Height="450" Width="800">
-    <Grid>
+        Title="NewOrderWindow" Height="450" Width="800"
+ DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
+
+    <Grid Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
@@ -18,9 +20,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox ItemsSource="{Binding}" Name="CategorySelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="CategorySelector_SelectionChanged" />
+            <ComboBox SelectedItem = "{Binding selectedCategory}" ItemsSource="{Binding categories}" Name="CategorySelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="CategorySelector_SelectionChanged" />
             <Label Grid.Column="0">Category</Label>
         </Grid>
-        <ListView ItemsSource="{Binding}" Name="ProductItemListView" Grid.Row="1"/>
+        <ListView ItemsSource = "{Binding productItem}" SelectedValue = "{Binding selectedProduct}" Name="ProductsListView" Grid.Row="1" />
     </Grid>
 </Window>

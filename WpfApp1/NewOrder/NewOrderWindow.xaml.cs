@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BO;
+using PL.Products;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -20,23 +22,36 @@ namespace PL.NewOrder
     /// </summary>
     public partial class NewOrderWindow : Window
     {
-        BlApi.IBl? bl = BlApi.Factory.Get();
-        private ObservableCollection<BO.ProductForList?> _myCollection;
+        static BlApi.IBl? bl = BlApi.Factory.Get();
+        BO.Cart cart = new() ;
+
+
+        public IEnumerable<BO.ProductItem?> productItem
+        {
+            get { return (IEnumerable<BO.ProductItem?>)GetValue(productItemsProperty); }
+            set { SetValue(productItemsProperty, value); }
+        }
+        public static readonly DependencyProperty productItemsProperty =
+           DependencyProperty.Register(nameof(productItem), typeof(IEnumerable<BO.ProductItem?>), typeof(NewOrderWindow));
+
+        public System.Array categories { get; set; } = Enum.GetValues(typeof(BO.Enums.Category));
+        public DO.Enums.Category selectedCategory { get; set; }
+        public ProductItem selectedProduct { get; set; } = new();
+
+
 
         BO.Cart cartBL = new();
         public NewOrderWindow()
         {
+            productItem = bl.Product.GetAllProductsItemFromCatalog(cart);
             InitializeComponent();
-            _myCollection = new(bl.Product.GetAll());
-            ProductItemListView.DataContext = _myCollection;
-            CategorySelector.DataContext = Enum.GetValues(typeof(BO.Enums.Category));
+
         }
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string? selectedItem = CategorySelector.SelectedItem.ToString();
-            _myCollection = new(bl.Product.GetAll(x => x?.Category.ToString() == selectedItem));
-            ProductItemListView.DataContext = _myCollection;
+            productItem = bl.Product.GetAllProductsItemFromCatalog(cart, x => x?.Category.ToString() == selectedCategory.ToString());
+
         }
     }
 }

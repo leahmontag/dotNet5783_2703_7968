@@ -129,6 +129,33 @@ internal class Product : BlApi.IProduct
     }
     #endregion
 
+    #region MyRegion
+    public IEnumerable<BO.ProductItem?> GetAllProductsItemFromCatalog(BO.Cart cartBL, Func<DO.Product?, bool>? d = null)
+    {
+
+        try
+        {
+            
+            IEnumerable<DO.Product?> productsList = _dal.Product.GetAll();
+            IEnumerable<BO.ProductItem?> ProductItemForList = from DO.Product productsListDO in productsList
+                                                              where d == null || d(productsListDO)
+                                                              orderby productsListDO.ID
+                                                              select GetProductFromCatalog(cartBL.Items.Add(), d);
+            return ProductItemForList;
+        }
+        catch (DO.NotFoundException exp)
+        {
+            throw new BO.FailedAddingProductException("Failed to display all items", exp);
+        }
+    }
+    #endregion
+
+
+
+
+
+
+
     /// <summary>
     /// Get Product From Catalog function
     /// </summary>
@@ -136,7 +163,7 @@ internal class Product : BlApi.IProduct
     /// <param name="cartBL"></param>
     /// <returns>ProductItem</returns>
     /// <exception cref="Exception"></exception>
-    #region Get product fromCatalog
+    #region Get  ProductsItem from Catalog
     public ProductItem GetProductFromCatalog(BO.Cart cartBL, Func<DO.Product?, bool>? d = null)
     {
         cartBL.Items ??= new List<BO.OrderItem?>() { };

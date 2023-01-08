@@ -101,3 +101,5 @@ C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Or
 C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\OrderTracking\OrderWindow.g.cs
 C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\OrderTracking\OrderWindow.baml
 C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\NewOrder\SingleProductItemWindow.g.cs
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\NewOrder\SingleProductItemWindow.baml
