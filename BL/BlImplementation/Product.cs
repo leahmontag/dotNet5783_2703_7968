@@ -58,7 +58,7 @@ internal class Product : BlApi.IProduct
         IEnumerable<DO.Order?> ordersList = _dal.Order.GetAll();
         ordersList.ToList();
         if (ordersList.ToList().Exists(item => item?.ID == productID))
-                throw new cannotDeletedItemException("An existing item in an order cannot be deleted");
+            throw new cannotDeletedItemException("An existing item in an order cannot be deleted");
         try
         {
             _dal.Product.Delete(productID);
@@ -129,18 +129,34 @@ internal class Product : BlApi.IProduct
     }
     #endregion
 
-    #region MyRegion
+    /// <summary>
+    /// func get all productsitem
+    /// </summary>
+    /// <param name="cartBL"></param>
+    /// <param name="d"></param>
+    /// <returns>IEnumerable<BO.ProductItem?></returns>
+    #region Get All ProductsItem From Catalog
     public IEnumerable<BO.ProductItem?> GetAllProductsItemFromCatalog(BO.Cart cartBL, Func<DO.Product?, bool>? d = null)
     {
 
         try
         {
-            
+
             IEnumerable<DO.Product?> productsList = _dal.Product.GetAll();
-            IEnumerable<BO.ProductItem?> ProductItemForList = from DO.Product productsListDO in productsList
-                                                              where d == null || d(productsListDO)
-                                                              orderby productsListDO.ID
-                                                              select GetProductFromCatalog(cartBL.Items.Add(), d);
+            IEnumerable<BO.ProductItem?> ProductItemForList = new List<BO.ProductItem>();
+            if (d == null)
+            {
+              ProductItemForList = from DO.Product productsListDO in productsList
+                                                                  let x = productsListDO.ID
+                                                                  select GetProductFromCatalog(cartBL, x => x?.ID.ToString() == productsListDO.ID.ToString());
+            }
+            else
+            {
+                ProductItemForList = from DO.Product productsListDO in productsList
+                                     let x = productsListDO.ID
+                                     select GetProductFromCatalog(cartBL, d);
+            }
+
             return ProductItemForList;
         }
         catch (DO.NotFoundException exp)
@@ -149,12 +165,6 @@ internal class Product : BlApi.IProduct
         }
     }
     #endregion
-
-
-
-
-
-
 
     /// <summary>
     /// Get Product From Catalog function
