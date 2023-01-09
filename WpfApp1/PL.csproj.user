@@ -14,6 +14,12 @@
     <Compile Update="Manager\Orders\OrderWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="NewOrder\CartWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NewOrder\ConfirmOrderWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="NewOrder\NewOrderWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -44,6 +50,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Manager\Orders\OrderWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NewOrder\CartWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NewOrder\ConfirmOrderWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="NewOrder\NewOrderWindow.xaml">

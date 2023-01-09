@@ -78,7 +78,7 @@ namespace PL.Products
         {
             try
             {
-                if ((!(new Regex("^[0-9]+$")).IsMatch(Price.Text) || (int.Parse(Price.Text) <= 0)) || !(new Regex("^[0-9]+$")).IsMatch(InStock.Text) || (int.Parse(Price.Text) <= 0))//input validity
+                if ((!(new Regex("^[0-9]+$")).IsMatch(product.Price.ToString()) || (int.Parse(product.Price.ToString()) <= 0)) || !(new Regex("^[0-9]+$")).IsMatch(product.InStock.ToString()) || (int.Parse(product.InStock.ToString()) <= 0))//input validity
                 {
                     throw new Exception("wrong format");
                 }
@@ -95,7 +95,7 @@ namespace PL.Products
         {
             try
             {
-                if ((!(new Regex("^[0-9]+$")).IsMatch(Price.Text) || (int.Parse(Price.Text) <= 0)) || !(new Regex("^[0-9]+$")).IsMatch(InStock.Text) || (int.Parse(Price.Text) <= 0))//input validity
+                if ((!(new Regex("^[0-9]+$")).IsMatch(product.Price.ToString()) || (int.Parse(product.Price.ToString()) <= 0)) || !(new Regex("^[0-9]+$")).IsMatch(product.InStock.ToString()) || (int.Parse(product.InStock.ToString()) <= 0))//input validity
                 {
                     throw new Exception("wrong format");
                 }

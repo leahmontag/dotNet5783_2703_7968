@@ -24,8 +24,6 @@ namespace PL.NewOrder
     {
         static BlApi.IBl? bl = BlApi.Factory.Get();
         BO.Cart cart = new() ;
-
-
         public IEnumerable<BO.ProductItem?> productItem
         {
             get { return (IEnumerable<BO.ProductItem?>)GetValue(productItemsProperty); }
@@ -34,8 +32,16 @@ namespace PL.NewOrder
         public static readonly DependencyProperty productItemsProperty =
            DependencyProperty.Register(nameof(productItem), typeof(IEnumerable<BO.ProductItem?>), typeof(NewOrderWindow));
 
+        public BO.Enums.Category? selectedCategory
+        {
+            get { return (BO.Enums.Category?)GetValue(selectedCategoryProperty); }
+            set { SetValue(selectedCategoryProperty, value); }
+        }
+        public static readonly DependencyProperty selectedCategoryProperty =
+           DependencyProperty.Register(nameof(selectedCategoryProperty), typeof(BO.Enums.Category?), typeof(NewOrderWindow));
+
+
         public System.Array categories { get; set; } = Enum.GetValues(typeof(BO.Enums.Category));
-        public DO.Enums.Category selectedCategory { get; set; }
         public ProductItem selectedProduct { get; set; } = new();
 
 
@@ -43,15 +49,32 @@ namespace PL.NewOrder
         BO.Cart cartBL = new();
         public NewOrderWindow()
         {
+            selectedCategory = null;
             productItem = bl.Product.GetAllProductsItemFromCatalog(cart);
             InitializeComponent();
 
         }
+        public NewOrderWindow(BO.Cart updatingCart)
+        {
+            selectedCategory = null;
+            productItem = bl.Product.GetAllProductsItemFromCatalog(updatingCart);
+            cart=updatingCart;
+            InitializeComponent();
 
+        }
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             productItem = bl.Product.GetAllProductsItemFromCatalog(cart, x => x?.Category.ToString() == selectedCategory.ToString());
-
+        }
+        private void ProductItemView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Close();
+            new SingleProductItemWindow(cart,selectedProduct.ID).Show();
+        }
+        private void BtnMoveToCart_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            new CartWindow(cart).Show();
         }
     }
 }

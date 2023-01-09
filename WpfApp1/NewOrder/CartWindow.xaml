@@ -1,0 +1,27 @@
+﻿<Window x:Class="PL.NewOrder.CartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.NewOrder"
+        mc:Ignorable="d"
+        Title="CartWindow" Height="450" Width="800"
+          DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
+    <Grid Margin="0,0,0,-9">
+        <TextBox Text="enter your details to confirm your order:"   Height="20"  HorizontalAlignment="Left" Margin="483,106,0,0" VerticalAlignment="Top" Width="229" />
+        <TextBox Text="{Binding cart.CustomerAddress,Mode=TwoWay}" Background="red"  Height="23"  HorizontalAlignment="Left" Margin="596,156,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding cart.CustomerEmail,Mode=TwoWay}" Background="Khaki" Height="23"  HorizontalAlignment="Left" Margin="597,198,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding cart.CustomerName,Mode=TwoWay}"  Background="Pink"  Height="23" HorizontalAlignment="Left" Margin="598,246,0,0" VerticalAlignment="Top" Width="120" />
+
+        <Label Content="CustomerAddress:" Height="28" HorizontalAlignment="Left" Margin="472,152,0,0" Name="label1" VerticalAlignment="Top" />
+        <Label Content="CustomerEmail:" Height="28" HorizontalAlignment="Left" Margin="474,195,0,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content="CustomerName:" Height="28" HorizontalAlignment="Left" Margin="475,241,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="all items in cart:" Height="28" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="15,12,0,0" Width="327" />
+
+        <ListView ItemsSource = "{Binding cart.Items}" Margin="14,49,385,68"/>
+        <Label Content="TotalPrice:" Height="28" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="215,384,0,0" RenderTransformOrigin="2.089,0.791" />
+        <TextBlock Text="{Binding cart.TotalPrice}" Background="Violet"  Height="23" HorizontalAlignment="Left" Margin="295,385,0,0" VerticalAlignment="Top" Width="120" />
+
+        <Button Content = "confirm order" Background="Violet" Height="23" HorizontalAlignment="Left" Margin="684,385,0,0" VerticalAlignment="Top" Width="75" Click="BtnConfirmOrder_Click" />
+    </Grid>
+</Window>

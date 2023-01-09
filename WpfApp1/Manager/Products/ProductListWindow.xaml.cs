@@ -23,12 +23,13 @@ namespace PL.Products
         public static readonly DependencyProperty productForListsProperty =
            DependencyProperty.Register(nameof(productForList), typeof(IEnumerable<BO.ProductForList?>), typeof(ProductListWindow));
 
-        public System.Array categories { get; set; } = Enum.GetValues(typeof(DO.Enums.Category));
-        public DO.Enums.Category selectedCategory { get; set; }
+        public System.Array categories { get; set; } = Enum.GetValues(typeof(BO.Enums.Category));
+        public BO.Enums.Category? selectedCategory { get; set; }
         public ProductForList selectedProduct { get; set; } = new();
 
         public ProductListWindow()
         {
+            selectedCategory=null;
             InitializeComponent();
             productForList = bl.Product.GetAll();
         }

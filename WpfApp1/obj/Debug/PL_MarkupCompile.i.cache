@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\App.xaml
-132062747561
+15-25044812
 
-18-579239561
+20-1931393794
 200470682501
-MainWindow.xaml;Manager\ManagerWindow.xaml;Manager\Orders\OrderItemsWindow.xaml;Manager\Orders\OrderListWindow.xaml;Manager\Orders\OrderWindow.xaml;Manager\Products\ProductListWindow.xaml;Manager\Products\ProductWindow.xaml;NewOrder\NewOrderWindow.xaml;NewOrder\SingleProductItemWindow.xaml;OrderTracking\OrderTrackingdetailsWindow.xaml;OrderTracking\OrderTrackingWindow.xaml;OrderTracking\OrderWindow.xaml;registeredUser\registeredUserWindow.xaml;
+MainWindow.xaml;Manager\ManagerWindow.xaml;Manager\Orders\OrderItemsWindow.xaml;Manager\Orders\OrderListWindow.xaml;Manager\Orders\OrderWindow.xaml;Manager\Products\ProductListWindow.xaml;Manager\Products\ProductWindow.xaml;NewOrder\CartWindow.xaml;NewOrder\ConfirmOrderWindow.xaml;NewOrder\NewOrderWindow.xaml;NewOrder\SingleProductItemWindow.xaml;OrderTracking\OrderTrackingdetailsWindow.xaml;OrderTracking\OrderTrackingWindow.xaml;OrderTracking\OrderWindow.xaml;registeredUser\registeredUserWindow.xaml;
 
 True
 

@@ -1,6 +1,8 @@
-﻿using BO;
+﻿using Amazon.Runtime.Internal.Util;
+using BlApi;
+using BO;
 using DO;
-
+using System.Text.RegularExpressions;
 
 namespace BlImplementation;
 
@@ -146,17 +148,17 @@ internal class Product : BlApi.IProduct
             IEnumerable<BO.ProductItem?> ProductItemForList = new List<BO.ProductItem>();
             if (d == null)
             {
-              ProductItemForList = from DO.Product productsListDO in productsList
-                                                                  let x = productsListDO.ID
-                                                                  select GetProductFromCatalog(cartBL, x => x?.ID.ToString() == productsListDO.ID.ToString());
+                ProductItemForList = from DO.Product productsListDO in productsList
+                                     let x = productsListDO.ID
+                                     select GetProductFromCatalog(cartBL, x => x?.ID.ToString() == productsListDO.ID.ToString());
             }
             else
             {
-                ProductItemForList = from DO.Product productsListDO in productsList
-                                     let x = productsListDO.ID
-                                     select GetProductFromCatalog(cartBL, d);
+                ProductItemForList = from DO.Product productsListDOWithCondtion in productsList
+                                     where d(productsListDOWithCondtion)
+                                     let item = productsListDOWithCondtion.ID
+                                     select GetProductFromCatalog(cartBL, item => item?.ID.ToString() == productsListDOWithCondtion.ID.ToString());
             }
-
             return ProductItemForList;
         }
         catch (DO.NotFoundException exp)

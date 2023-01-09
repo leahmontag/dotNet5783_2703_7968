@@ -3,10 +3,45 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PL.NewOrder"
+        xmlns:local="clr-namespace:PL.Convert"
         mc:Ignorable="d"
-        Title="SingleProductItemWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="SingleProductItemWindow" Height="450" Width="800" 
+        DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
+
+    <Window.Resources>
+        <local:NotBooleanToVisibiliryConvertar
+                x:Key="notBooleanToVisibiliryConvertar"/>
+    </Window.Resources>
+    <Grid x:Name="gridProduct">
+
+        <TextBox Text="{Binding product.ID}" Background="Chartreuse" x:Name="Id" Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,30,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding product.Category}" Background="Chartreuse"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,70,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding product.Name}"  Background="Chartreuse"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,110,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding product.Price}" Background="Chartreuse"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,150,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding product.InStock}" Background="Chartreuse"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,190,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding product.Amount}" Background="Chartreuse"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,230,0,0" VerticalAlignment="Top" Width="120" />
+
+        <Label Content="Id:" Height="28" HorizontalAlignment="Left" Margin="39,30,0,0"  VerticalAlignment="Top" />
+        <Label Content="Category:" Height="28" HorizontalAlignment="Left" Margin="39,70,0,0"  VerticalAlignment="Top" />
+        <Label Content="Name:" Height="28" HorizontalAlignment="Left" Margin="39,110,0,0"  VerticalAlignment="Top" />
+        <Label Content="Price:" Height="28" HorizontalAlignment="Left" Margin="39,150,0,0"  VerticalAlignment="Top" />
+        <Label Content="InStock:" Height="28" HorizontalAlignment="Left" Margin="39,190,0,0"  VerticalAlignment="Top" />
+        <Label Content="Amount:" Height="28" HorizontalAlignment="Left" Margin="39,230,0,0"  VerticalAlignment="Top" />
+
+
+        <Button Content = "add to cart" Background="Coral" Height="31" HorizontalAlignment="Left" Margin="22,296,0,0" Name="BtnAdd" VerticalAlignment="Top" Width="95" Click="BtnAdd_Click" />
+        <Button Content = "remove one from the cart" Background="Coral" Height="31" HorizontalAlignment="Left" Margin="135,298,0,0" Name="BtnDecrease" VerticalAlignment="Top" Width="149" Visibility="{Binding VisibileRemoveItemFromCart, Mode=TwoWay,Converter={StaticResource notBooleanToVisibiliryConvertar}}" Click="BtnDecrease_Click" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.214"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content = "back to catalog" Background="Aqua" Height="48" HorizontalAlignment="Left" Margin="627,305,0,0" Name="Btn" VerticalAlignment="Top" Width="147" Click="BtnBackToCatalog_Click" />
+        <Button Content = "Move to cart" Background="Aquamarine" Height="39" HorizontalAlignment="Left" Margin="627,369,0,0" Name="BtnToCart" VerticalAlignment="Top" Width="148" Click="BtnMoveToCart_Click" />
+
     </Grid>
 </Window>

@@ -1,0 +1,28 @@
+﻿<Window x:Class="PL.NewOrder.ConfirmOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.NewOrder"
+        mc:Ignorable="d"
+        Title="ConfirmOrderWindow" Height="450" Width="800"
+        DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
+
+    <Grid TextBlock.FontWeight="ExtraLight"  TextBlock.FontStyle="Italic" TextBlock.Foreground="Brown" >
+        <Image Source="C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\image\images.jfif" Margin="-218,-1,-107,8"/>
+        <TextBlock TextBlock.FontWeight="Bold" TextBlock.TextAlignment="Right" TextBlock.FontSize="20" Text="{Binding cart.CustomerName}"  Height="32" HorizontalAlignment="Left" Margin="250,199,0,0" VerticalAlignment="Top" Width="91" RenderTransformOrigin="-5.143,5.473" />
+        <Label TextBlock.FontSize="20" Content=",We want to thank you for shopping in our stores!" Height="49"  HorizontalAlignment="Left" Margin="338,195,0,0" VerticalAlignment="Top" Width="487" />
+        <Label TextBlock.FontSize="20" Content="We are waiting for you again soon :)" Height="49"  HorizontalAlignment="Left" Margin="448,377,0,0" VerticalAlignment="Top" Width="487" />
+
+        <Grid TextBlock.FontSize="17">
+            <Label Content="your order details:" Height="33" HorizontalAlignment="Left" Margin="344,236,0,0" Name="label1" VerticalAlignment="Top" Width="154" />
+            <TextBlock Text="{Binding cart.CustomerAddress}"  Height="23"  HorizontalAlignment="Left" Margin="416,271,0,0" VerticalAlignment="Top" Width="120" />
+            <TextBlock Text="{Binding cart.CustomerEmail}"  Height="23"  HorizontalAlignment="Left" Margin="414,305,0,0" VerticalAlignment="Top" Width="120" />
+            <TextBlock Text="{Binding cart.TotalPrice}"  Height="23"  HorizontalAlignment="Left" Margin="429,335,0,0" VerticalAlignment="Top" Width="120" />
+
+            <Label Content="Address:" Height="39" HorizontalAlignment="Left" Margin="348,266,0,0"  VerticalAlignment="Top" RenderTransformOrigin="7.73,4.251" />
+            <Label Content="Emaail:" Height="38" HorizontalAlignment="Left" Margin="350,309,0,0"  VerticalAlignment="Top" RenderTransformOrigin="6.251,2.823" />
+            <Label Content="TotalPrice:" Height="40" HorizontalAlignment="Left" Margin="346,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.457,1.073" />
+        </Grid>
+    </Grid>
+</Window>

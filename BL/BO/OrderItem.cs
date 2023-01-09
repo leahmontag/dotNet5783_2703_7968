@@ -45,6 +45,6 @@ public class OrderItem
     Product ID: {ProductID}
     Price: {Price}
     Amount in order: {Amount}
-    Total Price: {TotalPrice},
+    Total Price: {TotalPrice}
     ";
 }

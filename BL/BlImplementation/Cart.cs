@@ -88,7 +88,9 @@ internal class Cart : ICart
                                     Name = productItem.Name,
                                     Price = productItem.Price,
                                     ProductID = productItem.ID,
-                                    TotalPrice = productItem.Price
+                                    TotalPrice = productItem.Price,
+                                    //OrderItemID?? 
+                                    
                                 });
                             
                         }
@@ -126,7 +128,7 @@ internal class Cart : ICart
     /// <returns>BO.cart</returns>
     /// <exception cref="Exception"></exception>
     #region Update cart
-    public BO.Cart Update(BO.Cart CartBL, int OrderItemID, int newAmount = 0)
+    public BO.Cart Update(BO.Cart CartBL, int ProductID, int newAmount = 0)
     {
         try
         {
@@ -146,7 +148,7 @@ internal class Cart : ICart
 
                 foreach (var item in CartBL.Items)
                 {
-                    if (item.OrderItemID == OrderItemID)
+                    if (item.ProductID == ProductID)
                     {
                         flag = true;
                         if (newAmount == 0)
@@ -164,7 +166,7 @@ internal class Cart : ICart
                             //fount product in dal and cheack his amount.
                             foreach (DO.Product productItem in productList)
                             {
-                                if (productItem.ID == OrderItemID)
+                                if (productItem.ID == ProductID)
                                 {
                                     if (productItem.InStock <= newAmount)
                                         throw new Exception();

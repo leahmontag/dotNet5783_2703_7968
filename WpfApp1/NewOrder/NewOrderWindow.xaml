@@ -20,9 +20,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox SelectedItem = "{Binding selectedCategory}" ItemsSource="{Binding categories}" Name="CategorySelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="CategorySelector_SelectionChanged" />
+            <ComboBox SelectedItem = "{Binding selectedCategory,Mode=TwoWay}" ItemsSource="{Binding categories}" Name="CategorySelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="CategorySelector_SelectionChanged" />
+
+            <!--<ComboBox SelectedItem = "{Binding selectedSpecificCategory,Mode=TwoWay}" ItemsSource="{Binding categories}" Name="CategorySelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="CategorySelector_SelectionChanged" />-->
             <Label Grid.Column="0">Category</Label>
         </Grid>
-        <ListView ItemsSource = "{Binding productItem}" SelectedValue = "{Binding selectedProduct}" Name="ProductsListView" Grid.Row="1" />
+        <ListView ItemsSource = "{Binding productItem}" SelectedValue = "{Binding selectedProduct}" Name="ProductsListView" Grid.Row="1" MouseDoubleClick="ProductItemView_MouseDoubleClick"/>
+        <Button Content = "back to catalog" Background="Aquamarine" Height="23" HorizontalAlignment="Right" Margin="0,393,25,0" Name="BtnToCart" VerticalAlignment="Top" Width="75" Click="BtnMoveToCart_Click" />
     </Grid>
 </Window>

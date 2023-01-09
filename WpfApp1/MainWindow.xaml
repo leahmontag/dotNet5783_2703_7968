@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Margin="288,125,344,263" Name="ManagerWindowButton" Background="Bisque" Click="ShowManagerWindowButton_Click" >manager window</Button>
-        <Button Margin="288,183,344,205" Name="NewOrderWindowButton" Background="Bisque" Click="ShowNewOrderWindowButton_Click" >New order window</Button>
-        <Button Margin="288,239,344,149" Name="OrderTrackingWindowButton" Background="Bisque" Click="ShowOrderTrackingWindowButton_Click" >OrderTracking window</Button>
-        <Button Margin="288,295,344,93" Name="registeredUserWindowButton" Background="Bisque" Click="ShowregisteredUserWindowButton_Click" >registered user window</Button>
+    <Grid TextBlock.FontSize="20" TextBlock.FontStyle="Italic" >
+        <Image Source="C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\image\brush_7.JPG" Margin="-138,0,-187,7"/>
+        <Button Margin="23,5,569,296"  BorderBrush="White" BorderThickness="5" TextBlock.Foreground="AntiqueWhite" Name="ManagerWindowButton"  Background="Black" Click="ShowManagerWindowButton_Click" >manager window</Button>
+        <Button Margin="24,146,568,155" BorderBrush="White" BorderThickness="5" TextBlock.Foreground="Azure" Name="NewOrderWindowButton" Background="Black" Click="ShowNewOrderWindowButton_Click" >New order window</Button>
+        <Button Margin="24,285,567,16" BorderBrush="White" BorderThickness="5" TextBlock.Foreground="DeepPink" Name="OrderTrackingWindowButton" Background="Black" Click="ShowOrderTrackingWindowButton_Click" >OrderTracking window</Button>
+        <!--<Button Margin="17,324,615,24" Height="100" TextBlock.FontSize="" Name="registeredUserWindowButton" Background="White" Click="ShowregisteredUserWindowButton_Click" >registered user window</Button>-->
 
     </Grid>
 </Window>
