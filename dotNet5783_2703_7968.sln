@@ -31,6 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{74B607A6-8D3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Item", "Solution Item", "{F9035DE0-5F76-4EEE-BBE9-44C1CD06F1F5}"
 	ProjectSection(SolutionItems) = preProject
+		image\brush_7.jpg = image\brush_7.jpg
 		README.md = README.md
 	EndProjectSection
 EndProject

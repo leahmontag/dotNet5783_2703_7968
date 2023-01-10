@@ -8,6 +8,6 @@
         Title="OrderItemsWindow" Height="450" Width="800"
     DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
     <Grid>
-        <ListView ItemsSource="{Binding orderItemsForList}" Name="OrdersItemsView"/>
+        <ListView ItemsSource="{Binding orderItemsForList}"/>
     </Grid>
 </Window>

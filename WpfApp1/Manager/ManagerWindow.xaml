@@ -18,8 +18,8 @@
             </Image.RenderTransform>
         </Image>
         <Grid TextBlock.FontStyle="Italic" TextBlock.FontWeight="Bold" TextBlock.FontSize="20">
-            <Button Margin="43,146,582,141" Name="ButtonProductForList" Background="OldLace" Click="ShowProductsButton_Click" >ProductForList</Button>
-            <Button Margin="242,148,383,142" Name="ButtonOrderForList" Click="ShowOrdersButton_Click" Background="OldLace">OrderForList</Button>
+            <Button Margin="43,146,582,141" Background="OldLace" Click="ShowProductsButton_Click" >ProductForList</Button>
+            <Button Margin="242,148,383,142" Click="ShowOrdersButton_Click" Background="OldLace">OrderForList</Button>
         </Grid>
     </Grid>
 </Window>

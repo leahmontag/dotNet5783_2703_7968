@@ -37,8 +37,7 @@ namespace PL.OrderTracking
             Close();
             try
             {
-
-                if ((!(new Regex("^[0-9]+$")).IsMatch(orderTrakingNum.ToString())) || (int.Parse(orderTrakingNum.ToString()) <= 0));
+                if (!(new Regex("^[0-9]+$")).IsMatch(orderTrakingNum.ToString()) || orderTrakingNum <= 0)
                     throw new Exception("wrong format");
 
                 if (orderTrakingNum.HasValue)//לבדוק לגבי הבדיקה

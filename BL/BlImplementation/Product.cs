@@ -132,6 +132,34 @@ internal class Product : BlApi.IProduct
     #endregion
 
     /// <summary>
+    /// func GetProductForList
+    /// </summary>
+    /// <param name="d"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.ProductIsNotAvailableException"></exception>
+    #region Get ProductForList
+    public BO.ProductForList GetProductForList(Func<DO.Product?, bool>? d)
+    {
+        try
+        {
+            DO.Product? productDal;
+            productDal = _dal?.Product.Get(d);
+            return new BO.ProductForList()
+            {
+                ID = productDal?.ID ?? 0,
+                Name = productDal?.Name ?? "",
+                Category = (BO.Enums.Category?)productDal?.Category,
+                Price = productDal?.Price ?? 0
+            };
+        }
+        catch (DO.NotFoundException exp)
+        {
+            throw new BO.ProductIsNotAvailableException("Finding this product details failed due to not finding an item with such an ID", exp);
+        }
+    }
+    #endregion
+
+    /// <summary>
     /// func get all productsitem
     /// </summary>
     /// <param name="cartBL"></param>
@@ -159,6 +187,11 @@ internal class Product : BlApi.IProduct
                                      let item = productsListDOWithCondtion.ID
                                      select GetProductFromCatalog(cartBL, item => item?.ID.ToString() == productsListDOWithCondtion.ID.ToString());
             }
+
+
+
+
+
             return ProductItemForList;
         }
         catch (DO.NotFoundException exp)
@@ -167,6 +200,21 @@ internal class Product : BlApi.IProduct
         }
     }
     #endregion
+    public IEnumerable<BO.ProductItem?> GetAllProductsItemGroupByCategory(BO.Cart cartBL)
+    {
+        IEnumerable<DO.Product?> productsList = _dal.Product.GetAll();
+        IEnumerable<BO.ProductItem?> ProductItemForList = new List<BO.ProductItem>();
+        //var x = from DO.Product prod in productsList
+        //        group prod by prod.Category into y
+        //        select new BO.ProductItem() { Amount = y. }
+
+
+        // return ProductItemForList = from DO.Product productsListDOWithCondtion in x
+        //                             let item = productsListDOWithCondtion.ID
+        //                             select GetProductFromCatalog(cartBL, item => item?.ID.ToString() == productsListDOWithCondtion.ID.ToString());
+        return ProductItemForList;
+    }
+
 
     /// <summary>
     /// Get Product From Catalog function

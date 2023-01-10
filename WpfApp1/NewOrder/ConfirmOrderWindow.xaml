@@ -15,7 +15,7 @@
         <Label TextBlock.FontSize="20" Content="We are waiting for you again soon :)" Height="49"  HorizontalAlignment="Left" Margin="448,377,0,0" VerticalAlignment="Top" Width="487" />
 
         <Grid TextBlock.FontSize="17">
-            <Label Content="your order details:" Height="33" HorizontalAlignment="Left" Margin="344,236,0,0" Name="label1" VerticalAlignment="Top" Width="154" />
+            <Label Content="your order details:" Height="33" HorizontalAlignment="Left" Margin="344,236,0,0"  VerticalAlignment="Top" Width="154" />
             <TextBlock Text="{Binding cart.CustomerAddress}"  Height="23"  HorizontalAlignment="Left" Margin="416,271,0,0" VerticalAlignment="Top" Width="120" />
             <TextBlock Text="{Binding cart.CustomerEmail}"  Height="23"  HorizontalAlignment="Left" Margin="414,305,0,0" VerticalAlignment="Top" Width="120" />
             <TextBlock Text="{Binding cart.TotalPrice}"  Height="23"  HorizontalAlignment="Left" Margin="429,335,0,0" VerticalAlignment="Top" Width="120" />

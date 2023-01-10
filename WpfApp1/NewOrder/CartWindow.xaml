@@ -13,9 +13,9 @@
         <TextBox Text="{Binding cart.CustomerEmail,Mode=TwoWay}" Background="Khaki" Height="23"  HorizontalAlignment="Left" Margin="597,198,0,0" VerticalAlignment="Top" Width="120" />
         <TextBox Text="{Binding cart.CustomerName,Mode=TwoWay}"  Background="Pink"  Height="23" HorizontalAlignment="Left" Margin="598,246,0,0" VerticalAlignment="Top" Width="120" />
 
-        <Label Content="CustomerAddress:" Height="28" HorizontalAlignment="Left" Margin="472,152,0,0" Name="label1" VerticalAlignment="Top" />
-        <Label Content="CustomerEmail:" Height="28" HorizontalAlignment="Left" Margin="474,195,0,0" Name="label2" VerticalAlignment="Top" />
-        <Label Content="CustomerName:" Height="28" HorizontalAlignment="Left" Margin="475,241,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="CustomerAddress:" Height="28" HorizontalAlignment="Left" Margin="472,152,0,0" VerticalAlignment="Top" />
+        <Label Content="CustomerEmail:" Height="28" HorizontalAlignment="Left" Margin="474,195,0,0" VerticalAlignment="Top" />
+        <Label Content="CustomerName:" Height="28" HorizontalAlignment="Left" Margin="475,241,0,0" VerticalAlignment="Top" />
         <Label Content="all items in cart:" Height="28" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="15,12,0,0" Width="327" />
 
         <ListView ItemsSource = "{Binding cart.Items}" Margin="14,49,385,68"/>

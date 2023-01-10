@@ -76,5 +76,14 @@ namespace PL.NewOrder
             Close();
             new CartWindow(cart).Show();
         }
+        private void BtnGroupByCategory_Click(object sender, RoutedEventArgs e)
+        {
+            selectedCategory = null;
+            var w = bl.Product.GetAllProductsItemGroupByCategory(cart);
+            MessageBox.Show(w.ToString());
+        }
+
+        
+
     }
 }

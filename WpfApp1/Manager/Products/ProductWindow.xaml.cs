@@ -27,14 +27,15 @@ namespace PL.Products
         public string buttonContent { get; set; }
         public bool isReadOnly { get; set; } = false;
 
-
-        public ProductWindow(string buttonAdd)
+        private Action<ProductForList?> action;
+        public ProductWindow(string buttonAdd,Action<ProductForList?>action)
         {
             buttonContent = buttonAdd;
             product = new BO.Product();
             InitializeComponent();
+            this.action = action;
         }
-        public ProductWindow(string button, int productID)
+        public ProductWindow(string button, int productID, Action<ProductForList?> action)
         {
             buttonContent = button;
             try
@@ -47,6 +48,7 @@ namespace PL.Products
             }
             isReadOnly = true;
             InitializeComponent();
+            this.action = action;
         }
         private void ChoiceOfButten_Click(object sender, RoutedEventArgs e)
         {
@@ -55,6 +57,7 @@ namespace PL.Products
                 try
                 {
                     AddNewProductButton_Click(sender, e);
+                    action(bl.Product.GetProductForList(x => x?.ID == product.ID));
                 }
                 catch (Exception ex)
                 {
@@ -66,6 +69,7 @@ namespace PL.Products
                 try
                 {
                     UpdateProductButton_Click(sender, e);
+                    action(bl.Product.GetProductForList(x => x?.ID == product.ID));
                 }
                 catch (Exception ex)
                 {
@@ -84,7 +88,7 @@ namespace PL.Products
                 }
                 bl.Product.Create(product);
                 Close();
-                new ProductListWindow().Show();
+               // new ProductListWindow().Show();
             }
             catch (Exception ex)
             {
@@ -101,7 +105,7 @@ namespace PL.Products
                 }
                 bl.Product.Update(product);
                 Close();
-                new ProductListWindow().Show();
+               // new ProductListWindow().Show();
             }
             catch (Exception ex)
             {

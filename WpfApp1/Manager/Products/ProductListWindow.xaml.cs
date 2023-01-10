@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,13 +16,13 @@ namespace PL.Products
     public partial class ProductListWindow : Window
     {
         static BlApi.IBl? bl = BlApi.Factory.Get();
-        public IEnumerable<BO.ProductForList?> productForList
+        public ObservableCollection<BO.ProductForList?> productForList
         {
-            get { return (IEnumerable<BO.ProductForList?>)GetValue(productForListsProperty); }
+            get { return (ObservableCollection<BO.ProductForList?>)GetValue(productForListsProperty); }
             set { SetValue(productForListsProperty, value); }
         }
         public static readonly DependencyProperty productForListsProperty =
-           DependencyProperty.Register(nameof(productForList), typeof(IEnumerable<BO.ProductForList?>), typeof(ProductListWindow));
+           DependencyProperty.Register(nameof(productForList), typeof(ObservableCollection<BO.ProductForList?>), typeof(ProductListWindow));
 
         public System.Array categories { get; set; } = Enum.GetValues(typeof(BO.Enums.Category));
         public BO.Enums.Category? selectedCategory { get; set; }
@@ -31,27 +32,36 @@ namespace PL.Products
         {
             selectedCategory=null;
             InitializeComponent();
-            productForList = bl.Product.GetAll();
+            productForList = new ObservableCollection<BO.ProductForList?>(bl.Product.GetAll().Cast<BO.ProductForList?>());
         }
 
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            productForList = bl.Product.GetAll(x => x?.Category.ToString() == selectedCategory.ToString());
+            productForList = new ObservableCollection<BO.ProductForList?>(bl.Product.GetAll(x => x?.Category.ToString() == selectedCategory.ToString()).Cast<BO.ProductForList?>());
+
         }
 
         private void addNewProductButton_Click(object sender, RoutedEventArgs e)
         {
             string Btn = "Add";
-            this.Close();
-            new ProductWindow(Btn).Show();
+            new ProductWindow(Btn,add).Show();
         }
 
         private void ProductsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             string Btn = "Update";
-            this.Close();
-            new ProductWindow(Btn, selectedProduct.ID).Show();
+            new ProductWindow(Btn, selectedProduct.ID, update).Show();
+        }
+        public void update(ProductForList? productUpdate)
+        {
+            var item = productForList.FirstOrDefault(item=>item.ID== productUpdate.ID);
+            if (item != null)
+                productForList[productForList.IndexOf(item)] = productUpdate;
+        }
+        public void add(ProductForList? productUpdate)
+        {
+             productForList.Insert(productForList.Count, productUpdate);
         }
 
     }
