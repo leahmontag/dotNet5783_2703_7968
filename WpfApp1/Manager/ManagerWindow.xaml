@@ -6,8 +6,20 @@
         xmlns:local="clr-namespace:PL.ManagerVew"
         mc:Ignorable="d"
         Title="ManagerWindow" Height="450" Width="800">
-    <Grid>
-        <Button Margin="288,233,288,134" Name="ButtonProductForList" Click="ShowProductsButton_Click" Background="Yellow">ProductForList</Button>
-        <Button Margin="288,150,288,217" Name="ButtonOrderForList" Click="ShowOrdersButton_Click" Background="Blue">OrderForList</Button>
+    <Grid Background="Black">
+        <Image Source="C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\image\brushes.jpg" Margin="162,3,-2,4" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Grid TextBlock.FontStyle="Italic" TextBlock.FontWeight="Bold" TextBlock.FontSize="20">
+            <Button Margin="43,146,582,141" Name="ButtonProductForList" Background="OldLace" Click="ShowProductsButton_Click" >ProductForList</Button>
+            <Button Margin="242,148,383,142" Name="ButtonOrderForList" Click="ShowOrdersButton_Click" Background="OldLace">OrderForList</Button>
+        </Grid>
     </Grid>
 </Window>

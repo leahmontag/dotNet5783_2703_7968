@@ -26,6 +26,7 @@ namespace PL.ManagerVew
             InitializeComponent();
         }
         private void ShowProductsButton_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
-       private void ShowOrdersButton_Click(object sender, RoutedEventArgs e) => new OrderListWindow().Show();
+        private void ShowOrdersButton_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
+
     }
 }

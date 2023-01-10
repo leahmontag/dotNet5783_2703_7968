@@ -8,21 +8,20 @@
         Title="ProductWindow" Height="450" Width="800"
         DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
 
-    <Grid x:Name="gridProduct">
+    <Grid Background="Black" TextBlock.Foreground="Beige">
+        <Image Source="C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\image\brush2.JPG" Margin="25,0,-345,7"/>
+        <TextBox Text="{Binding product.ID,Mode=TwoWay}" Background="PaleVioletRed" x:Name="Id" Height="23" IsReadOnly="{Binding isReadOnly}" HorizontalAlignment="Left" Margin="182,86,0,0" VerticalAlignment="Top" Width="119" />
+        <TextBox Text="{Binding product.Name,Mode=TwoWay}"  Background="PaleVioletRed" x:Name="Name" Height="23" HorizontalAlignment="Left" Margin="182,166,0,0" VerticalAlignment="Top" Width="119" />
+        <TextBox Text="{Binding product.Price,Mode=TwoWay}" Background="PaleVioletRed" x:Name="Price" Height="23" HorizontalAlignment="Left" Margin="182,210,0,0" VerticalAlignment="Top" Width="119" />
+        <TextBox Text="{Binding product.InStock,Mode=TwoWay}" Background="PaleVioletRed" x:Name="InStock" Height="22" HorizontalAlignment="Left" Margin="182,253,0,0" VerticalAlignment="Top" Width="119" />
 
-        <TextBox Text="{Binding product.ID,Mode=TwoWay}" Background="red" x:Name="Id" Height="23" IsReadOnly="{Binding isReadOnly}" HorizontalAlignment="Left" Margin="151,30,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding product.Name,Mode=TwoWay}"  Background="Pink" x:Name="Name" Height="23" HorizontalAlignment="Left" Margin="151,110,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding product.Price,Mode=TwoWay}" Background="Green" x:Name="Price" Height="23" HorizontalAlignment="Left" Margin="151,150,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding product.InStock,Mode=TwoWay}" Background="Blue" x:Name="InStock" Height="23" HorizontalAlignment="Left" Margin="151,190,0,0" VerticalAlignment="Top" Width="120" />
+        <Label TextBlock.Foreground="Beige" Content="Id:" Height="27" HorizontalAlignment="Left" Margin="71,88,0,0" Name="label1" VerticalAlignment="Top" Width="23" />
+        <Label TextBlock.Foreground="Beige" Content="Category:" Height="28" HorizontalAlignment="Left" Margin="71,127,0,0" Name="label2" VerticalAlignment="Top" Width="60" />
+        <Label TextBlock.Foreground="Beige" Content="Name:" Height="28" HorizontalAlignment="Left" Margin="71,166,0,0" Name="label3" VerticalAlignment="Top" Width="44" />
+        <Label TextBlock.Foreground="Beige" Content="Price:" Height="28" HorizontalAlignment="Left" Margin="71,207,0,0" Name="label4" VerticalAlignment="Top" Width="38" />
+        <Label TextBlock.Foreground="Beige" Content="InStock:" Height="27" HorizontalAlignment="Left" Margin="71,252,0,0" Name="label5" VerticalAlignment="Top" Width="51" />
 
-        <Label Content="Id:" Height="28" HorizontalAlignment="Left" Margin="39,30,0,0" Name="label1" VerticalAlignment="Top" />
-        <Label Content="Category:" Height="28" HorizontalAlignment="Left" Margin="39,70,0,0" Name="label2" VerticalAlignment="Top" />
-        <Label Content="Name:" Height="28" HorizontalAlignment="Left" Margin="39,110,0,0" Name="label3" VerticalAlignment="Top" />
-        <Label Content="Price:" Height="28" HorizontalAlignment="Left" Margin="39,150,0,0" Name="label4" VerticalAlignment="Top" />
-        <Label Content="InStock:" Height="28" HorizontalAlignment="Left" Margin="39,190,0,0" Name="label5" VerticalAlignment="Top" />
-
-
-        <Button Content = "{Binding buttonContent ,Mode=TwoWay}" Background="Yellow" Height="23" HorizontalAlignment="Left" Margin="49,300,0,0" Name="Btn" VerticalAlignment="Top" Width="75" Click="ChoiceOfButten_Click" />
-        <ComboBox SelectedItem = "{Binding product.Category,Mode=TwoWay}" ItemsSource="{Binding CategorySelector}" Name="CategorySelectorr"  HorizontalAlignment="Left" Margin="152,71,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Background="PaleVioletRed" Content = "{Binding buttonContent ,Mode=TwoWay}"  Height="23" HorizontalAlignment="Left" Margin="143,296,0,0" Name="Btn" VerticalAlignment="Top" Width="75" Click="ChoiceOfButten_Click" />
+        <ComboBox SelectedItem = "{Binding product.Category,Mode=TwoWay}" ItemsSource="{Binding CategorySelector}" Name="CategorySelectorr"  HorizontalAlignment="Left" Margin="183,126,0,0" VerticalAlignment="Top" Width="119" Height="22"/>
     </Grid>
 </Window>
