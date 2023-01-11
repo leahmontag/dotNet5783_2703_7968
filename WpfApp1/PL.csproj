@@ -13,6 +13,93 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="image\34d50eaff4d41c8f69de38ca3ebb126d.jpg" />
+	  <None Remove="image\4cc3c224f694f225cbaf5e89a924eb82.jpg" />
+	  <None Remove="image\a1.jpg" />
+	  <None Remove="image\a2.jpg" />
+	  <None Remove="image\a3.jpg" />
+	  <None Remove="image\back2.png" />
+	  <None Remove="image\background1.jpg" />
+	  <None Remove="image\background2.jpg" />
+	  <None Remove="image\brush2.jpg" />
+	  <None Remove="image\brush3.jpg" />
+	  <None Remove="image\brushes.JPG" />
+	  <None Remove="image\brush_1.jpg" />
+	  <None Remove="image\brush_2.jpg" />
+	  <None Remove="image\brush_7.jpg" />
+	  <None Remove="image\images %281%29.jfif" />
+	  <None Remove="image\images.jfif" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\background2.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\back2.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\images.jfif" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\images (1).jfif" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\brushes.JPG" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\brush3.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\a3.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\a2.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\a1.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\brush_2.jpg">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\4cc3c224f694f225cbaf5e89a924eb82.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\34d50eaff4d41c8f69de38ca3ebb126d.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\brush2.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\brush_1.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\background1.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="image\brush_7.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="DocumentFormat.OpenXml" Version="2.18.0" />
 	</ItemGroup>
 

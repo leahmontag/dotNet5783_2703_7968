@@ -7,10 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid TextBlock.FontSize="20" TextBlock.FontStyle="Italic" >
-        <Image Source="C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\image\brush_7.JPG" Margin="-138,0,-187,7"/>
-        <Button Margin="23,5,569,296"  BorderBrush="White" BorderThickness="5" TextBlock.Foreground="AntiqueWhite"  Background="Black" Click="ShowManagerWindowButton_Click" >manager window</Button>
-        <Button Margin="24,146,568,155" BorderBrush="White" BorderThickness="5" TextBlock.Foreground="Azure"  Background="Black" Click="ShowNewOrderWindowButton_Click" >New order window</Button>
-        <Button Margin="24,285,567,16" BorderBrush="White" BorderThickness="5" TextBlock.Foreground="DeepPink" Background="Black" Click="ShowOrderTrackingWindowButton_Click" >OrderTracking window</Button>
+        <Grid.Background>
+            <ImageBrush Stretch="Uniform" ImageSource="/image/brush_7.JPG"></ImageBrush>
+        </Grid.Background>
+        <Button Margin="23,5,546,296"  BorderBrush="White" BorderThickness="5" TextBlock.Foreground="AntiqueWhite"  Background="Black" Click="ShowManagerWindowButton_Click" >manager window</Button>
+        <Button Margin="24,146,546,155" BorderBrush="White" BorderThickness="5" TextBlock.Foreground="Azure"  Background="Black" Click="ShowNewOrderWindowButton_Click" >New order window</Button>
+        <Button Margin="24,285,546,16" BorderBrush="White" BorderThickness="5" TextBlock.Foreground="DeepPink" Background="Black" Click="ShowOrderTrackingWindowButton_Click" >OrderTracking window</Button>
         <!--<Button Margin="17,324,615,24" Height="100" TextBlock.FontSize="" Name="registeredUserWindowButton" Background="White" Click="ShowregisteredUserWindowButton_Click" >registered user window</Button>-->
 
     </Grid>

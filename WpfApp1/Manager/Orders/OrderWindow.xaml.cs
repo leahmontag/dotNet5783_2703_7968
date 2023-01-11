@@ -3,6 +3,7 @@ using DO;
 using DocumentFormat.OpenXml.Drawing.Charts;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using DocumentFormat.OpenXml.Wordprocessing;
+using PL.Products;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -51,6 +52,14 @@ namespace PL.Orders
         public static readonly DependencyProperty VisibileDeliveryProperty =
            DependencyProperty.Register(nameof(VisibileDelivery), typeof(bool), typeof(OrderWindow));
 
+        public string errorProp
+        {
+            get { return (string)GetValue(errorPropProperty); }
+            set { SetValue(errorPropProperty, value); }
+        }
+        public static readonly DependencyProperty errorPropProperty =
+          DependencyProperty.Register(nameof(errorProp), typeof(string), typeof(OrderWindow));
+
 
         public OrderWindow(int orderID)
         {
@@ -63,7 +72,7 @@ namespace PL.Orders
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                errorProp = ex.Message;
             }
 
             if (order.Status.ToString() == "provided")

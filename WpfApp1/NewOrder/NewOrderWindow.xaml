@@ -25,6 +25,6 @@
         </Grid>
         <ListView ItemsSource = "{Binding productItem}" SelectedValue = "{Binding selectedProduct}" Grid.Row="1" MouseDoubleClick="ProductItemView_MouseDoubleClick"/>
         <Button Content = "group by category" Background="Aquamarine" Height="43" HorizontalAlignment="Right" Margin="0,272,81,0" VerticalAlignment="Top" Width="127" Click="BtnGroupByCategory_Click" Grid.Row="1" />
-        <Button Content = "back to catalog" Background="Aquamarine" Height="39" HorizontalAlignment="Right" Margin="0,323,81,0" VerticalAlignment="Top" Width="117" Click="BtnMoveToCart_Click" Grid.Row="1" />
+        <Button Content = "back to cart" Background="Aquamarine" Height="39" HorizontalAlignment="Right" Margin="0,323,81,0" VerticalAlignment="Top" Width="117" Click="BtnMoveToCart_Click" Grid.Row="1" />
     </Grid>
 </Window>

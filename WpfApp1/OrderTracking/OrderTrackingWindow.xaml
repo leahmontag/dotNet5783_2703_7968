@@ -8,9 +8,13 @@
         Title="OrderTrackingWindow" Height="450" Width="800"
         DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
 
-    <Grid>
-        <TextBox Text="{Binding orderTrakingNum,Mode=TwoWay}" Background="Pink" Name="OrderTrackingInput" Height="23" HorizontalAlignment="Left" Margin="239,110,0,0" VerticalAlignment="Top" Width="120" />
-        <Label Content="Enter your order tracking number:" Height="28" HorizontalAlignment="Left" Margin="39,110,0,0" Name="label3" VerticalAlignment="Top" />
-        <Button Background="Yellow" Content="confirm" Height="23" HorizontalAlignment="Left" Margin="391,107,0,0" Name="Btn" VerticalAlignment="Top" Width="75" Click="Confirm_Click"  />
+    <Grid Background="Black">
+        <Image Source="/image/background2.jpg" Stretch="Uniform" Margin="110,5,-91,-5"/>
+
+        <TextBox BorderBrush="White" Text="{Binding orderTrakingNum,Mode=TwoWay}" Background="PaleVioletRed" Name="OrderTrackingInput" Height="23" HorizontalAlignment="Left" Margin="20,96,0,0" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <Label TextBlock.Foreground="White" Content="Enter your order tracking number:" Height="28" HorizontalAlignment="Left" Margin="17,68,0,0" VerticalAlignment="Top" />
+        <Label Content="{Binding errorProp,Mode=TwoWay}" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red" Height="25" HorizontalAlignment="Left" Margin="19,119,0,0"  VerticalAlignment="Top" Width="354" />
+
+        <Button BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black"  Background="Azure" Content="confirm" Height="40" HorizontalAlignment="Left" Margin="126,231,0,0" Name="Btn" VerticalAlignment="Top" Width="88" Click="Confirm_Click"   />
     </Grid>
 </Window>

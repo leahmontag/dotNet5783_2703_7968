@@ -1,4 +1,5 @@
 ﻿using Amazon.DynamoDBv2;
+using BO;
 using DO;
 using PL.Products;
 using System;
@@ -25,7 +26,23 @@ namespace PL.OrderTracking
     public partial class OrderTrackingWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
-        public int? orderTrakingNum { get; set; }
+        public string errorProp
+        {
+            get { return (string)GetValue(errorPropProperty); }
+            set { SetValue(errorPropProperty, value); }
+        }
+        public static readonly DependencyProperty errorPropProperty =
+          DependencyProperty.Register(nameof(errorProp), typeof(string), typeof(OrderTrackingWindow));
+
+        public string orderTrakingNum
+        {
+            get { return (string)GetValue(orderTrakingNumProperty); }
+            set { SetValue(orderTrakingNumProperty, value); }
+        }
+        public static readonly DependencyProperty orderTrakingNumProperty =
+          DependencyProperty.Register(nameof(orderTrakingNum), typeof(string), typeof(OrderTrackingWindow));
+
+
         public OrderTrackingWindow()
         {
             // orderTrakingNum = null;
@@ -34,22 +51,32 @@ namespace PL.OrderTracking
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-            Close();
             try
             {
-                if (!(new Regex("^[0-9]+$")).IsMatch(orderTrakingNum.ToString()) || orderTrakingNum <= 0)
-                    throw new Exception("wrong format");
-
-                if (orderTrakingNum.HasValue)//לבדוק לגבי הבדיקה
-                    new OrderTrackingdetailsWindow((int)orderTrakingNum).Show();
-                else
+                MessageBox.Show(orderTrakingNum);
+                if (orderTrakingNum==null)//לבדוק לגבי הבדיקה
+                {
                     throw new Exception("order traking number can't be null");
+
+                }
+                else if (!(new Regex("^[0-9]+$")).IsMatch(orderTrakingNum.ToString()) || int.Parse(orderTrakingNum) <= 0)
+                    throw new Exception("wrong format");
+                else
+                    new OrderTrackingdetailsWindow(int.Parse(orderTrakingNum)).Show();
+
+                orderTrakingNum = null;
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.ToString());
+                orderTrakingNum = null;
+                errorProp = ex.Message;
             }
         }
+
+        private void TextBox_TextChanged(object sender, RoutedEventArgs e)
+        {
+            errorProp = "";
+        }
+
     }
 }

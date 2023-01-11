@@ -9,7 +9,7 @@
         DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
 
     <Grid Background="Black" TextBlock.Foreground="Beige">
-        <Image Source="C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\image\brush2.JPG" Margin="25,0,-345,7"/>
+        <Image Source="/image/brush2.JPG" Stretch="Uniform" Margin="84,0,-84,0"/>
         <TextBox Text="{Binding product.ID,Mode=TwoWay}" Background="PaleVioletRed" Height="23" IsReadOnly="{Binding isReadOnly}" HorizontalAlignment="Left" Margin="182,86,0,0" VerticalAlignment="Top" Width="119" />
         <TextBox Text="{Binding product.Name,Mode=TwoWay}"  Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="182,166,0,0" VerticalAlignment="Top" Width="119" />
         <TextBox Text="{Binding product.Price,Mode=TwoWay}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="182,210,0,0" VerticalAlignment="Top" Width="119" />
@@ -20,6 +20,8 @@
         <Label TextBlock.Foreground="Beige" Content="Name:" Height="28" HorizontalAlignment="Left" Margin="71,166,0,0" VerticalAlignment="Top" Width="44" />
         <Label TextBlock.Foreground="Beige" Content="Price:" Height="28" HorizontalAlignment="Left" Margin="71,207,0,0" VerticalAlignment="Top" Width="38" />
         <Label TextBlock.Foreground="Beige" Content="InStock:" Height="27" HorizontalAlignment="Left" Margin="71,252,0,0" VerticalAlignment="Top" Width="51" />
+        <Label Content="{Binding errorProp}" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red" Height="25" HorizontalAlignment="Left" Margin="{Binding expMargin}"  VerticalAlignment="Top" Width="197" />
+
 
         <Button Background="PaleVioletRed" Content = "{Binding buttonContent ,Mode=TwoWay}"  Height="23" HorizontalAlignment="Left" Margin="143,296,0,0" VerticalAlignment="Top" Width="75" Click="ChoiceOfButten_Click" />
         <ComboBox SelectedItem = "{Binding product.Category,Mode=TwoWay}" ItemsSource="{Binding CategorySelector}"  HorizontalAlignment="Left" Margin="183,126,0,0" VerticalAlignment="Top" Width="119" Height="22"/>

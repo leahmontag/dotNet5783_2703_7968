@@ -1,5 +1,6 @@
 ﻿using BO;
 using DO;
+using PL.OrderTracking;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -22,6 +23,21 @@ namespace PL.Products
         }
         public static readonly DependencyProperty productProperty =
            DependencyProperty.Register(nameof(product), typeof(BO.Product), typeof(ProductWindow));
+        public string errorProp
+        {
+            get { return (string)GetValue(errorPropProperty); }
+            set { SetValue(errorPropProperty, value); }
+        }
+        public static readonly DependencyProperty errorPropProperty =
+          DependencyProperty.Register(nameof(errorProp), typeof(string), typeof(ProductWindow));
+
+        public string expMargin
+        {
+            get { return (string)GetValue(expMarginProperty); }
+            set { SetValue(expMarginProperty, value); }
+        }
+        public static readonly DependencyProperty expMarginProperty =
+          DependencyProperty.Register(nameof(expMargin), typeof(string), typeof(ProductWindow));
 
         public System.Array CategorySelector { get; set; } = Enum.GetValues(typeof(BO.Enums.Category));
         public string buttonContent { get; set; }
@@ -61,7 +77,7 @@ namespace PL.Products
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    errorProp = ex.Message;
                 }
             }
             else if (buttonContent == "Update")
@@ -73,7 +89,7 @@ namespace PL.Products
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    errorProp = ex.Message;
                 }
             }
             return;
@@ -82,36 +98,56 @@ namespace PL.Products
         {
             try
             {
-                if ((!(new Regex("^[0-9]+$")).IsMatch(product.Price.ToString()) || (int.Parse(product.Price.ToString()) <= 0)) || !(new Regex("^[0-9]+$")).IsMatch(product.InStock.ToString()) || (int.Parse(product.InStock.ToString()) <= 0))//input validity
-                {
-                    throw new Exception("wrong format");
-                }
+                inputValidity();
                 bl.Product.Create(product);
                 Close();
-               // new ProductListWindow().Show();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                errorProp = ex.Message;
             }
         }
         private void UpdateProductButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if ((!(new Regex("^[0-9]+$")).IsMatch(product.Price.ToString()) || (int.Parse(product.Price.ToString()) <= 0)) || !(new Regex("^[0-9]+$")).IsMatch(product.InStock.ToString()) || (int.Parse(product.InStock.ToString()) <= 0))//input validity
-                {
-                    throw new Exception("wrong format");
-                }
+                inputValidity();
                 bl.Product.Update(product);
                 Close();
-               // new ProductListWindow().Show();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                errorProp = ex.Message;
             }
 
+        }
+        private void inputValidity()
+        {
+            if ((!(new Regex("^[0-9]+$")).IsMatch(product.Price.ToString()) || (int.Parse(product.Price.ToString()) <= 0)))
+            {
+                expMargin = "304,210,0,0";
+                throw new Exception("wrong format of price");
+            }
+            else if (!(new Regex("^[0-9]+$")).IsMatch(product.InStock.ToString()) || (int.Parse(product.InStock.ToString()) <= 0))
+            {
+                expMargin = "307,252,0,0";
+                throw new Exception("wrong format of inStock");
+            }
+            else if (product.Name == null|| product.Name == "")
+            {
+                expMargin = "310,168,0,0";
+                throw new Exception("wrong format of name");
+            }
+            else if (product.ID==null|| product.ID==0)
+            {
+                expMargin = "299,85,0,0";
+                throw new Exception("wrong format of id");
+            }
+            else if (product.Category == null)
+            {
+                expMargin = "315,124,0,0";
+                throw new Exception("wrong format of category");
+            }
         }
     }
 }

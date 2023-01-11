@@ -6,27 +6,27 @@
         xmlns:local="clr-namespace:PL.OrderTracking"
         mc:Ignorable="d"
         Title="OrderWindow" Height="450" Width="800"
-        DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
-    
-    <Grid x:Name="gridOrder">
-        <TextBlock Text="{Binding order.ID}" Background="red" x:Name="ID" Height="23"  HorizontalAlignment="Left" Margin="151,30,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.CustomerName}" Background="Pink"  Height="23" HorizontalAlignment="Left" Margin="151,70,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.CustomerEmail}" Background="Green"  Height="23" HorizontalAlignment="Left" Margin="151,110,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.CustomerAdress}" Background="Blue" Height="23" HorizontalAlignment="Left" Margin="151,150,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.Status}" Background="BurlyWood" Height="23" HorizontalAlignment="Left" Margin="151,190,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.TotalPrice}" Background="Orange"  Height="23" HorizontalAlignment="Left" Margin="151,230,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.OrderDate}" Background="Tomato"  Height="23" HorizontalAlignment="Left" Margin="151,270,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.ShipDate}" Background="RoyalBlue"  Height="23" HorizontalAlignment="Left" Margin="151,310,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.DeliveryDate}" Background="Azure"  Height="23" HorizontalAlignment="Left" Margin="151,350,0,0" VerticalAlignment="Top" Width="120" />
+        DataContext = "{Binding RelativeSource={RelativeSource Self}}">
+    <Grid Background="Black">
+        <Image Source="/image/brush2.JPG" Stretch="Uniform" Margin="172,0,-172,0"/>
+        <TextBlock Text="{Binding order.ID}" Background="PaleVioletRed"  Height="23"  HorizontalAlignment="Left" Margin="151,30,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBlock Text="{Binding order.CustomerName}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,70,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBlock Text="{Binding order.CustomerEmail}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,110,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBlock Text="{Binding order.CustomerAdress}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="151,150,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBlock Text="{Binding order.Status}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="151,190,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBlock Text="{Binding order.TotalPrice}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,230,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBlock Text="{Binding order.OrderDate}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,270,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBlock Text="{Binding order.ShipDate}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,310,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBlock Text="{Binding order.DeliveryDate}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,350,0,0" VerticalAlignment="Top" Width="120" />
 
-        <Label Content="ID:" Height="28" HorizontalAlignment="Left" Margin="39,30,0,0"  VerticalAlignment="Top" />
-        <Label Content="CustomerName:" Height="28" HorizontalAlignment="Left" Margin="39,70,0,0" VerticalAlignment="Top" />
-        <Label Content="CustomerEmail:" Height="28" HorizontalAlignment="Left" Margin="39,110,0,0" VerticalAlignment="Top" />
-        <Label Content="CustomerAdress:" Height="28" HorizontalAlignment="Left" Margin="39,150,0,0" VerticalAlignment="Top" />
-        <Label Content="Status:" Height="28" HorizontalAlignment="Left" Margin="39,190,0,0" VerticalAlignment="Top" />
-        <Label Content="TotalPrice:" Height="28" HorizontalAlignment="Left" Margin="39,230,0,0" VerticalAlignment="Top" />
-        <Label Content="OrderDate:" Height="28" HorizontalAlignment="Left" Margin="39,270,0,0" VerticalAlignment="Top" />
-        <Label Content="ShipDate:" Height="28" HorizontalAlignment="Left" Margin="39,310,0,0" VerticalAlignment="Top" />
-        <Label Content="DeliveryDate:" Height="28" HorizontalAlignment="Left" Margin="39,350,0,0" VerticalAlignment="Top" />
+        <Label TextBlock.Foreground="Beige" Content="ID:" Height="28" HorizontalAlignment="Left" Margin="39,30,0,0"  VerticalAlignment="Top" />
+        <Label TextBlock.Foreground="Beige" Content="CustomerName:" Height="28" HorizontalAlignment="Left" Margin="39,70,0,0" VerticalAlignment="Top" />
+        <Label TextBlock.Foreground="Beige" Content="CustomerEmail:" Height="28" HorizontalAlignment="Left" Margin="39,110,0,0" VerticalAlignment="Top" />
+        <Label TextBlock.Foreground="Beige" Content="CustomerAdress:" Height="28" HorizontalAlignment="Left" Margin="39,150,0,0" VerticalAlignment="Top" />
+        <Label TextBlock.Foreground="Beige" Content="Status:" Height="28" HorizontalAlignment="Left" Margin="39,190,0,0" VerticalAlignment="Top" />
+        <Label TextBlock.Foreground="Beige" Content="TotalPrice:" Height="28" HorizontalAlignment="Left" Margin="39,230,0,0" VerticalAlignment="Top" />
+        <Label TextBlock.Foreground="Beige" Content="OrderDate:" Height="28" HorizontalAlignment="Left" Margin="39,270,0,0" VerticalAlignment="Top" />
+        <Label TextBlock.Foreground="Beige" Content="ShipDate:" Height="28" HorizontalAlignment="Left" Margin="39,310,0,0" VerticalAlignment="Top" />
+        <Label TextBlock.Foreground="Beige" Content="DeliveryDate:" Height="28" HorizontalAlignment="Left" Margin="39,350,0,0" VerticalAlignment="Top" />
     </Grid>
 </Window>

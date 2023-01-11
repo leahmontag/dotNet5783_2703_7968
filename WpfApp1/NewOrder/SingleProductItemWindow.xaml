@@ -12,25 +12,25 @@
         <local:NotBooleanToVisibiliryConvertar
                 x:Key="notBooleanToVisibiliryConvertar"/>
     </Window.Resources>
-    <Grid>
+    <Grid Background="Black" TextBlock.Foreground="White">
+        <Image Source="/image/brush2.jpg" Stretch="Uniform" Margin="178,-12,-178,12"/>
+        <TextBox Text="{Binding product.ID}" Background="PaleVioletRed" Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,30,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding product.Category}" Background="PaleVioletRed"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,70,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding product.Name}"  Background="PaleVioletRed"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,110,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding product.Price}" Background="PaleVioletRed"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,150,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding product.InStock}" Background="PaleVioletRed"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,190,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding product.Amount}" Background="PaleVioletRed"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,230,0,0" VerticalAlignment="Top" Width="120" />
 
-        <TextBox Text="{Binding product.ID}" Background="Chartreuse" Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,30,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding product.Category}" Background="Chartreuse"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,70,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding product.Name}"  Background="Chartreuse"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,110,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding product.Price}" Background="Chartreuse"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,150,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding product.InStock}" Background="Chartreuse"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,190,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding product.Amount}" Background="Chartreuse"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,230,0,0" VerticalAlignment="Top" Width="120" />
-
-        <Label Content="Id:" Height="28" HorizontalAlignment="Left" Margin="39,30,0,0"  VerticalAlignment="Top" />
-        <Label Content="Category:" Height="28" HorizontalAlignment="Left" Margin="39,70,0,0"  VerticalAlignment="Top" />
-        <Label Content="Name:" Height="28" HorizontalAlignment="Left" Margin="39,110,0,0"  VerticalAlignment="Top" />
-        <Label Content="Price:" Height="28" HorizontalAlignment="Left" Margin="39,150,0,0"  VerticalAlignment="Top" />
-        <Label Content="InStock:" Height="28" HorizontalAlignment="Left" Margin="39,190,0,0"  VerticalAlignment="Top" />
-        <Label Content="Amount:" Height="28" HorizontalAlignment="Left" Margin="39,230,0,0"  VerticalAlignment="Top" />
+        <Label Content="Id:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,30,0,0"  VerticalAlignment="Top" />
+        <Label Content="Category:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,70,0,0"  VerticalAlignment="Top" />
+        <Label Content="Name:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,110,0,0"  VerticalAlignment="Top" />
+        <Label Content="Price:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,150,0,0"  VerticalAlignment="Top" />
+        <Label Content="InStock:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,190,0,0"  VerticalAlignment="Top" />
+        <Label Content="Amount:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,230,0,0"  VerticalAlignment="Top" />
 
 
-        <Button Content = "add to cart" Background="Coral" Height="31" HorizontalAlignment="Left" Margin="22,296,0,0" VerticalAlignment="Top" Width="95" Click="BtnAdd_Click" />
-        <Button Content = "remove one from the cart" Background="Coral" Height="31" HorizontalAlignment="Left" Margin="135,298,0,0" VerticalAlignment="Top" Width="149" Visibility="{Binding VisibileRemoveItemFromCart, Mode=TwoWay,Converter={StaticResource notBooleanToVisibiliryConvertar}}" Click="BtnDecrease_Click" RenderTransformOrigin="0.5,0.5">
+        <Button Content = "add to cart" BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black" Background="Azure" Height="31" HorizontalAlignment="Left" Margin="22,296,0,0" VerticalAlignment="Top" Width="95" Click="BtnAdd_Click" />
+        <Button Content = "remove one from the cart" BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="135,298,0,0" VerticalAlignment="Top" Width="149" Visibility="{Binding VisibileRemoveItemFromCart, Mode=TwoWay,Converter={StaticResource notBooleanToVisibiliryConvertar}}" Click="BtnDecrease_Click" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -40,8 +40,8 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <Button Content = "back to catalog" Background="Aqua" Height="48" HorizontalAlignment="Left" Margin="627,305,0,0"  VerticalAlignment="Top" Width="147" Click="BtnBackToCatalog_Click" />
-        <Button Content = "Move to cart" Background="Aquamarine" Height="39" HorizontalAlignment="Left" Margin="627,369,0,0" VerticalAlignment="Top" Width="148" Click="BtnMoveToCart_Click" />
+        <Button Content = "back to catalog" BorderBrush="PaleVioletRed" Background="White" BorderThickness="3" TextBlock.Foreground="Black" Height="48" HorizontalAlignment="Left" Margin="627,305,0,0"  VerticalAlignment="Top" Width="147" Click="BtnBackToCatalog_Click" />
+        <Button Content = "Move to cart" BorderBrush="PaleVioletRed" Background="White" BorderThickness="3" TextBlock.Foreground="Black" Height="39" HorizontalAlignment="Left" Margin="627,369,0,0" VerticalAlignment="Top" Width="148" Click="BtnMoveToCart_Click" />
 
     </Grid>
 </Window>
