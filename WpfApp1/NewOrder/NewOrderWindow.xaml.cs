@@ -23,7 +23,8 @@ namespace PL.NewOrder
     public partial class NewOrderWindow : Window
     {
         static BlApi.IBl? bl = BlApi.Factory.Get();
-        BO.Cart cart = new() ;
+        public IEnumerable<BO.ProductItem?> productItemTemp;
+        BO.Cart cart = new();
         public IEnumerable<BO.ProductItem?> productItem
         {
             get { return (IEnumerable<BO.ProductItem?>)GetValue(productItemsProperty); }
@@ -51,6 +52,7 @@ namespace PL.NewOrder
         {
             selectedCategory = null;
             productItem = bl.Product.GetAllProductsItemFromCatalog(cart);
+            productItemTemp = productItem;
             InitializeComponent();
 
         }
@@ -58,18 +60,25 @@ namespace PL.NewOrder
         {
             selectedCategory = null;
             productItem = bl.Product.GetAllProductsItemFromCatalog(updatingCart);
-            cart=updatingCart;
+            cart = updatingCart;
             InitializeComponent();
 
         }
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            productItem = bl.Product.GetAllProductsItemFromCatalog(cart, x => x?.Category.ToString() == selectedCategory.ToString());
+            productItem = productItemTemp;
+            var GropupingProducts = (from p in productItem
+                                     where p.Category == selectedCategory
+                                     group p by p.Category into catGroup
+                                     from pr in catGroup
+                                     select pr).ToList();
+
+            productItem = GropupingProducts;
         }
         private void ProductItemView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Close();
-            new SingleProductItemWindow(cart,selectedProduct.ID).Show();
+            new SingleProductItemWindow(cart, selectedProduct.ID).Show();
         }
         private void BtnMoveToCart_Click(object sender, RoutedEventArgs e)
         {
@@ -79,11 +88,15 @@ namespace PL.NewOrder
         private void BtnGroupByCategory_Click(object sender, RoutedEventArgs e)
         {
             selectedCategory = null;
-            var w = bl.Product.GetAllProductsItemGroupByCategory(cart);
-            MessageBox.Show(w.ToString());
+            var GropupingProducts = (from p in productItem
+                                     group p by p.Category into catGroup
+                                     from pr in catGroup
+                                     select pr).ToList();
+
+            productItem = GropupingProducts;
         }
 
-        
+
 
     }
 }
