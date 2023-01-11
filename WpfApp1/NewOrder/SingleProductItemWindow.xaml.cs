@@ -37,36 +37,69 @@ namespace PL.NewOrder
         }
         public static readonly DependencyProperty VisibileRemoveItemFromCartProperty =
            DependencyProperty.Register(nameof(VisibileRemoveItemFromCart), typeof(bool), typeof(SingleProductItemWindow));
-
+        public string errorProp
+        {
+            get { return (string)GetValue(errorPropProperty); }
+            set { SetValue(errorPropProperty, value); }
+        }
+        public static readonly DependencyProperty errorPropProperty =
+          DependencyProperty.Register(nameof(errorProp), typeof(string), typeof(SingleProductItemWindow));
         public BO.Cart cart { get; set; }=new();
 
-        public SingleProductItemWindow(BO.Cart cartFromCatalog,int selectedProductId)
+
+
+        private Action<ProductItem?> action;
+        public SingleProductItemWindow(BO.Cart cartFromCatalog,int selectedProductId, Action<ProductItem?> action)
         {
             cart= cartFromCatalog;
             product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == selectedProductId.ToString());
             VisibileRemoveItemFromCart = true;
             InitializeComponent();
+            this.action = action;
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            VisibileRemoveItemFromCart = false;
-            cart = bl.Cart.Create(cart, product.ID);
-            product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == product.ID.ToString());
+            try
+            {
+                VisibileRemoveItemFromCart = false;
+                cart = bl.Cart.Create(cart, product.ID);
+                product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == product.ID.ToString());
+            }
+            catch (BO.FailedToDisplayAllItemsException exp)
+            {
+                errorProp = exp.Message;
+            }
         }
 
         private void BtnDecrease_Click(object sender, RoutedEventArgs e)
         {
-            cart=bl.Cart.Update(cart, product.ID,product.Amount-1);
-            product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == product.ID.ToString());
-            if(product.Amount==0)
-                VisibileRemoveItemFromCart = true;
+            try
+            {
+                cart = bl.Cart.Update(cart, product.ID, product.Amount - 1);
+                product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == product.ID.ToString());
+                if (product.Amount == 0)
+                    VisibileRemoveItemFromCart = true;
+            }
+            catch (BO.FailedToDisplayAllItemsException exp)
+            {
+                errorProp = exp.Message;
+            }
+
         }
 
         private void BtnBackToCatalog_Click(object sender, RoutedEventArgs e)
         {
+            action(new ProductItem
+            {
+                ID =product.ID,
+                Amount=product.Amount,
+                Name=product.Name,
+                Price=product.Price,
+                InStock=product.InStock,
+                Category=product.Category
+            });
             Close();
-            new NewOrderWindow(cart).Show();
         }
 
         private void BtnMoveToCart_Click(object sender, RoutedEventArgs e)

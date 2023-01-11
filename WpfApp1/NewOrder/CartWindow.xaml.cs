@@ -76,14 +76,15 @@ namespace PL.NewOrder
                 Close();
                 new ConfirmOrderWindow(c).Show();
             }
+            catch (BO.ProductIsNotAvailableException exp)
+            {
+                errorProp = exp.Message;
+            }
             catch (Exception exp)
             {
                 errorProp = exp.Message;
             }
-            //catch(BO.ProductIsNotAvailableException exp)
-            //{
-            //    errorProp = exp.Message;
-            //}
+
 
         }
     }

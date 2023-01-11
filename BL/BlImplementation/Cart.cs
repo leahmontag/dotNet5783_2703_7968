@@ -194,13 +194,12 @@ internal class Cart : ICart
                     }
                 }
                 if (flag == false)
-                    throw new BO.ProductIsNotAvailableException(" product is not available");
+                    throw new BO.ProductIsNotAvailableException("product is not available");
             }
             return CartBL;
         }
         catch (DO.NotFoundException exp)
         {
-
             throw new BO.FailedToDisplayAllItemsException("Failed to get all items", exp);
         }
     }

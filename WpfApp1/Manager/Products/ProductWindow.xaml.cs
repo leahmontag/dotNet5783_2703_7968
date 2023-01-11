@@ -73,7 +73,14 @@ namespace PL.Products
                 try
                 {
                     AddNewProductButton_Click(sender, e);
-                    action(bl.Product.GetProductForList(x => x?.ID == product.ID));
+                   // action(bl.Product.GetProductForList(x => x?.ID == product.ID));
+                    action(new ProductForList
+                    {
+                        Price = product.Price,
+                        ID = product.ID,
+                        Name = product.Name,
+                        Category = product.Category,
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -85,7 +92,14 @@ namespace PL.Products
                 try
                 {
                     UpdateProductButton_Click(sender, e);
-                    action(bl.Product.GetProductForList(x => x?.ID == product.ID));
+                    // action(bl.Product.GetProductForList(x => x?.ID == product.ID));
+                    action(new ProductForList
+                    {
+                        Price = product.Price,
+                        ID = product.ID,
+                        Name = product.Name,
+                        Category = product.Category,
+                    });
                 }
                 catch (Exception ex)
                 {

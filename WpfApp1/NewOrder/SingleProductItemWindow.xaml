@@ -27,6 +27,7 @@
         <Label Content="Price:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,150,0,0"  VerticalAlignment="Top" />
         <Label Content="InStock:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,190,0,0"  VerticalAlignment="Top" />
         <Label Content="Amount:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,230,0,0"  VerticalAlignment="Top" />
+        <Label Content="{Binding errorProp}" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red" Height="25" HorizontalAlignment="Left" Margin="22,332,0,0"  VerticalAlignment="Top" Width="95" />
 
 
         <Button Content = "add to cart" BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black" Background="Azure" Height="31" HorizontalAlignment="Left" Margin="22,296,0,0" VerticalAlignment="Top" Width="95" Click="BtnAdd_Click" />

@@ -23,15 +23,15 @@ namespace PL.NewOrder
     public partial class NewOrderWindow : Window
     {
         static BlApi.IBl? bl = BlApi.Factory.Get();
-        public IEnumerable<BO.ProductItem?> productItemTemp;
+        public ObservableCollection<BO.ProductItem?> productItemTemp;
         BO.Cart cart = new();
-        public IEnumerable<BO.ProductItem?> productItem
+        public ObservableCollection<BO.ProductItem?> productItem
         {
-            get { return (IEnumerable<BO.ProductItem?>)GetValue(productItemsProperty); }
+            get { return (ObservableCollection<BO.ProductItem?>)GetValue(productItemsProperty); }
             set { SetValue(productItemsProperty, value); }
         }
         public static readonly DependencyProperty productItemsProperty =
-           DependencyProperty.Register(nameof(productItem), typeof(IEnumerable<BO.ProductItem?>), typeof(NewOrderWindow));
+           DependencyProperty.Register(nameof(productItem), typeof(ObservableCollection<BO.ProductItem?>), typeof(NewOrderWindow));
 
         public BO.Enums.Category? selectedCategory
         {
@@ -51,16 +51,8 @@ namespace PL.NewOrder
         public NewOrderWindow()
         {
             selectedCategory = null;
-            productItem = bl.Product.GetAllProductsItemFromCatalog(cart);
+            productItem = new ObservableCollection<BO.ProductItem?>(bl.Product.GetAllProductsItemFromCatalog(cart).Cast<BO.ProductItem?>());
             productItemTemp = productItem;
-            InitializeComponent();
-
-        }
-        public NewOrderWindow(BO.Cart updatingCart)
-        {
-            selectedCategory = null;
-            productItem = bl.Product.GetAllProductsItemFromCatalog(updatingCart);
-            cart = updatingCart;
             InitializeComponent();
 
         }
@@ -73,12 +65,11 @@ namespace PL.NewOrder
                                      from pr in catGroup
                                      select pr).ToList();
 
-            productItem = GropupingProducts;
+            productItem = new(GropupingProducts);
         }
         private void ProductItemView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Close();
-            new SingleProductItemWindow(cart, selectedProduct.ID).Show();
+            new SingleProductItemWindow(cart, selectedProduct.ID, updateTheCatalog).Show();
         }
         private void BtnMoveToCart_Click(object sender, RoutedEventArgs e)
         {
@@ -93,10 +84,14 @@ namespace PL.NewOrder
                                      from pr in catGroup
                                      select pr).ToList();
 
-            productItem = GropupingProducts;
+            productItem = new(GropupingProducts);
         }
-
-
+        public void updateTheCatalog(ProductItem? productUpdate)
+        {
+            var item = productItem.FirstOrDefault(item => item?.ID == productUpdate?.ID);
+            if (item != null)
+                productItem[productItem.IndexOf(item)] = productUpdate;
+        }
 
     }
 }

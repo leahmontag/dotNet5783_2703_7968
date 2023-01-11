@@ -16,7 +16,10 @@ namespace PL.Products
     public partial class ProductListWindow : Window
     {
         static BlApi.IBl? bl = BlApi.Factory.Get();
+        public ObservableCollection<BO.ProductForList?> productListTemp;
+
         public ObservableCollection<BO.ProductForList?> productForList
+
         {
             get { return (ObservableCollection<BO.ProductForList?>)GetValue(productForListsProperty); }
             set { SetValue(productForListsProperty, value); }
@@ -31,15 +34,21 @@ namespace PL.Products
         public ProductListWindow()
         {
             selectedCategory=null;
-            InitializeComponent();
             productForList = new ObservableCollection<BO.ProductForList?>(bl.Product.GetAll().Cast<BO.ProductForList?>());
+            productListTemp = productForList;
+            InitializeComponent();
         }
 
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            productForList = new ObservableCollection<BO.ProductForList?>(bl.Product.GetAll(x => x?.Category.ToString() == selectedCategory.ToString()).Cast<BO.ProductForList?>());
-
+            productForList = productListTemp;
+            var GropupingProducts = (from p in productForList
+                                     where p.Category == selectedCategory
+                                     group p by p.Category into catGroup
+                                     from pr in catGroup
+                                     select pr).ToList();
+            productForList = new(GropupingProducts);
         }
 
         private void addNewProductButton_Click(object sender, RoutedEventArgs e)
@@ -55,7 +64,7 @@ namespace PL.Products
         }
         public void update(ProductForList? productUpdate)
         {
-            var item = productForList.FirstOrDefault(item=>item.ID== productUpdate.ID);
+            var item = productForList.FirstOrDefault(item=>item?.ID== productUpdate?.ID);
             if (item != null)
                 productForList[productForList.IndexOf(item)] = productUpdate;
         }
@@ -64,5 +73,9 @@ namespace PL.Products
              productForList.Insert(productForList.Count, productUpdate);
         }
 
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
