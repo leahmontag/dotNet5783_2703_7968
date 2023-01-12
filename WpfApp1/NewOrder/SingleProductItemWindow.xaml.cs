@@ -56,7 +56,7 @@ namespace PL.NewOrder
             InitializeComponent();
             this.action = action;
         }
-
+        
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             try
