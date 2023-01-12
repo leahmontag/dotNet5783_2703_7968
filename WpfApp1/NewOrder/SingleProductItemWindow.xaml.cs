@@ -46,14 +46,13 @@ namespace PL.NewOrder
           DependencyProperty.Register(nameof(errorProp), typeof(string), typeof(SingleProductItemWindow));
         public BO.Cart cart { get; set; }=new();
 
-
-
         private Action<ProductItem?> action;
         public SingleProductItemWindow(BO.Cart cartFromCatalog,int selectedProductId, Action<ProductItem?> action)
         {
             cart= cartFromCatalog;
             product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == selectedProductId.ToString());
-            VisibileRemoveItemFromCart = true;
+            if (product.Amount == 0)
+                VisibileRemoveItemFromCart = true;
             InitializeComponent();
             this.action = action;
         }

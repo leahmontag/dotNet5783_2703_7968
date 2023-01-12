@@ -71,6 +71,12 @@ namespace PL.NewOrder
                     expMargin = "596,171,0,0";
                     throw new Exception("wrong format of address");
                 }
+                else if (cart.TotalPrice==0)
+                {
+                    expMargin = "549,347,0,0";
+                    throw new Exception("your cart is empty!");
+
+                }
                 BO.Cart c = cart;
                 bl.Cart.ConfirmOrder(cart);
                 Close();

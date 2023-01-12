@@ -41,7 +41,6 @@ namespace PL.NewOrder
         public static readonly DependencyProperty selectedCategoryProperty =
            DependencyProperty.Register(nameof(selectedCategoryProperty), typeof(BO.Enums.Category?), typeof(NewOrderWindow));
 
-
         public System.Array categories { get; set; } = Enum.GetValues(typeof(BO.Enums.Category));
         public ProductItem selectedProduct { get; set; } = new();
 
