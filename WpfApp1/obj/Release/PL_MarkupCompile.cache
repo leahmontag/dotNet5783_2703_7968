@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Release\
+C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Release\
 PL
 none
 false
 TRACE;RELEASE;NET;NET6_0;NETCOREAPP
-C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\App.xaml
-10-1691773072
+C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\App.xaml
+15-25044812
 
-12399195446
-200470682501
-MainWindow.xaml;Manager\ManagerWindow.xaml;Manager\Orders\OrderItemsWindow.xaml;Manager\Orders\OrderListWindow.xaml;Manager\Orders\OrderWindow.xaml;Manager\Products\ProductListWindow.xaml;Manager\Products\ProductWindow.xaml;NewOrder\NewOrderWindow.xaml;OrderTracking\OrderTrackingWindow.xaml;registeredUser\registeredUserWindow.xaml;
+181108195443
+20059479027
+MainWindow.xaml;Manager\ManagerWindow.xaml;Manager\Orders\OrderItemsWindow.xaml;Manager\Orders\OrderListWindow.xaml;Manager\Orders\OrderWindow.xaml;Manager\Products\ProductListWindow.xaml;Manager\Products\ProductWindow.xaml;NewOrder\CartWindow.xaml;NewOrder\ConfirmOrderWindow.xaml;NewOrder\NewOrderWindow.xaml;NewOrder\SingleProductItemWindow.xaml;OrderTracking\OrderTrackingdetailsWindow.xaml;OrderTracking\OrderTrackingWindow.xaml;OrderTracking\OrderWindow.xaml;registeredUser\registeredUserWindow.xaml;
 
 True
 

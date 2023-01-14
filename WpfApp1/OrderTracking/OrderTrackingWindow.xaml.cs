@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace PL.OrderTracking
 {
@@ -45,7 +46,6 @@ namespace PL.OrderTracking
 
         public OrderTrackingWindow()
         {
-            // orderTrakingNum = null;
             InitializeComponent();
         }
 
@@ -53,8 +53,7 @@ namespace PL.OrderTracking
         {
             try
             {
-                MessageBox.Show(orderTrakingNum);
-                if (orderTrakingNum==null)//לבדוק לגבי הבדיקה
+                if (orderTrakingNum == null)//לבדוק לגבי הבדיקה
                 {
                     throw new Exception("order traking number can't be null");
 
@@ -76,6 +75,11 @@ namespace PL.OrderTracking
         private void TextBox_TextChanged(object sender, RoutedEventArgs e)
         {
             errorProp = "";
+        }
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
     }

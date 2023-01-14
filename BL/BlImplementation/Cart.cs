@@ -246,7 +246,7 @@ internal class Cart : ICart
                 _dal.OrderItem.Create(new DO.OrderItem()
                 {
                     OrderID = id,
-                    OrderItemID = item.OrderItemID,
+                    //OrderItemID = item.OrderItemID,
                     ProductID = item.ProductID,
                     Price = item.Price,
                     Amount = item.Amount,

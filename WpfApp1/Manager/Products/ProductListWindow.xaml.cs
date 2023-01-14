@@ -66,11 +66,15 @@ namespace PL.Products
         {
             var item = productForList.FirstOrDefault(item=>item?.ID== productUpdate?.ID);
             if (item != null)
+            {
                 productForList[productForList.IndexOf(item)] = productUpdate;
+                  productListTemp[productListTemp.IndexOf(item)] = productUpdate;
+            }
         }
         public void add(ProductForList? productUpdate)
         {
              productForList.Insert(productForList.Count, productUpdate);
+            productListTemp.Insert(productListTemp.Count, productUpdate);
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

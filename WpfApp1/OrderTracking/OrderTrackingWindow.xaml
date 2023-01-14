@@ -11,7 +11,7 @@
     <Grid Background="Black">
         <Image Source="/image/background2.jpg" Stretch="Uniform" Margin="110,5,-91,-5"/>
 
-        <TextBox BorderBrush="White" Text="{Binding orderTrakingNum,Mode=TwoWay}" Background="PaleVioletRed" Name="OrderTrackingInput" Height="23" HorizontalAlignment="Left" Margin="20,96,0,0" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <TextBox BorderBrush="White" Text="{Binding orderTrakingNum,Mode=TwoWay}" Background="PaleVioletRed" Name="OrderTrackingInput" Height="23" HorizontalAlignment="Left" Margin="20,96,0,0" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" PreviewTextInput="NumberValidationTextBox"/>
         <Label TextBlock.Foreground="White" Content="Enter your order tracking number:" Height="28" HorizontalAlignment="Left" Margin="17,68,0,0" VerticalAlignment="Top" />
         <Label Content="{Binding errorProp,Mode=TwoWay}" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red" Height="25" HorizontalAlignment="Left" Margin="19,119,0,0"  VerticalAlignment="Top" Width="354" />
 

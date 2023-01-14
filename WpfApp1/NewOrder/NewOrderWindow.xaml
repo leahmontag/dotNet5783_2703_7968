@@ -8,7 +8,7 @@
         Title="NewOrderWindow" Height="450" Width="800"
  DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
 
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
@@ -23,8 +23,8 @@
             <ComboBox SelectedItem = "{Binding selectedCategory,Mode=TwoWay}" ItemsSource="{Binding categories}" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="CategorySelector_SelectionChanged" />
             <Label Grid.Column="0">Category</Label>
         </Grid>
-        <ListView ItemsSource = "{Binding productItem}" SelectedValue = "{Binding selectedProduct}" Grid.Row="1" MouseDoubleClick="ProductItemView_MouseDoubleClick"/>
-        <Button Content = "group by category" Background="Aquamarine" Height="43" HorizontalAlignment="Right" Margin="0,272,81,0" VerticalAlignment="Top" Width="127" Click="BtnGroupByCategory_Click" Grid.Row="1" />
-        <Button Content = "back to cart" Background="Aquamarine" Height="39" HorizontalAlignment="Right" Margin="0,323,81,0" VerticalAlignment="Top" Width="117" Click="BtnMoveToCart_Click" Grid.Row="1" />
+        <ListView Background="Black" TextBlock.Foreground="White" ItemsSource = "{Binding productItem}" SelectedValue = "{Binding selectedProduct}" MouseDoubleClick="ProductItemView_MouseDoubleClick" Margin="0,24,0,8" Grid.RowSpan="2"/>
+        <Button BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black"  Background="Azure" Content = "group by category" Height="54" HorizontalAlignment="Right" Margin="0,261,20,0" VerticalAlignment="Top" Width="127" Click="BtnGroupByCategory_Click" Grid.Row="1" />
+        <Button BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black"  Background="Azure" Content = "back to cart" Height="49" HorizontalAlignment="Right" Margin="0,326,19,0" VerticalAlignment="Top" Width="130" Click="BtnMoveToCart_Click" Grid.Row="1" />
     </Grid>
 </Window>

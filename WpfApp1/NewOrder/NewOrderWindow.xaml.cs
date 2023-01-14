@@ -45,7 +45,6 @@ namespace PL.NewOrder
         public ProductItem selectedProduct { get; set; } = new();
 
 
-
         BO.Cart cartBL = new();
         public NewOrderWindow()
         {
@@ -63,7 +62,6 @@ namespace PL.NewOrder
                                      group p by p.Category into catGroup
                                      from pr in catGroup
                                      select pr).ToList();
-
             productItem = new(GropupingProducts);
         }
         private void ProductItemView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -73,7 +71,7 @@ namespace PL.NewOrder
         private void BtnMoveToCart_Click(object sender, RoutedEventArgs e)
         {
             Close();
-            new CartWindow(cart).Show();
+            new CartWindow(cart, updateTheCatalog).Show();
         }
         private void BtnGroupByCategory_Click(object sender, RoutedEventArgs e)
         {
@@ -90,6 +88,7 @@ namespace PL.NewOrder
             var item = productItem.FirstOrDefault(item => item?.ID == productUpdate?.ID);
             if (item != null)
                 productItem[productItem.IndexOf(item)] = productUpdate;
+            productItemTemp = productItem;
         }
 
     }

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="OrderItemsWindow" Height="450" Width="800"
     DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
-    <Grid>
-        <ListView ItemsSource="{Binding orderItemsForList}"/>
+    <Grid Background="Black">
+        <ListView BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="White"  Background="Black" ItemsSource="{Binding orderItemsForList}"/>
     </Grid>
 </Window>

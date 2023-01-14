@@ -8,28 +8,27 @@
         Title="OrderTrackingdetailsWindow" Height="450" Width="800"
         DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
 
-    <Grid>
-        <Label Content="ID:" Height="28" HorizontalAlignment="Left" Margin="39,30,0,0"  VerticalAlignment="Top" />
-        <TextBlock Text="{Binding orderTracking.ID}" Background="red" Height="23" HorizontalAlignment="Left" Margin="151,34,0,0" VerticalAlignment="Top" Width="120" />
-        <Label Content="Status:" Height="28" HorizontalAlignment="Left" Margin="39,70,0,0" VerticalAlignment="Top" />
-        <TextBlock Text="{Binding orderTracking.Status}" Background="red" Height="23"  HorizontalAlignment="Left" Margin="151,75,0,0" VerticalAlignment="Top" Width="120" />
-        <Label Content="Order Traking Status:" Height="28" HorizontalAlignment="Left" Margin="39,110,0,0" VerticalAlignment="Top" />
+    <Grid Background="Black">
+        <Label TextBlock.Foreground="White" Content="ID:" Height="28" HorizontalAlignment="Left" Margin="434,66,0,0"  VerticalAlignment="Top"/>
+        <TextBlock Text="{Binding orderTracking.ID}" Background="PaleVioletRed" Height="23"  HorizontalAlignment="Left" Margin="511,79,0,0" VerticalAlignment="Top" Width="120" />
+        <Label TextBlock.Foreground="White" Content="Status:" Height="28" HorizontalAlignment="Left" Margin="426,159,0,0" VerticalAlignment="Top" />
+        <TextBlock Text="{Binding orderTracking.Status}" Background="PaleVioletRed" Height="23"  HorizontalAlignment="Left" Margin="513,160,0,0" VerticalAlignment="Top" Width="120" />
+        <Label TextBlock.Foreground="White" Content="Order Traking Status:" Height="28" HorizontalAlignment="Left" Margin="18,46,0,0" VerticalAlignment="Top" />
+        <Label TextBlock.Foreground="White" Content="Date:" Height="28" HorizontalAlignment="Left" Margin="14,98,0,0" VerticalAlignment="Top" />
+        <TextBlock TextBlock.Foreground="White" Text="{Binding orderTracking.OrderTrackingDateAndDesc[0].Date}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="123,108,0,0" VerticalAlignment="Top" Width="120" />
+        <Label TextBlock.Foreground="White" Content="Description:" Height="28" HorizontalAlignment="Left" Margin="15,136,0,0" VerticalAlignment="Top" />
+        <TextBlock TextBlock.Foreground="White" Text="{Binding orderTracking.OrderTrackingDateAndDesc[0].Description}" Height="23"  HorizontalAlignment="Left" Margin="124,142,0,0" VerticalAlignment="Top" Width="120" />
 
-            <Label Content="Date:" Height="28" HorizontalAlignment="Left" Margin="88,152,0,0" VerticalAlignment="Top" />
-            <TextBlock Text="{Binding orderTracking.OrderTrackingDateAndDesc[0].Date}" Background="red" Height="23" HorizontalAlignment="Left" Margin="197,162,0,0" VerticalAlignment="Top" Width="120" />
-            <Label Content="Description:" Height="28" HorizontalAlignment="Left" Margin="89,190,0,0" VerticalAlignment="Top" />
-            <TextBlock Text="{Binding orderTracking.OrderTrackingDateAndDesc[0].Description}" Height="23"  HorizontalAlignment="Left" Margin="198,196,0,0" VerticalAlignment="Top" Width="120" />
+        <Label TextBlock.Foreground="White" Content="Date:" Height="28" HorizontalAlignment="Left" Margin="17,199,0,0" VerticalAlignment="Top" />
+        <TextBlock TextBlock.Foreground="White" Text="{Binding orderTracking.OrderTrackingDateAndDesc[1].Date}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="126,204,0,0" VerticalAlignment="Top" Width="120" />
+        <Label TextBlock.Foreground="White" Content="Description:" Height="28" HorizontalAlignment="Left" Margin="15,237,0,0" VerticalAlignment="Top" />
+        <TextBlock TextBlock.Foreground="White" Text="{Binding orderTracking.OrderTrackingDateAndDesc[1].Description}" Height="23"  HorizontalAlignment="Left" Margin="127,240,0,0" VerticalAlignment="Top" Width="120" />
 
-            <Label Content="Date:" Height="28" HorizontalAlignment="Left" Margin="89,256,0,0" VerticalAlignment="Top" />
-            <TextBlock Text="{Binding orderTracking.OrderTrackingDateAndDesc[1].Date}" Background="red" Height="23" HorizontalAlignment="Left" Margin="198,260,0,0" VerticalAlignment="Top" Width="120" />
-            <Label Content="Description:" Height="28" HorizontalAlignment="Left" Margin="87,294,0,0" VerticalAlignment="Top" />
-            <TextBlock Text="{Binding orderTracking.OrderTrackingDateAndDesc[1].Description}" Height="23"  HorizontalAlignment="Left" Margin="199,297,0,0" VerticalAlignment="Top" Width="120" />
-
-            <Label Content="Date:" Height="28" HorizontalAlignment="Left" Margin="87,348,0,0" VerticalAlignment="Top" />
-            <TextBlock Text="{Binding orderTracking.OrderTrackingDateAndDesc[2].Date}" Background="red" Height="23" HorizontalAlignment="Left" Margin="199,351,0,0" VerticalAlignment="Top" Width="120" />
-            <Label Content="Description:" Height="28" HorizontalAlignment="Left" Margin="87,384,0,0" VerticalAlignment="Top" />
-            <TextBlock Text="{Binding orderTracking.OrderTrackingDateAndDesc[2].Description}" Height="23" HorizontalAlignment="Left" Margin="199,385,0,0" VerticalAlignment="Top" Width="120" />
-        <Button Background="Yellow" Content="Show the order items" Height="25" HorizontalAlignment="Left" Margin="590,250,0,0" VerticalAlignment="Top" Width="134" Click="ChoiceOfButten_Click3" />
+        <Label TextBlock.Foreground="White" Content="Date:" Height="28" HorizontalAlignment="Left" Margin="13,310,0,0" VerticalAlignment="Top" />
+        <TextBlock TextBlock.Foreground="White" Text="{Binding orderTracking.OrderTrackingDateAndDesc[2].Date}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="125,313,0,0" VerticalAlignment="Top" Width="120" />
+        <Label TextBlock.Foreground="White" Content="Description:" Height="28" HorizontalAlignment="Left" Margin="13,346,0,0" VerticalAlignment="Top" />
+        <TextBlock TextBlock.Foreground="White"  Text="{Binding orderTracking.OrderTrackingDateAndDesc[2].Description}" Height="23" HorizontalAlignment="Left" Margin="125,347,0,0" VerticalAlignment="Top" Width="120" />
+        <Button BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black"  Background="Azure" Content="Show the order items" Height="65" HorizontalAlignment="Left" Margin="639,342,0,0" VerticalAlignment="Top" Width="134" Click="ChoiceOfButten_Click3" />
 
     </Grid>
 </Window>

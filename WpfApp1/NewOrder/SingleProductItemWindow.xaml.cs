@@ -2,6 +2,7 @@
 using PL.Products;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,14 @@ namespace PL.NewOrder
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
         //BO.Cart cart = new();
+        public ObservableCollection<BO.ProductItem?> productItem
+        {
+            get { return (ObservableCollection<BO.ProductItem?>)GetValue(productItemsProperty); }
+            set { SetValue(productItemsProperty, value); }
+        }
+        public static readonly DependencyProperty productItemsProperty =
+           DependencyProperty.Register(nameof(productItem), typeof(ObservableCollection<BO.ProductItem?>), typeof(SingleProductItemWindow));
+
         public BO.ProductItem product
         {
             get { return (BO.ProductItem)GetValue(productProperty); }
@@ -51,6 +60,7 @@ namespace PL.NewOrder
         {
             cart= cartFromCatalog;
             product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == selectedProductId.ToString());
+            productItem = new ObservableCollection<BO.ProductItem?>(bl.Product.GetAllProductsItemFromCatalog(cart).Cast<BO.ProductItem?>());
             if (product.Amount == 0)
                 VisibileRemoveItemFromCart = true;
             InitializeComponent();
@@ -64,6 +74,15 @@ namespace PL.NewOrder
                 VisibileRemoveItemFromCart = false;
                 cart = bl.Cart.Create(cart, product.ID);
                 product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == product.ID.ToString());
+                action(new ProductItem
+                {
+                    ID = product.ID,
+                    Amount = product.Amount,
+                    Name = product.Name,
+                    Price = product.Price,
+                    InStock = product.InStock,
+                    Category = product.Category
+                });
             }
             catch (BO.FailedToDisplayAllItemsException exp)
             {
@@ -79,6 +98,15 @@ namespace PL.NewOrder
                 product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == product.ID.ToString());
                 if (product.Amount == 0)
                     VisibileRemoveItemFromCart = true;
+                action(new ProductItem
+                {
+                    ID = product.ID,
+                    Amount = product.Amount,
+                    Name = product.Name,
+                    Price = product.Price,
+                    InStock = product.InStock,
+                    Category = product.Category
+                });
             }
             catch (BO.FailedToDisplayAllItemsException exp)
             {
@@ -89,22 +117,38 @@ namespace PL.NewOrder
 
         private void BtnBackToCatalog_Click(object sender, RoutedEventArgs e)
         {
-            action(new ProductItem
-            {
-                ID =product.ID,
-                Amount=product.Amount,
-                Name=product.Name,
-                Price=product.Price,
-                InStock=product.InStock,
-                Category=product.Category
-            });
+            //action(new ProductItem
+            //{
+            //    ID =product.ID,
+            //    Amount=product.Amount,
+            //    Name=product.Name,
+            //    Price=product.Price,
+            //    InStock=product.InStock,
+            //    Category=product.Category
+            //});
             Close();
         }
 
         private void BtnMoveToCart_Click(object sender, RoutedEventArgs e)
         {
             Close();
-            new CartWindow(cart).Show();
+            new CartWindow(cart, updateingTheCatalog).Show();
+        }
+        public void updateingTheCatalog(ProductItem? productUpdate)
+        {
+            var item = productItem.FirstOrDefault(item => item?.ID == productUpdate?.ID);
+            if (item != null)
+                productItem[productItem.IndexOf(item)] = productUpdate;
+            product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == product.ID.ToString());
+            action(new ProductItem
+            {
+                ID = product.ID,
+                Amount = product.Amount,
+                Name = product.Name,
+                Price = product.Price,
+                InStock = product.InStock,
+                Category = product.Category
+            });
         }
     }
 }
