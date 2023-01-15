@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace PL.NewOrder;
 
@@ -105,7 +106,44 @@ public partial class CartWindow : Window
     }
     private void BtnRemoveItem(object sender, RoutedEventArgs e)
     {
+        //try
+        //{
 
+        //    cart = bl.Cart.Update(cart, product.ID, 0);
+        //    actionFunction();
+        //    Close();
+        //}
+        //catch (BO.FailedToDisplayAllItemsException exp)
+        //{
+        //    errorProp = exp.Message;
+        //}
+        var element = e.OriginalSource as FrameworkElement;
+
+        if (element != null && element.DataContext is BO.OrderItem)
+        {
+            if (cart!.Items != null && bl != null)
+            {
+                try
+                {
+                    product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString());
+                    product.Amount = 0;
+                    actionFunction();
+                    cart = bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, 0);
+                    //// errorProp = "the amount update succesfully";
+                   // actionFunction();
+                    Close();
+                }
+                catch (BO.FailedToDisplayAllItemsException exp)
+                {
+                    errorProp = exp.Message;
+                }
+                catch (Exception exp)
+                {
+                    errorProp = exp.Message;
+                }
+            }
+
+        }
     }
     private void btnAddAmount(object sender, RoutedEventArgs e)
     {
@@ -120,15 +158,7 @@ public partial class CartWindow : Window
                     cart = bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, (element.DataContext as BO.OrderItem)!.Amount + 1);
                     //// errorProp = "the amount update succesfully";
                     product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString());
-                    action(new ProductItem
-                    {
-                        ID = product.ID,
-                        Amount = product.Amount,
-                        Name = product.Name,
-                        Price = product.Price,
-                        InStock = product.InStock,
-                        Category = product.Category
-                    });
+                    actionFunction();
                 }
                 catch (BO.ProductIsNotAvailableException exp)
                 {
@@ -146,7 +176,41 @@ public partial class CartWindow : Window
 
     private void btnSubtractAmount(object sender, RoutedEventArgs e)
     {
+        var element = e.OriginalSource as FrameworkElement;
+        if (element != null && element.DataContext is BO.OrderItem)
+        {
+            if (cart!.Items != null && bl != null)
+            {
+                try
+                {
+                    cart = bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, (element.DataContext as BO.OrderItem)!.Amount - 1);
+                    product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString());
+                    actionFunction();
+                }
+                catch (BO.ProductIsNotAvailableException exp)
+                {
+                    errorProp = exp.Message;
+                }
+                catch (Exception exp)
+                {
+                    errorProp = exp.Message;
+                }
+            }
 
+        }
+    }
+    private void actionFunction()
+    {
+
+        action(new ProductItem
+        {
+            ID = product.ID,
+            Amount = product.Amount,
+            Name = product.Name,
+            Price = product.Price,
+            InStock = product.InStock,
+            Category = product.Category
+        });
     }
 }
 

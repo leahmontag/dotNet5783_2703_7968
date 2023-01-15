@@ -20,6 +20,8 @@
         <TextBox Text="{Binding product.Price}" Background="PaleVioletRed"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,150,0,0" VerticalAlignment="Top" Width="120" />
         <TextBox Text="{Binding product.InStock}" Background="PaleVioletRed"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,190,0,0" VerticalAlignment="Top" Width="120" />
         <TextBox Text="{Binding product.Amount}" Background="PaleVioletRed"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,230,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding textBox,Mode=TwoWay}" Background="White"  Height="19" HorizontalAlignment="Left" Margin="189,291,0,0" VerticalAlignment="Top" Width="27" RenderTransformOrigin="-1.404,2.024" PreviewTextInput="NumberValidationTextBox"/>
+
 
         <Label Content="Id:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,30,0,0"  VerticalAlignment="Top" />
         <Label Content="Category:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,70,0,0"  VerticalAlignment="Top" />
@@ -27,11 +29,11 @@
         <Label Content="Price:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,150,0,0"  VerticalAlignment="Top" />
         <Label Content="InStock:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,190,0,0"  VerticalAlignment="Top" />
         <Label Content="Amount:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,230,0,0"  VerticalAlignment="Top" />
-        <Label Content="{Binding errorProp}" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red" Height="25" HorizontalAlignment="Left" Margin="22,332,0,0"  VerticalAlignment="Top" Width="95" />
+        <Label Content="{Binding errorProp}" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red" Height="25" HorizontalAlignment="Left" Margin="22,332,0,0"  VerticalAlignment="Top" Width="235" />
 
 
-        <Button Content = "add to cart" BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black" Background="Azure" Height="31" HorizontalAlignment="Left" Margin="22,296,0,0" VerticalAlignment="Top" Width="95" Click="BtnAdd_Click" />
-        <Button Content = "remove one from the cart" BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="135,298,0,0" VerticalAlignment="Top" Width="149" Visibility="{Binding VisibileRemoveItemFromCart, Mode=TwoWay,Converter={StaticResource notBooleanToVisibiliryConvertar}}" Click="BtnDecrease_Click" RenderTransformOrigin="0.5,0.5">
+        <Button Content = "add to cart" BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black" Background="Azure" Height="31" HorizontalAlignment="Left" Margin="74,285,0,0" VerticalAlignment="Top" Width="95" Click="BtnAdd_Click" />
+        <Button Content = "remove one from the cart" BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="73,335,0,0" VerticalAlignment="Top" Width="149" Visibility="{Binding VisibileRemoveItemFromCart, Mode=TwoWay,Converter={StaticResource notBooleanToVisibiliryConvertar}}" Click="BtnDecrease_Click" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

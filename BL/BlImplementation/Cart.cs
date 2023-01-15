@@ -169,7 +169,7 @@ internal class Cart : ICart
                                 if (productItem.ID == ProductID)
                                 {
                                     if (productItem.InStock <= newAmount)
-                                        throw new Exception();
+                                        throw new BO.ProductIsNotAvailableException("Insufficient quantity in stock");
                                     price = productItem.Price;
                                     oldAmount = item.Amount;
                                     item.Amount = newAmount;

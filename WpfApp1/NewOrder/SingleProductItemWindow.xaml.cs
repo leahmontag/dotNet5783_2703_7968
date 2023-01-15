@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,12 +54,20 @@ namespace PL.NewOrder
         }
         public static readonly DependencyProperty errorPropProperty =
           DependencyProperty.Register(nameof(errorProp), typeof(string), typeof(SingleProductItemWindow));
-        public BO.Cart cart { get; set; }=new();
+
+        public int textBox
+        {
+            get { return (int)GetValue(textBoxPropProperty); }
+            set { SetValue(textBoxPropProperty, value); }
+        }
+        public static readonly DependencyProperty textBoxPropProperty =
+          DependencyProperty.Register(nameof(textBox), typeof(int), typeof(SingleProductItemWindow));
+        public BO.Cart cart { get; set; } = new();
 
         private Action<ProductItem?> action;
-        public SingleProductItemWindow(BO.Cart cartFromCatalog,int selectedProductId, Action<ProductItem?> action)
+        public SingleProductItemWindow(BO.Cart cartFromCatalog, int selectedProductId, Action<ProductItem?> action)
         {
-            cart= cartFromCatalog;
+            cart = cartFromCatalog;
             product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == selectedProductId.ToString());
             productItem = new ObservableCollection<BO.ProductItem?>(bl.Product.GetAllProductsItemFromCatalog(cart).Cast<BO.ProductItem?>());
             if (product.Amount == 0)
@@ -66,66 +75,54 @@ namespace PL.NewOrder
             InitializeComponent();
             this.action = action;
         }
-        
+
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                VisibileRemoveItemFromCart = false;
-                cart = bl.Cart.Create(cart, product.ID);
-                product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == product.ID.ToString());
-                action(new ProductItem
-                {
-                    ID = product.ID,
-                    Amount = product.Amount,
-                    Name = product.Name,
-                    Price = product.Price,
-                    InStock = product.InStock,
-                    Category = product.Category
-                });
+                errorProp = "";
+                if (textBox != 0)
+                    VisibileRemoveItemFromCart = false;
+                if (product.Amount == 0)
+                    cart = bl.Cart.Create(cart, product.ID);
+                cart = bl.Cart.Update(cart, product.ID,textBox);
+                actionFunction();
             }
             catch (BO.FailedToDisplayAllItemsException exp)
             {
                 errorProp = exp.Message;
+                VisibileRemoveItemFromCart = true;
             }
+            catch (BO.ProductIsNotAvailableException exp)
+            {
+                errorProp = exp.Message;
+                VisibileRemoveItemFromCart = true;
+            }
+            textBox = 0;
         }
 
         private void BtnDecrease_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                cart = bl.Cart.Update(cart, product.ID, product.Amount - 1);
-                product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == product.ID.ToString());
-                if (product.Amount == 0)
-                    VisibileRemoveItemFromCart = true;
-                action(new ProductItem
-                {
-                    ID = product.ID,
-                    Amount = product.Amount,
-                    Name = product.Name,
-                    Price = product.Price,
-                    InStock = product.InStock,
-                    Category = product.Category
-                });
+                errorProp = "";
+                cart = bl.Cart.Update(cart, product.ID, 0);
+                actionFunction();
+                VisibileRemoveItemFromCart = true;
             }
             catch (BO.FailedToDisplayAllItemsException exp)
             {
                 errorProp = exp.Message;
             }
-
+            catch (BO.ProductIsNotAvailableException exp)
+            {
+                errorProp = exp.Message;
+            }
+            textBox = 0;
         }
 
         private void BtnBackToCatalog_Click(object sender, RoutedEventArgs e)
         {
-            //action(new ProductItem
-            //{
-            //    ID =product.ID,
-            //    Amount=product.Amount,
-            //    Name=product.Name,
-            //    Price=product.Price,
-            //    InStock=product.InStock,
-            //    Category=product.Category
-            //});
             Close();
         }
 
@@ -134,11 +131,29 @@ namespace PL.NewOrder
             Close();
             new CartWindow(cart, updateingTheCatalog).Show();
         }
-        public void updateingTheCatalog(ProductItem? productUpdate)
+        private void updateingTheCatalog(ProductItem? productUpdate)
         {
             var item = productItem.FirstOrDefault(item => item?.ID == productUpdate?.ID);
             if (item != null)
                 productItem[productItem.IndexOf(item)] = productUpdate;
+            actionFunction(productUpdate);
+        }
+        private void actionFunction(ProductItem? productUpdate)
+        {
+            //product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == productUpdate.ID.ToString());
+            //action(new ProductItem
+            //{
+            //    ID = product.ID,
+            //    Amount = product.Amount,
+            //    Name = product.Name,
+            //    Price = product.Price,
+            //    InStock = product.InStock,
+            //    Category = product.Category
+            //});
+            action(productUpdate);
+        }
+        private void actionFunction()
+        {
             product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == product.ID.ToString());
             action(new ProductItem
             {
@@ -149,6 +164,12 @@ namespace PL.NewOrder
                 InStock = product.InStock,
                 Category = product.Category
             });
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
