@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\
+C:\Users\1\Source\Repos\leahmontag\dotNet5783_2703_7968.git\dotNet5783_2703_7968\WpfApp1\obj\Debug\
 PL
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\App.xaml
+C:\Users\1\Source\Repos\leahmontag\dotNet5783_2703_7968.git\dotNet5783_2703_7968\WpfApp1\App.xaml
 15-25044812
 
 181108195443
-200470682501
+200-5641658
 MainWindow.xaml;Manager\ManagerWindow.xaml;Manager\Orders\OrderItemsWindow.xaml;Manager\Orders\OrderListWindow.xaml;Manager\Orders\OrderWindow.xaml;Manager\Products\ProductListWindow.xaml;Manager\Products\ProductWindow.xaml;NewOrder\CartWindow.xaml;NewOrder\ConfirmOrderWindow.xaml;NewOrder\NewOrderWindow.xaml;NewOrder\SingleProductItemWindow.xaml;OrderTracking\OrderTrackingdetailsWindow.xaml;OrderTracking\OrderTrackingWindow.xaml;OrderTracking\OrderWindow.xaml;registeredUser\registeredUserWindow.xaml;
 
 False

@@ -113,7 +113,7 @@ public partial class CartWindow : Window
             BO.Cart c = cart;
             bl.Cart.ConfirmOrder(cart);
             //Close();
-            App.Current.Shutdown();
+           // App.Current.Shutdown();
 
             new ConfirmOrderWindow(c).Show();
         }
@@ -130,13 +130,15 @@ public partial class CartWindow : Window
     {
         var element = e.OriginalSource as FrameworkElement;
 
+        string ID = (element.DataContext as BO.OrderItem)!.ProductID.ToString();
+
         if (element != null && element.DataContext is BO.OrderItem)
         {
             if (cart!.Items != null && bl != null)
             {
                 try
                 {
-                    product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString());
+                    product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == ID);
                     product.Amount = 0;
                     actionFunction();
                     items = new( bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, 0).Items);
@@ -157,6 +159,7 @@ public partial class CartWindow : Window
     private void btnAddAmount(object sender, RoutedEventArgs e)
     {
         var element = e.OriginalSource as FrameworkElement;
+        string ID = (element.DataContext as BO.OrderItem)!.ProductID.ToString();
 
         if (element != null && element.DataContext is BO.OrderItem)
         {
@@ -166,7 +169,7 @@ public partial class CartWindow : Window
                 {
                    items = new( bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, (element.DataContext as BO.OrderItem)!.Amount + 1).Items);
 
-                   product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString());
+                   product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == ID);
                   //  actionFunction();
                 }
                 catch (BO.ProductIsNotAvailableException exp)
@@ -186,14 +189,18 @@ public partial class CartWindow : Window
     private void btnSubtractAmount(object sender, RoutedEventArgs e)
     {
         var element = e.OriginalSource as FrameworkElement;
+        string ID = (element.DataContext as BO.OrderItem)!.ProductID.ToString();
+        int IDInt = (element.DataContext as BO.OrderItem)!.ProductID;
+        int amount = (element.DataContext as BO.OrderItem)!.Amount;
+
         if (element != null && element.DataContext is BO.OrderItem)
         {
             if (cart!.Items != null && bl != null)
             {
                 try
                 {
-                    items =new( bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, (element.DataContext as BO.OrderItem)!.Amount - 1).Items);
-                    product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString());
+                    items =new( bl.Cart.Update(cart, IDInt, amount - 1).Items);
+                    product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == ID);
                     actionFunction();
                 }
                 catch (BO.ProductIsNotAvailableException exp)

@@ -34,11 +34,16 @@ namespace PL.NewOrder
         {
             cart = confirmCart;
             InitializeComponent();
-            //foreach (Window item in Application.Current.Windows)
-            //{
-            //    if (item.Name != "ConfirmOrderWindow")
-            //        item.Close();
-            //}
+            closeall();
+
+        }
+        private void closeall()
+        {
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item.Title != "ConfirmOrderWindow" && item.Title != "MainWindow")
+                    item.Close();
+            }
         }
 
 
