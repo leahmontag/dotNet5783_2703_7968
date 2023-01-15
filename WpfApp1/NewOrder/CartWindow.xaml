@@ -7,57 +7,47 @@
         mc:Ignorable="d"
         Title="CartWindow" Height="450" Width="800"
           DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
-    <Grid Background="Black" Margin="0,0,0,-9" >
-        <TextBox Text="enter your details to confirm your order:"   Height="20"  HorizontalAlignment="Left" Margin="483,106,0,0" VerticalAlignment="Top" Width="229" />
-        <TextBox Text="{Binding cart.CustomerAddress,Mode=TwoWay}" Background="PaleVioletRed"  Height="23"  HorizontalAlignment="Left" Margin="596,156,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding cart.CustomerEmail,Mode=TwoWay}" Background="PaleVioletRed" Height="23"  HorizontalAlignment="Left" Margin="597,198,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding cart.CustomerName,Mode=TwoWay}"  Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="598,246,0,0" VerticalAlignment="Top" Width="120" />
-
-        <Label TextBlock.Foreground="White" Content="CustomerAddress:" Height="28" HorizontalAlignment="Left" Margin="472,152,0,0" VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="White" Content="CustomerEmail:" Height="28" HorizontalAlignment="Left" Margin="474,195,0,0" VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="White" Content="CustomerName:" Height="28" HorizontalAlignment="Left" Margin="475,241,0,0" VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="White" Content="all items in cart:" Height="28" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="15,12,0,0" Width="327" />
-        <Label Content="{Binding errorProp}" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red" Height="25" HorizontalAlignment="Left" Margin="{Binding expMargin}"  VerticalAlignment="Top" Width="197" />
+    <Grid Margin="0,0,0,-9" >
 
         <ListView ItemsSource = "{Binding cart.Items}" Margin="14,49,385,68" >
         </ListView>
         <Label Content="TotalPrice:" Height="28" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="215,384,0,0" RenderTransformOrigin="2.089,0.791" />
         <TextBlock Text="{Binding cart.TotalPrice}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="295,385,0,0" VerticalAlignment="Top" Width="120" />
 
-        <Button BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black"  Background="Azure" Content = "confirm order" Height="37" HorizontalAlignment="Left" Margin="659,384,0,0" VerticalAlignment="Top" Width="116" Click="BtnConfirmOrder_Click" />
 
-        <ListView ItemsSource="{Binding cart.Items}" Background="Black">
+
+        <ListView ItemsSource="{Binding items}" Background="Black">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="product id" Width="80">
+                    <GridViewColumn Header="product id" Width="40">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock TextBlock.TextAlignment="Center" Text="{Binding ProductID}" Foreground="White" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="price" Width="80">
+                    <GridViewColumn Header="price" Width="40">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock TextBlock.TextAlignment="Center" Text="{Binding Price}" Foreground="White" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn  Header="product name"  Width="160" >
+                    <GridViewColumn  Header="product name"  Width="100" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock TextBlock.TextAlignment="Center" Text="{Binding Name}" Foreground="White" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="amount" Width="80" >
+                    <GridViewColumn Header="amount" Width="50" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock TextBlock.TextAlignment="Center" Text="{Binding Amount}" Foreground="White" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="total price" Width="80" >
+                    <GridViewColumn Header="total price" Width="60" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock TextBlock.TextAlignment="Center" Text="{Binding TotalPrice}" Foreground="White" />
@@ -84,5 +74,18 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <TextBox Text="enter your details to confirm your order:"   Height="20"  HorizontalAlignment="Left" Margin="517,106,0,0" VerticalAlignment="Top" Width="229" />
+        <TextBox Text="{Binding cart.CustomerAddress,Mode=TwoWay}" Background="PaleVioletRed"  Height="23"  HorizontalAlignment="Left" Margin="630,156,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding cart.CustomerEmail,Mode=TwoWay}" Background="PaleVioletRed" Height="23"  HorizontalAlignment="Left" Margin="631,198,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding cart.CustomerName,Mode=TwoWay}"  Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="632,246,0,0" VerticalAlignment="Top" Width="120" />
+
+        <Label TextBlock.Foreground="White" Content="CustomerAddress:" Height="28" HorizontalAlignment="Left" Margin="506,152,0,0" VerticalAlignment="Top" />
+        <Label TextBlock.Foreground="White" Content="CustomerEmail:" Height="28" HorizontalAlignment="Left" Margin="508,195,0,0" VerticalAlignment="Top" />
+        <Label TextBlock.Foreground="White" Content="CustomerName:" Height="28" HorizontalAlignment="Left" Margin="509,241,0,0" VerticalAlignment="Top" />
+        <Label TextBlock.Foreground="White" Content="all items in cart:" Height="28" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="15,12,0,0" Width="327" />
+        <Label Content="{Binding errorProp}" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red" Height="25" HorizontalAlignment="Left" Margin="{Binding expMargin}"  VerticalAlignment="Top" Width="197" />
+
+        <Button BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black" Background="White" Content = "confirm order" Height="63" HorizontalAlignment="Left" Margin="600,344,0,0" VerticalAlignment="Top" Width="172" Click="BtnConfirmOrder_Click" RenderTransformOrigin="0.5,0.5" />
+
     </Grid>
 </Window>

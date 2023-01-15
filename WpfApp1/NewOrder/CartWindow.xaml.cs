@@ -4,6 +4,8 @@ using DO;
 using PL.Products;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -17,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using WpfApp1;
 
 namespace PL.NewOrder;
 
@@ -33,6 +36,23 @@ public partial class CartWindow : Window
     }
     public static readonly DependencyProperty cartProperty =
        DependencyProperty.Register(nameof(cart), typeof(BO.Cart), typeof(CartWindow));
+
+    public ObservableCollection<BO.OrderItem?> items
+
+    {
+        get { return (ObservableCollection<BO.OrderItem?>)GetValue(ItemsProperty); }
+        set
+        {
+            SetValue(ItemsProperty, value);
+            cart ??= new();
+            cart.Items ??= new();
+            cart.Items = items.Select(x => x).ToList();
+        }
+    }
+    public static readonly DependencyProperty ItemsProperty =
+       DependencyProperty.Register(nameof(items), typeof(ObservableCollection<BO.OrderItem?>), typeof(CartWindow));
+
+
     public BO.ProductItem product
     {
         get { return (BO.ProductItem)GetValue(productProperty); }
@@ -57,9 +77,9 @@ public partial class CartWindow : Window
 
     private Action<ProductItem?> action;
 
-
     public CartWindow(BO.Cart updateingCart, Action<ProductItem?> action)
     {
+        items = new(updateingCart.Items);
         cart = updateingCart;
         InitializeComponent();
         this.action = action;
@@ -92,7 +112,9 @@ public partial class CartWindow : Window
             }
             BO.Cart c = cart;
             bl.Cart.ConfirmOrder(cart);
-            Close();
+            //Close();
+            App.Current.Shutdown();
+
             new ConfirmOrderWindow(c).Show();
         }
         catch (BO.ProductIsNotAvailableException exp)
@@ -106,17 +128,6 @@ public partial class CartWindow : Window
     }
     private void BtnRemoveItem(object sender, RoutedEventArgs e)
     {
-        //try
-        //{
-
-        //    cart = bl.Cart.Update(cart, product.ID, 0);
-        //    actionFunction();
-        //    Close();
-        //}
-        //catch (BO.FailedToDisplayAllItemsException exp)
-        //{
-        //    errorProp = exp.Message;
-        //}
         var element = e.OriginalSource as FrameworkElement;
 
         if (element != null && element.DataContext is BO.OrderItem)
@@ -128,9 +139,7 @@ public partial class CartWindow : Window
                     product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString());
                     product.Amount = 0;
                     actionFunction();
-                    cart = bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, 0);
-                    //// errorProp = "the amount update succesfully";
-                   // actionFunction();
+                    items = new( bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, 0).Items);
                     Close();
                 }
                 catch (BO.FailedToDisplayAllItemsException exp)
@@ -151,14 +160,14 @@ public partial class CartWindow : Window
 
         if (element != null && element.DataContext is BO.OrderItem)
         {
-            if (cart!.Items != null && bl != null)
+            if (items != null && bl != null)
             {
                 try
                 {
-                    cart = bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, (element.DataContext as BO.OrderItem)!.Amount + 1);
-                    //// errorProp = "the amount update succesfully";
-                    product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString());
-                    actionFunction();
+                    items = new( bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, (element.DataContext as BO.OrderItem)!.Amount + 1).Items);
+
+                  //  product = new(bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString()));
+                  //  actionFunction();
                 }
                 catch (BO.ProductIsNotAvailableException exp)
                 {
@@ -183,9 +192,9 @@ public partial class CartWindow : Window
             {
                 try
                 {
-                    cart = bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, (element.DataContext as BO.OrderItem)!.Amount - 1);
-                    product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString());
-                    actionFunction();
+                    items =new( bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, (element.DataContext as BO.OrderItem)!.Amount - 1).Items);
+                   // product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString());
+                   // actionFunction();
                 }
                 catch (BO.ProductIsNotAvailableException exp)
                 {

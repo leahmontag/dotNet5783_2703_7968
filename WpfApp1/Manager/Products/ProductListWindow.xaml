@@ -22,7 +22,10 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
             <ComboBox SelectedItem = "{Binding selectedCategory}" ItemsSource="{Binding categories}" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="CategorySelector_SelectionChanged" />
-            <Label Grid.Column="0">Category</Label>
+            <Label Grid.Column="0" Content="Category" TextBlock.Foreground="Beige" FontWeight="Bold"/>
+            <CheckBox Foreground="PaleVioletRed"  
+            Canvas.Left="20" Canvas.Top="10" Content="without filtering"  
+             FontSize="15" Margin="253,16,380,-16" Grid.ColumnSpan="2" IsChecked="{Binding filtering, Mode=TwoWay}"  Checked="CheckBox_checked" />
         </Grid>
         <ListView Background="Black" TextBlock.Foreground="White" ItemsSource = "{Binding productForList}" SelectedValue = "{Binding selectedProduct}"  Grid.Row="1" MouseDoubleClick="ProductsListView_MouseDoubleClick" SelectionChanged="ListView_SelectionChanged" />
     </Grid>
