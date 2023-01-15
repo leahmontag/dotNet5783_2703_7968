@@ -164,9 +164,9 @@ public partial class CartWindow : Window
             {
                 try
                 {
-                    items = new( bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, (element.DataContext as BO.OrderItem)!.Amount + 1).Items);
+                   items = new( bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, (element.DataContext as BO.OrderItem)!.Amount + 1).Items);
 
-                  //  product = new(bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString()));
+                   product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString());
                   //  actionFunction();
                 }
                 catch (BO.ProductIsNotAvailableException exp)
@@ -193,8 +193,8 @@ public partial class CartWindow : Window
                 try
                 {
                     items =new( bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, (element.DataContext as BO.OrderItem)!.Amount - 1).Items);
-                   // product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString());
-                   // actionFunction();
+                    product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == (element.DataContext as BO.OrderItem)!.ProductID.ToString());
+                    actionFunction();
                 }
                 catch (BO.ProductIsNotAvailableException exp)
                 {
