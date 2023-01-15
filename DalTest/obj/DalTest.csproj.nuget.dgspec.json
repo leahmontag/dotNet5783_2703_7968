@@ -1,28 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalTest\\DalTest.csproj": {}
+    "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalTest\\DalTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj": {
+    "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj",
+        "projectUniqueName": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj",
         "projectName": "DalFacade",
-        "projectPath": "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj",
-        "packagesPath": "C:\\Users\\1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalFacade\\obj\\",
+        "projectPath": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj",
+        "packagesPath": "C:\\Users\\efrat\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalFacade\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\efrat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -68,29 +61,22 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalList\\DalList.csproj": {
+    "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalList\\DalList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalList\\DalList.csproj",
+        "projectUniqueName": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalList\\DalList.csproj",
         "projectName": "DalList",
-        "projectPath": "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalList\\DalList.csproj",
-        "packagesPath": "C:\\Users\\1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalList\\obj\\",
+        "projectPath": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalList\\DalList.csproj",
+        "packagesPath": "C:\\Users\\efrat\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalList\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\efrat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -103,8 +89,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj": {
-                "projectPath": "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj"
+              "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj": {
+                "projectPath": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj"
               }
             }
           }
@@ -134,29 +120,22 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalTest\\DalTest.csproj": {
+    "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalTest\\DalTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalTest\\DalTest.csproj",
+        "projectUniqueName": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalTest\\DalTest.csproj",
         "projectName": "DalTest",
-        "projectPath": "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalTest\\DalTest.csproj",
-        "packagesPath": "C:\\Users\\1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalTest\\obj\\",
+        "projectPath": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalTest\\DalTest.csproj",
+        "packagesPath": "C:\\Users\\efrat\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalTest\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\efrat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -169,11 +148,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj": {
-                "projectPath": "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj"
+              "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj": {
+                "projectPath": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalFacade\\DalFacade.csproj"
               },
-              "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalList\\DalList.csproj": {
-                "projectPath": "C:\\Users\\1\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968.git\\dotNet5783_2703_7968\\DalList\\DalList.csproj"
+              "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalList\\DalList.csproj": {
+                "projectPath": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\DalList\\DalList.csproj"
               }
             }
           }
@@ -203,7 +182,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
