@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "3R/PytINW/lQnzzahURY8xc37WULiXMuHxYXDHwR7RegMBfLfKak020g6PLl8Guj44j/wsXNKQAC4f40f0uELA==",
+  "dgSpecHash": "OK/U+iQirTernjhbnzrysK4dJ6wMyx82BvZCp3cM+rcSkmKO8swZDNOCTOm8oryRH5Lqd+0nRr0TGJXiVHWKuw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\BL\\BL.csproj",
+  "projectFilePath": "C:\\Users\\1\\source\\repos\\leahmontag\\dotNet5783_2703_7968\\BL\\BL.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\efrat\\.nuget\\packages\\awssdk.core\\3.7.100.16\\awssdk.core.3.7.100.16.nupkg.sha512",
-    "C:\\Users\\efrat\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.100.16\\awssdk.dynamodbv2.3.7.100.16.nupkg.sha512"
+    "C:\\Users\\1\\.nuget\\packages\\awssdk.core\\3.7.100.16\\awssdk.core.3.7.100.16.nupkg.sha512",
+    "C:\\Users\\1\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.100.16\\awssdk.dynamodbv2.3.7.100.16.nupkg.sha512"
   ],
   "logs": []
 }

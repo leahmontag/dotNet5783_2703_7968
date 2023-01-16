@@ -47,7 +47,6 @@ public interface IProduct
     /// <param name="d"></param>
     /// <returns>IEnumerable<BO.ProductItem?></returns>
     public IEnumerable<BO.ProductItem?> GetAllProductsItemFromCatalog(BO.Cart cartBL, Func<DO.Product?, bool>? d = null);
-    public IEnumerable<BO.ProductItem?> GetAllProductsItemGroupByCategory(BO.Cart cartBL);
 
     /// <summary>
     /// func Get

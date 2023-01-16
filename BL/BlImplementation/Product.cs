@@ -200,20 +200,6 @@ internal class Product : BlApi.IProduct
         }
     }
     #endregion
-    public IEnumerable<BO.ProductItem?> GetAllProductsItemGroupByCategory(BO.Cart cartBL)
-    {
-        IEnumerable<DO.Product?> productsList = _dal.Product.GetAll();
-        IEnumerable<BO.ProductItem?> ProductItemForList = new List<BO.ProductItem>();
-        //var x = from DO.Product prod in productsList
-        //        group prod by prod.Category into y
-        //        select new BO.ProductItem() { Amount = y. }
-
-
-        // return ProductItemForList = from DO.Product productsListDOWithCondtion in x
-        //                             let item = productsListDOWithCondtion.ID
-        //                             select GetProductFromCatalog(cartBL, item => item?.ID.ToString() == productsListDOWithCondtion.ID.ToString());
-        return ProductItemForList;
-    }
 
 
     /// <summary>
