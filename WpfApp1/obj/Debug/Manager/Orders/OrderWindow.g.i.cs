@@ -53,7 +53,7 @@ namespace PL.Orders {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PL;V1.0.0.0;component/manager/orders/orderwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PL;component/manager/orders/orderwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Manager\Orders\OrderWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

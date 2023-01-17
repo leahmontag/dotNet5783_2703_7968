@@ -1,0 +1,13 @@
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\bin\DalXml.deps.json
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\bin\DalXml.dll
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\bin\DalXml.pdb
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\DalXml\obj\Debug\DalXml.csproj.AssemblyReference.cache
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\DalXml\obj\Debug\DalXml.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\DalXml\obj\Debug\DalXml.AssemblyInfoInputs.cache
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\DalXml\obj\Debug\DalXml.AssemblyInfo.cs
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\DalXml\obj\Debug\DalXml.csproj.CoreCompileInputs.cache
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\DalXml\obj\Debug\DalXml.csproj.CopyComplete
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\DalXml\obj\Debug\DalXml.dll
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\DalXml\obj\Debug\refint\DalXml.dll
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\DalXml\obj\Debug\DalXml.pdb
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\DalXml\obj\Debug\ref\DalXml.dll

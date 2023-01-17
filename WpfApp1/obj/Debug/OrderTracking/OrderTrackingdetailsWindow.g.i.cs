@@ -53,7 +53,7 @@ namespace PL.OrderTracking {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PL;V1.0.0.0;component/ordertracking/ordertrackingdetailswindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PL;component/ordertracking/ordertrackingdetailswindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\OrderTracking\OrderTrackingdetailsWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
