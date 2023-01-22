@@ -100,13 +100,13 @@ internal class DalProduct : IProduct
     /// checking if product is exist  (by ID).
     /// </summary>
     #region checking if product is exist
-    public Product existProductID(int num)
-    {
-        var product = _productList.Where(item => item?.ID == num).First();
-        if (product != null)
-            return new Product() { Category = product?.Category ?? null, ID = product?.ID ?? 0, Name = product?.Name ?? "", Price = product?.Price ?? 0, InStock = product?.InStock ?? 0 };
-        Product p = new Product() { ID = 0 };
-        return p;
-    }
+    //public Product existProductID(int num)
+    //{
+    //    var product = _productList.Where(item => item?.ID == num).First();
+    //    if (product != null)
+    //        return new Product() { Category = product?.Category ?? null, ID = product?.ID ?? 0, Name = product?.Name ?? "", Price = product?.Price ?? 0, InStock = product?.InStock ?? 0 };
+    //    Product p = new Product() { ID = 0 };
+    //    return p;
+    //}
     #endregion
 }

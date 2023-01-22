@@ -110,11 +110,11 @@ internal class DalOrder : IOrder
     /// <param name="num"></param>
     /// <returns>bool</returns>
     #region if order ID is exis
-    public bool exisOrderID(int num)
-    {
-        if (_orderList.Exists(item => item?.ID == num))
-            return true;
-        return false;
-    }
+    //public bool exisOrderID(int num)
+    //{
+    //    if (_orderList.Exists(item => item?.ID == num))
+    //        return true;
+    //    return false;
+    //}
     #endregion
 }

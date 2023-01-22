@@ -93,7 +93,7 @@ internal class Program
                 Console.WriteLine("enter your product id:");
                 int checkID = int.Parse(Console.ReadLine());
                 Product myProductToUpdate = new Product();
-                myProductToUpdate = _dal.Product.existProductID(checkID);
+             //   myProductToUpdate = _dal.Product.existProductID(checkID);
                 if (myProductToUpdate.ID == 0)
                     throw new Exception("not exist product id");
                 Console.WriteLine(myProductToUpdate);
@@ -176,8 +176,8 @@ internal class Program
                 #region Update order
                 Console.WriteLine("enter your order id:");
                 int checkID = int.Parse(Console.ReadLine());
-                if (_dal?.Order.exisOrderID(checkID) == false)
-                    throw new Exception("not exist order id");
+             //   if (_dal?.Order.exisOrderID(checkID) == false)
+                 //   throw new Exception("not exist order id");
                 Order myOrderToUpdate = new Order();
                 myOrderToUpdate.ID = checkID;
                 Console.WriteLine("enter your order items:");
@@ -252,8 +252,8 @@ internal class Program
                 #region Update OrderItem
                 Console.WriteLine("enter your order item id:");
                 int checkID = int.Parse(Console.ReadLine());
-                if (_dal.OrderItem.exisOrderItemID(checkID) == false)
-                    throw new Exception("not exist order item id");
+               // if (_dal.OrderItem.exisOrderItemID(checkID) == false)
+                //    throw new Exception("not exist order item id");
                 OrderItem myOrderItemToUpdate = new OrderItem();
                 myOrderItemToUpdate.OrderItemID = checkID;
                 Console.WriteLine(" enter your order items:");

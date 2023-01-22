@@ -107,12 +107,12 @@ internal class DalOrderItem : IOrderItem
     /// <param name="num"></param>
     /// <returns>bool</returns>
     #region if order item ID is exis
-    public bool exisOrderItemID(int num)
-    {
-        if (_orderItemList.Exists(item => item?.OrderItemID == num))
-            return true;
-        return false;
-    }
+    //public bool exisOrderItemID(int num)
+    //{
+    //    if (_orderItemList.Exists(item => item?.OrderItemID == num))
+    //        return true;
+    //    return false;
+    //}
     #endregion
 
 

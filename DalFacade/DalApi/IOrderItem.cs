@@ -4,5 +4,5 @@ namespace DalApi;
 
 public interface IOrderItem : ICrud<OrderItem>
 {
-    bool exisOrderItemID(int checkID);
+   // bool exisOrderItemID(int checkID);
 }

@@ -9,33 +9,81 @@ using DalApi;
 using DO;
 internal class OrderItem : IOrderItem
 {
-    public int Create(DO.OrderItem val)
+    string orderItemPath = @"OrderItemXml.xml";
+    public int Create(DO.OrderItem myOrderItem)
     {
-        throw new NotImplementedException();
+        //  myOrderItem.OrderItemID = Config.AutoNumOrderItem;
+        List<DO.OrderItem?> ListOrderItems = XMLTools.LoadListFromXMLSerializer<DO.OrderItem?>(orderItemPath);
+        if (ListOrderItems.Exists(item => item?.OrderItemID == myOrderItem.OrderItemID))
+            throw new DuplicatesException("exist orderItem");
+        ListOrderItems.Add(myOrderItem);
+        XMLTools.SaveListToXMLSerializer(ListOrderItems, orderItemPath);
+        return myOrderItem.OrderItemID;
     }
 
-    public void Delete(int val)
+    public void Delete(int OrderItemId)
     {
-        throw new NotImplementedException();
-    }
-
-    public bool exisOrderItemID(int checkID)
-    {
-        throw new NotImplementedException();
+        List<DO.OrderItem?> ListOrderItems = XMLTools.LoadListFromXMLSerializer<DO.OrderItem?>(orderItemPath);
+        ListOrderItems.Remove(ListOrderItems.FirstOrDefault(item => item?.OrderItemID == OrderItemId)
+        ?? throw new NotFoundException("not exist OrderItem"));
+        XMLTools.SaveListToXMLSerializer(ListOrderItems, orderItemPath);
     }
 
     public DO.OrderItem Get(Func<DO.OrderItem?, bool>? d)
     {
-        throw new NotImplementedException();
+        List<DO.OrderItem?> ListOrderItems = XMLTools.LoadListFromXMLSerializer<DO.OrderItem?>(orderItemPath);
+
+        try
+        {
+            var orderItem = ListOrderItems.Where(item => item != null && d != null && d(item) == true).First();
+            return new DO.OrderItem()
+            {
+                OrderID = orderItem?.OrderID ?? 0,
+                OrderItemID = orderItem?.OrderItemID ?? 0,
+                ProductID = orderItem?.ProductID ?? 0,
+                Name = orderItem?.Name ?? "",
+                Amount = orderItem?.Amount ?? 0,
+                Price = orderItem?.Price ?? 0
+            };
+        }
+        catch (Exception)
+        {
+            throw new NotFoundException("not exist OrderItem");
+        }
     }
 
     public IEnumerable<DO.OrderItem?> GetAll(Func<DO.OrderItem?, bool>? d = null)
     {
-        throw new NotImplementedException();
+        List<DO.OrderItem?> ListOrderItems = XMLTools.LoadListFromXMLSerializer<DO.OrderItem?>(orderItemPath);
+
+        if (d == null)
+        {
+            try
+            {
+                return from OrderItem in ListOrderItems
+                       select OrderItem;
+            }
+            catch (Exception)
+            {
+                throw new NotFoundException("can't display all OrderItem");
+            }
+        }
+        else
+            return ListOrderItems.Where(item => (item != null && d(item) == true)).ToList();
     }
 
-    public void Update(DO.OrderItem? val)
+    public void Update(DO.OrderItem? myOrdetItem)
     {
-        throw new NotImplementedException();
+        List<DO.OrderItem?> ListOrderItems = XMLTools.LoadListFromXMLSerializer<DO.OrderItem?>(orderItemPath);
+
+        if (ListOrderItems.Exists(item => item?.OrderItemID == myOrdetItem?.OrderItemID))
+        {
+            ListOrderItems.Remove(ListOrderItems.FirstOrDefault(item => item?.OrderItemID == myOrdetItem?.OrderItemID));
+            ListOrderItems.Add(myOrdetItem);
+            return;
+        }
+        else
+            throw new NotFoundException("not exist product");
+        XMLTools.SaveListToXMLSerializer(ListOrderItems, orderItemPath);
     }
 }
