@@ -31,11 +31,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{74B607A6-8D3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Item", "Solution Item", "{F9035DE0-5F76-4EEE-BBE9-44C1CD06F1F5}"
 	ProjectSection(SolutionItems) = preProject
-		image\brush_7.jpg = image\brush_7.jpg
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalXml", "DalXml\DalXml.csproj", "{1CB3A5E8-C58C-4215-AFA8-E324387D7813}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csproj", "{1CB3A5E8-C58C-4215-AFA8-E324387D7813}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

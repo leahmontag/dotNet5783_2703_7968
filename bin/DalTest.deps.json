@@ -9,7 +9,8 @@
       "DalTest/1.0.0": {
         "dependencies": {
           "DalFacade": "1.0.0",
-          "DalList": "1.0.0"
+          "DalList": "1.0.0",
+          "DalXml": "1.0.0"
         },
         "runtime": {
           "DalTest.dll": {}
@@ -49,6 +50,14 @@
         "runtime": {
           "DalList.dll": {}
         }
+      },
+      "DalXml/1.0.0": {
+        "dependencies": {
+          "DalFacade": "1.0.0"
+        },
+        "runtime": {
+          "DalXml.dll": {}
+        }
       }
     }
   },
@@ -78,6 +87,11 @@
       "sha512": ""
     },
     "DalList/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DalXml/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
