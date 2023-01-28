@@ -13,7 +13,7 @@ public class OrderItem
     ///// <summary>
     ///// uniqe id of order item for order item. 
     ///// </summary>
-    //public int OrderItemID { get; set; }
+    public int OrderItemID { get; set; }
 
     /// <summary>
     /// uniqe id of product for order item. 
@@ -41,6 +41,7 @@ public class OrderItem
     /// <returns>string</returns>
     public override string ToString() => $@"
     Name: {Name}
+    OrderItem ID: {OrderItemID}
     Product ID: {ProductID}
     Price: {Price}
     Amount in order: {Amount}

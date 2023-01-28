@@ -106,7 +106,7 @@ internal static class DataSource
             {
                 //היה כאן 3 סימני שאלה לבדוק אם צריך אותם
                 newOrderItem.ProductID = _productList[rng]?.ID ?? 0;
-                newOrderItem.OrderID = _orderList[i % 20]?.ID ?? 0;
+              //  newOrderItem.OrderID = _orderList[i % 20]?.ID ?? 0;
                 newOrderItem.Price = _productList[rng]?.Price ?? 0;
                 newOrderItem.Amount = _rand.Next(1, 10);
                 newOrderItem.Name = _productList[rng]!?.Name ?? "";

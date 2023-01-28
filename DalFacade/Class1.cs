@@ -2,19 +2,7 @@
 
 namespace DalFacade;
 
-public class XmlStudents
+public class Class1
 {
-   // public class XmlStudents
-
- //   {
-
-        XElement root;
-
-        string path = @"..\baba\baba.xml";
-
-        public XmlStudents() => root = new XElement("students");
-
-//    }
-
 
 }

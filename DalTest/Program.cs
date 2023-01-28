@@ -220,8 +220,8 @@ internal class Program
                 myOrderItemToAdd.OrderItemID = int.Parse(Console.ReadLine());
                 Console.WriteLine(" ProductID:");
                 myOrderItemToAdd.ProductID = int.Parse(Console.ReadLine());
-                Console.WriteLine(" OrderID:");
-                myOrderItemToAdd.OrderID = int.Parse(Console.ReadLine());
+                //Console.WriteLine(" OrderID:");
+                //myOrderItemToAdd.OrderID = int.Parse(Console.ReadLine());
                 Console.WriteLine(" Price:");
                 myOrderItemToAdd.Price = double.Parse(Console.ReadLine());
                 Console.WriteLine(" Amount:");
@@ -259,8 +259,8 @@ internal class Program
                 Console.WriteLine(" enter your order items:");
                 Console.WriteLine(" ProductID:");
                 myOrderItemToUpdate.ProductID = int.Parse(Console.ReadLine());
-                Console.WriteLine("OrderID:");
-                myOrderItemToUpdate.OrderID = int.Parse(Console.ReadLine());
+                //Console.WriteLine("OrderID:");
+                //myOrderItemToUpdate.OrderID = int.Parse(Console.ReadLine());
                 Console.WriteLine("Price:");
                 myOrderItemToUpdate.Price = double.Parse(Console.ReadLine());
                 Console.WriteLine("Amount:");
@@ -281,14 +281,14 @@ internal class Program
                 orderItId = int.Parse(Console.ReadLine());
                 Console.WriteLine("enter your product id: ");
                 int productId = int.Parse(Console.ReadLine());
-                Console.WriteLine(_dal?.OrderItem.Get(x=>x?.OrderID==orderItId&& x?.ProductID==productId));
+                Console.WriteLine(_dal?.OrderItem.Get(x=>x?.ProductID==productId));
                 #endregion
                 break;
             case Crud.GetOrderItemsByOrderID:
                 #region Get Order Items By Order ID
                 Console.WriteLine("enter your order id: ");
                 orderItId = int.Parse(Console.ReadLine());
-                printOrdersItems= _dal.OrderItem.GetAll(x=>x?.OrderID == orderItId);
+                printOrdersItems= _dal.OrderItem.GetAll(x=>x?.OrderItemID == orderItId);
                 foreach (OrderItem i in printOrdersItems)
                 {
                     if (i.OrderItemID != 0)

@@ -14,8 +14,8 @@ using System.Xml.Linq;
 
 internal class Order : IOrder
 {
-    string orderPath = @"OrdersXml.xml";
-    string configPath = @"configXml.xml";
+    string orderPath = @"XMLOrder.xml";
+    string configPath = @"Config.xml";
 
     public int Create(DO.Order order)
     {
@@ -71,13 +71,13 @@ internal class Order : IOrder
             DO.Order order1 = (from singleOrder in ordersRootElem.Elements()
                                let p1 = new DO.Order()
                                {
-                                   ID = Int32.Parse(singleOrder.Element("ID").Value),
-                                   CustomerAdress = singleOrder.Element("CustomerAdress").Value,
-                                   CustomerEmail = singleOrder.Element("CustomerEmail").Value,
-                                   CustomerName = singleOrder.Element("CustomerName").Value,
-                                   DeliveryDate = DateTime.Parse(singleOrder.Element("DeliveryDate").Value),
-                                   OrderDate = DateTime.Parse(singleOrder.Element("OrderDate").Value),
-                                   ShipDate = DateTime.Parse(singleOrder.Element("ShipDate").Value),
+                                   ID = Convert.ToInt32(singleOrder.Element("ID")!.Value),
+                                   CustomerAdress = singleOrder.Element("CustomerAdress")!.Value,
+                                   CustomerEmail = singleOrder.Element("CustomerEmail")!.Value,
+                                   CustomerName = singleOrder.Element("CustomerName")!.Value,
+                                   DeliveryDate = DateTime.Parse(singleOrder.Element("DeliveryDate")!.Value),
+                                   OrderDate = DateTime.Parse(singleOrder.Element("OrderDate")!.Value),
+                                   ShipDate = DateTime.Parse(singleOrder.Element("ShipDate")!.Value),
                                }
                                where d(p1)
                                select p1
@@ -93,23 +93,18 @@ internal class Order : IOrder
     public IEnumerable<DO.Order?> GetAll(Func<DO.Order?, bool>? d = null)
     {
         XElement ordersRootElem = XMLTools.LoadListFromXMLElement(orderPath);
-
-        IEnumerable<DO.Order> w = from o in ordersRootElem.Elements()
-                                  let o1 = new DO.Order()
-                                  {
-                                      ID = Int32.Parse(o.Element("ID").Value),
-                                      CustomerAdress = o.Element("CustomerAdress").Value,
-                                      CustomerEmail = o.Element("CustomerEmail").Value,
-                                      CustomerName = o.Element("CustomerName").Value,
-                                      DeliveryDate = DateTime.Parse(o.Element("DeliveryDate").Value),
-                                      OrderDate = DateTime.Parse(o.Element("OrderDate").Value),
-                                      ShipDate = DateTime.Parse(o.Element("ShipDate").Value),
-                                  }
-                                  where d(o1)
-                                  select o1;
-        List<DO.Order?> ListOrderItems = XMLTools.LoadListFromXMLSerializer<DO.Order?>(orderPath);
-        return ListOrderItems.Where(item => (item != null && d(item) == true)).ToList();
-
+        var orders = from o in ordersRootElem.Elements()
+                     select new DO.Order()
+                     {
+                         ID = Convert.ToInt32(o.Element("ID")!.Value),
+                         CustomerAdress = o.Element("CustomerAdress")!.Value,
+                         CustomerEmail = o.Element("CustomerEmail")!.Value,
+                         CustomerName = o.Element("CustomerName")!.Value,
+                         DeliveryDate = DateTime.Parse(o.Element("DeliveryDate")!.Value),
+                         OrderDate = DateTime.Parse(o.Element("OrderDate")!.Value),
+                         ShipDate = DateTime.Parse(o.Element("ShipDate")!.Value),
+                     };
+        return d != null ? orders.Cast<DO.Order?>().Where(d) : orders.Cast<DO.Order?>();
     }
 
     public void Update(DO.Order? order)

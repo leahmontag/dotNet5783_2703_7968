@@ -13,7 +13,7 @@ using System.Xml.Serialization;
 
 internal class Product : IProduct
 {
-    string productPath = @"ProductsXml.xml";
+    string productPath = @"XMLProduct.xml";
     public int Create(DO.Product myProduct)
     {
         List<DO.Product?> ListProducts = XMLTools.LoadListFromXMLSerializer<DO.Product?>(productPath);

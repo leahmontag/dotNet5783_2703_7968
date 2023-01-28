@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Product>
+    <ID>233833</ID>
+    <Name>eye shadow palette</Name>
+    <Price>250</Price>
+    <Category>eyeMakeup</Category>
+    <InStock>17</InStock>
+  </Product>
+  <Product>
+    <ID>952829</ID>
+    <Name>rubber</Name>
+    <Price>80</Price>
+    <Category>lipMakeup</Category>
+    <InStock>78</InStock>
+  </Product>
+  <Product>
+    <ID>778147</ID>
+    <Name>mascara</Name>
+    <Price>68</Price>
+    <Category>eyeMakeup</Category>
+    <InStock>3</InStock>
+  </Product>
+  <Product>
+    <ID>176334</ID>
+    <Name>facial soap</Name>
+    <Price>73</Price>
+    <Category>cultivation</Category>
+    <InStock>0</InStock>
+  </Product>
+  <Product>
+    <ID>691275</ID>
+    <Name>blush</Name>
+    <Price>69</Price>
+    <Category>facialMmakeup</Category>
+    <InStock>26</InStock>
+  </Product>
+  <Product>
+    <ID>224529</ID>
+    <Name>makeup</Name>
+    <Price>189</Price>
+    <Category>facialMmakeup</Category>
+    <InStock>47</InStock>
+  </Product>
+  <Product>
+    <ID>832609</ID>
+    <Name>makeup brush</Name>
+    <Price>75</Price>
+    <Category>brushes</Category>
+    <InStock>212</InStock>
+  </Product>
+  <Product>
+    <ID>980944</ID>
+    <Name>eyeshadow brush</Name>
+    <Price>45</Price>
+    <Category>brushes</Category>
+    <InStock>269</InStock>
+  </Product>
+  <Product>
+    <ID>817422</ID>
+    <Name>moisturizer</Name>
+    <Price>55</Price>
+    <Category>cultivation</Category>
+    <InStock>0</InStock>
+  </Product>
+  <Product>
+    <ID>451918</ID>
+    <Name>lipstick</Name>
+    <Price>35</Price>
+    <Category>lipMakeup</Category>
+    <InStock>10</InStock>
+  </Product>
+</ArrayOfProduct>

@@ -9,7 +9,7 @@ using DalApi;
 using DO;
 internal class OrderItem : IOrderItem
 {
-    string orderItemPath = @"OrderItemXml.xml";
+    string orderItemPath = @"XMLOrderItem.xml";
     public int Create(DO.OrderItem myOrderItem)
     {
         //  myOrderItem.OrderItemID = Config.AutoNumOrderItem;
@@ -38,7 +38,7 @@ internal class OrderItem : IOrderItem
             var orderItem = ListOrderItems.Where(item => item != null && d != null && d(item) == true).First();
             return new DO.OrderItem()
             {
-                OrderID = orderItem?.OrderID ?? 0,
+                //OrderID = orderItem?.OrderID ?? 0,
                 OrderItemID = orderItem?.OrderItemID ?? 0,
                 ProductID = orderItem?.ProductID ?? 0,
                 Name = orderItem?.Name ?? "",

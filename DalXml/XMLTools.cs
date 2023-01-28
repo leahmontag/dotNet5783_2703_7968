@@ -11,7 +11,7 @@ namespace Dal
 {
     class XMLTools
     {
-        static string dir = @"xml\";
+        static string dir = @"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\";
         //public string configPath = @"configXml.xml";
         static XMLTools()
         {
@@ -33,9 +33,10 @@ namespace Dal
 
         public static XElement LoadListFromXMLElement(string filePath)
         {
+            string path = dir + filePath;
             try
             {
-                if (File.Exists(dir + filePath))
+                if (File.Exists(path))
                 {
                     return XElement.Load(dir + filePath);
                 }
@@ -70,9 +71,10 @@ namespace Dal
         }
         public static List<T> LoadListFromXMLSerializer<T>(string filePath)
         {
+            string pathFin = dir + filePath;
             try
             {
-                if (File.Exists(dir + filePath))
+                if (File.Exists(pathFin))
                 {
                     List<T> list;
                     XmlSerializer x = new XmlSerializer(typeof(List<T>));

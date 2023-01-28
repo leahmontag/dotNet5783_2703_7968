@@ -347,7 +347,7 @@ internal class Order : BlApi.IOrder
     #region Convert doOrder to boOrder
     private BO.Order ConvertDoOrderToBoOrder(DO.Order DoOrder)
     {
-        IEnumerable<DO.OrderItem?> DoItemsOfOrder = _dal.OrderItem.GetAll(x => x?.OrderID == DoOrder.ID);
+        IEnumerable<DO.OrderItem?> DoItemsOfOrder = _dal.OrderItem.GetAll(x => x?.OrderItemID == DoOrder.ID);
         BO.Order BoOrder = new BO.Order();
         BoOrder.ID = DoOrder.ID;
         BoOrder.CustomerName = DoOrder.CustomerName;

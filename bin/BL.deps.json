@@ -9,7 +9,6 @@
       "BL/1.0.0": {
         "dependencies": {
           "DalFacade": "1.0.0",
-          "DalList": "1.0.0",
           "DalXml": "1.0.0"
         },
         "runtime": {
@@ -43,14 +42,6 @@
           "DalFacade.dll": {}
         }
       },
-      "DalList/1.0.0": {
-        "dependencies": {
-          "DalFacade": "1.0.0"
-        },
-        "runtime": {
-          "DalList.dll": {}
-        }
-      },
       "DalXml/1.0.0": {
         "dependencies": {
           "DalFacade": "1.0.0"
@@ -82,11 +73,6 @@
       "hashPath": "awssdk.dynamodbv2.3.7.100.16.nupkg.sha512"
     },
     "DalFacade/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "DalList/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
