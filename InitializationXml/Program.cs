@@ -131,15 +131,15 @@ public class Sample
            new XElement("ShipDate", order?.ShipDate),
            new XElement("DeliveryDate", order?.DeliveryDate)));
 
-        initialize1.Save(@"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrder.xml");
+        initialize1.Save(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrder.xml");
 
-        FileStream fsP = new FileStream(@"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLProduct.xml", FileMode.OpenOrCreate);
+        FileStream fsP = new FileStream(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLProduct.xml", FileMode.OpenOrCreate);
         XmlSerializer xs1 = new XmlSerializer(typeof(List<Product?>));
         xs1.Serialize(fsP, _productList);
         fsP.Close();
 
 
-        FileStream fsOI = new FileStream(@"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrderItem.xml", FileMode.OpenOrCreate);
+        FileStream fsOI = new FileStream(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrderItem.xml", FileMode.OpenOrCreate);
         XmlSerializer xs3 = new XmlSerializer(typeof(List<OrderItem?>));
         xs3.Serialize(fsOI, _orderItemList);
         fsOI.Close();
@@ -148,7 +148,7 @@ public class Sample
         XElement initialize2 = new XElement("Config",
            new XElement("_autoNumOrder", "100020"),
            new XElement("_autoNumOrderItem", "100040"));
-        initialize2.Save(@"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\Config.xml");
+        initialize2.Save(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\Config.xml");
 
     }
 

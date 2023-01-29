@@ -87,7 +87,7 @@ namespace PL.Products
         }
         public void add(ProductForList? productUpdate)
         {
-            productForList.Insert(productForList.Count, productUpdate);
+          //  productForList.Insert(productForList.Count, productUpdate);
             productListTemp.Insert(productListTemp.Count, productUpdate);
         }
 

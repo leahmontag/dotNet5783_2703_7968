@@ -73,7 +73,6 @@ public partial class ProductWindow : Window
             try
             {
                 AddNewProductButton_Click(sender, e);
-                // action(bl.Product.GetProductForList(x => x?.ID == product.ID));
                 action(new ProductForList
                 {
                     Price = product.Price,
@@ -92,7 +91,6 @@ public partial class ProductWindow : Window
             try
             {
                 UpdateProductButton_Click(sender, e);
-                // action(bl.Product.GetProductForList(x => x?.ID == product.ID));
                 action(new ProductForList
                 {
                     Price = product.Price,

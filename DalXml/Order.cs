@@ -10,6 +10,7 @@ using DO;
 using System.Data;
 using System.Globalization;
 using System.Runtime.ConstrainedExecution;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 internal class Order : IOrder
@@ -94,15 +95,37 @@ internal class Order : IOrder
     {
         XElement ordersRootElem = XMLTools.LoadListFromXMLElement(orderPath);
         var orders = from o in ordersRootElem.Elements()
+                     let dateString = o.Element("DeliveryDate")!.Value
                      select new DO.Order()
                      {
                          ID = Convert.ToInt32(o.Element("ID")!.Value),
                          CustomerAdress = o.Element("CustomerAdress")!.Value,
                          CustomerEmail = o.Element("CustomerEmail")!.Value,
                          CustomerName = o.Element("CustomerName")!.Value,
-                         DeliveryDate = DateTime.Parse(o.Element("DeliveryDate")!.Value),
-                         OrderDate = DateTime.Parse(o.Element("OrderDate")!.Value),
-                         ShipDate = DateTime.Parse(o.Element("ShipDate")!.Value),
+                         DeliveryDate = DateTime.ParseExact(dateString, @"d/M/yyyy",
+                                      System.Globalization.CultureInfo.InvariantCulture),
+                         OrderDate = DateTime.ParseExact(dateString, @"d/M/yyyy",
+                                      System.Globalization.CultureInfo.InvariantCulture),
+                         ShipDate = DateTime.ParseExact(dateString, @"d/M/yyyy",
+                                      System.Globalization.CultureInfo.InvariantCulture),
+                         #region MyRegion
+                         //DeliveryDate = DateTime.ParseExact("01-01-2022", "MM-dd-yyyy", CultureInfo.InvariantCulture),
+                         // OrderDate = DateTime.ParseExact("01-01-2022", "MM-dd-yyyy", CultureInfo.InvariantCulture),
+                         // ShipDate = DateTime.ParseExact("01-01-2022", "MM-dd-yyyy", CultureInfo.InvariantCulture)
+
+                         //DateTime.ParseExact(o.Element("DeliveryDate")!.Value + " 12:00:00 AM", "MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture),
+                         //OrderDate = DateTime.ParseExact(o.Element("OrderDate")!.Value + " 12:00:00 AM", "MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture),
+                         //  ShipDate = DateTime.ParseExact(o.Element("ShipDate")!.Value + " 12:00:00 AM", "MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture),
+
+                         //DateTime.ParseExact(o.Element("DeliveryDate")!.Value, "M/d/yyyy", CultureInfo.InvariantCulture),
+                         // OrderDate = DateTime.ParseExact(o.Element("OrderDate")!.Value, "M/d/yyyy", CultureInfo.InvariantCulture),
+                         // ShipDate = DateTime.ParseExact(o.Element("ShipDate")!.Value, "M/d/yyyy", CultureInfo.InvariantCulture),
+
+                         // DeliveryDate = DateTime.Parse(o.Element("DeliveryDate")!.Value),
+                         //  OrderDate = DateTime.Parse(o.Element("OrderDate")!.Value),
+                         // ShipDate = DateTime.Parse(o.Element("ShipDate")!.Value),
+                         #endregion
+
                      };
         return d != null ? orders.Cast<DO.Order?>().Where(d) : orders.Cast<DO.Order?>();
     }

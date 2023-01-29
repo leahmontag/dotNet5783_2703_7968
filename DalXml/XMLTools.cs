@@ -11,7 +11,7 @@ namespace Dal
 {
     class XMLTools
     {
-        static string dir = @"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\";
+        static string dir = @"..\xml\";
         //public string configPath = @"configXml.xml";
         static XMLTools()
         {

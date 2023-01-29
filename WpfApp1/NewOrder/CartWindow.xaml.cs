@@ -170,7 +170,7 @@ public partial class CartWindow : Window
                    items = new( bl.Cart.Update(cart, (element.DataContext as BO.OrderItem)!.ProductID, (element.DataContext as BO.OrderItem)!.Amount + 1).Items);
 
                    product = bl.Product.GetProductFromCatalog(cart, x => x?.ID.ToString() == ID);
-                  //  actionFunction();
+                    actionFunction();
                 }
                 catch (BO.ProductIsNotAvailableException exp)
                 {
