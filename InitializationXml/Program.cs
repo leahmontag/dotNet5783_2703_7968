@@ -61,7 +61,7 @@ public class Sample
         string[] customerName = { "Efrat", "Elisheva", "Leah", "Rachel", "Esther", "Batya", "Tamar", "Miriam", "Hadassah", "Shira", "Dini", "Ila", "Mali", "Ruti", "Naama", "Gila", "Yael", "Penina", "Tzipi", "Tova" };
         string[] customerEmail = { "r33197903@gmail.com", "et3367903@gmail.com", "p33197903@gmail.com", "o33197903@gmail.com", "m33197903@gmail.com", "b33197903@gmail.com", "v33197903@gmail.com", "l33197903@gmail.com", "a33197903@gmail.com", "d33197903@gmail.com", "r33198903@gmail.com", "et8367903@gmail.com", "n33197903@gmail.com", "x33197903@gmail.com", "c33197903@gmail.com", "j33197903@gmail.com", "k33197903@gmail.com", "f33197903@gmail.com", "g33197903@gmail.com", "p33197903@gmail.com" };
         string[] customerAdress = { "SHOREK River", "Nahal Dolev", "Nahal Noam", "Nahal Ayalon", "Nahal Oriya", "Nahal Micah", "Nahal Akziv", "Jordan river", "Levi Eshkol", "Levi Eshkol", "SHOREK River", "Nahal Dolev", "Nahal Noam", "Nahal Ayalon", "Nahal Oriya", "Nahal Micah", "Nahal Akziv", "Jordan river", "Levi Eshkol", "Levi Eshkol" };
-        for (int i = 0; i < 20; i++)
+        for (int i = 1; i <= 20; i++)
         {
             newOrder.ID = 99999 + i;
             newOrder.CustomerName = customerName[i % 20];
@@ -99,7 +99,7 @@ public class Sample
         #endregion
         #region AddOrderItem
         OrderItem newOrderItem = new OrderItem();
-        for (int i = 0; i < 40; i++)
+        for (int i = 1; i <= 40; i++)
         {
             newOrderItem.OrderItemID = 99999 + i; ;
             int rng = _rand.Next(0, _productList.Count);
@@ -107,7 +107,7 @@ public class Sample
             {
                 //היה כאן 3 סימני שאלה לבדוק אם צריך אותם
                 newOrderItem.ProductID = _productList[rng]?.ID ?? 0;
-                // newOrderItem.OrderID = _orderList[i % 20]?.ID ?? 0;
+                newOrderItem.OrderID = _orderList[i % 20]?.ID ?? 0;
                 newOrderItem.Price = _productList[rng]?.Price ?? 0;
                 newOrderItem.Amount = _rand.Next(1, 10);
                 newOrderItem.Name = _productList[rng]!?.Name ?? "";
@@ -126,15 +126,15 @@ public class Sample
          new XElement("InStock", product?.InStock),
          new XElement("Price", product?.Price),
          new XElement("Category", product?.Category)));
-        initialize3.Save(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLProduct.xml");
+        initialize3.Save(@"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLProduct.xml");
 
-        FileStream fsP = new FileStream(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrder.xml", FileMode.OpenOrCreate);
+        FileStream fsP = new FileStream(@"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrder.xml", FileMode.OpenOrCreate);
         XmlSerializer xs1 = new XmlSerializer(typeof(List<Order?>));
         xs1.Serialize(fsP, _orderList);
         fsP.Close();
 
 
-        FileStream fsOI = new FileStream(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrderItem.xml", FileMode.OpenOrCreate);
+        FileStream fsOI = new FileStream(@"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrderItem.xml", FileMode.OpenOrCreate);
         XmlSerializer xs3 = new XmlSerializer(typeof(List<OrderItem?>));
         xs3.Serialize(fsOI, _orderItemList);
         fsOI.Close();
@@ -143,7 +143,7 @@ public class Sample
         XElement initialize2 = new XElement("Config",
            new XElement("_autoNumOrder", "100020"),
            new XElement("_autoNumOrderItem", "100040"));
-        initialize2.Save(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\Config.xml");
+        initialize2.Save(@"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\Config.xml");
     }
 
     #region AddFunctions

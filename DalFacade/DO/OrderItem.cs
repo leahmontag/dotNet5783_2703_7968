@@ -16,7 +16,7 @@ public struct OrderItem
     /// <summary>
     /// uniqe id of order for order item. 
     /// </summary>
-    //  public int OrderID { get; set; }
+    public int OrderID { get; set; }
     /// <summary>
     /// uniqe double price for order item. 
     /// </summary>
@@ -32,11 +32,11 @@ public struct OrderItem
     public string? Name { get; set; }
 
     public override string ToString() => $@"
+    Order ID: {OrderID}
     OrderItem ID: {OrderItemID}
     Product ID: {ProductID}
     Price: {Price}
     Amount in order: {Amount}
     Name of item:{Name}
     ";
-    // Order ID: {OrderID}
 }

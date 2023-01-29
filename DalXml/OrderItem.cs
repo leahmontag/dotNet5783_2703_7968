@@ -13,16 +13,6 @@ internal class OrderItem : IOrderItem
 {
     string orderItemPath = @"XMLOrderItem.xml";
     string configPath = @"Config.xml";
-    //public int Create(DO.OrderItem myOrderItem)
-    //{
-    //    //  myOrderItem.OrderItemID = Config.AutoNumOrderItem;
-    //    List<DO.OrderItem?> ListOrderItems = XMLTools.LoadListFromXMLSerializer<DO.OrderItem?>(orderItemPath);
-    //    if (ListOrderItems.Exists(item => item?.OrderItemID == myOrderItem.OrderItemID))
-    //        throw new DuplicatesException("exist orderItem");
-    //    ListOrderItems.Add(myOrderItem);
-    //    XMLTools.SaveListToXMLSerializer(ListOrderItems, orderItemPath);
-    //    return myOrderItem.OrderItemID;
-    //}
     public int Create(DO.OrderItem myOrderItem)
     {
         XElement config = XMLTools.LoadAutoNumFromXMLElement(configPath);

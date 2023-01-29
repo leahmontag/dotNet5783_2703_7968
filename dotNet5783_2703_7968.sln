@@ -25,7 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "WpfApp1\PL.csproj", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{74B607A6-8D35-48C8-9AB1-4E123C0179D3}"
 	ProjectSection(SolutionItems) = preProject
+		xml\Config.xml = xml\Config.xml
 		xml\dal-config.xml = xml\dal-config.xml
+		xml\XMLOrder.xml = xml\XMLOrder.xml
+		xml\XMLOrderItem.xml = xml\XMLOrderItem.xml
+		xml\XMLProduct.xml = xml\XMLProduct.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Item", "Solution Item", "{F9035DE0-5F76-4EEE-BBE9-44C1CD06F1F5}"
@@ -35,7 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Item", "Solution I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csproj", "{1CB3A5E8-C58C-4215-AFA8-E324387D7813}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InitializationXml", "InitializationXml\InitializationXml.csproj", "{865A5019-7ECB-4D40-93FF-2B12376507D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InitializationXml", "InitializationXml\InitializationXml.csproj", "{865A5019-7ECB-4D40-93FF-2B12376507D0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1CB3A5E8-C58C-4215-AFA8-E324387D7813} = {1CB3A5E8-C58C-4215-AFA8-E324387D7813}
 	EndProjectSection

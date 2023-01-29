@@ -1,5 +1,6 @@
 ﻿using BO;
 using DalApi;
+using DO;
 using System.Diagnostics.Metrics;
 using System.Xml.Linq;
 
@@ -347,7 +348,7 @@ internal class Order : BlApi.IOrder
     #region Convert doOrder to boOrder
     private BO.Order ConvertDoOrderToBoOrder(DO.Order DoOrder)
     {
-        IEnumerable<DO.OrderItem?> DoItemsOfOrder = _dal.OrderItem.GetAll(x => x?.OrderItemID == DoOrder.ID);
+        IEnumerable<DO.OrderItem?> DoItemsOfOrder = _dal.OrderItem.GetAll(x => x?.OrderID == DoOrder.ID);
         BO.Order BoOrder = new BO.Order();
         BoOrder.ID = DoOrder.ID;
         BoOrder.CustomerName = DoOrder.CustomerName;
@@ -366,7 +367,7 @@ internal class Order : BlApi.IOrder
                                                   let it = new BO.OrderItem()
                                                   {
                                                       Name = itemInOrder.Name,
-                                                      //OrderItemID = itemInOrder.OrderItemID,
+                                                      OrderID = itemInOrder.OrderID,
                                                       Price = itemInOrder.Price,
                                                       ProductID = itemInOrder.ProductID,
                                                       Amount = itemInOrder.Amount,
