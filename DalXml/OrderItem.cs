@@ -7,12 +7,30 @@ using System.Threading.Tasks;
 namespace Dal;
 using DalApi;
 using DO;
+using System.Xml.Linq;
+
 internal class OrderItem : IOrderItem
 {
     string orderItemPath = @"XMLOrderItem.xml";
+    string configPath = @"Config.xml";
+    //public int Create(DO.OrderItem myOrderItem)
+    //{
+    //    //  myOrderItem.OrderItemID = Config.AutoNumOrderItem;
+    //    List<DO.OrderItem?> ListOrderItems = XMLTools.LoadListFromXMLSerializer<DO.OrderItem?>(orderItemPath);
+    //    if (ListOrderItems.Exists(item => item?.OrderItemID == myOrderItem.OrderItemID))
+    //        throw new DuplicatesException("exist orderItem");
+    //    ListOrderItems.Add(myOrderItem);
+    //    XMLTools.SaveListToXMLSerializer(ListOrderItems, orderItemPath);
+    //    return myOrderItem.OrderItemID;
+    //}
     public int Create(DO.OrderItem myOrderItem)
     {
-        //  myOrderItem.OrderItemID = Config.AutoNumOrderItem;
+        XElement config = XMLTools.LoadAutoNumFromXMLElement(configPath);
+        int autoNumber = (int)config.Element("_autoNumOrderItem");
+        myOrderItem.OrderItemID = autoNumber;
+        autoNumber++;
+        config.Element("_autoNumOrderItem")!.SetValue(autoNumber);
+        XMLTools.SaveAutoNumToXMLElement(config, configPath);
         List<DO.OrderItem?> ListOrderItems = XMLTools.LoadListFromXMLSerializer<DO.OrderItem?>(orderItemPath);
         if (ListOrderItems.Exists(item => item?.OrderItemID == myOrderItem.OrderItemID))
             throw new DuplicatesException("exist orderItem");

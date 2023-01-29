@@ -107,7 +107,7 @@ public class Sample
             {
                 //היה כאן 3 סימני שאלה לבדוק אם צריך אותם
                 newOrderItem.ProductID = _productList[rng]?.ID ?? 0;
-               // newOrderItem.OrderID = _orderList[i % 20]?.ID ?? 0;
+                // newOrderItem.OrderID = _orderList[i % 20]?.ID ?? 0;
                 newOrderItem.Price = _productList[rng]?.Price ?? 0;
                 newOrderItem.Amount = _rand.Next(1, 10);
                 newOrderItem.Name = _productList[rng]!?.Name ?? "";
@@ -117,25 +117,20 @@ public class Sample
         }
         #endregion
 
+        XElement initialize3 = new XElement("Product",
+             from product in _productList
+             select new XElement
+             ("Product",
+         new XElement("ID", product?.ID),
+         new XElement("Name", product?.Name),
+         new XElement("InStock", product?.InStock),
+         new XElement("Price", product?.Price),
+         new XElement("Category", product?.Category)));
+        initialize3.Save(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLProduct.xml");
 
-
-        XElement initialize1 = new XElement("Order",
-               from order in _orderList
-               select new XElement
-               ("Order",
-           new XElement("ID", order?.ID),
-           new XElement("CustomerName", order?.CustomerName),
-           new XElement("CustomerAdress", order?.CustomerAdress),
-           new XElement("CustomerEmail", order?.CustomerEmail),
-           new XElement("OrderDate", order?.OrderDate),
-           new XElement("ShipDate", order?.ShipDate),
-           new XElement("DeliveryDate", order?.DeliveryDate)));
-
-        initialize1.Save(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrder.xml");
-
-        FileStream fsP = new FileStream(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLProduct.xml", FileMode.OpenOrCreate);
-        XmlSerializer xs1 = new XmlSerializer(typeof(List<Product?>));
-        xs1.Serialize(fsP, _productList);
+        FileStream fsP = new FileStream(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrder.xml", FileMode.OpenOrCreate);
+        XmlSerializer xs1 = new XmlSerializer(typeof(List<Order?>));
+        xs1.Serialize(fsP, _orderList);
         fsP.Close();
 
 
@@ -149,9 +144,7 @@ public class Sample
            new XElement("_autoNumOrder", "100020"),
            new XElement("_autoNumOrderItem", "100040"));
         initialize2.Save(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\Config.xml");
-
     }
-
 
     #region AddFunctions
     /// <summary>
