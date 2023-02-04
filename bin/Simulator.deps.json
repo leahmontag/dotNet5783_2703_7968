@@ -1,0 +1,99 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Simulator/1.0.0": {
+        "dependencies": {
+          "BL": "1.0.0"
+        },
+        "runtime": {
+          "Simulator.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.7.100.16": {
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.100.16"
+          }
+        }
+      },
+      "AWSSDK.DynamoDBv2/3.7.100.16": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.100.16"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.DynamoDBv2.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.100.16"
+          }
+        }
+      },
+      "BL/1.0.0": {
+        "dependencies": {
+          "DalFacade": "1.0.0",
+          "DalXml": "1.0.0"
+        },
+        "runtime": {
+          "BL.dll": {}
+        }
+      },
+      "DalFacade/1.0.0": {
+        "dependencies": {
+          "AWSSDK.DynamoDBv2": "3.7.100.16"
+        },
+        "runtime": {
+          "DalFacade.dll": {}
+        }
+      },
+      "DalXml/1.0.0": {
+        "dependencies": {
+          "DalFacade": "1.0.0"
+        },
+        "runtime": {
+          "DalXml.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Simulator/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AWSSDK.Core/3.7.100.16": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YkZi4lGGijMsZYeWrmMENMuF5HkHg1wTBJAHGlND51+nldK6njEpGSzVOKq47j1OCbSLc8j2OJDLX6ZeHMME1g==",
+      "path": "awssdk.core/3.7.100.16",
+      "hashPath": "awssdk.core.3.7.100.16.nupkg.sha512"
+    },
+    "AWSSDK.DynamoDBv2/3.7.100.16": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BNuikibJIIUey0wqv3arlvLT3JDnZqVnVNBOrq8q6WpG2r2X+PJ+ij9h3or81m66Tl2Gsbwkzi8IWsrQwywFCA==",
+      "path": "awssdk.dynamodbv2/3.7.100.16",
+      "hashPath": "awssdk.dynamodbv2.3.7.100.16.nupkg.sha512"
+    },
+    "BL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DalFacade/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DalXml/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

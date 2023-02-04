@@ -44,6 +44,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InitializationXml", "Initia
 		{1CB3A5E8-C58C-4215-AFA8-E324387D7813} = {1CB3A5E8-C58C-4215-AFA8-E324387D7813}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator", "Simulator\Simulator.csproj", "{6875927C-1116-4526-82A6-48DC9CF242FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,10 @@ Global
 		{865A5019-7ECB-4D40-93FF-2B12376507D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{865A5019-7ECB-4D40-93FF-2B12376507D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{865A5019-7ECB-4D40-93FF-2B12376507D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6875927C-1116-4526-82A6-48DC9CF242FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6875927C-1116-4526-82A6-48DC9CF242FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6875927C-1116-4526-82A6-48DC9CF242FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6875927C-1116-4526-82A6-48DC9CF242FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,8 @@
       "PL/1.0.0": {
         "dependencies": {
           "BL": "1.0.0",
-          "DocumentFormat.OpenXml": "2.18.0"
+          "DocumentFormat.OpenXml": "2.18.0",
+          "Simulator": "1.0.0"
         },
         "runtime": {
           "PL.dll": {}
@@ -70,6 +71,14 @@
         "runtime": {
           "DalXml.dll": {}
         }
+      },
+      "Simulator/1.0.0": {
+        "dependencies": {
+          "BL": "1.0.0"
+        },
+        "runtime": {
+          "Simulator.dll": {}
+        }
       }
     }
   },
@@ -118,6 +127,11 @@
       "sha512": ""
     },
     "DalXml/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Simulator/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

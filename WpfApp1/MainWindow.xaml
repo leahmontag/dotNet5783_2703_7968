@@ -13,6 +13,8 @@
         <Button Margin="23,5,546,296"  BorderBrush="White" BorderThickness="5" TextBlock.Foreground="AntiqueWhite"  Background="Black" Click="ShowManagerWindowButton_Click" >manager window</Button>
         <Button Margin="24,146,546,155" BorderBrush="White" BorderThickness="5" TextBlock.Foreground="Azure"  Background="Black" Click="ShowNewOrderWindowButton_Click" >New order window</Button>
         <Button Margin="24,285,546,16" BorderBrush="White" BorderThickness="5" TextBlock.Foreground="DeepPink" Background="Black" Click="ShowOrderTrackingWindowButton_Click" >OrderTracking window</Button>
+        <Button Margin="607,335,37,33" BorderBrush="White" BorderThickness="2" TextBlock.Foreground="DeepPink" Background="Black" Click="ShowSimulatorButton_Click">Simulator</Button>
+
         <!--<Button Margin="17,324,615,24" Height="100" TextBlock.FontSize="" Name="registeredUserWindowButton" Background="White" Click="ShowregisteredUserWindowButton_Click" >registered user window</Button>-->
 
     </Grid>

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\App.xaml
-15-25044812
+16-1255088839
 
-181108195443
-2001233355068
-MainWindow.xaml;Manager\ManagerWindow.xaml;Manager\Orders\OrderItemsWindow.xaml;Manager\Orders\OrderListWindow.xaml;Manager\Orders\OrderWindow.xaml;Manager\Products\ProductListWindow.xaml;Manager\Products\ProductWindow.xaml;NewOrder\CartWindow.xaml;NewOrder\ConfirmOrderWindow.xaml;NewOrder\NewOrderWindow.xaml;NewOrder\SingleProductItemWindow.xaml;OrderTracking\OrderTrackingdetailsWindow.xaml;OrderTracking\OrderTrackingWindow.xaml;OrderTracking\OrderWindow.xaml;registeredUser\registeredUserWindow.xaml;
+19-655600535
+2011955292749
+MainWindow.xaml;Manager\ManagerWindow.xaml;Manager\Orders\OrderItemsWindow.xaml;Manager\Orders\OrderListWindow.xaml;Manager\Orders\OrderWindow.xaml;Manager\Products\ProductListWindow.xaml;Manager\Products\ProductWindow.xaml;NewOrder\CartWindow.xaml;NewOrder\ConfirmOrderWindow.xaml;NewOrder\NewOrderWindow.xaml;NewOrder\SingleProductItemWindow.xaml;OrderTracking\OrderTrackingdetailsWindow.xaml;OrderTracking\OrderTrackingWindow.xaml;OrderTracking\OrderWindow.xaml;registeredUser\registeredUserWindow.xaml;Simulator\SimulatorWindow.xaml;
 
 False
 
