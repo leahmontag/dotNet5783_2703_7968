@@ -9,6 +9,7 @@ using DalApi;
 using DO;
 using System.Data;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Runtime.ConstrainedExecution;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -18,6 +19,7 @@ internal class Order : IOrder
     string orderPath = @"XMLOrder.xml";
     string configPath = @"Config.xml";
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public int Create(DO.Order order)
     {
         List<DO.Order?> ListOrders = XMLTools.LoadListFromXMLSerializer<DO.Order?>(orderPath);
@@ -31,6 +33,7 @@ internal class Order : IOrder
         return order.ID;
     }
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Delete(int ID)
     {
         List<DO.Order?> ListOrders = XMLTools.LoadListFromXMLSerializer<DO.Order?>(orderPath);
@@ -40,6 +43,7 @@ internal class Order : IOrder
 
     }
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public DO.Order Get(Func<DO.Order?, bool>? d)
     {
         List<DO.Order?> ListOrders = XMLTools.LoadListFromXMLSerializer<DO.Order?>(orderPath);
@@ -64,6 +68,7 @@ internal class Order : IOrder
         }
     }
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<DO.Order?> GetAll(Func<DO.Order?, bool>? d = null)
     {
         List<DO.Order?> ListOrders = XMLTools.LoadListFromXMLSerializer<DO.Order?>(orderPath);
@@ -84,6 +89,7 @@ internal class Order : IOrder
             return ListOrders.Where(item => (item != null && d(item) == true)).ToList();
     }
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(DO.Order? order)
     {
         List<DO.Order?> ListOrders = XMLTools.LoadListFromXMLSerializer<DO.Order?>(orderPath);

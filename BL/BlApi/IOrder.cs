@@ -50,4 +50,10 @@ public interface IOrder
     /// <returns></returns>
     public BO.Order UpdateOrder(BO.Order BOorder, int ID, string whatToDO, int Amount);
 
+    /// <summary>
+    /// Selecting an order for treatment
+    /// </summary>
+    /// <returns></returns>
+    public int? SelectingOrderForTreatment();
+
 }

@@ -1,5 +1,6 @@
 ﻿using DalApi;
 using DO;
+using System.Runtime.CompilerServices;
 using static Dal.DataSource;
 namespace Dal;
 
@@ -12,6 +13,7 @@ internal class DalOrderItem : IOrderItem
     /// add new order item.
     /// </summary>
     #region Create
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public int Create(OrderItem myOrderItem)
     {
         myOrderItem.OrderItemID = Config.AutoNumOrderItem;
@@ -26,6 +28,7 @@ internal class DalOrderItem : IOrderItem
     /// update order item.
     /// </summary>
     #region Update
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(OrderItem? myOrderItem)
     {
 
@@ -44,6 +47,7 @@ internal class DalOrderItem : IOrderItem
     /// delete order item.
     /// </summary>
     #region Delete
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Delete(int OrderItemId)
     {
         _orderItemList.Remove(_orderItemList.FirstOrDefault(item => item?.OrderItemID == OrderItemId)
@@ -55,6 +59,7 @@ internal class DalOrderItem : IOrderItem
     /// Get order item
     /// </summary>
     #region Get
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public OrderItem Get(Func<OrderItem?, bool>? d)
     {
         try
@@ -81,6 +86,7 @@ internal class DalOrderItem : IOrderItem
     /// Get all orders items.
     /// </summary>
     #region GetAll
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? d = null)
     {
         List<OrderItem?> _newOrderItemList;
@@ -100,20 +106,5 @@ internal class DalOrderItem : IOrderItem
             return _orderItemList.Where(item => item != null && d != null && d(item) == true).ToList();
     }
     #endregion
-
-    /// <summary>
-    /// function checking if order item ID is exis.
-    /// </summary>
-    /// <param name="num"></param>
-    /// <returns>bool</returns>
-    #region if order item ID is exis
-    //public bool exisOrderItemID(int num)
-    //{
-    //    if (_orderItemList.Exists(item => item?.OrderItemID == num))
-    //        return true;
-    //    return false;
-    //}
-    #endregion
-
 
 }

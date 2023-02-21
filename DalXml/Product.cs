@@ -9,6 +9,7 @@ using DalApi;
 using DO;
 using System.Globalization;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Runtime.ConstrainedExecution;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -17,6 +18,8 @@ using System.Xml.Serialization;
 internal class Product : IProduct
 {
     string productPath = @"XMLProduct.xml";
+
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public int Create(DO.Product myProduct)
     {
         XElement productRootElem = XMLTools.LoadListFromXMLElement(productPath);
@@ -41,6 +44,7 @@ internal class Product : IProduct
         return myProduct.ID;
     }
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Delete(int ProductID)
     {
         XElement productRootElem = XMLTools.LoadListFromXMLElement(productPath);
@@ -59,6 +63,7 @@ internal class Product : IProduct
 
     }
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public DO.Product Get(Func<DO.Product?, bool>? d)
     {
         XElement productRootElem = XMLTools.LoadListFromXMLElement(productPath);
@@ -80,7 +85,7 @@ internal class Product : IProduct
         return p;
     }
 
-
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<DO.Product?> GetAll(Func<DO.Product?, bool>? d = null)
     {
         XElement productRootElem = XMLTools.LoadListFromXMLElement(productPath);
@@ -97,6 +102,7 @@ internal class Product : IProduct
         return d != null ? products.Cast<DO.Product?>().Where(d) : products.Cast<DO.Product?>();
     }
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(DO.Product? myProduct)
     {
         XElement productRootElem = XMLTools.LoadListFromXMLElement(productPath);

@@ -1,6 +1,7 @@
 ﻿using BlApi;
 using DalApi;
 using System.Net.Mail;
+using System.Runtime.CompilerServices;
 
 namespace BlImplementation;
 
@@ -19,55 +20,58 @@ internal class Cart : ICart
     /// <returns> BO.Cart</returns>
     /// <exception cref="Exception"></exception>
     #region Add new item to cart
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Cart Create(BO.Cart CartBL, int productID)
     {
-        try
+        lock (_dal)
         {
-            IEnumerable<DO.Product?> productList = _dal.Product.GetAll();
-
-            // Looking for the item in the shopping cart
-            #region search item in cart
-            if (CartBL.Items != null)
+            try
             {
-                foreach (var item in CartBL.Items)
-                {
-                    if (item.ProductID == productID)//found item
-                    {
-                        //Searches for the item in the data layer to find an in-stock quantity.
-                        foreach (DO.Product productItem in productList)
-                        {
-                            if (productItem.ID == productID)
-                            { //fount product in dal
-                                if (productItem.InStock > 0)//cheaking if instock
-                                {
-                                    item.Amount++;//update current cart.
-                                    item.TotalPrice = item.Amount * productItem.Price;
-                                    CartBL.TotalPrice = CartBL.TotalPrice + productItem.Price;
-                                }
-                                else
+                IEnumerable<DO.Product?> productList = _dal.Product.GetAll();
 
-                                    throw new BO.ProductIsNotAvailableException("Product is not in stock");
-                                return CartBL;
+                // Looking for the item in the shopping cart
+                #region search item in cart
+                if (CartBL.Items != null)
+                {
+                    foreach (var item in CartBL.Items)
+                    {
+                        if (item.ProductID == productID)//found item
+                        {
+                            //Searches for the item in the data layer to find an in-stock quantity.
+                            foreach (DO.Product productItem in productList)
+                            {
+                                if (productItem.ID == productID)
+                                { //fount product in dal
+                                    if (productItem.InStock > 0)//cheaking if instock
+                                    {
+                                        item.Amount++;//update current cart.
+                                        item.TotalPrice = item.Amount * productItem.Price;
+                                        CartBL.TotalPrice = CartBL.TotalPrice + productItem.Price;
+                                    }
+                                    else
+
+                                        throw new BO.ProductIsNotAvailableException("Product is not in stock");
+                                    return CartBL;
+                                }
                             }
                         }
                     }
                 }
-            }
-            #endregion
+                #endregion
 
-            //if item not in cart:
-            #region add a new item to cart
-            foreach (DO.Product productItem in productList)//loop to find product in dal
-            {
-                if (productItem.ID == productID)//fount product in dal
+                //if item not in cart:
+                #region add a new item to cart
+                foreach (DO.Product productItem in productList)//loop to find product in dal
                 {
-                    if (productItem.InStock > 0)//cheaking if instock
+                    if (productItem.ID == productID)//fount product in dal
                     {
-                        //updateing CartBL in BO, and adding his product and update total price
-                        #region cart is empty
-                        if (CartBL.Items == null)
+                        if (productItem.InStock > 0)//cheaking if instock
                         {
-                            List<BO.OrderItem> newOrderItems = new List<BO.OrderItem>() {new BO.OrderItem(){
+                            //updateing CartBL in BO, and adding his product and update total price
+                            #region cart is empty
+                            if (CartBL.Items == null)
+                            {
+                                List<BO.OrderItem> newOrderItems = new List<BO.OrderItem>() {new BO.OrderItem(){
                             Amount = 1,
                             Name = productItem.Name,
                             Price = productItem.Price,
@@ -75,13 +79,13 @@ internal class Cart : ICart
                             TotalPrice = productItem.Price
                         }};
 
-                            CartBL.Items = newOrderItems;
-                        }
-                        #endregion
-                        #region cart is not empty
-                        else
-                        {
-                        
+                                CartBL.Items = newOrderItems;
+                            }
+                            #endregion
+                            #region cart is not empty
+                            else
+                            {
+
                                 CartBL.Items.Add(new BO.OrderItem()
                                 {
                                     Amount = 1,
@@ -90,31 +94,32 @@ internal class Cart : ICart
                                     ProductID = productItem.ID,
                                     TotalPrice = productItem.Price,
                                     //OrderItemID?? 
-                                    
+
                                 });
-                            
+
+                            }
+                            #endregion
+
+                            CartBL.TotalPrice = CartBL.TotalPrice + productItem.Price;
+                            return CartBL;
                         }
-                        #endregion
-
-                        CartBL.TotalPrice = CartBL.TotalPrice + productItem.Price;
-                        return CartBL;
+                        else
+                            throw new BO.ProductIsNotAvailableException("not in stock");
                     }
-                    else
-                        throw new BO.ProductIsNotAvailableException("not in stock");
                 }
+                #endregion
+                return CartBL;
             }
-            #endregion
-            return CartBL;
-        }
-        catch (DO.NotFoundException exp)
-        {
+            catch (DO.NotFoundException exp)
+            {
 
-            throw new BO.FailedToDisplayAllItemsException("Failed to display all items", exp);
-        }
-        catch (Exception)
-        {
+                throw new BO.FailedToDisplayAllItemsException("Failed to display all items", exp);
+            }
+            catch (Exception)
+            {
 
-            throw new BO.FailedToDisplayAllItemsException("Operation failed");
+                throw new BO.FailedToDisplayAllItemsException("Operation failed");
+            }
         }
     }
     #endregion
@@ -128,79 +133,83 @@ internal class Cart : ICart
     /// <returns>BO.cart</returns>
     /// <exception cref="Exception"></exception>
     #region Update cart
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Cart Update(BO.Cart CartBL, int ProductID, int newAmount = 0)
     {
-        try
+        lock (_dal)
         {
-            IEnumerable<DO.OrderItem?> OrderItemList = _dal.OrderItem.GetAll();
-            IEnumerable<DO.Product?> productList = _dal.Product.GetAll();
-
-            var price = 0.0;
-            int oldAmount = 0;
-            bool flag = false;
-            //fount product in dal and cheack his amount.
-            if (CartBL.Items != null)
+            try
             {
-                //  ??????????????????????????????????????????????????????;
-               // var order = _dal?.OrderItem.Get(item => item?.OrderItemID == OrderItemID);
-               // Console.WriteLine(order.ToString());
+                IEnumerable<DO.OrderItem?> OrderItemList = _dal.OrderItem.GetAll();
+                IEnumerable<DO.Product?> productList = _dal.Product.GetAll();
 
-
-                foreach (var item in CartBL.Items)
+                var price = 0.0;
+                int oldAmount = 0;
+                bool flag = false;
+                //fount product in dal and cheack his amount.
+                if (CartBL.Items != null)
                 {
-                    if (item.ProductID == ProductID)
-                    {
-                        flag = true;
-                        if (newAmount == 0)
-                        {
-                            #region delete item
-                            CartBL.TotalPrice -= (item.Price * item.Amount);//updatcart price
-                            CartBL.Items.Remove(item);//delete item from cart
-                            return CartBL;
-                            #endregion
-                        }
+                    //  ??????????????????????????????????????????????????????;
+                    // var order = _dal?.OrderItem.Get(item => item?.OrderItemID == OrderItemID);
+                    // Console.WriteLine(order.ToString());
 
-                        else if (item.Amount < newAmount)
+
+                    foreach (var item in CartBL.Items)
+                    {
+                        if (item.ProductID == ProductID)
                         {
-                            #region update amount in dal
-                            //fount product in dal and cheack his amount.
-                            foreach (DO.Product productItem in productList)
+                            flag = true;
+                            if (newAmount == 0)
                             {
-                                if (productItem.ID == ProductID)
+                                #region delete item
+                                CartBL.TotalPrice -= (item.Price * item.Amount);//updatcart price
+                                CartBL.Items.Remove(item);//delete item from cart
+                                return CartBL;
+                                #endregion
+                            }
+
+                            else if (item.Amount < newAmount)
+                            {
+                                #region update amount in dal
+                                //fount product in dal and cheack his amount.
+                                foreach (DO.Product productItem in productList)
                                 {
-                                    if (productItem.InStock <= newAmount)
-                                        throw new BO.ProductIsNotAvailableException("Insufficient quantity in stock");
-                                    price = productItem.Price;
-                                    oldAmount = item.Amount;
-                                    item.Amount = newAmount;
-                                    item.TotalPrice = price * newAmount;
-                                    CartBL.TotalPrice = CartBL.TotalPrice + newAmount * price - price * oldAmount;
-                                    return CartBL;
+                                    if (productItem.ID == ProductID)
+                                    {
+                                        if (productItem.InStock <= newAmount)
+                                            throw new BO.ProductIsNotAvailableException("Insufficient quantity in stock");
+                                        price = productItem.Price;
+                                        oldAmount = item.Amount;
+                                        item.Amount = newAmount;
+                                        item.TotalPrice = price * newAmount;
+                                        CartBL.TotalPrice = CartBL.TotalPrice + newAmount * price - price * oldAmount;
+                                        return CartBL;
+                                    }
                                 }
                             }
-                        }
-                        #endregion
-                        else if (item.Amount > newAmount)
-                        {
-                            #region update cart and order item
-                            CartBL.TotalPrice -= item.TotalPrice;
-                            item.Amount = newAmount;
-                            item.TotalPrice = item.Amount * item.Price;
-                            CartBL.TotalPrice += item.TotalPrice;
-                            return CartBL;
                             #endregion
+                            else if (item.Amount > newAmount)
+                            {
+                                #region update cart and order item
+                                CartBL.TotalPrice -= item.TotalPrice;
+                                item.Amount = newAmount;
+                                item.TotalPrice = item.Amount * item.Price;
+                                CartBL.TotalPrice += item.TotalPrice;
+                                return CartBL;
+                                #endregion
 
+                            }
                         }
                     }
+                    if (flag == false)
+                        throw new BO.ProductIsNotAvailableException("product is not available");
                 }
-                if (flag == false)
-                    throw new BO.ProductIsNotAvailableException("product is not available");
+                return CartBL;
             }
-            return CartBL;
-        }
-        catch (DO.NotFoundException exp)
-        {
-            throw new BO.FailedToDisplayAllItemsException("Failed to get all items", exp);
+            catch (DO.NotFoundException exp)
+            {
+                throw new BO.FailedToDisplayAllItemsException("Failed to get all items", exp);
+            }
         }
     }
     #endregion
@@ -212,68 +221,72 @@ internal class Cart : ICart
     /// <returns>int</returns>
     /// <exception cref="NotImplementedException"></exception>
     #region Confirm order
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void ConfirmOrder(BO.Cart cartBL)
     {
-        try
+        lock (_dal)
         {
-            bool flag = false;
-            IEnumerable<DO.Product?> listOfProducts = _dal.Product.GetAll();
-            foreach (BO.OrderItem item in cartBL.Items)
+            try
             {
-                foreach (DO.Product item2 in listOfProducts)
+                bool flag = false;
+                IEnumerable<DO.Product?> listOfProducts = _dal.Product.GetAll();
+                foreach (BO.OrderItem item in cartBL.Items)
                 {
-                    if (item.Name == item2.Name && item.Amount > 0 && item.Amount < item2.InStock)
+                    foreach (DO.Product item2 in listOfProducts)
                     {
-                        flag = true;
+                        if (item.Name == item2.Name && item.Amount > 0 && item.Amount < item2.InStock)
+                        {
+                            flag = true;
+                        }
                     }
                 }
-            }
-            var mail = new MailAddress(cartBL.CustomerEmail);
-            bool isValidEmail = mail.Host.Contains(".");
-            if (!flag || cartBL.CustomerName == null || cartBL.CustomerAddress == null || !isValidEmail && cartBL.CustomerEmail != null)
-                throw new Exception();
-            int id = _dal.Order.Create(new DO.Order()
-            {
-                CustomerName = cartBL.CustomerName,
-                CustomerEmail = cartBL.CustomerEmail,
-                CustomerAdress = cartBL.CustomerAddress,
-                OrderDate = DateTime.Now,
-                ShipDate = null,
-                DeliveryDate = null
-            });
-            foreach (BO.OrderItem item in cartBL.Items)
-            {
-                _dal.OrderItem.Create(new DO.OrderItem()
+                var mail = new MailAddress(cartBL.CustomerEmail);
+                bool isValidEmail = mail.Host.Contains(".");
+                if (!flag || cartBL.CustomerName == null || cartBL.CustomerAddress == null || !isValidEmail && cartBL.CustomerEmail != null)
+                    throw new Exception();
+                int id = _dal.Order.Create(new DO.Order()
                 {
-                    OrderID = id,
-                    //OrderItemID = item.OrderItemID,
-                    ProductID = item.ProductID,
-                    Price = item.Price,
-                    Amount = item.Amount,
-                    Name = item.Name
+                    CustomerName = cartBL.CustomerName,
+                    CustomerEmail = cartBL.CustomerEmail,
+                    CustomerAdress = cartBL.CustomerAddress,
+                    OrderDate = DateTime.Now,
+                    ShipDate = null,
+                    DeliveryDate = null
                 });
-                foreach (DO.Product item2 in listOfProducts)
+                foreach (BO.OrderItem item in cartBL.Items)
                 {
-                    if (item.Name == item2.Name)
+                    _dal.OrderItem.Create(new DO.OrderItem()
                     {
-                        DO.Product productToUpdate = new DO.Product();
-                        productToUpdate = item2;
-                        productToUpdate.InStock -= item.Amount;
-                        _dal.Product.Update(productToUpdate);
-                        return;
+                        OrderID = id,
+                        //OrderItemID = item.OrderItemID,
+                        ProductID = item.ProductID,
+                        Price = item.Price,
+                        Amount = item.Amount,
+                        Name = item.Name
+                    });
+                    foreach (DO.Product item2 in listOfProducts)
+                    {
+                        if (item.Name == item2.Name)
+                        {
+                            DO.Product productToUpdate = new DO.Product();
+                            productToUpdate = item2;
+                            productToUpdate.InStock -= item.Amount;
+                            _dal.Product.Update(productToUpdate);
+                            return;
+                        }
                     }
                 }
             }
-        }
-        catch (DO.NotFoundException exp)
-        {
+            catch (DO.NotFoundException exp)
+            {
 
-            throw new BO.FailedToDisplayAllItemsException("Operation failed", exp);
-        }
-        catch (Exception)
-        {
+                throw new BO.FailedToDisplayAllItemsException("Operation failed", exp);
+            }
+            catch (Exception)
+            {
 
-            throw new BO.FailedToDisplayAllItemsException("Operation failed");
+                throw new BO.FailedToDisplayAllItemsException("Operation failed");
+            }
         }
     }
     #endregion

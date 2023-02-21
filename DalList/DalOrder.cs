@@ -1,5 +1,6 @@
 ﻿using DalApi;
 using DO;
+using System.Runtime.CompilerServices;
 using static Dal.DataSource;
 namespace Dal;
 
@@ -12,6 +13,7 @@ internal class DalOrder : IOrder
     /// add new order.
     /// </summary>
     #region Create
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public int Create(Order myOrder)
     {
         myOrder.ID = Config.AutoNumOrder;
@@ -26,6 +28,7 @@ internal class DalOrder : IOrder
     /// update order.
     /// </summary>
     #region Update
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(Order? myOrder)
     {
         if (_orderList.Exists(item => item?.ID == myOrder?.ID))
@@ -43,6 +46,7 @@ internal class DalOrder : IOrder
     /// delete order.
     /// </summary>
     #region Delete
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Delete(int OrderId)
     {
         _orderList.Remove(_orderList.FirstOrDefault(item => item?.ID == OrderId)
@@ -54,6 +58,7 @@ internal class DalOrder : IOrder
     /// get order.
     /// </summary>
     #region Get
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public Order Get(Func<Order?, bool>? d)
     {
         try
@@ -82,6 +87,7 @@ internal class DalOrder : IOrder
     /// get all orders.
     /// </summary>
     #region GetAll
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<Order?> GetAll(Func<Order?, bool>? d = null)
     {
         List<Order?> _newOrderList;
@@ -102,19 +108,5 @@ internal class DalOrder : IOrder
             return _orderList.Where(item => item != null && d != null && d(item) == true).ToList();
         }
     }
-    #endregion
-
-    /// <summary>
-    /// function checking if order ID is exis.
-    /// </summary>
-    /// <param name="num"></param>
-    /// <returns>bool</returns>
-    #region if order ID is exis
-    //public bool exisOrderID(int num)
-    //{
-    //    if (_orderList.Exists(item => item?.ID == num))
-    //        return true;
-    //    return false;
-    //}
     #endregion
 }

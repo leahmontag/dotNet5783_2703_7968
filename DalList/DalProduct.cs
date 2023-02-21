@@ -1,5 +1,6 @@
 ﻿using DalApi;
 using DO;
+using System.Runtime.CompilerServices;
 using static Dal.DataSource;
 
 namespace Dal;
@@ -14,6 +15,7 @@ internal class DalProduct : IProduct
     /// add a new product.
     /// </summary>
     #region Create
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public int Create(Product myProduct)
     {
         if (_productList.Exists(item => item?.ID == myProduct.ID))
@@ -27,6 +29,7 @@ internal class DalProduct : IProduct
     /// update product.
     /// </summary>
     #region Update
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(Product? myProduct)
     {
 
@@ -45,6 +48,7 @@ internal class DalProduct : IProduct
     /// delete product.
     /// </summary>
     #region Delete
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Delete(int ProductID)
     {
         _productList.Remove(_productList.FirstOrDefault(item => item?.ID == ProductID)
@@ -56,6 +60,7 @@ internal class DalProduct : IProduct
     /// get product.
     /// </summary>
     #region Get
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public Product Get(Func<Product?, bool>? a)
     {
         try
@@ -75,6 +80,7 @@ internal class DalProduct : IProduct
     /// get all products.
     /// </summary>
     #region GetAll
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<Product?> GetAll(Func<Product?, bool>? d = null)
     {
         List<Product?> _newProductList;
@@ -94,19 +100,5 @@ internal class DalProduct : IProduct
             return _productList.Where(item => (item != null && d(item) == true)).ToList();
 
     }
-    #endregion
-
-    /// <summary>
-    /// checking if product is exist  (by ID).
-    /// </summary>
-    #region checking if product is exist
-    //public Product existProductID(int num)
-    //{
-    //    var product = _productList.Where(item => item?.ID == num).First();
-    //    if (product != null)
-    //        return new Product() { Category = product?.Category ?? null, ID = product?.ID ?? 0, Name = product?.Name ?? "", Price = product?.Price ?? 0, InStock = product?.InStock ?? 0 };
-    //    Product p = new Product() { ID = 0 };
-    //    return p;
-    //}
     #endregion
 }

@@ -10,43 +10,57 @@
     <Window.Resources>
         <local:NotBooleanToVisibiliryConvertar
                 x:Key="notBooleanToVisibiliryConvertar"/>
+        <Style x:Key="myControlStyle" TargetType="Control">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="28"/>
+        </Style>
+
+        <Style x:Key="myTextBlockStyle" TargetType="TextBlock">
+            <!--BasedOn="{StaticResource myControlStyle}"-->
+            <Setter Property="Background" Value="PaleVioletRed"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="23"/>
+        </Style>
+
+        <Style x:Key="myButtonStyle" TargetType="Button">
+            <Setter Property="BorderBrush" Value="Azure"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="TextBlock.Foreground" Value="AntiqueWhite"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
     </Window.Resources>
 
     <Grid  Background="Black" TextBlock.Foreground="Beige">
         <Image Source="/image/brush2.JPG" Stretch="Uniform" Margin="172,0,-172,0"/>
-        <TextBlock Text="{Binding order.ID}"  Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,30,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.CustomerName}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="151,70,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.CustomerEmail}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,110,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.CustomerAdress}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="151,150,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.Status}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="151,190,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.TotalPrice}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,230,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.OrderDate}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="151,270,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.ShipDate}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,310,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.DeliveryDate}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="151,350,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBlock Text="{Binding order.ID}"  Margin="151,30,0,0" Style="{StaticResource myTextBlockStyle}" />
+        <TextBlock Text="{Binding order.CustomerName}" Margin="151,70,0,0"   Style="{StaticResource myTextBlockStyle}" />
+        <TextBlock Text="{Binding order.CustomerEmail}" Margin="151,110,0,0" Style="{StaticResource myTextBlockStyle}"  />
+        <TextBlock Text="{Binding order.CustomerAdress}" Margin="151,150,0,0" Style="{StaticResource myTextBlockStyle}" />
+        <TextBlock Text="{Binding order.Status}" Margin="151,190,0,0"  Style="{StaticResource myTextBlockStyle}" />
+        <TextBlock Text="{Binding order.TotalPrice}" Margin="151,230,0,0" Style="{StaticResource myTextBlockStyle}"   />
+        <TextBlock Text="{Binding order.OrderDate}"  Margin="151,270,0,0" Style="{StaticResource myTextBlockStyle}" />
+        <TextBlock Text="{Binding order.ShipDate}" Margin="151,310,0,0" Style="{StaticResource myTextBlockStyle}"  />
+        <TextBlock Text="{Binding order.DeliveryDate}" Margin="151,350,0,0" Style="{StaticResource myTextBlockStyle}" />
 
-        <Label  TextBlock.Foreground="Beige" Content="ID:" Height="28" HorizontalAlignment="Left" Margin="39,30,0,0"  VerticalAlignment="Top" />
-        <Label  TextBlock.Foreground="Beige" Content="CustomerName:" Height="28" HorizontalAlignment="Left" Margin="39,70,0,0"  VerticalAlignment="Top" />
-        <Label  TextBlock.Foreground="Beige" Content="CustomerEmail:" Height="28" HorizontalAlignment="Left" Margin="39,110,0,0" VerticalAlignment="Top" />
-        <Label  TextBlock.Foreground="Beige" Content="CustomerAdress:" Height="28" HorizontalAlignment="Left" Margin="39,150,0,0"  VerticalAlignment="Top" />
-        <Label  TextBlock.Foreground="Beige" Content="Status:" Height="28" HorizontalAlignment="Left" Margin="39,190,0,0" VerticalAlignment="Top" />
-        <Label  TextBlock.Foreground="Beige" Content="TotalPrice:" Height="28" HorizontalAlignment="Left" Margin="39,230,0,0" VerticalAlignment="Top" />
-        <Label  TextBlock.Foreground="Beige" Content="OrderDate:" Height="28" HorizontalAlignment="Left" Margin="39,270,0,0" VerticalAlignment="Top" />
-        <Label  TextBlock.Foreground="Beige" Content="ShipDate:" Height="28" HorizontalAlignment="Left" Margin="39,310,0,0" VerticalAlignment="Top" />
-        <Label  TextBlock.Foreground="Beige" Content="DeliveryDate:" Height="28" HorizontalAlignment="Left" Margin="39,350,0,0" VerticalAlignment="Top" />
-        <Label Content="{Binding errorProp}" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red" Height="25" HorizontalAlignment="Left" Margin="242,392,0,0"  VerticalAlignment="Top" Width="197" RenderTransformOrigin="0.5,0.5" >
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="0"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="0"/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
+        <Label  TextBlock.Foreground="Beige" Content="ID:"   Margin="39,30,0,0" Style="{StaticResource myControlStyle}" />
+        <Label  TextBlock.Foreground="Beige" Content="CustomerName:" Margin="39,70,0,0" Style="{StaticResource myControlStyle}"/>
+        <Label  TextBlock.Foreground="Beige" Content="CustomerEmail:" Margin="39,110,0,0"  Style="{StaticResource myControlStyle}"/>
+        <Label  TextBlock.Foreground="Beige" Content="CustomerAdress:" Margin="39,150,0,0"  Style="{StaticResource myControlStyle}"/>
+        <Label  TextBlock.Foreground="Beige" Content="Status:"   Margin="39,190,0,0"  Style="{StaticResource myControlStyle}"/>
+        <Label  TextBlock.Foreground="Beige" Content="TotalPrice:"  Margin="39,230,0,0"  Style="{StaticResource myControlStyle}"/>
+        <Label  TextBlock.Foreground="Beige" Content="OrderDate:" Margin="39,270,0,0" Style="{StaticResource myControlStyle}"/>
+        <Label  TextBlock.Foreground="Beige" Content="ShipDate:"   Margin="39,310,0,0" Style="{StaticResource myControlStyle}"/>
+        <Label  TextBlock.Foreground="Beige" Content="DeliveryDate:"  Margin="39,350,0,0" Style="{StaticResource myControlStyle}"/>
+        <Label Content="{Binding errorProp}" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red" Height="25" Margin="242,392,0,0"   Width="197" RenderTransformOrigin="0.5,0.5" />
 
-        <Button  BorderBrush="Azure" BorderThickness="3" TextBlock.Foreground="AntiqueWhite"  Background="Black" Content="Show all the &#xD;&#xA;order items"  Height="50" HorizontalAlignment="Left" Margin="684,359,0,0" VerticalAlignment="Top" Width="97" Click="ChoiceOfButten_Click3" />
-        <Button  BorderBrush="Azure" BorderThickness="3" TextBlock.Foreground="AntiqueWhite"  Background="Black" Content="Order shipping update" Height="25" HorizontalAlignment="Left" Margin="281,309,0,0" VerticalAlignment="Top" Width="134" Click="updateShippingBtn_Click"  Visibility="{Binding VisibileShipping, Mode=TwoWay,Converter={StaticResource notBooleanToVisibiliryConvertar}}"/>
-        <Button  BorderBrush="Azure" BorderThickness="3" TextBlock.Foreground="AntiqueWhite"  Background="Black" Content="Order delivery update" Height="25" HorizontalAlignment="Left" Margin="280,350,0,0" VerticalAlignment="Top" Width="134" Click="updateDeliveryBtn_Click"  Visibility="{Binding VisibileDelivery, Mode=TwoWay,Converter={StaticResource notBooleanToVisibiliryConvertar}}"/>
+        <Button   Content="Show all the &#xD;&#xA;order items"  Height="50" Margin="684,359,0,0" Width="97" Click="ChoiceOfButten_Click3" Style="{StaticResource myButtonStyle}"/>
+        <Button   Content="Order shipping update" Height="25"  Margin="281,309,0,0" Width="134" Click="updateShippingBtn_Click"  Visibility="{Binding VisibileShipping, Mode=TwoWay,Converter={StaticResource notBooleanToVisibiliryConvertar}}" Style="{StaticResource myButtonStyle}"/>
+        <Button  Content="Order delivery update" Height="25"  Margin="280,350,0,0" Width="134" Click="updateDeliveryBtn_Click"  Visibility="{Binding VisibileDelivery, Mode=TwoWay,Converter={StaticResource notBooleanToVisibiliryConvertar}}" Style="{StaticResource myButtonStyle}"/>
 
 
     </Grid>
