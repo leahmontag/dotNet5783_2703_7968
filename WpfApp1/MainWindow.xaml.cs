@@ -9,7 +9,8 @@ using PL.ManagerVew;
 using PL.NewOrder;
 using PL.OrderTracking;
 using PL.registeredUser;
-using PL.Simulator;
+using PL;
+using Simulator;
 
 namespace WpfApp1
 {
@@ -29,7 +30,7 @@ namespace WpfApp1
         private void ShowNewOrderWindowButton_Click(object sender, RoutedEventArgs e) => new NewOrderWindow().Show();
         private void ShowOrderTrackingWindowButton_Click(object sender, RoutedEventArgs e) => new OrderTrackingWindow().Show();
         private void ShowregisteredUserWindowButton_Click(object sender, RoutedEventArgs e) => new registeredUserWindow().Show();
-        private void ShowSimulatorButton_Click(object sender, RoutedEventArgs e) => new SimulatorWindow().Show();
+        private void ShowSimulatorButton_Click(object sender, RoutedEventArgs e) => new PL.SimulatorWindow(bl).Show();
 
     }
 }

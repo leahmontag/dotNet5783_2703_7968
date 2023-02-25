@@ -1,70 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Product>
   <Product>
-    <ID>928210</ID>
+    <ID>406566</ID>
     <Name>eye shadow palette</Name>
     <InStock>17</InStock>
     <Price>250</Price>
     <Category>eyeMakeup</Category>
   </Product>
   <Product>
-    <ID>922823</ID>
+    <ID>626328</ID>
     <Name>rubber</Name>
     <InStock>78</InStock>
     <Price>80</Price>
     <Category>lipMakeup</Category>
   </Product>
   <Product>
-    <ID>506445</ID>
+    <ID>179661</ID>
     <Name>mascara</Name>
     <InStock>3</InStock>
     <Price>68</Price>
     <Category>eyeMakeup</Category>
   </Product>
   <Product>
-    <ID>252489</ID>
+    <ID>264401</ID>
     <Name>facial soap</Name>
     <InStock>0</InStock>
     <Price>73</Price>
     <Category>cultivation</Category>
   </Product>
   <Product>
-    <ID>150168</ID>
+    <ID>763332</ID>
     <Name>blush</Name>
     <InStock>26</InStock>
     <Price>69</Price>
     <Category>facialMmakeup</Category>
   </Product>
   <Product>
-    <ID>127640</ID>
+    <ID>724127</ID>
     <Name>makeup</Name>
     <InStock>47</InStock>
     <Price>189</Price>
     <Category>facialMmakeup</Category>
   </Product>
   <Product>
-    <ID>854755</ID>
+    <ID>787611</ID>
     <Name>makeup brush</Name>
     <InStock>212</InStock>
     <Price>75</Price>
     <Category>brushes</Category>
   </Product>
   <Product>
-    <ID>499869</ID>
+    <ID>253578</ID>
     <Name>eyeshadow brush</Name>
     <InStock>269</InStock>
     <Price>45</Price>
     <Category>brushes</Category>
   </Product>
   <Product>
-    <ID>559520</ID>
+    <ID>717194</ID>
     <Name>moisturizer</Name>
     <InStock>0</InStock>
     <Price>55</Price>
     <Category>cultivation</Category>
   </Product>
   <Product>
-    <ID>783308</ID>
+    <ID>416133</ID>
     <Name>lipstick</Name>
     <InStock>10</InStock>
     <Price>35</Price>

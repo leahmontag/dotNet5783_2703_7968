@@ -11,3 +11,16 @@ C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\Simu
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\refint\Simulator.dll
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\Simulator.pdb
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\ref\Simulator.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\Simulator.csproj.AssemblyReference.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\Simulator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\Simulator.AssemblyInfoInputs.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\Simulator.AssemblyInfo.cs
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\Simulator.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\refint\Simulator.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\Simulator.pdb
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\bin\Simulator.deps.json
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\bin\Simulator.dll
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\bin\Simulator.pdb
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\Simulator.csproj.CopyComplete
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\Simulator\obj\Debug\ref\Simulator.dll

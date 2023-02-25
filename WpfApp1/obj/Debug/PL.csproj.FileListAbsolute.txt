@@ -153,3 +153,5 @@ C:\Users\1\Source\Repos\leahmontag\dotNet5783_2703_7968.git\dotNet5783_2703_7968
 C:\Users\1\Source\Repos\leahmontag\dotNet5783_2703_7968.git\dotNet5783_2703_7968\WpfApp1\obj\Debug\registeredUser\registeredUserWindow.baml
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Simulator\SimulatorWindow.g.cs
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Simulator\SimulatorWindow.baml
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Simulator.g.cs
+C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Simulator.baml

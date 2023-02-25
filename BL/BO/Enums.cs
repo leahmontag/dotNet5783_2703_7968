@@ -17,19 +17,27 @@ public class Enums
         brushes,
         cultivation
     }
-#endregion
+    #endregion
 
-/// <summary>
-/// enum OrderStatus
-/// </summary>
-#region enum OrderStatus
-public enum OrderStatus
+    /// <summary>
+    /// enum OrderStatus
+    /// </summary>
+    #region enum OrderStatus
+    public enum OrderStatus
     {
         confirmed,
         send,
         provided
     }
     #endregion
+
+
+    public enum OrderStatus2
+    {
+        Payed = 1,
+        Shiped,
+        Delivered,
+    }
 
     /// <summary>
     /// enum Choice. 
