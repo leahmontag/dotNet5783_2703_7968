@@ -30,7 +30,7 @@ namespace WpfApp1
         private void ShowNewOrderWindowButton_Click(object sender, RoutedEventArgs e) => new NewOrderWindow().Show();
         private void ShowOrderTrackingWindowButton_Click(object sender, RoutedEventArgs e) => new OrderTrackingWindow().Show();
         private void ShowregisteredUserWindowButton_Click(object sender, RoutedEventArgs e) => new registeredUserWindow().Show();
-        private void ShowSimulatorButton_Click(object sender, RoutedEventArgs e) => new PL.SimulatorWindow(bl).Show();
+        private void ShowSimulatorButton_Click(object sender, RoutedEventArgs e) => new SimulatorWindow(bl).Show();
 
     }
 }

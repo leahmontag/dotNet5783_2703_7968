@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "yVZq6WPXUdC0eKVBC59BNvCRAy2gms1a+BfSZHxjIcSQOyKl56lQpS+CKcAlzxpJW0AhLWm9HVAlyxEE7ZqoGg==",
+  "dgSpecHash": "m7qXczHlldHj0kYhk4+s0kDZwWHvcV9lWyEuAnsK2OFm2hwSLBU2vJJCOrD2AbxbwpbAih1Z2owFskMrJhsRog==",
   "success": true,
-  "projectFilePath": "C:\\Users\\efrat\\Source\\Repos\\leahmontag\\dotNet5783_2703_7968\\WpfApp1\\PL.csproj",
+  "projectFilePath": "C:\\Users\\1\\source\\repos\\leahmontag\\dotNet5783_2703_7968\\WpfApp1\\PL.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\efrat\\.nuget\\packages\\awssdk.core\\3.7.100.16\\awssdk.core.3.7.100.16.nupkg.sha512",
-    "C:\\Users\\efrat\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.100.16\\awssdk.dynamodbv2.3.7.100.16.nupkg.sha512",
-    "C:\\Users\\efrat\\.nuget\\packages\\documentformat.openxml\\2.18.0\\documentformat.openxml.2.18.0.nupkg.sha512",
-    "C:\\Users\\efrat\\.nuget\\packages\\system.io.packaging\\4.7.0\\system.io.packaging.4.7.0.nupkg.sha512"
+    "C:\\Users\\1\\.nuget\\packages\\awssdk.core\\3.7.100.16\\awssdk.core.3.7.100.16.nupkg.sha512",
+    "C:\\Users\\1\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.100.16\\awssdk.dynamodbv2.3.7.100.16.nupkg.sha512",
+    "C:\\Users\\1\\.nuget\\packages\\documentformat.openxml\\2.18.0\\documentformat.openxml.2.18.0.nupkg.sha512",
+    "C:\\Users\\1\\.nuget\\packages\\system.io.packaging\\4.7.0\\system.io.packaging.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

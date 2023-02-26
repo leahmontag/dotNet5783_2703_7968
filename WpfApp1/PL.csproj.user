@@ -38,7 +38,7 @@
     <Compile Update="registeredUser\registeredUserWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Simulator.xaml.cs">
+    <Compile Update="SimulatorWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -79,7 +79,7 @@
     <Page Update="registeredUser\registeredUserWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Simulator.xaml">
+    <Page Update="SimulatorWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

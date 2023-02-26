@@ -415,6 +415,12 @@ internal class Order : BlApi.IOrder
     }
     #endregion
 
+
+    /// <summary>
+    /// Selecting Order For Treatment()
+    /// </summary>
+    /// <returns></returns>
+    #region
     [MethodImpl(MethodImplOptions.Synchronized)]
     public int? SelectingOrderForTreatment()
     {
@@ -424,20 +430,23 @@ internal class Order : BlApi.IOrder
             try
             {
                 var newOrders1 = (from DO.Order o in orders
-                                  where o.DeliveryDate != null
+                                  where o.DeliveryDate == null
                                   orderby o.ShipDate
                                   select o).FirstOrDefault();
 
                 var newOrders2 = (from DO.Order o in orders
-                                  where o.ShipDate != null
+                                  where o.ShipDate == null
                                   orderby o.OrderDate
                                   select o).FirstOrDefault();
-
-                if (newOrders1.ShipDate < newOrders2.OrderDate)
-                    return newOrders1.ID;
+                if (newOrders2.OrderDate != null)
+                {
+                    if (newOrders1.ShipDate < newOrders2.OrderDate)
+                        return newOrders1.ID;
+                    else
+                        return newOrders2.ID;
+                }
                 else
-                    return newOrders2.ID;
-
+                    return newOrders1.ID;
             }
             catch
             {
@@ -447,5 +456,8 @@ internal class Order : BlApi.IOrder
 
         }
     }
+
+    #endregion
+
 }
 

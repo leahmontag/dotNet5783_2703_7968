@@ -31,14 +31,6 @@ public class Enums
     }
     #endregion
 
-
-    public enum OrderStatus2
-    {
-        Payed = 1,
-        Shiped,
-        Delivered,
-    }
-
     /// <summary>
     /// enum Choice. 
     /// </summary>

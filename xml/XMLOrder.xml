@@ -1,24 +1,183 @@
-﻿<?xml version="1.0" encoding="utf-8"?><ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Order><ID>100000</ID><CustomerName>Elisheva</CustomerName><CustomerEmail>et3367903@gmail.com</CustomerEmail><CustomerAdress>Nahal Dolev</CustomerAdress><OrderDate>2023-02-10T22:33:43.7307415+02:00</OrderDate><ShipDate>2023-02-11T04:15:22.7307415+02:00</ShipDate><DeliveryDate>2023-02-15T07:10:39.7307415+02:00</DeliveryDate></Order><Order><ID>100001</ID><CustomerName>Leah</CustomerName><CustomerEmail>p33197903@gmail.com</CustomerEmail><CustomerAdress>Nahal Noam</CustomerAdress><OrderDate>2023-02-02T22:33:43.7405243+02:00</OrderDate><ShipDate>2023-02-08T01:41:50.7405243+02:00</ShipDate><DeliveryDate>2023-02-10T11:14:31.7405243+02:00</DeliveryDate></Order><Order><ID>100002</ID><CustomerName>Rachel</CustomerName><CustomerEmail>o33197903@gmail.com</CustomerEmail><CustomerAdress>Nahal Ayalon</CustomerAdress><OrderDate>2023-02-05T22:33:43.7405405+02:00</OrderDate><ShipDate>2023-02-08T04:47:55.7405405+02:00</ShipDate><DeliveryDate>2023-02-09T12:31:33.7405405+02:00</DeliveryDate></Order><Order><ID>100003</ID><CustomerName>Esther</CustomerName><CustomerEmail>m33197903@gmail.com</CustomerEmail><CustomerAdress>Nahal Oriya</CustomerAdress><OrderDate>2023-02-24T22:33:43.7405428+02:00</OrderDate><ShipDate xsi:nil="true" /><DeliveryDate xsi:nil="true" /></Order><Order><ID>100004</ID><CustomerName>Batya</CustomerName><CustomerEmail>b33197903@gmail.com</CustomerEmail><CustomerAdress>Nahal Micah</CustomerAdress><OrderDate>2023-02-06T22:33:43.7405446+02:00</OrderDate><ShipDate>2023-02-12T06:49:14.7405446+02:00</ShipDate><DeliveryDate>2023-02-19T10:02:34.7405446+02:00</DeliveryDate></Order><Order><ID>100005</ID><CustomerName>Tamar</CustomerName><CustomerEmail>v33197903@gmail.com</CustomerEmail><CustomerAdress>Nahal Akziv</CustomerAdress><OrderDate>2023-02-04T22:33:43.7405495+02:00</OrderDate><ShipDate>2023-02-12T07:21:45.7405495+02:00</ShipDate><DeliveryDate>2023-02-19T16:11:33.7405495+02:00</DeliveryDate></Order><Order><ID>100006</ID><CustomerName>Miriam</CustomerName><CustomerEmail>l33197903@gmail.com</CustomerEmail><CustomerAdress>Jordan river</CustomerAdress><OrderDate>2023-02-18T22:33:43.7405516+02:00</OrderDate><ShipDate xsi:nil="true" /><DeliveryDate xsi:nil="true" /></Order><Order><ID>100007</ID><CustomerName>Hadassah</CustomerName><CustomerEmail>a33197903@gmail.com</CustomerEmail><CustomerAdress>Levi Eshkol</CustomerAdress><OrderDate>2023-02-21T22:33:43.7405533+02:00</OrderDate><ShipDate xsi:nil="true" /><DeliveryDate xsi:nil="true" /></Order><Order><ID>100008</ID><CustomerName>Shira</CustomerName><CustomerEmail>d33197903@gmail.com</CustomerEmail><CustomerAdress>Levi Eshkol</CustomerAdress><OrderDate>2023-02-05T22:33:43.740555+02:00</OrderDate><ShipDate>2023-02-15T03:56:53.740555+02:00</ShipDate><DeliveryDate>2023-02-21T11:30:06.740555+02:00</DeliveryDate></Order><Order><ID>100009</ID><CustomerName>Dini</CustomerName><CustomerEmail>r33198903@gmail.com</CustomerEmail><CustomerAdress>SHOREK River</CustomerAdress><OrderDate>2023-02-12T22:33:43.7405691+02:00</OrderDate><ShipDate>2023-02-17T01:51:01.7405691+02:00</ShipDate><DeliveryDate>2023-02-23T09:24:18.7405691+02:00</DeliveryDate></Order><Order><ID>100010</ID><CustomerName>Ila</CustomerName><CustomerEmail>et8367903@gmail.com</CustomerEmail><CustomerAdress>Nahal Dolev</CustomerAdress><OrderDate>2023-02-06T22:33:43.7405722+02:00</OrderDate><ShipDate>2023-02-15T06:09:55.7405722+02:00</ShipDate><DeliveryDate>2023-02-24T12:58:18.7405722+02:00</DeliveryDate></Order><Order><ID>100011</ID><CustomerName>Mali</CustomerName><CustomerEmail>n33197903@gmail.com</CustomerEmail><CustomerAdress>Nahal Noam</CustomerAdress><OrderDate>2023-02-15T22:33:43.7405746+02:00</OrderDate><ShipDate>2023-02-17T06:25:56.7405746+02:00</ShipDate><DeliveryDate>2023-02-17T13:58:25.7405746+02:00</DeliveryDate></Order><Order><ID>100012</ID><CustomerName>Ruti</CustomerName><CustomerEmail>x33197903@gmail.com</CustomerEmail><CustomerAdress>Nahal Ayalon</CustomerAdress><OrderDate>2023-02-18T22:33:43.7405765+02:00</OrderDate><ShipDate xsi:nil="true" /><DeliveryDate xsi:nil="true" /></Order><Order><ID>100013</ID><CustomerName>Naama</CustomerName><CustomerEmail>c33197903@gmail.com</CustomerEmail><CustomerAdress>Nahal Oriya</CustomerAdress><OrderDate>2023-02-20T22:33:43.7405781+02:00</OrderDate><ShipDate>2023-02-21T07:55:59.7405781+02:00</ShipDate><DeliveryDate xsi:nil="true" /></Order><Order><ID>100014</ID><CustomerName>Gila</CustomerName><CustomerEmail>j33197903@gmail.com</CustomerEmail><CustomerAdress>Nahal Micah</CustomerAdress><OrderDate>2023-01-31T22:33:43.7405803+02:00</OrderDate><ShipDate>2023-02-04T00:35:36.7405803+02:00</ShipDate><DeliveryDate>2023-02-09T10:07:47.7405803+02:00</DeliveryDate></Order><Order><ID>100015</ID><CustomerName>Yael</CustomerName><CustomerEmail>k33197903@gmail.com</CustomerEmail><CustomerAdress>Nahal Akziv</CustomerAdress><OrderDate>2023-02-07T22:33:43.7405822+02:00</OrderDate><ShipDate>2023-02-08T07:52:34.7405822+02:00</ShipDate><DeliveryDate>2023-02-17T10:32:45.7405822+02:00</DeliveryDate></Order><Order><ID>100016</ID><CustomerName>Penina</CustomerName><CustomerEmail>f33197903@gmail.com</CustomerEmail><CustomerAdress>Jordan river</CustomerAdress><OrderDate>2023-02-20T22:33:43.740584+02:00</OrderDate><ShipDate xsi:nil="true" /><DeliveryDate xsi:nil="true" /></Order><Order><ID>100017</ID><CustomerName>Tzipi</CustomerName><CustomerEmail>g33197903@gmail.com</CustomerEmail><CustomerAdress>Levi Eshkol</CustomerAdress><OrderDate>2023-02-07T22:33:43.7405857+02:00</OrderDate><ShipDate>2023-02-14T04:12:59.7405857+02:00</ShipDate><DeliveryDate>2023-02-20T07:55:23.7405857+02:00</DeliveryDate></Order><Order><ID>100018</ID><CustomerName>Tova</CustomerName><CustomerEmail>p33197903@gmail.com</CustomerEmail><CustomerAdress>Levi Eshkol</CustomerAdress><OrderDate>2023-02-07T22:33:43.7405878+02:00</OrderDate><ShipDate>2023-02-10T02:22:41.7405878+02:00</ShipDate><DeliveryDate>2023-02-16T09:35:59.7405878+02:00</DeliveryDate></Order><Order><ID>100019</ID><CustomerName>Efrat</CustomerName><CustomerEmail>r33197903@gmail.com</CustomerEmail><CustomerAdress>SHOREK River</CustomerAdress><OrderDate>2023-02-16T22:33:43.7405897+02:00</OrderDate><ShipDate>2023-02-17T04:02:18.7405897+02:00</ShipDate><DeliveryDate>2023-02-17T06:32:23.7405897+02:00</DeliveryDate></Order></ArrayOfOrder>CustomerAdress>
-    <OrderDate>2023-01-11T15:41:11.7018168+02:00</OrderDate>
-    <ShipDate>2023-01-11T18:12:43.7018168+02:00</ShipDate>
-    <DeliveryDate>2023-01-21T00:31:37.7018168+02:00</DeliveryDate>
-  </Order>
-  <Order>
-    <ID>100018</ID>
-    <CustomerName>Tova</CustomerName>
-    <CustomerEmail>p33197903@gmail.com</CustomerEmail>
-    <CustomerAdress>Levi Eshkol</CustomerAdress>
-    <OrderDate>2023-01-21T15:41:11.7018182+02:00</OrderDate>
-    <ShipDate>2023-01-24T17:44:00.7018182+02:00</ShipDate>
-    <DeliveryDate xsi:nil="true" />
-  </Order>
-  <Order>
-    <ID>100019</ID>
-    <CustomerName>Efrat</CustomerName>
-    <CustomerEmail>r33197903@gmail.com</CustomerEmail>
-    <CustomerAdress>SHOREK River</CustomerAdress>
-    <OrderDate>2023-01-06T15:41:11.7018196+02:00</OrderDate>
-    <ShipDate>2023-01-10T19:14:35.7018196+02:00</ShipDate>
-    <DeliveryDate>2023-01-17T00:18:04.7018196+02:00</DeliveryDate>
-  </Order>
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<Order>
+				<ID>100000</ID>
+				<CustomerName>Elisheva</CustomerName>
+				<CustomerEmail>et3367903@gmail.com</CustomerEmail>
+				<CustomerAdress>Nahal Dolev</CustomerAdress>
+				<OrderDate>2023-01-14T15:41:11.6941548+02:00</OrderDate>
+				<ShipDate>2023-01-23T18:53:14.6941548+02:00</ShipDate>
+				<DeliveryDate xsi:nil="true" />
+		</Order>
+		<Order>
+				<ID>100001</ID>
+				<CustomerName>Leah</CustomerName>
+				<CustomerEmail>p33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Nahal Noam</CustomerAdress>
+				<OrderDate>2023-01-14T15:41:11.701642+02:00</OrderDate>
+				<ShipDate>2023-01-21T20:59:17.701642+02:00</ShipDate>
+				<DeliveryDate>2023-01-23T00:24:38.701642+02:00</DeliveryDate>
+		</Order>
+		<Order>
+				<ID>100002</ID>
+				<CustomerName>Rachel</CustomerName>
+				<CustomerEmail>o33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Nahal Ayalon</CustomerAdress>
+				<OrderDate>2023-01-05T15:41:11.7016586+02:00</OrderDate>
+				<ShipDate>2023-01-14T21:17:03.7016586+02:00</ShipDate>
+				<DeliveryDate>2023-01-20T03:59:54.7016586+02:00</DeliveryDate>
+		</Order>
+		<Order>
+				<ID>100003</ID>
+				<CustomerName>Esther</CustomerName>
+				<CustomerEmail>m33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Nahal Oriya</CustomerAdress>
+				<OrderDate>2023-01-25T15:41:11.7016614+02:00</OrderDate>
+				<ShipDate>2023-01-26T22:54:40.7016614+02:00</ShipDate>
+				<DeliveryDate xsi:nil="true" />
+		</Order>
+		<Order>
+				<ID>100004</ID>
+				<CustomerName>Batya</CustomerName>
+				<CustomerEmail>b33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Nahal Micah</CustomerAdress>
+				<OrderDate>2023-01-24T15:41:11.7016641+02:00</OrderDate>
+				<ShipDate xsi:nil="true" />
+				<DeliveryDate xsi:nil="true" />
+		</Order>
+		<Order>
+				<ID>100005</ID>
+				<CustomerName>Tamar</CustomerName>
+				<CustomerEmail>v33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Nahal Akziv</CustomerAdress>
+				<OrderDate>2023-01-10T15:41:11.7016687+02:00</OrderDate>
+				<ShipDate>2023-01-12T21:23:57.7016687+02:00</ShipDate>
+				<DeliveryDate>2023-01-17T00:49:49.7016687+02:00</DeliveryDate>
+		</Order>
+		<Order>
+				<ID>100006</ID>
+				<CustomerName>Miriam</CustomerName>
+				<CustomerEmail>l33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Jordan river</CustomerAdress>
+				<OrderDate>2023-01-25T15:41:11.7016701+02:00</OrderDate>
+				<ShipDate xsi:nil="true" />
+				<DeliveryDate xsi:nil="true" />
+		</Order>
+		<Order>
+				<ID>100007</ID>
+				<CustomerName>Hadassah</CustomerName>
+				<CustomerEmail>a33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Levi Eshkol</CustomerAdress>
+				<OrderDate>2023-01-14T15:41:11.7016713+02:00</OrderDate>
+				<ShipDate>2023-01-17T23:55:47.7016713+02:00</ShipDate>
+				<DeliveryDate>2023-01-26T05:02:25.7016713+02:00</DeliveryDate>
+		</Order>
+		<Order>
+				<ID>100008</ID>
+				<CustomerName>Shira</CustomerName>
+				<CustomerEmail>d33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Levi Eshkol</CustomerAdress>
+				<OrderDate>2023-01-07T15:41:11.7016728+02:00</OrderDate>
+				<ShipDate>2023-01-11T22:44:17.7016728+02:00</ShipDate>
+				<DeliveryDate>2023-01-15T07:17:28.7016728+02:00</DeliveryDate>
+		</Order>
+		<Order>
+				<ID>100009</ID>
+				<CustomerName>Dini</CustomerName>
+				<CustomerEmail>r33198903@gmail.com</CustomerEmail>
+				<CustomerAdress>SHOREK River</CustomerAdress>
+				<OrderDate>2023-01-04T15:41:11.7017893+02:00</OrderDate>
+				<ShipDate>2023-01-09T20:34:35.7017893+02:00</ShipDate>
+				<DeliveryDate>2023-01-14T03:55:23.7017893+02:00</DeliveryDate>
+		</Order>
+		<Order>
+				<ID>100010</ID>
+				<CustomerName>Ila</CustomerName>
+				<CustomerEmail>et8367903@gmail.com</CustomerEmail>
+				<CustomerAdress>Nahal Dolev</CustomerAdress>
+				<OrderDate>2023-01-05T15:41:11.7018063+02:00</OrderDate>
+				<ShipDate>2023-01-05T21:23:48.7018063+02:00</ShipDate>
+				<DeliveryDate>2023-01-10T01:18:26.7018063+02:00</DeliveryDate>
+		</Order>
+		<Order>
+				<ID>100011</ID>
+				<CustomerName>Mali</CustomerName>
+				<CustomerEmail>n33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Nahal Noam</CustomerAdress>
+				<OrderDate>2023-01-10T15:41:11.701808+02:00</OrderDate>
+				<ShipDate>2023-01-11T22:15:50.701808+02:00</ShipDate>
+				<DeliveryDate>2023-01-18T06:22:04.701808+02:00</DeliveryDate>
+		</Order>
+		<Order>
+				<ID>100012</ID>
+				<CustomerName>Ruti</CustomerName>
+				<CustomerEmail>x33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Nahal Ayalon</CustomerAdress>
+				<OrderDate>2023-01-17T15:41:11.7018095+02:00</OrderDate>
+				<ShipDate>2023-01-24T17:50:59.7018095+02:00</ShipDate>
+				<DeliveryDate xsi:nil="true" />
+		</Order>
+		<Order>
+				<ID>100013</ID>
+				<CustomerName>Naama</CustomerName>
+				<CustomerEmail>c33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Nahal Oriya</CustomerAdress>
+				<OrderDate>2023-01-27T15:41:11.701811+02:00</OrderDate>
+				<ShipDate xsi:nil="true" />
+				<DeliveryDate xsi:nil="true" />
+		</Order>
+		<Order>
+				<ID>100014</ID>
+				<CustomerName>Gila</CustomerName>
+				<CustomerEmail>j33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Nahal Micah</CustomerAdress>
+				<OrderDate>2023-01-28T15:41:11.7018122+02:00</OrderDate>
+				<ShipDate xsi:nil="true" />
+				<DeliveryDate xsi:nil="true" />
+		</Order>
+		<Order>
+				<ID>100015</ID>
+				<CustomerName>Yael</CustomerName>
+				<CustomerEmail>k33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Nahal Akziv</CustomerAdress>
+				<OrderDate>2023-01-18T15:41:11.7018133+02:00</OrderDate>
+				<ShipDate>2023-01-25T19:17:12.7018133+02:00</ShipDate>
+				<DeliveryDate>2023-01-27T01:36:35.7018133+02:00</DeliveryDate>
+		</Order>
+		<Order>
+				<ID>100016</ID>
+				<CustomerName>Penina</CustomerName>
+				<CustomerEmail>f33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Jordan river</CustomerAdress>
+				<OrderDate>2023-01-16T15:41:11.7018148+02:00</OrderDate>
+				<ShipDate>2023-01-24T20:26:18.7018148+02:00</ShipDate>
+				<DeliveryDate>2023-01-25T01:46:49.7018148+02:00</DeliveryDate>
+		</Order>
+		<Order>
+				<ID>100017</ID>
+				<CustomerName>Tzipi</CustomerName>
+				<CustomerEmail>g33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Levi Eshkol</CustomerAdress>
+				<OrderDate>2023-01-11T15:41:11.7018168+02:00</OrderDate>
+				<ShipDate>2023-01-11T18:12:43.7018168+02:00</ShipDate>
+				<DeliveryDate>2023-01-21T00:31:37.7018168+02:00</DeliveryDate>
+		</Order>
+		<Order>
+				<ID>100018</ID>
+				<CustomerName>Tova</CustomerName>
+				<CustomerEmail>p33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>Levi Eshkol</CustomerAdress>
+				<OrderDate>2023-01-21T15:41:11.7018182+02:00</OrderDate>
+				<ShipDate>2023-01-24T17:44:00.7018182+02:00</ShipDate>
+				<DeliveryDate xsi:nil="true" />
+		</Order>
+		<Order>
+				<ID>100019</ID>
+				<CustomerName>Efrat</CustomerName>
+				<CustomerEmail>r33197903@gmail.com</CustomerEmail>
+				<CustomerAdress>SHOREK River</CustomerAdress>
+				<OrderDate>2023-01-06T15:41:11.7018196+02:00</OrderDate>
+				<ShipDate>2023-01-10T19:14:35.7018196+02:00</ShipDate>
+				<DeliveryDate>2023-01-17T00:18:04.7018196+02:00</DeliveryDate>
+		</Order>
 </ArrayOfOrder>

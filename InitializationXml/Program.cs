@@ -2,6 +2,7 @@
 using static DO.Enums;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using Amazon.Auth.AccessControlPolicy;
 
 
 public class Sample
@@ -126,15 +127,15 @@ public class Sample
          new XElement("InStock", product?.InStock),
          new XElement("Price", product?.Price),
          new XElement("Category", product?.Category)));
-        initialize3.Save(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLProduct.xml");
+        initialize3.Save(@"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLProduct.xml");
 
-        FileStream fsP = new FileStream(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrder.xml", FileMode.OpenOrCreate);
+        FileStream fsP = new FileStream(@"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrder.xml", FileMode.OpenOrCreate);
         XmlSerializer xs1 = new XmlSerializer(typeof(List<Order?>));
         xs1.Serialize(fsP, _orderList);
         fsP.Close();
 
 
-        FileStream fsOI = new FileStream(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrderItem.xml", FileMode.OpenOrCreate);
+        FileStream fsOI = new FileStream(@"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\XMLOrderItem.xml", FileMode.OpenOrCreate);
         XmlSerializer xs3 = new XmlSerializer(typeof(List<OrderItem?>));
         xs3.Serialize(fsOI, _orderItemList);
         fsOI.Close();
@@ -143,7 +144,7 @@ public class Sample
         XElement initialize2 = new XElement("Config",
            new XElement("_autoNumOrder", "100020"),
            new XElement("_autoNumOrderItem", "100040"));
-        initialize2.Save(@"C:\Users\efrat\source\repos\leahmontag\dotNet5783_2703_7968\xml\Config.xml");
+        initialize2.Save(@"C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\xml\Config.xml");
     }
 
     #region AddFunctions
