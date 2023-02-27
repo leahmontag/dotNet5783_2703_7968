@@ -14,21 +14,21 @@
     </Window.Resources>
     <Grid Background="Black" TextBlock.Foreground="White">
         <Image Source="/image/brush2.jpg" Stretch="Uniform" Margin="178,-12,-178,12"/>
-        <TextBox Text="{Binding product.ID}" Background="PaleVioletRed" Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,30,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding product.Category}" Background="PaleVioletRed"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,70,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding product.Name}"  Background="PaleVioletRed"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,110,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding product.Price}" Background="PaleVioletRed"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,150,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding product.InStock}" Background="PaleVioletRed"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,190,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding product.Amount}" Background="PaleVioletRed"  Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="151,230,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding product.ID}" IsReadOnly="True" Margin="151,30,0,0" Style="{StaticResource myTextBlockStyle}" />
+        <TextBox Text="{Binding product.Category}" IsReadOnly="True" Margin="151,70,0,0" Style="{StaticResource myTextBlockStyle}" />
+        <TextBox Text="{Binding product.Name}" IsReadOnly="True"  Margin="151,110,0,0" Style="{StaticResource myTextBlockStyle}"/>
+        <TextBox Text="{Binding product.Price}" IsReadOnly="True"  Margin="151,150,0,0" Style="{StaticResource myTextBlockStyle}"/>
+        <TextBox Text="{Binding product.InStock}" IsReadOnly="True"  Margin="151,190,0,0" Style="{StaticResource myTextBlockStyle}" />
+        <TextBox Text="{Binding product.Amount}" IsReadOnly="True"  Margin="151,230,0,0" Style="{StaticResource myTextBlockStyle}" />
         <TextBox Text="{Binding textBox,Mode=TwoWay}" Background="White"  Height="19" HorizontalAlignment="Left" Margin="189,291,0,0" VerticalAlignment="Top" Width="27" RenderTransformOrigin="-1.404,2.024" PreviewTextInput="NumberValidationTextBox"/>
 
 
-        <Label Content="Id:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,30,0,0"  VerticalAlignment="Top" />
-        <Label Content="Category:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,70,0,0"  VerticalAlignment="Top" />
-        <Label Content="Name:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,110,0,0"  VerticalAlignment="Top" />
-        <Label Content="Price:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,150,0,0"  VerticalAlignment="Top" />
-        <Label Content="InStock:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,190,0,0"  VerticalAlignment="Top" />
-        <Label Content="Amount:" TextBlock.Foreground="White" Height="28" HorizontalAlignment="Left" Margin="39,230,0,0"  VerticalAlignment="Top" />
+        <Label Content="Id:" Margin="39,30,0,0" Style="{StaticResource myControlStyle}"/>
+        <Label Content="Category:" Margin="39,70,0,0" Style="{StaticResource myControlStyle}"/>
+        <Label Content="Name:" Margin="39,110,0,0" Style="{StaticResource myControlStyle}" />
+        <Label Content="Price:" Margin="39,150,0,0" Style="{StaticResource myControlStyle}" />
+        <Label Content="InStock:" Margin="39,190,0,0" Style="{StaticResource myControlStyle}" />
+        <Label Content="Amount:"  Margin="39,230,0,0" Style="{StaticResource myControlStyle}"/>
         <Label Content="{Binding errorProp}" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red" Height="25" HorizontalAlignment="Left" Margin="22,332,0,0"  VerticalAlignment="Top" Width="235" />
 
 
@@ -43,8 +43,8 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <Button Content = "back to catalog" BorderBrush="PaleVioletRed" Background="White" BorderThickness="3" TextBlock.Foreground="Black" Height="48" HorizontalAlignment="Left" Margin="627,305,0,0"  VerticalAlignment="Top" Width="147" Click="BtnBackToCatalog_Click" />
-        <Button Content = "Move to cart" BorderBrush="PaleVioletRed" Background="White" BorderThickness="3" TextBlock.Foreground="Black" Height="39" HorizontalAlignment="Left" Margin="627,369,0,0" VerticalAlignment="Top" Width="148" Click="BtnMoveToCart_Click" />
-
+        <Button Content = "back to catalog"  Height="48"  Margin="627,305,0,0"  Click="BtnBackToCatalog_Click" Style="{StaticResource mySingleButtonStyle}"/>
+        <Button Content = "Move to cart" Height="39" Margin="627,369,0,0" Click="BtnMoveToCart_Click" Style="{StaticResource mySingleButtonStyle}" />
     </Grid>
 </Window>
+

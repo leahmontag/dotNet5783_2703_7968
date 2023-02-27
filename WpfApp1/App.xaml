@@ -4,6 +4,85 @@
              xmlns:local="clr-namespace:WpfApp1"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="{x:Type Control}" x:Key="myControlStyle" >
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="TextBlock.Foreground" Value="White"/>
+        </Style>
+
+        <Style TargetType="{x:Type Control}" x:Key="myTextBlockStyle" >
+            <Setter Property="Background" Value="PaleVioletRed"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="23"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TextBlockStyle" >
+            <Setter Property="Background" Value="PaleVioletRed"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="23"/>
+        </Style>
+
+        <Style TargetType="{x:Type Control}" x:Key="myButtonStyle" >
+            <Setter Property="BorderBrush" Value="Azure"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="TextBlock.Foreground" Value="AntiqueWhite"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style TargetType="{x:Type Control}" x:Key="myListViewStyle" >
+            <Setter Property="BorderBrush" Value="PaleVioletRed"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="TextBlock.Foreground" Value="White"/>
+            <Setter Property="Background" Value="Black"/>
+        </Style>
+        <Style TargetType="{x:Type Control}" x:Key="mySingleButtonStyle" >
+            <Setter Property="BorderBrush" Value="PaleVioletRed"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="TextBlock.Foreground" Value="Black"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Width" Value="148"/>
+
+        </Style>
+        <Style TargetType="{x:Type Control}" x:Key="myCartStyle" >
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="TextBlock.Foreground" Value="White"/>
+            <Setter Property="Height" Value="28"/>
+        </Style>
+        <Style TargetType="{x:Type Control}" x:Key="myCartButtonStyle" >
+            <Setter Property="BorderBrush" Value="PaleVioletRed"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="TextBlock.Foreground" Value="Black"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Height" Value="63"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Width" Value="172"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        </Style>
+        <Style TargetType="{x:Type Control}" x:Key="myCartButtonStyle2" >
+            <Setter Property="BorderBrush" Value="PaleVioletRed"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="TextBlock.Foreground" Value="PaleVioletRed"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type Control}" x:Key="myNewOrderButtonStyle" >
+            <Setter Property="BorderBrush" Value="PaleVioletRed"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="TextBlock.Foreground" Value="Black"/>
+            <Setter Property="Background" Value="Azure"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
     </Application.Resources>
 </Application>
+

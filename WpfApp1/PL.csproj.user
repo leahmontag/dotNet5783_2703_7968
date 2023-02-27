@@ -35,9 +35,6 @@
     <Compile Update="OrderTracking\OrderWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="registeredUser\registeredUserWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="SimulatorWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -74,9 +71,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="OrderTracking\OrderWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="registeredUser\registeredUserWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="SimulatorWindow.xaml">

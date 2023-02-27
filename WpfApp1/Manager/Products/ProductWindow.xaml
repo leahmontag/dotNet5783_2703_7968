@@ -10,10 +10,10 @@
 
     <Grid Background="Black" TextBlock.Foreground="Beige">
         <Image Source="/image/brush2.JPG" Stretch="Uniform" Margin="84,0,-84,0"/>
-        <TextBox Text="{Binding product.ID,Mode=TwoWay}" Background="PaleVioletRed" Height="23" IsReadOnly="{Binding isReadOnly}" HorizontalAlignment="Left" Margin="182,86,0,0" VerticalAlignment="Top" Width="119" PreviewTextInput="NumberValidationTextBox"/>
-        <TextBox Text="{Binding product.Name,Mode=TwoWay}"  Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="182,166,0,0" VerticalAlignment="Top" Width="119" />
-        <TextBox Text="{Binding product.Price,Mode=TwoWay}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="182,210,0,0" VerticalAlignment="Top" Width="119" PreviewTextInput="NumberValidationTextBox"/>
-        <TextBox Text="{Binding product.InStock,Mode=TwoWay}" Background="PaleVioletRed" Height="22" HorizontalAlignment="Left" Margin="182,253,0,0" VerticalAlignment="Top" Width="119" PreviewTextInput="NumberValidationTextBox"/>
+        <TextBox Text="{Binding product.ID,Mode=TwoWay}" IsReadOnly="{Binding isReadOnly}"  Margin="182,86,0,0" PreviewTextInput="NumberValidationTextBox" Style="{StaticResource myTextBlockStyle}"/>
+        <TextBox Text="{Binding product.Name,Mode=TwoWay}"  Margin="182,166,0,0" Style="{StaticResource myTextBlockStyle}" />
+        <TextBox Text="{Binding product.Price,Mode=TwoWay}"  Margin="182,210,0,0"  PreviewTextInput="NumberValidationTextBox" Style="{StaticResource myTextBlockStyle}"/>
+        <TextBox Text="{Binding product.InStock,Mode=TwoWay}" Margin="182,253,0,0"  PreviewTextInput="NumberValidationTextBox" Style="{StaticResource myTextBlockStyle}"/>
 
         <Label TextBlock.Foreground="Beige" Content="Id:" Height="27" HorizontalAlignment="Left" Margin="71,88,0,0"  VerticalAlignment="Top" Width="23" />
         <Label TextBlock.Foreground="Beige" Content="Category:" Height="28" HorizontalAlignment="Left" Margin="71,127,0,0" VerticalAlignment="Top" Width="60" />
@@ -27,3 +27,4 @@
         <ComboBox SelectedItem = "{Binding product.Category,Mode=TwoWay}" ItemsSource="{Binding CategorySelector}"  HorizontalAlignment="Left" Margin="183,126,0,0" VerticalAlignment="Top" Width="119" Height="22"/>
     </Grid>
 </Window>
+

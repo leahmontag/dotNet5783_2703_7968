@@ -20,6 +20,13 @@
         <Grid TextBlock.FontStyle="Italic" TextBlock.FontWeight="Bold" TextBlock.FontSize="20">
             <Button Margin="43,146,582,141" Background="OldLace" Click="ShowProductsButton_Click" >ProductForList</Button>
             <Button Margin="242,148,383,142" Click="ShowOrdersButton_Click" Background="OldLace">OrderForList</Button>
+            <Ellipse
+                StrokeThickness="4" Fill="PaleVioletRed" RenderTransformOrigin="0.615,0.556" Margin="297,329,438,42" />
+            <Ellipse
+                StrokeThickness="4" Fill="PaleVioletRed" RenderTransformOrigin="0.615,0.556" Margin="196,329,539,42" />
+            <Ellipse
+                StrokeThickness="4" Fill="PaleVioletRed" RenderTransformOrigin="0.615,0.556" Margin="85,329,650,42" />
         </Grid>
     </Grid>
 </Window>
+

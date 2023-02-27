@@ -106,7 +106,6 @@ C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\NewOrd
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\OrderTracking\OrderTrackingdetailsWindow.g.cs
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\OrderTracking\OrderTrackingWindow.g.cs
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\OrderTracking\OrderWindow.g.cs
-C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\registeredUser\registeredUserWindow.g.cs
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Manager\ManagerWindow.baml
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Manager\Orders\OrderItemsWindow.baml
@@ -121,7 +120,6 @@ C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\NewOrd
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\OrderTracking\OrderTrackingdetailsWindow.baml
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\OrderTracking\OrderTrackingWindow.baml
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\OrderTracking\OrderWindow.baml
-C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\registeredUser\registeredUserWindow.baml
 C:\Users\1\Source\Repos\leahmontag\dotNet5783_2703_7968.git\dotNet5783_2703_7968\WpfApp1\obj\Debug\Manager\ManagerWindow.g.cs
 C:\Users\1\Source\Repos\leahmontag\dotNet5783_2703_7968.git\dotNet5783_2703_7968\WpfApp1\obj\Debug\Manager\Orders\OrderItemsWindow.g.cs
 C:\Users\1\Source\Repos\leahmontag\dotNet5783_2703_7968.git\dotNet5783_2703_7968\WpfApp1\obj\Debug\Manager\Orders\OrderListWindow.g.cs
@@ -155,3 +153,4 @@ C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Si
 C:\Users\efrat\Source\Repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\Simulator.baml
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\SimulatorWindow.g.cs
 C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\SimulatorWindow.baml
+C:\Users\1\source\repos\leahmontag\dotNet5783_2703_7968\WpfApp1\obj\Debug\App.baml

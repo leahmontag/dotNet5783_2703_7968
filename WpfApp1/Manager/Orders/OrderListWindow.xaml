@@ -8,6 +8,7 @@
         Title="OrderListWindow" Height="450" Width="800"
         DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
     <Grid>
-        <ListView BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="White"  Background="Black"  ItemsSource = "{Binding orderForList}" SelectedValue = "{Binding selectedOrder , Mode=TwoWay}" MouseDoubleClick="OrdersListView_MouseDoubleClick" />
+        <ListView Style="{StaticResource myListViewStyle}"  ItemsSource = "{Binding orderForList}" SelectedValue = "{Binding selectedOrder , Mode=TwoWay}" MouseDoubleClick="OrdersListView_MouseDoubleClick" />
     </Grid>
 </Window>
+

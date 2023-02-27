@@ -9,24 +9,25 @@
         DataContext = "{Binding RelativeSource={RelativeSource Self}}">
     <Grid Background="Black">
         <Image Source="/image/brush2.JPG" Stretch="Uniform" Margin="172,0,-172,0"/>
-        <TextBlock Text="{Binding order.ID}" Background="PaleVioletRed"  Height="23"  HorizontalAlignment="Left" Margin="151,30,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.CustomerName}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,70,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.CustomerEmail}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,110,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.CustomerAdress}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="151,150,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.Status}" Background="PaleVioletRed" Height="23" HorizontalAlignment="Left" Margin="151,190,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.TotalPrice}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,230,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.OrderDate}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,270,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.ShipDate}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,310,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBlock Text="{Binding order.DeliveryDate}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="151,350,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBlock Text="{Binding order.ID}" Margin="151,30,0,0" Style="{StaticResource TextBlockStyle}"/>
+        <TextBlock Text="{Binding order.CustomerName}" Margin="151,70,0,0" Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{Binding order.CustomerEmail}" Margin="151,110,0,0" Style="{StaticResource TextBlockStyle}"/>
+        <TextBlock Text="{Binding order.CustomerAdress}"  Margin="151,150,0,0" Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{Binding order.Status}" Margin="151,190,0,0" Style="{StaticResource TextBlockStyle}"/>
+        <TextBlock Text="{Binding order.TotalPrice}" Margin="151,230,0,0" Style="{StaticResource TextBlockStyle}"/>
+        <TextBlock Text="{Binding order.OrderDate}" Margin="151,270,0,0" Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{Binding order.ShipDate}" Margin="151,310,0,0" Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{Binding order.DeliveryDate}" Margin="151,350,0,0" Style="{StaticResource TextBlockStyle}"/>
 
-        <Label TextBlock.Foreground="Beige" Content="ID:" Height="28" HorizontalAlignment="Left" Margin="39,30,0,0"  VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="Beige" Content="CustomerName:" Height="28" HorizontalAlignment="Left" Margin="39,70,0,0" VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="Beige" Content="CustomerEmail:" Height="28" HorizontalAlignment="Left" Margin="39,110,0,0" VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="Beige" Content="CustomerAdress:" Height="28" HorizontalAlignment="Left" Margin="39,150,0,0" VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="Beige" Content="Status:" Height="28" HorizontalAlignment="Left" Margin="39,190,0,0" VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="Beige" Content="TotalPrice:" Height="28" HorizontalAlignment="Left" Margin="39,230,0,0" VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="Beige" Content="OrderDate:" Height="28" HorizontalAlignment="Left" Margin="39,270,0,0" VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="Beige" Content="ShipDate:" Height="28" HorizontalAlignment="Left" Margin="39,310,0,0" VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="Beige" Content="DeliveryDate:" Height="28" HorizontalAlignment="Left" Margin="39,350,0,0" VerticalAlignment="Top" />
+        <Label Content="ID:" Height="28" HorizontalAlignment="Left" Margin="39,30,0,0" />
+        <Label Content="CustomerName:" Margin="39,70,0,0"  Style="{StaticResource myControlStyle}"/>
+        <Label  Content="CustomerEmail:" Margin="39,110,0,0"  Style="{StaticResource myControlStyle}"/>
+        <Label Content="CustomerAdress:"  Margin="39,150,0,0"  Style="{StaticResource myControlStyle}"/>
+        <Label Content="Status:" Margin="39,190,0,0"  Style="{StaticResource myControlStyle}" />
+        <Label Content="TotalPrice:" Margin="39,230,0,0" Style="{StaticResource myControlStyle}"/>
+        <Label Content="OrderDate:" Margin="39,270,0,0" Style="{StaticResource myControlStyle}" />
+        <Label Content="ShipDate:" Margin="39,310,0,0" Style="{StaticResource myControlStyle}"/>
+        <Label Content="DeliveryDate:" Margin="39,350,0,0"  Style="{StaticResource myControlStyle}" />
     </Grid>
 </Window>
+

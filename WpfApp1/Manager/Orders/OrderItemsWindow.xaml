@@ -8,6 +8,7 @@
         Title="OrderItemsWindow" Height="450" Width="800"
     DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
     <Grid Background="Black">
-        <ListView BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="White"  Background="Black" ItemsSource="{Binding orderItemsForList}"/>
+        <ListView Style="{StaticResource myListViewStyle}" ItemsSource="{Binding orderItemsForList}"/>
     </Grid>
 </Window>
+

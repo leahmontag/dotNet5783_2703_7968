@@ -10,42 +10,19 @@
     <Window.Resources>
         <local:NotBooleanToVisibiliryConvertar
                 x:Key="notBooleanToVisibiliryConvertar"/>
-        <Style x:Key="myControlStyle" TargetType="Control">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Height" Value="28"/>
-        </Style>
-
-        <Style x:Key="myTextBlockStyle" TargetType="TextBlock">
-            <!--BasedOn="{StaticResource myControlStyle}"-->
-            <Setter Property="Background" Value="PaleVioletRed"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Width" Value="120"/>
-            <Setter Property="Height" Value="23"/>
-        </Style>
-
-        <Style x:Key="myButtonStyle" TargetType="Button">
-            <Setter Property="BorderBrush" Value="Azure"/>
-            <Setter Property="BorderThickness" Value="3"/>
-            <Setter Property="TextBlock.Foreground" Value="AntiqueWhite"/>
-            <Setter Property="Background" Value="Black"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-        </Style>
     </Window.Resources>
 
     <Grid  Background="Black" TextBlock.Foreground="Beige">
         <Image Source="/image/brush2.JPG" Stretch="Uniform" Margin="172,0,-172,0"/>
-        <TextBlock Text="{Binding order.ID}"  Margin="151,30,0,0" Style="{StaticResource myTextBlockStyle}" />
-        <TextBlock Text="{Binding order.CustomerName}" Margin="151,70,0,0"   Style="{StaticResource myTextBlockStyle}" />
-        <TextBlock Text="{Binding order.CustomerEmail}" Margin="151,110,0,0" Style="{StaticResource myTextBlockStyle}"  />
-        <TextBlock Text="{Binding order.CustomerAdress}" Margin="151,150,0,0" Style="{StaticResource myTextBlockStyle}" />
-        <TextBlock Text="{Binding order.Status}" Margin="151,190,0,0"  Style="{StaticResource myTextBlockStyle}" />
-        <TextBlock Text="{Binding order.TotalPrice}" Margin="151,230,0,0" Style="{StaticResource myTextBlockStyle}"   />
-        <TextBlock Text="{Binding order.OrderDate}"  Margin="151,270,0,0" Style="{StaticResource myTextBlockStyle}" />
-        <TextBlock Text="{Binding order.ShipDate}" Margin="151,310,0,0" Style="{StaticResource myTextBlockStyle}"  />
-        <TextBlock Text="{Binding order.DeliveryDate}" Margin="151,350,0,0" Style="{StaticResource myTextBlockStyle}" />
+        <TextBlock Text="{Binding order.ID}"  Margin="151,30,0,0" Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{Binding order.CustomerName}" Margin="151,70,0,0"   Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{Binding order.CustomerEmail}" Margin="151,110,0,0" Style="{StaticResource TextBlockStyle}"  />
+        <TextBlock Text="{Binding order.CustomerAdress}" Margin="151,150,0,0" Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{Binding order.Status}" Margin="151,190,0,0"  Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{Binding order.TotalPrice}" Margin="151,230,0,0" Style="{StaticResource TextBlockStyle}"   />
+        <TextBlock Text="{Binding order.OrderDate}"  Margin="151,270,0,0" Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{Binding order.ShipDate}" Margin="151,310,0,0" Style="{StaticResource TextBlockStyle}"  />
+        <TextBlock Text="{Binding order.DeliveryDate}" Margin="151,350,0,0" Style="{StaticResource TextBlockStyle}" />
 
         <Label  TextBlock.Foreground="Beige" Content="ID:"   Margin="39,30,0,0" Style="{StaticResource myControlStyle}" />
         <Label  TextBlock.Foreground="Beige" Content="CustomerName:" Margin="39,70,0,0" Style="{StaticResource myControlStyle}"/>

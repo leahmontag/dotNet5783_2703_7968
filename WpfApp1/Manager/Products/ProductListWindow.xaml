@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Button BorderBrush="PaleVioletRed" Background="White" BorderThickness="3" TextBlock.Foreground="Black" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="addNewProductButton_Click"/>
+        <Button Style="{StaticResource myListViewStyle}" Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="addNewProductButton_Click"/>
 
         <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
@@ -27,6 +27,6 @@
             Canvas.Left="20" Canvas.Top="10" Content="without filtering"  
              FontSize="15" Margin="253,16,380,-16" Grid.ColumnSpan="2" IsChecked="{Binding filtering, Mode=TwoWay}"  Checked="CheckBox_checked" />
         </Grid>
-        <ListView Background="Black" TextBlock.Foreground="White" ItemsSource = "{Binding productForList}" SelectedValue = "{Binding selectedProduct}"  Grid.Row="1" MouseDoubleClick="ProductsListView_MouseDoubleClick" SelectionChanged="ListView_SelectionChanged" />
+        <ListView Style="{StaticResource myListViewStyle}" ItemsSource = "{Binding productForList}" SelectedValue = "{Binding selectedProduct}"  Grid.Row="1" MouseDoubleClick="ProductsListView_MouseDoubleClick" SelectionChanged="ListView_SelectionChanged" />
     </Grid>
 </Window>

@@ -3,7 +3,7 @@
   <Product>
     <ID>391673</ID>
     <Name>eye shadow palette</Name>
-    <InStock>17</InStock>
+    <InStock>15</InStock>
     <Price>250</Price>
     <Category>eyeMakeup</Category>
   </Product>
@@ -11,7 +11,7 @@
     <ID>626841</ID>
     <Name>rubber</Name>
     <InStock>78</InStock>
-    <Price>80</Price>
+    <Price>8033</Price>
     <Category>lipMakeup</Category>
   </Product>
   <Product>
@@ -45,7 +45,7 @@
   <Product>
     <ID>258089</ID>
     <Name>makeup brush</Name>
-    <InStock>212</InStock>
+    <InStock>2123</InStock>
     <Price>75</Price>
     <Category>brushes</Category>
   </Product>
@@ -69,5 +69,13 @@
     <InStock>10</InStock>
     <Price>35</Price>
     <Category>lipMakeup</Category>
+  </Product>
+  <Product>
+    <ID>12345</ID>
+    <Name>ilash</Name>
+    <ID>12345</ID>
+    <Price>55</Price>
+    <InStock>2</InStock>
+    <Category>eyeMakeup</Category>
   </Product>
 </Product>

@@ -8,9 +8,10 @@
         Title="SimulatorWindow" Height="500" Width="800"
         DataContext = "{Binding RelativeSource={RelativeSource Self}}" >
 
-    <Grid>
-        <Button Content="Stop Simulation" Height="35" Margin="641,0,0,434" VerticalAlignment="Bottom" Width="135" Click="StopSimulatorBTN_Click"/>
-        <TextBlock x:Name="SimulatorTXTB" Text="00:00:00" HorizontalAlignment="Left" Height="77" Margin="22,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="233" FontSize="48" FontFamily="adam" FontWeight="Bold"/>
+    <Grid Background="Black">
+        <Image Source="/image/brush2.JPG" Stretch="Uniform" Margin="172,0,-172,0"/>
+        <Button Content="Stop Simulation" Height="35" Margin="651,0,0,422" VerticalAlignment="Bottom" Width="135" Click="StopSimulatorBTN_Click" Style="{StaticResource myTextBlockStyle}"/>
+        <TextBlock x:Name="SimulatorTXTB" Text="00:00:00" HorizontalAlignment="Left" Height="77" Margin="22,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="233" FontSize="48" FontFamily="adam" FontWeight="Bold" TextBlock.Foreground="PaleVioletRed"/>
         <Grid Margin="0,55,0,34">
             <Grid.RowDefinitions>
                 <RowDefinition Height="46*"/>
@@ -23,21 +24,25 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Current Order:" Grid.Row="1" Grid.Column="0" Margin="200,79,106,3"/>
-            <TextBlock x:Name="currentOrder" Grid.Row="1" Grid.Column="1" Margin="0,76,238,3" Text="{Binding Item1.ID}"/>
-            <TextBlock Text="Previous Status:" Grid.Row="2" Grid.Column="0" Margin="200,5,12,39"/>
-            <TextBlock x:Name="PreviousStatus" Text="{Binding Item3}" Grid.Row="2" Grid.Column="1" Margin="0,2,238,42"/>
-            <TextBlock Text="Next Status:" Grid.Row="2" Grid.Column="0" Margin="200,56,12,0" Height="23" VerticalAlignment="Top"></TextBlock>
-            <TextBlock x:Name="NextStatus" Text="{Binding Item4}" Grid.Row="2" Margin="0,40,238,1" Grid.Column="1"/>
-            <TextBlock Text="Estimated time to complete:" Grid.Row="3" Grid.Column="0" Margin="200,20,12,63"/>
-            <TextBlock x:Name="EstimatedTime" Text="{Binding Item2}" Grid.Row="3" Grid.Column="1" Margin="0,73,238,10"/>
-            <TextBlock Text="treatment time: " Margin="200,77,38,10" Grid.Row="3"  Grid.Column="0"/>
-            <TextBlock Name="tbTime" Grid.Column="1" Margin="10,20,228,64" Grid.Row="3"/>
+            <Label Content="Current Order:" Grid.Row="1" Grid.Column="0" Margin="22,24,0,0" Style="{StaticResource myControlStyle}" />
+            <TextBlock x:Name="currentOrder" Grid.Row="1" Margin="222,25,0,0" Text="{Binding Item1.ID}"  Style="{StaticResource TextBlockStyle}"/>
+            <Label Content="Previous Status:" Grid.Row="1" Grid.Column="0" Margin="22,68,0,0" Style="{StaticResource myControlStyle}"/>
+            <TextBlock x:Name="PreviousStatus" Text="{Binding Item3}" Grid.Row="1" Margin="222,73,58,16"  Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <Label Content="Next Status:" Grid.Row="2" Grid.Column="0" Margin="22,2,0,0" Height="23" Style="{StaticResource myControlStyle}"/>
+            <TextBlock x:Name="NextStatus" Text="{Binding Item4}" Grid.Row="2" Margin="222,7,58,49"  Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <Label Content="start:" Grid.Row="2" Grid.Column="0" Margin="26,41,0,0" Style="{StaticResource myControlStyle}"/>
+            <TextBlock x:Name="start" Text="{Binding Item5}" Grid.Row="2" Margin="222,46,58,10"  Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <Label Content="end:" Grid.Row="3" Grid.Column="0" Margin="28,15,0,0" Style="{StaticResource myControlStyle}"/>
+            <TextBlock x:Name="end" Text="{Binding Item6}" Grid.Row="3" Margin="222,15,58,79"  Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <Label Content="time: " Margin="29,59,0,0" Grid.Row="3"  Grid.Column="0" Style="{StaticResource myControlStyle}"/>
+            <TextBlock x:Name="tbTime" Text="{Binding Item2}" Grid.Row="3" Margin="222,64,58,30"  Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Grid>
-        <StatusBar Name="pBar" Grid.Column="0" Grid.Row="5" VerticalAlignment="Bottom" Background="Aquamarine">
+        <StatusBar Name="pBar" Grid.Column="0" Grid.Row="5" VerticalAlignment="Bottom" Background="PaleVioletRed">
             <StatusBarItem Height="80">
-                <TextBlock Width="118" FontSize="20">progressing</TextBlock>
+                <TextBlock Width="118" FontSize="20" Height="54">progressing</TextBlock>
             </StatusBarItem>
         </StatusBar>
     </Grid>
 </Window>
+
+

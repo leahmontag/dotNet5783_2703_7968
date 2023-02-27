@@ -15,7 +15,6 @@
         <TextBlock Text="{Binding cart.TotalPrice}" Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="295,385,0,0" VerticalAlignment="Top" Width="120" />
 
 
-
         <ListView ItemsSource="{Binding items}" Background="Black">
             <ListView.View>
                 <GridView>
@@ -65,8 +64,8 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <Button Background="White" BorderBrush="PaleVioletRed" BorderThickness="1" TextBlock.Foreground="PaleVioletRed" Click="btnAddAmount" Content="+"  Margin="5,5,5,5" VerticalAlignment="Center" TextBlock.TextAlignment="Center"/>
-                                    <Button Background="White" BorderBrush="PaleVioletRed" BorderThickness="1" TextBlock.Foreground="PaleVioletRed" Click="btnSubtractAmount" Content="-" Margin="5,5,5,5" VerticalAlignment="Center" TextBlock.TextAlignment="Center"/>
+                                    <Button  Click="btnAddAmount" Content="+"  Margin="5,5,5,5" Style="{StaticResource myCartButtonStyle2}"/>
+                                    <Button  Click="btnSubtractAmount" Content="-" Margin="5,5,5,5" Style="{StaticResource myCartButtonStyle2}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -75,17 +74,23 @@
             </ListView.View>
         </ListView>
         <TextBox Text="enter your details to confirm your order:"   Height="20"  HorizontalAlignment="Left" Margin="517,106,0,0" VerticalAlignment="Top" Width="229" />
-        <TextBox Text="{Binding cart.CustomerAddress,Mode=TwoWay}" Background="PaleVioletRed"  Height="23"  HorizontalAlignment="Left" Margin="630,156,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding cart.CustomerEmail,Mode=TwoWay}" Background="PaleVioletRed" Height="23"  HorizontalAlignment="Left" Margin="631,198,0,0" VerticalAlignment="Top" Width="120" />
-        <TextBox Text="{Binding cart.CustomerName,Mode=TwoWay}"  Background="PaleVioletRed"  Height="23" HorizontalAlignment="Left" Margin="632,246,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox Text="{Binding cart.CustomerAddress,Mode=TwoWay}"  Margin="630,156,0,0" Style="{StaticResource myTextBlockStyle}"/>
+        <TextBox Text="{Binding cart.CustomerEmail,Mode=TwoWay}" Margin="631,198,0,0" Style="{StaticResource myTextBlockStyle}" />
+        <TextBox Text="{Binding cart.CustomerName,Mode=TwoWay}"  Margin="632,246,0,0" Style="{StaticResource myTextBlockStyle}"/>
 
-        <Label TextBlock.Foreground="White" Content="CustomerAddress:" Height="28" HorizontalAlignment="Left" Margin="506,152,0,0" VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="White" Content="CustomerEmail:" Height="28" HorizontalAlignment="Left" Margin="508,195,0,0" VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="White" Content="CustomerName:" Height="28" HorizontalAlignment="Left" Margin="509,241,0,0" VerticalAlignment="Top" />
-        <Label TextBlock.Foreground="White" Content="all items in cart:" Height="28" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="15,12,0,0" Width="327" />
+        <Label Content="CustomerAddress:" Margin="506,152,0,0" Style="{StaticResource myCartStyle}" />
+        <Label Content="CustomerEmail:" Height="28"  Margin="508,195,0,0"  Style="{StaticResource myCartStyle}" />
+        <Label Content="CustomerName:" Height="28"  Margin="509,241,0,0" Style="{StaticResource myCartStyle}"/>
+        <Label Content="all items in cart:" Height="28"  Margin="15,12,0,0" Width="327" Style="{StaticResource myCartStyle}"/>
         <Label Content="{Binding errorProp}" TextBlock.FontWeight="Bold" TextBlock.Foreground="Red" Height="25" HorizontalAlignment="Left" Margin="{Binding expMargin}"  VerticalAlignment="Top" Width="197" />
 
-        <Button BorderBrush="PaleVioletRed" BorderThickness="3" TextBlock.Foreground="Black" Background="White" Content = "confirm order" Height="63" HorizontalAlignment="Left" Margin="600,344,0,0" VerticalAlignment="Top" Width="172" Click="BtnConfirmOrder_Click" RenderTransformOrigin="0.5,0.5" />
+        <Button  Content = "confirm order" Margin="600,344,0,0"  Click="BtnConfirmOrder_Click" Style="{StaticResource myCartButtonStyle}" />
 
     </Grid>
 </Window>
+
+
+
+
+
+

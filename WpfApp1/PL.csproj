@@ -108,8 +108,4 @@
 	  <ProjectReference Include="..\Simulator\Simulator.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Simulator\" />
-	</ItemGroup>
-
 </Project>

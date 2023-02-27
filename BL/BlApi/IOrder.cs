@@ -41,16 +41,6 @@ public interface IOrder
     public BO.OrderTracking TrackingOfOrder(int ID);
 
     /// <summary>
-    /// update order by manager
-    /// </summary>
-    /// <param name="BOorder"></param>
-    /// <param name="ID"></param>
-    /// <param name="whatToDO"></param>
-    /// <param name="Amount"></param>
-    /// <returns></returns>
-    public BO.Order UpdateOrder(BO.Order BOorder, int ID, string whatToDO, int Amount);
-
-    /// <summary>
     /// Selecting an order for treatment
     /// </summary>
     /// <returns></returns>

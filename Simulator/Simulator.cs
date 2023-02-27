@@ -1,6 +1,4 @@
-﻿using BlApi;
-using System.Diagnostics;
-namespace Simulator;
+﻿namespace Simulator;
 public static class Simulator
 {
     private static string? previousState;
@@ -19,6 +17,7 @@ public static class Simulator
     /// </summary>
     public static void run()
     {
+        finishFlag = false;
         Thread mainThreads = new Thread(new ThreadStart(OrderInProgress));
         mainThreads.Start();
         return;
@@ -26,6 +25,7 @@ public static class Simulator
     /// <summary>
     /// the function choose the order that has to be cared now.
     /// </summary>
+    #region OrderInProgress
     public static void OrderInProgress()
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
@@ -33,7 +33,7 @@ public static class Simulator
         while (!finishFlag)
         {
             id = bl.Order.SelectingOrderForTreatment();
-            if (id == 0 || id==null)
+            if (id == 0 || id == null)
                 DoStop();
             else
             {
@@ -52,11 +52,15 @@ public static class Simulator
         }
         return;
     }
+    #endregion
+
 }
 
 /// <summary>
 /// class to define the things that are sended from the Simulator.cs to the window.
 /// </summary>
+
+#region class DetailsSimulator - order details and seconds. 
 public class DetailsSimulator : EventArgs
 {
     public BO.Order order;
@@ -67,6 +71,8 @@ public class DetailsSimulator : EventArgs
         seconds = sec;
     }
 }
+#endregion
+
 
 
 

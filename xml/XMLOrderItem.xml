@@ -320,4 +320,20 @@
     <Amount>7</Amount>
     <Name>lipstick</Name>
   </OrderItem>
+  <OrderItem>
+    <OrderItemID>100040</OrderItemID>
+    <ProductID>391673</ProductID>
+    <OrderID>100020</OrderID>
+    <Price>250</Price>
+    <Amount>2</Amount>
+    <Name>eye shadow palette</Name>
+  </OrderItem>
+  <OrderItem>
+    <OrderItemID>100041</OrderItemID>
+    <ProductID>12345</ProductID>
+    <OrderID>100020</OrderID>
+    <Price>55</Price>
+    <Amount>2</Amount>
+    <Name>ilash</Name>
+  </OrderItem>
 </ArrayOfOrderItem>

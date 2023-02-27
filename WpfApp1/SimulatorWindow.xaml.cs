@@ -15,11 +15,14 @@ namespace PL
     /// </summary>
     public partial class SimulatorWindow : Window
     {
+        #region initalize
         BlApi.IBl? bl = BlApi.Factory.Get();
         string nextStatus;
         string previousStatus;
+        DateTime startDateTime;
+        DateTime endDateTime;
         BackgroundWorker worker;
-        Tuple<BO.Order, int, string, string> dcT;
+        Tuple<BO.Order, int, string, string, DateTime, DateTime> dcT;
         //====== disable the option of closing the window =======
         private const int GWL_STYLE = -16;
         private const int WS_SYSMENU = 0x80000;
@@ -39,6 +42,8 @@ namespace PL
         DispatcherTimer _timer;
         TimeSpan _time;
         //=======
+        #endregion
+
         public SimulatorWindow(BlApi.IBl? Bl)
         {
             InitializeComponent();
@@ -46,20 +51,27 @@ namespace PL
             Loaded += ToolWindow_Loaded;
             TimerStart();
         }
-
+        /// <summary>
+        /// count Down Timer
+        /// </summary>
+        /// <param name="sec"></param>
         void countDownTimer(int sec)
         {
             _time = TimeSpan.FromSeconds(sec);
 
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
-                tbTime.Text = _time.ToString("c");
                 if (_time == TimeSpan.Zero) _timer.Stop();
                 _time = _time.Add(TimeSpan.FromSeconds(-1));
             }, Application.Current.Dispatcher);
 
             _timer.Start();
         }
+
+        /// <summary>
+        /// Progress Bar Start
+        /// </summary>
+        /// <param name="sec"></param>
         void ProgressBarStart(int sec)
         {
             if (ProgressBar != null)
@@ -70,12 +82,15 @@ namespace PL
             ProgressBar.IsIndeterminate = false;
             ProgressBar.Orientation = Orientation.Horizontal;
             ProgressBar.Width = 500;
-            ProgressBar.Height = 60;
+            ProgressBar.Height = 40;
             duration = new Duration(TimeSpan.FromSeconds(sec * 2));
             doubleanimation = new DoubleAnimation(200.0, duration);
             ProgressBar.BeginAnimation(ProgressBar.ValueProperty, doubleanimation);
             pBar.Items.Add(ProgressBar);
         }
+        /// <summary>
+        /// Timer Start
+        /// </summary>
         void TimerStart()
         {
             stopWatch = new Stopwatch();
@@ -88,6 +103,11 @@ namespace PL
             isTimerRun = true;
             worker.RunWorkerAsync();
         }
+        /// <summary>
+        /// Timer DoWork
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void TimerDoWork(object sender, DoWorkEventArgs e)
         {
             Simulator.Simulator.ProgressChange += changeOrder;
@@ -99,15 +119,21 @@ namespace PL
                 Thread.Sleep(1000);
             }
         }
+        /// <summary>
+        /// change Order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void changeOrder(object sender, EventArgs e)
         {
             if (!(e is DetailsSimulator))
                 return;
-
             DetailsSimulator details = e as DetailsSimulator;
-            previousStatus = (details.order.ShipDate == null) ? BO.Enums.OrderStatus.confirmed.ToString() : BO.Enums.OrderStatus.send.ToString();
-            nextStatus = (details.order.ShipDate == null) ? BO.Enums.OrderStatus.send.ToString() : BO.Enums.OrderStatus.provided.ToString();
-            dcT = new Tuple<BO.Order, int, string, string>(details.order, details.seconds / 1000, previousStatus, nextStatus);
+            previousStatus = (details?.order.ShipDate == null) ? BO.Enums.OrderStatus.confirmed.ToString() : BO.Enums.OrderStatus.send.ToString();
+            nextStatus = (details?.order.ShipDate == null) ? BO.Enums.OrderStatus.send.ToString() : BO.Enums.OrderStatus.provided.ToString();
+            startDateTime = DateTime.Now;
+            endDateTime = startDateTime.AddSeconds(details.seconds / 1000);
+            dcT = new Tuple<BO.Order, int, string, string,DateTime,DateTime>(details.order, details.seconds / 1000, previousStatus, nextStatus,startDateTime,endDateTime);
             if (!CheckAccess())
             {
                 Dispatcher.BeginInvoke(changeOrder, sender, e);
@@ -119,19 +145,33 @@ namespace PL
                 ProgressBarStart(details.seconds / 1000);
             }
         }
+        /// <summary>
+        /// Timer Progress Changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void TimerProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             string timerText = stopWatch.Elapsed.ToString();
             timerText = timerText.Substring(0, 8);
             SimulatorTXTB.Text = timerText;
         }
+        /// <summary>
+        /// Tool Window Loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void ToolWindow_Loaded(object sender, RoutedEventArgs e)
         {
             // Code to remove close box from window
             var hwnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
         }
-
+        /// <summary>
+        /// Stop Simulator BTN_Click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StopSimulatorBTN_Click(object sender, RoutedEventArgs e)
         {
             if (isTimerRun)
@@ -142,6 +182,11 @@ namespace PL
             Simulator.Simulator.DoStop();
             this.Close();
         }
+        /// <summary>
+        /// Stop
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void Stop(object sender, EventArgs e)
         {
             Simulator.Simulator.ProgressChange -= changeOrder;

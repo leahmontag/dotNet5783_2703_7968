@@ -13,7 +13,7 @@
             <ImageBrush Stretch="Uniform" ImageSource="/image/images.jfif"></ImageBrush>
         </Grid.Background>
         <TextBlock TextBlock.FontWeight="Bold" TextBlock.TextAlignment="Right" TextBlock.FontSize="20" Text="{Binding cart.CustomerName}"  Height="32" HorizontalAlignment="Left" Margin="250,209,0,0" VerticalAlignment="Top" Width="91" RenderTransformOrigin="-5.143,5.473" />
-        <Label TextBlock.FontSize="20" Content=",We want to thank you for shopping in our stores!" Height="49"  HorizontalAlignment="Left" Margin="338,205,0,0" VerticalAlignment="Top" Width="487" />
+        <Label TextBlock.FontSize="20" Content=",We want to thank you for shipping in our stores!" Height="49"  HorizontalAlignment="Left" Margin="338,205,0,0" VerticalAlignment="Top" Width="487" />
         <Label TextBlock.FontSize="20" Content="We are waiting for you again soon :)" Height="49"  HorizontalAlignment="Left" Margin="448,377,0,0" VerticalAlignment="Top" Width="487" />
 
         <Grid TextBlock.FontSize="17" Margin="0,8,0,-8">
@@ -28,3 +28,4 @@
         </Grid>
     </Grid>
 </Window>
+
